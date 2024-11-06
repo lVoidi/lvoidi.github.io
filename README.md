@@ -4,6 +4,7 @@ I am a person interested in the following things:
 - Python django web development, i will deploy mi personal webpage soon! 🚀
 - Linux and low level programming, i use Gentoo Linux and love working on Rust and C. 🛸
 - I often develop simple games, specially for university projects. Some of them are in C#/Unity and some others are un Python/tkinter 🛰️
+- I like astronomy and aerospacial engineering! 🌠
 ## Contact 🌏
 Feel free to contact me to colaborate or being friends!
 - [Telegram](https://t.me/roarba)
