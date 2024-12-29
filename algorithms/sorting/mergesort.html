@@ -14,8 +14,29 @@
     <link href="../../static/css/prism.css" rel="stylesheet">
 </head>
 <body>
-    <!-- Navbar (same as quicksort.html) -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="../../index.html">lVoidi</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="../index.html">Algorithms</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../../singularity/index.html">Technological Singularity</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../../void/index.html">The Pit of Endless Void</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
     
+
     <!-- Main Content -->
     <main class="container py-5">
         <div class="row">
@@ -67,6 +88,30 @@
                             <li>Repeatedly merge subarrays to produce new sorted subarrays until there is only one subarray remaining</li>
                             <li>This will be the sorted array</li>
                         </ol>
+                    </section>
+
+                    <section class="algorithm-section">
+                        <h2>Visualization</h2>
+                        <div class="visualization-container">
+                            <div class="visualization-controls">
+                                <button class="btn btn-primary" id="startVisualization">
+                                    <i class="fas fa-play"></i> Start
+                                </button>
+                                <button class="btn btn-secondary" id="resetVisualization">
+                                    <i class="fas fa-redo"></i> Reset
+                                </button>
+                                <div class="speed-control">
+                                    <label>Speed:</label>
+                                    <input type="range" id="speedControl" min="1" max="5" value="3">
+                                </div>
+                            </div>
+                            <div class="visualization-area">
+                                <svg id="mergeSortVisualization" width="100%" height="300"></svg>
+                            </div>
+                            <div class="visualization-steps">
+                                <p id="currentStep">Click Start to begin visualization</p>
+                            </div>
+                        </div>
                     </section>
 
                     <section class="algorithm-section">
@@ -292,5 +337,6 @@ public class MergeSort
             }, 2000);
         });
     </script>
+    <script src="../../static/js/mergesort-visualization.js"></script>
 </body>
 </html>
