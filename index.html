@@ -1,66 +1,90 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>lVoidi portal</title>
-  </head>
-  <body>
-  <h1>lVoidi portal</h1>
-  <p>
-    There is nothing here for now
-  </p>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>lVoidi Portal</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="static/css/style.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="/">lVoidi</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/algorithms">Algorithms</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/singularity">Technological Singularity</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/void">The Pit of Endless Void</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 
-  <h2>About me</h2>
-  <p>
-  I'm just a curious programmer, i like to build and rebuild stuff. I like contributing to open source code and 
-  i always try to open source myself. I always try to keep my github green squares, but sometimes i can't open source 
-  my code or i'm working on something else. 
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <h1 class="display-1 mb-4">Welcome to the Void</h1>
+            <p class="lead mb-4">Exploring the depths of algorithms, AI, and the technological singularity</p>
+        </div>
+    </section>
 
-  Apart from coding, i like to play bass, read and listening to music in general. I'm a computer engineering student.
-  </p>
+    <!-- Main Content -->
+    <main class="container py-5">
+        <div class="row justify-content-center">
+            <!-- Algorithms Card -->
+            <div class="col-md-3">
+                <div class="card h-100">
+                    <img src="static/img/algorithms.jpg" class="card-img-top" alt="Algorithms">
+                    <div class="card-body">
+                        <h5 class="card-title">Algorithms Library</h5>
+                        <p class="card-text">A comprehensive collection of essential algorithms with implementations.</p>
+                        <a href="/algorithms" class="btn btn-outline-light">Explore</a>
+                    </div>
+                </div>
+            </div>
 
-  <h2>Projects</h2>
-  <p>
-  I use to build with window managers like awesome and qtile. I like to open source my university projects also. I also try to 
-  add unit tests and dockerfiles to my projects. I am part of Aerospacial Engineering groups in university, i like to build 
-  rockets using openrocket.
+            <!-- Singularity Card -->
+            <div class="col-md-3">
+                <div class="card h-100">
+                    <img src="static/img/singularity.jpg" class="card-img-top" alt="Technological Singularity">
+                    <div class="card-body">
+                        <h5 class="card-title">Technological Singularity</h5>
+                        <p class="card-text">Deep dives into AI and machine learning research papers and developments.</p>
+                        <a href="/singularity" class="btn btn-outline-light">Explore</a>
+                    </div>
+                </div>
+            </div>
 
-  <ul>
-    <li>
-      Rover poas: This is one of the projects i'm currently working in, with a lot of people. It's a rover robot that can be remotely 
-    controlled using radio signals, and has a camera integrated and also can take samples from vulcans (that's why it is called rover poas)
-    </li>
-    <li>
-      Intellihome: This is one of the university projects i'm proud of, it is a SaaS web application made using python and django. It can connect 
-      to a raspberry pi. It is a house renting system, but the houses are intelligent. So you can pair a house with devices connected to a raspberry pi. 
-      We simulated lights with leds, gates with a servo motor and alarms with a buzzer. All of that conected wirelessly. The SaaS is very complete in functionality 
-      and we are very proud of it as a group (the project was in groups of four people). We scored 90%. 
-    </li>
-    <li>
-      TinySQL: This is a kind of SQL replica, it can parse sql sentences from scripts and persist in disk. It stores indices as Binary Trees or B-Trees. It is 
-      proven that trees searches are faster than linear searches. We scored 100%.
-    </li>
-    <li>
-      CEFootV4: This is a football game that can only be played using the circuit. It simulates penalties. It is a hand made mini stadium, where the goal is a 
-      group of 6 buttons. Two or three of those buttons are selected randomly as the "goalie". There are two parts, the circuit side, which was the hardest, because 
-      we hard to connect a Raspberry Pi Pico W via Wi-Fi (it gave a lot of problems), and then we had to create the gui for the game. We created a very good looking 
-      game with tkinter, and we created a Desktop Version so it can be played without the circuit. You can select the players and the goalies with a potentiometer.
-      It's a very complete game.
-    </li>
-    <li>
-      Bomberman: This was an individual project. I created a bomberman game using python and tkinter. The twist: we had to use recursion, no OOP allowed. It was fun.
-    </li>
-    <li>
-      Paintxel: This was one of the most entertaining projects ever. It was in pairs. We had to create a paint like program, but with pixel art. You can also save 
-      and load images from text files. You can do a lot of operations with it. All of it was made using matrices.
-    </li>
-    <li>
-      Personal dotfiles: This is my personal project, this is just my desktop configuration, my biggest project ever lmao.
-    </li>
+            <!-- Blog Card -->
+            <div class="col-md-3">
+                <div class="card h-100">
+                    <img src="static/img/void.jpg" class="card-img-top" alt="The Void">
+                    <div class="card-body">
+                        <h5 class="card-title">The Pit of Endless Void</h5>
+                        <p class="card-text">Personal thoughts, experiences, and musings about technology and beyond.</p>
+                        <a href="/void" class="btn btn-outline-light">Explore</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
 
-  </ul> 
-  </p>
-
-  </body>
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
 </html>

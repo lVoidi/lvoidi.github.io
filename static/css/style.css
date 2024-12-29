@@ -1,0 +1,113 @@
+:root {
+    --primary-dark: #0a0a0a;
+    --secondary-dark: #1a1a1a;
+    --text-color: #e0e0e0;
+    --accent-color: #6e44ff;
+}
+
+body {
+    font-family: 'JetBrains Mono', 'Courier New', monospace;
+    background-color: var(--primary-dark);
+    color: var(--text-color);
+}
+
+.navbar {
+    background-color: var(--secondary-dark);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.hero-section {
+    min-height: 80vh;
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+                url('../img/black-hole-1.jpg');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.card {
+    background-color: rgba(0, 0, 0, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    overflow: hidden;
+    height: 100%;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    border-color: var(--accent-color);
+    box-shadow: 0 5px 15px rgba(110, 68, 255, 0.2);
+}
+
+.card-img-top {
+    height: 180px;
+    object-fit: cover;
+    opacity: 0.7;
+    filter: blur(1px);
+    transition: all 0.3s ease;
+}
+
+.card:hover .card-img-top {
+    opacity: 0.9;
+    filter: blur(0);
+}
+
+.card-body {
+    padding: 1.5rem;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.7), rgba(0,0,0,0.9));
+}
+
+.card-title {
+    color: #6e44ff;
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+    font-weight: normal;
+}
+
+.card-text {
+    color: #a0a0a0;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+}
+
+.btn {
+    background: transparent;
+    border: 1px solid #6e44ff;
+    color: #6e44ff;
+    padding: 0.5rem 1.5rem;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #6e44ff;
+    color: #000;
+}
+
+/* Add consistent spacing between cards */
+.row {
+    gap: 2rem;
+    display: flex;
+    justify-content: center;
+}
+
+.col-md-3 {
+    padding: 0;
+    width: 300px;
+    flex: 0 0 auto;
+}
+
+.section-title {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.container {
+    max-width: 1400px;
+} 
