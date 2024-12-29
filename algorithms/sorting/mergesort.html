@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Merge Sort - lVoidi Portal</title>
+    
+    <!-- CSS imports -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="../../static/css/style.css" rel="stylesheet">
+    <link href="../../static/css/algorithms.css" rel="stylesheet">
+    <link href="../../static/css/algorithm-page.css" rel="stylesheet">
+    <link href="../../static/css/prism.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Navbar (same as quicksort.html) -->
+    
+    <!-- Main Content -->
+    <main class="container py-5">
+        <div class="row">
+            <!-- Sidebar with Quick Info -->
+            <div class="col-md-3">
+                <div class="algorithm-info-card">
+                    <h3>Quick Info</h3>
+                    <div class="info-item">
+                        <span class="info-label">Category:</span>
+                        <span class="info-value">Sorting</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Time Complexity:</span>
+                        <span class="info-value">O(n log n)</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Space Complexity:</span>
+                        <span class="info-value">O(n)</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Stable:</span>
+                        <span class="info-value">Yes</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">In-Place:</span>
+                        <span class="info-value">No</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Content -->
+            <div class="col-md-9">
+                <article class="algorithm-content">
+                    <h1>Merge Sort</h1>
+                    <div class="algorithm-metadata">
+                        <span class="category-tag">Sorting</span>
+                        <span class="difficulty-tag">Medium</span>
+                    </div>
+
+                    <section class="algorithm-section">
+                        <h2>Description</h2>
+                        <p>Merge Sort is a divide-and-conquer algorithm that recursively breaks down a problem into smaller, more manageable subproblems until they become simple enough to solve directly. The solutions to the subproblems are then combined to solve the original problem.</p>
+                    </section>
+
+                    <section class="algorithm-section">
+                        <h2>How It Works</h2>
+                        <ol>
+                            <li>Divide the unsorted array into n subarrays, each containing one element (a list of one element is considered sorted)</li>
+                            <li>Repeatedly merge subarrays to produce new sorted subarrays until there is only one subarray remaining</li>
+                            <li>This will be the sorted array</li>
+                        </ol>
+                    </section>
+
+                    <section class="algorithm-section">
+                        <h2>Implementation</h2>
+                        <div class="implementation-tabs">
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" data-bs-toggle="tab" href="#python">Python</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-bs-toggle="tab" href="#cpp">C++</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-bs-toggle="tab" href="#csharp">C#</a>
+                                </li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane fade show active" id="python">
+                                    <div class="code-wrapper">
+                                        <button class="copy-button" data-clipboard-target="#python-code">
+                                            <i class="fas fa-copy"></i>
+                                        </button>
+                                        <pre><code class="language-python" id="python-code">
+def merge(left, right):
+    result = []
+    i = j = 0
+    
+    while i < len(left) and j < len(right):
+        if left[i] <= right[j]:
+            result.append(left[i])
+            i += 1
+        else:
+            result.append(right[j])
+            j += 1
+    
+    result.extend(left[i:])
+    result.extend(right[j:])
+    return result
+
+def mergesort(arr):
+    if len(arr) <= 1:
+        return arr
+        
+    mid = len(arr) // 2
+    left = mergesort(arr[:mid])
+    right = mergesort(arr[mid:])
+    
+    return merge(left, right)
+
+# Example usage
+if __name__ == "__main__":
+    arr = [64, 34, 25, 12, 22, 11, 90]
+    print("Original array:", arr)
+    sorted_arr = mergesort(arr)
+    print("Sorted array:", sorted_arr)
+                                        </code></pre>
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="cpp">
+                                    <div class="code-wrapper">
+                                        <button class="copy-button" data-clipboard-target="#cpp-code">
+                                            <i class="fas fa-copy"></i>
+                                        </button>
+                                        <pre><code class="language-cpp" id="cpp-code">
+#include &lt;iostream&gt;
+#include &lt;vector&gt;
+
+class MergeSort {
+private:
+    static std::vector&lt;int&gt; merge(const std::vector&lt;int&gt;& left, const std::vector&lt;int&gt;& right) {
+        std::vector&lt;int&gt; result;
+        size_t i = 0, j = 0;
+        
+        while (i < left.size() && j < right.size()) {
+            if (left[i] <= right[j]) {
+                result.push_back(left[i++]);
+            } else {
+                result.push_back(right[j++]);
+            }
+        }
+        
+        result.insert(result.end(), left.begin() + i, left.end());
+        result.insert(result.end(), right.begin() + j, right.end());
+        return result;
+    }
+    
+public:
+    static std::vector&lt;int&gt; sort(const std::vector&lt;int&gt;& arr) {
+        if (arr.size() <= 1) return arr;
+        
+        size_t mid = arr.size() / 2;
+        std::vector&lt;int&gt; left(arr.begin(), arr.begin() + mid);
+        std::vector&lt;int&gt; right(arr.begin() + mid, arr.end());
+        
+        left = sort(left);
+        right = sort(right);
+        
+        return merge(left, right);
+    }
+};
+
+// Example usage
+int main() {
+    std::vector&lt;int&gt; arr = {64, 34, 25, 12, 22, 11, 90};
+    
+    std::cout << "Original array: ";
+    for (int num : arr) std::cout << num << " ";
+    std::cout << std::endl;
+    
+    arr = MergeSort::sort(arr);
+    
+    std::cout << "Sorted array: ";
+    for (int num : arr) std::cout << num << " ";
+    std::cout << std::endl;
+    
+    return 0;
+}
+                                        </code></pre>
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="csharp">
+                                    <div class="code-wrapper">
+                                        <button class="copy-button" data-clipboard-target="#csharp-code">
+                                            <i class="fas fa-copy"></i>
+                                        </button>
+                                        <pre><code class="language-csharp" id="csharp-code">
+public class MergeSort
+{
+    private static int[] Merge(int[] left, int[] right)
+    {
+        int[] result = new int[left.Length + right.Length];
+        int i = 0, j = 0, k = 0;
+        
+        while (i < left.Length && j < right.Length)
+        {
+            if (left[i] <= right[j])
+                result[k++] = left[i++];
+            else
+                result[k++] = right[j++];
+        }
+        
+        while (i < left.Length)
+            result[k++] = left[i++];
+            
+        while (j < right.Length)
+            result[k++] = right[j++];
+            
+        return result;
+    }
+    
+    public static int[] Sort(int[] arr)
+    {
+        if (arr.Length <= 1)
+            return arr;
+            
+        int mid = arr.Length / 2;
+        int[] left = new int[mid];
+        int[] right = new int[arr.Length - mid];
+        
+        Array.Copy(arr, 0, left, 0, mid);
+        Array.Copy(arr, mid, right, 0, arr.Length - mid);
+        
+        left = Sort(left);
+        right = Sort(right);
+        
+        return Merge(left, right);
+    }
+    
+    // Example usage
+    public static void Main(string[] args)
+    {
+        int[] arr = { 64, 34, 25, 12, 22, 11, 90 };
+        
+        Console.WriteLine("Original array: " + string.Join(" ", arr));
+        arr = Sort(arr);
+        Console.WriteLine("Sorted array: " + string.Join(" ", arr));
+    }
+}
+                                        </code></pre>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="algorithm-section">
+                        <h2>Advantages and Disadvantages</h2>
+                        <div class="pros-cons">
+                            <div class="pros">
+                                <h3>Advantages</h3>
+                                <ul>
+                                    <li>Stable sorting algorithm</li>
+                                    <li>Guaranteed O(n log n) performance</li>
+                                    <li>Parallelizable</li>
+                                </ul>
+                            </div>
+                            <div class="cons">
+                                <h3>Disadvantages</h3>
+                                <ul>
+                                    <li>Requires extra space O(n)</li>
+                                    <li>Not in-place</li>
+                                    <li>Not adaptive</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+                </article>
+            </div>
+        </div>
+    </main>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.8/clipboard.min.js"></script>
+    <script src="../../static/js/prism.js"></script>
+    <script>
+        const clipboard = new ClipboardJS('.copy-button');
+        clipboard.on('success', function(e) {
+            const button = e.trigger;
+            button.innerHTML = '<i class="fas fa-check"></i>';
+            setTimeout(() => {
+                button.innerHTML = '<i class="fas fa-copy"></i>';
+            }, 2000);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quick Sort - lVoidi Portal</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../static/css/style.css" rel="stylesheet">
+    <link href="../../static/css/algorithms.css" rel="stylesheet">
+    <link href="../../static/css/algorithm-page.css" rel="stylesheet">
+    
+    <!-- Prism.js for code highlighting -->
+    <link href="../../static/css/prism.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="../../index.html">lVoidi</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="../index.html">Algorithms</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../../singularity/index.html">Technological Singularity</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../../void/index.html">The Pit of Endless Void</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Algorithm Content -->
+    <main class="container py-5">
+        <div class="row">
+            <!-- Sidebar with Quick Info -->
+            <div class="col-md-3">
+                <div class="algorithm-info-card">
+                    <h3>Quick Info</h3>
+                    <div class="info-item">
+                        <span class="info-label">Category:</span>
+                        <span class="info-value">Sorting</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Time Complexity:</span>
+                        <span class="info-value">Average: O(n log n)<br>Worst: O(n²)</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Space Complexity:</span>
+                        <span class="info-value">O(log n)</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Stable:</span>
+                        <span class="info-value">No</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">In-Place:</span>
+                        <span class="info-value">Yes</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Content -->
+            <div class="col-md-9">
+                <article class="algorithm-content">
+                    <h1>Quick Sort</h1>
+                    <div class="algorithm-metadata">
+                        <span class="category-tag">Sorting</span>
+                        <span class="difficulty-tag">Medium</span>
+                    </div>
+
+                    <section class="algorithm-section">
+                        <h2>Description</h2>
+                        <p>QuickSort is a divide-and-conquer algorithm that works by selecting a 'pivot' element from the array and partitioning the other elements into two sub-arrays, according to whether they are less than or greater than the pivot.</p>
+                    </section>
+
+                    <section class="algorithm-section">
+                        <h2>How It Works</h2>
+                        <ol>
+                            <li>Choose a pivot element from the array</li>
+                            <li>Partition the array around the pivot</li>
+                            <li>Recursively apply the above steps to the sub-arrays</li>
+                        </ol>
+                    </section>
+
+                    <section class="algorithm-section">
+                        <h2>Implementation</h2>
+                        <div class="implementation-tabs">
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" data-bs-toggle="tab" href="#python">Python</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-bs-toggle="tab" href="#cpp">C++</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-bs-toggle="tab" href="#csharp">C#</a>
+                                </li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane fade show active" id="python">
+                                    <div class="code-wrapper">
+                                        <button class="copy-button" data-clipboard-target="#python-code">
+                                            <i class="fas fa-copy"></i>
+                                        </button>
+                                        <pre><code class="language-python" id="python-code">
+def partition(arr, low, high):
+    pivot = arr[high]
+    i = low - 1
+    
+    for j in range(low, high):
+        if arr[j] <= pivot:
+            i += 1
+            arr[i], arr[j] = arr[j], arr[i]
+    
+    arr[i + 1], arr[high] = arr[high], arr[i + 1]
+    return i + 1
+
+def quicksort(arr, low, high):
+    if low < high:
+        pi = partition(arr, low, high)
+        quicksort(arr, low, pi - 1)
+        quicksort(arr, pi + 1, high)
+
+# Helper function to call quicksort
+def sort(arr):
+    quicksort(arr, 0, len(arr) - 1)
+    return arr
+
+# Example usage
+if __name__ == "__main__":
+    arr = [64, 34, 25, 12, 22, 11, 90]
+    print("Original array:", arr)
+    sort(arr)
+    print("Sorted array:", arr)
+                                        </code></pre>
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="cpp">
+                                    <pre><code class="language-cpp">
+#include &lt;iostream&gt;
+#include &lt;vector&gt;
+
+class QuickSort {
+private:
+    static int partition(std::vector&lt;int&gt;& arr, int low, int high) {
+        int pivot = arr[high];
+        int i = low - 1;
+        
+        for (int j = low; j < high; j++) {
+            if (arr[j] <= pivot) {
+                i++;
+                std::swap(arr[i], arr[j]);
+            }
+        }
+        
+        std::swap(arr[i + 1], arr[high]);
+        return i + 1;
+    }
+    
+    static void quicksort(std::vector&lt;int&gt;& arr, int low, int high) {
+        if (low < high) {
+            int pi = partition(arr, low, high);
+            quicksort(arr, low, pi - 1);
+            quicksort(arr, pi + 1, high);
+        }
+    }
+
+public:
+    static void sort(std::vector&lt;int&gt;& arr) {
+        quicksort(arr, 0, arr.size() - 1);
+    }
+};
+
+// Example usage
+int main() {
+    std::vector&lt;int&gt; arr = {64, 34, 25, 12, 22, 11, 90};
+    
+    std::cout << "Original array: ";
+    for (int num : arr) std::cout << num << " ";
+    std::cout << std::endl;
+    
+    QuickSort::sort(arr);
+    
+    std::cout << "Sorted array: ";
+    for (int num : arr) std::cout << num << " ";
+    std::cout << std::endl;
+    
+    return 0;
+}
+                                        </code></pre>
+                                </div>
+                                <div class="tab-pane fade" id="csharp">
+                                    <pre><code class="language-csharp">
+public class QuickSort
+{
+    private static int Partition(int[] arr, int low, int high)
+    {
+        int pivot = arr[high];
+        int i = low - 1;
+        
+        for (int j = low; j < high; j++)
+        {
+            if (arr[j] <= pivot)
+            {
+                i++;
+                (arr[i], arr[j]) = (arr[j], arr[i]);
+            }
+        }
+        
+        (arr[i + 1], arr[high]) = (arr[high], arr[i + 1]);
+        return i + 1;
+    }
+    
+    private static void QuickSortRecursive(int[] arr, int low, int high)
+    {
+        if (low < high)
+        {
+            int pi = Partition(arr, low, high);
+            QuickSortRecursive(arr, low, pi - 1);
+            QuickSortRecursive(arr, pi + 1, high);
+        }
+    }
+    
+    public static void Sort(int[] arr)
+    {
+        QuickSortRecursive(arr, 0, arr.Length - 1);
+    }
+    
+    // Example usage
+    public static void Main(string[] args)
+    {
+        int[] arr = { 64, 34, 25, 12, 22, 11, 90 };
+        
+        Console.WriteLine("Original array: " + string.Join(" ", arr));
+        Sort(arr);
+        Console.WriteLine("Sorted array: " + string.Join(" ", arr));
+    }
+}
+                                        </code></pre>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="algorithm-section">
+                        <h2>Complexity Analysis</h2>
+                        <table class="complexity-table">
+                            <tr>
+                                <th>Case</th>
+                                <th>Time Complexity</th>
+                            </tr>
+                            <tr>
+                                <td>Best</td>
+                                <td>O(n log n)</td>
+                            </tr>
+                            <tr>
+                                <td>Average</td>
+                                <td>O(n log n)</td>
+                            </tr>
+                            <tr>
+                                <td>Worst</td>
+                                <td>O(n²)</td>
+                            </tr>
+                        </table>
+                    </section>
+
+                    <section class="algorithm-section">
+                        <h2>Advantages and Disadvantages</h2>
+                        <div class="pros-cons">
+                            <div class="pros">
+                                <h3>Advantages</h3>
+                                <ul>
+                                    <li>Efficient on average</li>
+                                    <li>In-place sorting</li>
+                                    <li>Cache friendly</li>
+                                </ul>
+                            </div>
+                            <div class="cons">
+                                <h3>Disadvantages</h3>
+                                <ul>
+                                    <li>Unstable sort</li>
+                                    <li>Poor worst-case performance</li>
+                                    <li>Not adaptive</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+                </article>
+            </div>
+        </div>
+    </main>
+
+    <!-- Bootstrap JS and Prism.js -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../../static/js/prism.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.8/clipboard.min.js"></script>
+    <script>
+        // Initialize clipboard.js
+        const clipboard = new ClipboardJS('.copy-button');
+        
+        clipboard.on('success', function(e) {
+            const button = e.trigger;
+            button.innerHTML = '<i class="fas fa-check"></i>';
+            setTimeout(() => {
+                button.innerHTML = '<i class="fas fa-copy"></i>';
+            }, 2000);
+        });
+    </script>
+</body>
+</html>
