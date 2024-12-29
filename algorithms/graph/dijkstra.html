@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dijkstra's Algorithm - lVoidi Portal</title>
+    
+    <!-- CSS imports -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="../../static/css/style.css" rel="stylesheet">
+    <link href="../../static/css/algorithms.css" rel="stylesheet">
+    <link href="../../static/css/algorithm-page.css" rel="stylesheet">
+    <link href="../../static/css/prism.css" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="../../index.html">lVoidi</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="../index.html">Algorithms</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../../singularity/index.html">Technological Singularity</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../../void/index.html">The Pit of Endless Void</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container py-5">
+        <div class="row">
+            <!-- Sidebar -->
+            <div class="col-md-3">
+                <div class="algorithm-info-card">
+                    <h3>Quick Info</h3>
+                    <div class="info-item">
+                        <span class="info-label">Category:</span>
+                        <span class="info-value">Graph</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Time Complexity:</span>
+                        <span class="info-value">O((V + E) log V)</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Space Complexity:</span>
+                        <span class="info-value">O(V)</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Input Type:</span>
+                        <span class="info-value">Weighted Graph</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Content -->
+            <div class="col-md-9">
+                <article class="algorithm-content">
+                    <h1>Dijkstra's Algorithm</h1>
+                    <div class="algorithm-metadata">
+                        <span class="category-tag">Graph</span>
+                        <span class="difficulty-tag">Medium</span>
+                    </div>
+
+                    <section class="algorithm-section">
+                        <h2>Description</h2>
+                        <p>Dijkstra's algorithm is a graph search algorithm that solves the single-source shortest path problem for a graph with non-negative edge weights, producing a shortest path tree. For a given source node in the graph, the algorithm finds the shortest path between that node and every other node.</p>
+                    </section>
+
+                    <section class="algorithm-section">
+                        <h2>How It Works</h2>
+                        <ol>
+                            <li>Initialize distances to all vertices as infinite and distance to the source as 0</li>
+                            <li>Create a set of unvisited nodes containing all nodes</li>
+                            <li>For the current node (initially the source):</li>
+                            <ol type="a">
+                                <li>Calculate tentative distances to all unvisited neighbors</li>
+                                <li>If the calculated distance is less than the previously recorded distance, update it</li>
+                                <li>Mark the current node as visited</li>
+                                <li>Select the unvisited node with the smallest tentative distance as the new current node</li>
+                            </ol>
+                            <li>Repeat step 3 until all nodes are visited</li>
+                        </ol>
+                    </section>
+
+                    <section class="algorithm-section">
+                        <h2>Visualization</h2>
+                        <div class="visualization-container">
+                            <div class="visualization-controls">
+                                <div class="input-group mb-3">
+                                    <select id="startNode" class="form-control">
+                                        <option value="">Click two nodes</option>
+                                    </select>
+                                    <button class="btn btn-primary" id="startVisualization">
+                                        <i class="fas fa-play"></i> Start
+                                    </button>
+                                    <button class="btn btn-secondary" id="resetVisualization">
+                                        <i class="fas fa-redo"></i> Reset
+                                    </button>
+                                </div>
+                                <div class="speed-control">
+                                    <label>Speed:</label>
+                                    <input type="range" id="speedControl" min="1" max="5" value="3">
+                                </div>
+                            </div>
+                            <div class="visualization-area">
+                                <svg id="dijkstraVisualization" width="100%" height="400"></svg>
+                            </div>
+                            <div class="visualization-steps">
+                                <p id="currentStep">Select a starting node and click Start</p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Implementation section with Python, C++, and C# tabs -->
+                    <section class="algorithm-section">
+                        <h2>Implementation</h2>
+                        <div class="implementation-tabs">
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" data-bs-toggle="tab" href="#python">Python</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-bs-toggle="tab" href="#cpp">C++</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-bs-toggle="tab" href="#csharp">C#</a>
+                                </li>
+                            </ul>
+                            <div class="tab-content">
+                                <!-- Python Implementation -->
+                                <div class="tab-pane fade show active" id="python">
+                                    <div class="code-wrapper">
+                                        <button class="copy-button" data-clipboard-target="#python-code">
+                                            <i class="fas fa-copy"></i>
+                                        </button>
+                                        <pre><code class="language-python" id="python-code">
+from heapq import heappush, heappop
+from collections import defaultdict
+import math
+
+def dijkstra(graph, start):
+    # Initialize distances and previous nodes
+    distances = {node: math.inf for node in graph}
+    distances[start] = 0
+    previous = {node: None for node in graph}
+    
+    # Priority queue to store (distance, node)
+    pq = [(0, start)]
+    
+    while pq:
+        current_distance, current = heappop(pq)
+        
+        # If we've found a longer path, skip
+        if current_distance > distances[current]:
+            continue
+        
+        # Check all neighbors of current node
+        for neighbor, weight in graph[current].items():
+            distance = current_distance + weight
+            
+            # If we've found a shorter path, update it
+            if distance < distances[neighbor]:
+                distances[neighbor] = distance
+                previous[neighbor] = current
+                heappush(pq, (distance, neighbor))
+    
+    return distances, previous
+
+# Example usage
+if __name__ == "__main__":
+    # Example graph represented as adjacency list with weights
+    graph = {
+        'A': {'B': 4, 'C': 2},
+        'B': {'A': 4, 'C': 1, 'D': 5},
+        'C': {'A': 2, 'B': 1, 'D': 8, 'E': 10},
+        'D': {'B': 5, 'C': 8, 'E': 2},
+        'E': {'C': 10, 'D': 2}
+    }
+    
+    start_node = 'A'
+    distances, previous = dijkstra(graph, start_node)
+    
+    print(f"Shortest distances from {start_node}:")
+    for node, distance in distances.items():
+        print(f"{node}: {distance}")
+                                        </code></pre>
+                                    </div>
+                                </div>
+                                
+                                <!-- C++ Implementation -->
+                                <div class="tab-pane fade" id="cpp">
+                                    <div class="code-wrapper">
+                                        <button class="copy-button" data-clipboard-target="#cpp-code">
+                                            <i class="fas fa-copy"></i>
+                                        </button>
+                                        <pre><code class="language-cpp" id="cpp-code">
+#include &lt;iostream&gt;
+#include &lt;vector&gt;
+#include &lt;queue&gt;
+#include &lt;unordered_map&gt;
+#include &lt;limits&gt;
+
+class DijkstraAlgorithm {
+private:
+    using Graph = std::unordered_map&lt;char, std::unordered_map&lt;char, int&gt;&gt;;
+    
+    static void printPath(const std::vector&lt;char&gt;& path) {
+        for (size_t i = 0; i < path.size(); ++i) {
+            std::cout << path[i];
+            if (i < path.size() - 1) std::cout << " -> ";
+        }
+        std::cout << std::endl;
+    }
+
+public:
+    static std::pair&lt;std::unordered_map&lt;char, int&gt;, std::unordered_map&lt;char, char&gt;&gt; 
+    findShortestPaths(const Graph& graph, char start) {
+        std::unordered_map&lt;char, int&gt; distances;
+        std::unordered_map&lt;char, char&gt; previous;
+        
+        // Initialize distances
+        for (const auto& node : graph) {
+            distances[node.first] = std::numeric_limits&lt;int&gt;::max();
+        }
+        distances[start] = 0;
+        
+        // Priority queue of (distance, node)
+        std::priority_queue&lt;std::pair&lt;int, char&gt;,
+                           std::vector&lt;std::pair&lt;int, char&gt;&gt;,
+                           std::greater&lt;std::pair&lt;int, char&gt;&gt;&gt; pq;
+        pq.push({0, start});
+        
+        while (!pq.empty()) {
+            auto [currentDist, current] = pq.top();
+            pq.pop();
+            
+            // Skip if we've found a better path
+            if (currentDist > distances[current]) continue;
+            
+            // Check all neighbors
+            for (const auto& [neighbor, weight] : graph.at(current)) {
+                int distance = currentDist + weight;
+                
+                if (distance < distances[neighbor]) {
+                    distances[neighbor] = distance;
+                    previous[neighbor] = current;
+                    pq.push({distance, neighbor});
+                }
+            }
+        }
+        
+        return {distances, previous};
+    }
+    
+    static std::vector&lt;char&gt; reconstructPath(
+        const std::unordered_map&lt;char, char&gt;& previous,
+        char start,
+        char end
+    ) {
+        std::vector&lt;char&gt; path;
+        char current = end;
+        
+        while (current != start) {
+            path.push_back(current);
+            if (previous.find(current) == previous.end()) {
+                return {}; // No path exists
+            }
+            current = previous.at(current);
+        }
+        path.push_back(start);
+        
+        std::reverse(path.begin(), path.end());
+        return path;
+    }
+};
+
+// Example usage
+int main() {
+    DijkstraAlgorithm::Graph graph = {
+        {'A', {{'B', 4}, {'C', 2}}},
+        {'B', {{'A', 4}, {'C', 1}, {'D', 5}}},
+        {'C', {{'A', 2}, {'B', 1}, {'D', 8}, {'E', 10}}},
+        {'D', {{'B', 5}, {'C', 8}, {'E', 2}}},
+        {'E', {{'C', 10}, {'D', 2}}}
+    };
+    
+    char start = 'A';
+    char end = 'E';
+    
+    auto [distances, previous] = DijkstraAlgorithm::findShortestPaths(graph, start);
+    
+    std::cout << "Shortest distances from " << start << ":\n";
+    for (const auto& [node, distance] : distances) {
+        std::cout << node << ": " << distance << std::endl;
+    }
+    
+    std::cout << "\nShortest path from " << start << " to " << end << ":\n";
+    auto path = DijkstraAlgorithm::reconstructPath(previous, start, end);
+    DijkstraAlgorithm::printPath(path);
+    
+    return 0;
+}
+        </code></pre>
+                                    </div>
+                                </div>
+
+                                <!-- C# Implementation -->
+                                <div class="tab-pane fade" id="csharp">
+                                    <div class="code-wrapper">
+                                        <button class="copy-button" data-clipboard-target="#csharp-code">
+                                            <i class="fas fa-copy"></i>
+                                        </button>
+                                        <pre><code class="language-csharp" id="csharp-code">
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+public class DijkstraAlgorithm
+{
+    private class PriorityQueue&lt;T&gt;
+    {
+        private SortedDictionary&lt;int, Queue&lt;T&gt;&gt; _dictionary = new();
+
+        public void Enqueue(int priority, T item)
+        {
+            if (!_dictionary.ContainsKey(priority))
+                _dictionary[priority] = new Queue&lt;T&gt;();
+            _dictionary[priority].Enqueue(item);
+        }
+
+        public T Dequeue()
+        {
+            var first = _dictionary.First();
+            var result = first.Value.Dequeue();
+            if (!first.Value.Any())
+                _dictionary.Remove(first.Key);
+            return result;
+        }
+
+        public bool Any() => _dictionary.Any();
+    }
+
+    public static (Dictionary&lt;char, int&gt; distances, Dictionary&lt;char, char&gt; previous) 
+    FindShortestPaths(Dictionary&lt;char, Dictionary&lt;char, int&gt;&gt; graph, char start)
+    {
+        var distances = new Dictionary&lt;char, int&gt;();
+        var previous = new Dictionary&lt;char, char&gt;();
+        var pq = new PriorityQueue&lt;char&gt;();
+
+        // Initialize distances
+        foreach (var node in graph.Keys)
+        {
+            distances[node] = int.MaxValue;
+        }
+        distances[start] = 0;
+        pq.Enqueue(0, start);
+
+        while (pq.Any())
+        {
+            var current = pq.Dequeue();
+            
+            foreach (var neighbor in graph[current])
+            {
+                var distance = distances[current] + neighbor.Value;
+                
+                if (distance < distances[neighbor.Key])
+                {
+                    distances[neighbor.Key] = distance;
+                    previous[neighbor.Key] = current;
+                    pq.Enqueue(distance, neighbor.Key);
+                }
+            }
+        }
+
+        return (distances, previous);
+    }
+
+    public static List&lt;char&gt; ReconstructPath(
+        Dictionary&lt;char, char&gt; previous, 
+        char start, 
+        char end)
+    {
+        var path = new List&lt;char&gt;();
+        var current = end;
+
+        while (current != start)
+        {
+            path.Add(current);
+            if (!previous.ContainsKey(current))
+                return new List&lt;char&gt;(); // No path exists
+            current = previous[current];
+        }
+        path.Add(start);
+        
+        path.Reverse();
+        return path;
+    }
+
+    private static void PrintPath(List&lt;char&gt; path)
+    {
+        Console.WriteLine(string.Join(" -> ", path));
+    }
+
+    // Example usage
+    public static void Main()
+    {
+        var graph = new Dictionary&lt;char, Dictionary&lt;char, int&gt;&gt;
+        {
+            ['A'] = new Dictionary&lt;char, int&gt; { ['B'] = 4, ['C'] = 2 },
+            ['B'] = new Dictionary&lt;char, int&gt; { ['A'] = 4, ['C'] = 1, ['D'] = 5 },
+            ['C'] = new Dictionary&lt;char, int&gt; { ['A'] = 2, ['B'] = 1, ['D'] = 8, ['E'] = 10 },
+            ['D'] = new Dictionary&lt;char, int&gt; { ['B'] = 5, ['C'] = 8, ['E'] = 2 },
+            ['E'] = new Dictionary&lt;char, int&gt; { ['C'] = 10, ['D'] = 2 }
+        };
+
+        char start = 'A';
+        char end = 'E';
+
+        var (distances, previous) = FindShortestPaths(graph, start);
+
+        Console.WriteLine($"Shortest distances from {start}:");
+        foreach (var (node, distance) in distances)
+        {
+            Console.WriteLine($"{node}: {distance}");
+        }
+
+        Console.WriteLine($"\nShortest path from {start} to {end}:");
+        var path = ReconstructPath(previous, start, end);
+        PrintPath(path);
+    }
+}
+        </code></pre>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="algorithm-section">
+                        <h2>Advantages and Disadvantages</h2>
+                        <div class="pros-cons">
+                            <div class="pros">
+                                <h3>Advantages</h3>
+                                <ul>
+                                    <li>Finds the optimal (shortest) path</li>
+                                    <li>Works with any graph with non-negative weights</li>
+                                    <li>Efficient for sparse graphs</li>
+                                </ul>
+                            </div>
+                            <div class="cons">
+                                <h3>Disadvantages</h3>
+                                <ul>
+                                    <li>Doesn't work with negative weights</li>
+                                    <li>Can be slow for dense graphs</li>
+                                    <li>Requires all edge weights to be known</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+                </article>
+            </div>
+        </div>
+    </main>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.8/clipboard.min.js"></script>
+    <script src="../../static/js/prism.js"></script>
+    <script src="../../static/js/dijkstra-visualization.js"></script>
+</body>
+</html>

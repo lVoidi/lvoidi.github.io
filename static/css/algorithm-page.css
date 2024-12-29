@@ -226,4 +226,163 @@ pre[class*="language-"] {
 
 .array-element.subarray {
     fill: #6272a4;
+}
+
+.array-element.search-range {
+    fill: #6272a4;
+}
+
+.array-element.comparing {
+    fill: #ff79c6;
+}
+
+.array-element.found {
+    fill: #50fa7b;
+}
+
+.input-group {
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 4px;
+    padding: 0.5rem;
+}
+
+.input-group input {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: var(--text-color);
+}
+
+.input-group input:focus {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: var(--accent-color);
+    color: var(--text-color);
+    box-shadow: none;
+}
+
+/* Add these styles for the graph visualization */
+.graph-node {
+    fill: var(--accent-color);
+    stroke: white;
+    stroke-width: 2;
+    transition: all 0.3s ease;
+    cursor: grab;
+    filter: drop-shadow(0 0 2px rgba(0, 0, 0, 0.5));
+}
+
+.graph-node.current {
+    fill: #ff79c6;
+}
+
+.graph-node.visited {
+    fill: #50fa7b;
+}
+
+.graph-edge {
+    stroke: rgba(255, 255, 255, 0.3);
+    stroke-width: 2;
+    transition: all 0.3s ease;
+    stroke-dasharray: 0;
+    transition: stroke-dasharray 0.3s ease;
+}
+
+.graph-edge.considering {
+    stroke: #ff79c6;
+    stroke-width: 3;
+    stroke-dasharray: 5;
+    animation: dash 1s linear infinite;
+}
+
+.graph-edge.in-path {
+    stroke: #50fa7b;
+    stroke-width: 3;
+}
+
+.node-label {
+    fill: white;
+    text-anchor: middle;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    user-select: none;
+}
+
+.edge-weight {
+    fill: var(--text-color);
+    text-anchor: middle;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    user-select: none;
+    background: rgba(0, 0, 0, 0.6);
+    padding: 2px 4px;
+    border-radius: 4px;
+}
+
+.distance-label {
+    fill: var(--text-color);
+    text-anchor: middle;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    opacity: 0.8;
+}
+
+.edge-group {
+    pointer-events: none;
+}
+
+@keyframes dash {
+    to {
+        stroke-dashoffset: -10;
+    }
+}
+
+.tooltip {
+    position: absolute;
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    pointer-events: none;
+    z-index: 100;
+}
+
+/* Add these new styles */
+.graph-node.source-node {
+    fill: #50fa7b;
+    stroke: #50fa7b;
+}
+
+.graph-node.target-node {
+    fill: #ff79c6;
+    stroke: #ff79c6;
+}
+
+.graph-edge.path {
+    stroke: #f1fa8c;
+    stroke-width: 3;
+    filter: drop-shadow(0 0 3px rgba(241, 250, 140, 0.5));
+}
+
+.node-distance {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.node-distance.visible {
+    opacity: 1;
+}
+
+/* Hover effects */
+.graph-node:hover {
+    filter: brightness(1.2) drop-shadow(0 0 4px rgba(255, 255, 255, 0.3));
+}
+
+/* Selection indicator */
+.graph-node.selectable {
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% { stroke-width: 2; }
+    50% { stroke-width: 4; }
+    100% { stroke-width: 2; }
 } 
