@@ -258,8 +258,6 @@ pre[class*="language-"] {
     color: var(--text-color);
     box-shadow: none;
 }
-
-/* Add these styles for the graph visualization */
 .graph-node {
     fill: var(--accent-color);
     stroke: white;
@@ -345,7 +343,6 @@ pre[class*="language-"] {
     z-index: 100;
 }
 
-/* Add these new styles */
 .graph-node.source-node {
     fill: #50fa7b;
     stroke: #50fa7b;
@@ -473,7 +470,6 @@ pre[class*="language-"] {
     margin-bottom: 10px;
 }
 
-/* Add these Fibonacci-specific styles */
 .sequence-container {
     display: flex;
     gap: 1rem;
@@ -529,7 +525,6 @@ pre[class*="language-"] {
     margin: 0.5rem 0;
 }
 
-/* Add these Kruskal-specific styles */
 .graph-node {
     fill: var(--background-color);
     stroke: var(--accent-color);
@@ -576,7 +571,6 @@ pre[class*="language-"] {
     transition: opacity 0.3s ease;
 }
 
-/* Add these enhanced styles */
 .layout-select {
     width: auto;
     margin-right: 10px;
@@ -599,7 +593,6 @@ pre[class*="language-"] {
     margin-bottom: 20px;
 }
 
-/* Animation for new nodes/edges */
 @keyframes fadeIn {
     from { opacity: 0; transform: scale(0.8); }
     to { opacity: 1; transform: scale(1); }
@@ -608,8 +601,6 @@ pre[class*="language-"] {
 .graph-node, .edge-group {
     animation: fadeIn 0.3s ease;
 }
-
-/* Add these N-Queens specific styles */
 .chessboard {
     display: grid;
     grid-template-columns: repeat(8, 1fr);
@@ -657,7 +648,6 @@ pre[class*="language-"] {
     text-shadow: 1px 1px 1px rgba(255,255,255,0.5),
                 -1px -1px 1px rgba(0,0,0,0.3);
     pointer-events: none;
-    /* Remove transitions temporarily to debug */
     opacity: 1 !important;
     display: block;
     z-index: 1;
@@ -715,4 +705,44 @@ pre[class*="language-"] {
 .visualization-controls button:disabled {
     opacity: 0.6;
     cursor: not-allowed;
+}
+
+.rsa-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+}
+
+.rsa-steps .step {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 15px;
+    border-radius: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.rsa-steps h4 {
+    color: var(--accent-color);
+    margin-bottom: 10px;
+}
+
+.key-details p, .step-detail {
+    font-family: monospace;
+    margin-bottom: 8px;
+    color: var(--text-color);
+}
+
+.step-detail {
+    padding: 8px;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+    margin-bottom: 8px;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
 } 

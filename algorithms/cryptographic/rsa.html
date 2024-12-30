@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RSA Algorithm - lVoidi Portal</title>
+    
+    <!-- CSS imports -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="../../static/css/style.css" rel="stylesheet">
+    <link href="../../static/css/algorithms.css" rel="stylesheet">
+    <link href="../../static/css/algorithm-page.css" rel="stylesheet">
+    <link href="../../static/css/prism.css" rel="stylesheet">
+
+    <!-- Icon -->
+    <link rel="icon" href="../../static/img/icon.png" type="image/x-icon">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="../../index.html">lVoidi</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="../index.html">Algorithms</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../../singularity/index.html">Technological Singularity</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../../void/index.html">The Pit of Endless Void</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+    <main class="container py-5">
+        <div class="row">
+            <!-- Sidebar with Quick Info -->
+            <div class="col-md-3">
+                <div class="algorithm-info-card">
+                    <h3>Quick Info</h3>
+                    <div class="info-item">
+                        <span class="info-label">Category:</span>
+                        <span class="info-value">Cryptographic</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Time Complexity:</span>
+                        <span class="info-value">O(k³) for k-bit keys</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Space Complexity:</span>
+                        <span class="info-value">O(k)</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Input Type:</span>
+                        <span class="info-value">Text/Numbers</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Content -->
+            <div class="col-md-9">
+                <article class="algorithm-content">
+                    <h1>RSA Algorithm</h1>
+                    <div class="algorithm-metadata">
+                        <span class="category-tag">Cryptographic</span>
+                        <span class="difficulty-tag">Hard</span>
+                    </div>
+
+                    <section class="algorithm-section">
+                        <h2>Description</h2>
+                        <p>RSA (Rivest-Shamir-Adleman) is a public-key cryptosystem widely used for secure data transmission. It is based on the practical difficulty of factoring the product of two large prime numbers.</p>
+                    </section>
+
+                    <section class="algorithm-section">
+                        <h2>How It Works</h2>
+                        <ol>
+                            <li>Key Generation:
+                                <ul>
+                                    <li>Choose two large prime numbers p and q</li>
+                                    <li>Calculate n = p × q</li>
+                                    <li>Calculate φ(n) = (p-1) × (q-1)</li>
+                                    <li>Choose e such that 1 < e < φ(n) and gcd(e, φ(n)) = 1</li>
+                                    <li>Calculate d such that d × e ≡ 1 (mod φ(n))</li>
+                                </ul>
+                            </li>
+                            <li>Encryption: c = m^e mod n</li>
+                            <li>Decryption: m = c^d mod n</li>
+                        </ol>
+                    </section>
+
+                    <section class="algorithm-section">
+                        <h2>Complexity Analysis</h2>
+                        <div class="complexity-analysis">
+                            <h3>Time Complexity</h3>
+                            <ul>
+                                <li>
+                                    <strong>Key Generation:</strong> O(k³) where k is the number of bits in the key
+                                    <ul>
+                                        <li>Prime number generation: O(k²) per primality test</li>
+                                        <li>Modular exponentiation: O(k³)</li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <strong>Encryption:</strong> O(k²) for k-bit keys
+                                    <ul>
+                                        <li>Modular exponentiation (m^e mod n): O(k²)</li>
+                                        <li>Public exponent e is typically small (e.g., 65537)</li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <strong>Decryption:</strong> O(k³) for k-bit keys
+                                    <ul>
+                                        <li>Modular exponentiation (c^d mod n): O(k³)</li>
+                                        <li>Private exponent d is typically the same size as n</li>
+                                    </ul>
+                                </li>
+                            </ul>
+
+                            <h3>Space Complexity</h3>
+                            <ul>
+                                <li>
+                                    <strong>Key Storage:</strong> O(k) where k is the number of bits
+                                    <ul>
+                                        <li>Public key (e, n): O(k)</li>
+                                        <li>Private key (d, n): O(k)</li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <strong>Message Processing:</strong> O(k)
+                                    <ul>
+                                        <li>Input message blocks: O(k)</li>
+                                        <li>Intermediate calculations: O(k)</li>
+                                    </ul>
+                                </li>
+                            </ul>
+
+                            <h3>Practical Considerations</h3>
+                            <ul>
+                                <li>Key size recommendations:
+                                    <ul>
+                                        <li>2048 bits: Current standard for general use</li>
+                                        <li>3072 bits: Recommended for high security after 2030</li>
+                                        <li>4096 bits: Maximum security for critical applications</li>
+                                    </ul>
+                                </li>
+                                <li>Performance trade-offs:
+                                    <ul>
+                                        <li>Larger keys provide better security but slower operations</li>
+                                        <li>Public key operations (encryption) are faster than private key operations (decryption)</li>
+                                        <li>Key generation is the most computationally intensive operation</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </section>
+
+                    <section class="algorithm-section">
+                        <h2>Visualization</h2>
+                        <div class="visualization-container">
+                            <div class="visualization-controls">
+                                <div class="input-group mb-3">
+                                    <input type="text" id="messageInput" class="form-control" placeholder="Enter message to encrypt">
+                                    <button class="btn btn-primary" id="encryptBtn">
+                                        <i class="fas fa-lock"></i> Encrypt
+                                    </button>
+                                    <button class="btn btn-secondary" id="decryptBtn">
+                                        <i class="fas fa-unlock"></i> Decrypt
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="visualization-area">
+                                <div id="rsaVisualization"></div>
+                            </div>
+                            <div class="visualization-steps">
+                                <p id="currentStep">Enter a message and click Encrypt to begin</p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="algorithm-section">
+                        <h2>Implementation</h2>
+                        <div class="implementation-tabs">
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" data-bs-toggle="tab" href="#python">Python</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-bs-toggle="tab" href="#cpp">C++</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-bs-toggle="tab" href="#csharp">C#</a>
+                                </li>
+                            </ul>
+                            <div class="tab-content">
+                                <!-- Python Implementation -->
+                                <div class="tab-pane fade show active" id="python">
+                                    <div class="code-wrapper">
+                                        <button class="copy-button" data-clipboard-target="#python-code">
+                                            <i class="fas fa-copy"></i>
+                                        </button>
+                                        <pre><code class="language-python" id="python-code">
+from math import gcd
+from random import randrange
+
+class RSA:
+    def __init__(self, key_size=1024):
+        self.key_size = key_size
+        self.public_key = None
+        self.private_key = None
+        self.n = None
+        self.generate_keys()
+    
+    def is_prime(self, n, k=5):
+        """Miller-Rabin primality test"""
+        if n == 2 or n == 3:
+            return True
+        if n < 2 or n % 2 == 0:
+            return False
+        
+        # Write n as 2^r * d + 1
+        r, d = 0, n - 1
+        while d % 2 == 0:
+            r += 1
+            d //= 2
+        
+        # Witness loop
+        for _ in range(k):
+            a = randrange(2, n-1)
+            x = pow(a, d, n)
+            if x == 1 or x == n-1:
+                continue
+            for _ in range(r-1):
+                x = (x * x) % n
+                if x == n-1:
+                    break
+            else:
+                return False
+        return True
+    
+    def generate_prime(self, bits):
+        """Generate a prime number with specified bits"""
+        while True:
+            n = randrange(2**(bits-1), 2**bits)
+            if self.is_prime(n):
+                return n
+    
+    def generate_keys(self):
+        """Generate public and private key pairs"""
+        # Generate two prime numbers
+        p = self.generate_prime(self.key_size // 2)
+        q = self.generate_prime(self.key_size // 2)
+        
+        self.n = p * q
+        phi = (p - 1) * (q - 1)
+        
+        # Choose public exponent e
+        e = 65537  # Common choice for e
+        while gcd(e, phi) != 1:
+            e += 2
+        
+        # Calculate private exponent d
+        d = pow(e, -1, phi)
+        
+        self.public_key = (e, self.n)
+        self.private_key = (d, self.n)
+    
+    def encrypt(self, message):
+        """Encrypt a message using public key"""
+        e, n = self.public_key
+        if isinstance(message, str):
+            message = int.from_bytes(message.encode(), 'big')
+        return pow(message, e, n)
+    
+    def decrypt(self, ciphertext):
+        """Decrypt a message using private key"""
+        d, n = self.private_key
+        plaintext = pow(ciphertext, d, n)
+        try:
+            return plaintext.to_bytes((plaintext.bit_length() + 7) // 8, 'big').decode()
+        except:
+            return str(plaintext)
+
+# Example usage
+if __name__ == "__main__":
+    # Create RSA instance with smaller key size for demonstration
+    rsa = RSA(key_size=32)
+    
+    message = "Hello, RSA!"
+    print(f"Original message: {message}")
+    
+    # Encrypt
+    encrypted = rsa.encrypt(message)
+    print(f"Encrypted: {encrypted}")
+    
+    # Decrypt
+    decrypted = rsa.decrypt(encrypted)
+    print(f"Decrypted: {decrypted}")
+                                        </code></pre>
+                                    </div>
+                                </div>
+                                
+                                <!-- C++ Implementation -->
+                                <div class="tab-pane fade" id="cpp">
+                                    <div class="code-wrapper">
+                                        <button class="copy-button" data-clipboard-target="#cpp-code">
+                                            <i class="fas fa-copy"></i>
+                                        </button>
+                                        <pre><code class="language-cpp" id="cpp-code">
+#include &lt;iostream&gt;
+#include &lt;cmath&gt;
+#include &lt;random&gt;
+#include &lt;string&gt;
+
+class RSA {
+private:
+    long long n, e, d;
+    
+    bool is_prime(long long n) {
+        if (n <= 1) return false;
+        if (n <= 3) return true;
+        
+        for (long long i = 2; i <= sqrt(n); i++) {
+            if (n % i == 0) return false;
+        }
+        return true;
+    }
+    
+    long long generate_prime(int min, int max) {
+        std::random_device rd;
+        std::mt19937 gen(rd());
+        std::uniform_int_distribution&lt;long long&gt; dis(min, max);
+        
+        long long num;
+        do {
+            num = dis(gen);
+        } while (!is_prime(num));
+        
+        return num;
+    }
+    
+    long long mod_inverse(long long e, long long phi) {
+        long long m0 = phi;
+        long long y = 0, x = 1;
+        
+        if (phi == 1) return 0;
+        
+        while (e > 1) {
+            long long q = e / phi;
+            long long t = phi;
+            
+            phi = e % phi;
+            e = t;
+            t = y;
+            
+            y = x - q * y;
+            x = t;
+        }
+        
+        if (x < 0) x += m0;
+        return x;
+    }
+    
+    long long gcd(long long a, long long b) {
+        if (b == 0) return a;
+        return gcd(b, a % b);
+    }
+
+public:
+    RSA() {
+        // Generate two prime numbers
+        long long p = generate_prime(100, 300);
+        long long q = generate_prime(100, 300);
+        
+        n = p * q;
+        long long phi = (p - 1) * (q - 1);
+        
+        // Choose e
+        e = 2;
+        while (e < phi) {
+            if (gcd(e, phi) == 1) break;
+            e++;
+        }
+        
+        // Calculate d
+        d = mod_inverse(e, phi);
+    }
+    
+    long long encrypt(long long message) {
+        long long result = 1;
+        for (long long i = 0; i < e; i++) {
+            result = (result * message) % n;
+        }
+        return result;
+    }
+    
+    long long decrypt(long long ciphertext) {
+        long long result = 1;
+        for (long long i = 0; i < d; i++) {
+            result = (result * ciphertext) % n;
+        }
+        return result;
+    }
+    
+    void get_public_key(long long& out_e, long long& out_n) {
+        out_e = e;
+        out_n = n;
+    }
+};
+
+int main() {
+    RSA rsa;
+    long long e, n;
+    rsa.get_public_key(e, n);
+    
+    std::cout << "Public Key (e,n): (" << e << "," << n << ")\n";
+    
+    // Example message
+    long long message = 12345;
+    std::cout << "Original Message: " << message << "\n";
+    
+    // Encrypt
+    long long encrypted = rsa.encrypt(message);
+    std::cout << "Encrypted: " << encrypted << "\n";
+    
+    // Decrypt
+    long long decrypted = rsa.decrypt(encrypted);
+    std::cout << "Decrypted: " << decrypted << "\n";
+    
+    return 0;
+}
+                                        </code></pre>
+                                    </div>
+                                </div>
+                                
+                                <!-- C# Implementation -->
+                                <div class="tab-pane fade" id="csharp">
+                                    <div class="code-wrapper">
+                                        <button class="copy-button" data-clipboard-target="#csharp-code">
+                                            <i class="fas fa-copy"></i>
+                                        </button>
+                                        <pre><code class="language-csharp" id="csharp-code">
+using System;
+using System.Numerics;
+using System.Security.Cryptography;
+
+public class RSA
+{
+    private BigInteger n, e, d;
+    private readonly int keySize;
+    
+    public RSA(int keySize = 1024)
+    {
+        this.keySize = keySize;
+        GenerateKeys();
+    }
+    
+    private void GenerateKeys()
+    {
+        using (var rng = new RNGCryptoServiceProvider())
+        {
+            // Generate two prime numbers
+            var p = GeneratePrime(keySize / 2);
+            var q = GeneratePrime(keySize / 2);
+            
+            n = p * q;
+            var phi = (p - 1) * (q - 1);
+            
+            // Choose public exponent
+            e = new BigInteger(65537); // Common choice for e
+            
+            // Calculate private exponent
+            d = ModInverse(e, phi);
+        }
+    }
+    
+    private BigInteger GeneratePrime(int bits)
+    {
+        using (var provider = new RNGCryptoServiceProvider())
+        {
+            var bytes = new byte[bits / 8];
+            BigInteger prime;
+            
+            do
+            {
+                provider.GetBytes(bytes);
+                bytes[bytes.Length - 1] &= 0x7F; // Ensure positive number
+                prime = new BigInteger(bytes);
+            }
+            while (!IsProbablyPrime(prime, 10));
+            
+            return prime;
+        }
+    }
+    
+    private bool IsProbablyPrime(BigInteger n, int k)
+    {
+        if (n <= 1 || n == 4) return false;
+        if (n <= 3) return true;
+        
+        BigInteger d = n - 1;
+        while (d % 2 == 0)
+            d /= 2;
+        
+        Random rand = new Random();
+        byte[] bytes = new byte[n.ToByteArray().Length];
+        
+        for (int i = 0; i < k; i++)
+        {
+            rand.NextBytes(bytes);
+            BigInteger a = new BigInteger(bytes) % (n - 4) + 2;
+            BigInteger x = BigInteger.ModPow(a, d, n);
+            
+            if (x == 1 || x == n - 1)
+                continue;
+            
+            while (d != n - 1)
+            {
+                x = (x * x) % n;
+                d *= 2;
+                
+                if (x == 1) return false;
+                if (x == n - 1) break;
+            }
+            
+            if (x != n - 1) return false;
+        }
+        return true;
+    }
+    
+    private BigInteger ModInverse(BigInteger a, BigInteger m)
+    {
+        BigInteger m0 = m;
+        BigInteger y = 0, x = 1;
+        
+        if (m == 1)
+            return 0;
+        
+        while (a > 1)
+        {
+            BigInteger q = a / m;
+            BigInteger t = m;
+            
+            m = a % m;
+            a = t;
+            t = y;
+            
+            y = x - q * y;
+            x = t;
+        }
+        
+        if (x < 0)
+            x += m0;
+        
+        return x;
+    }
+    
+    public byte[] Encrypt(byte[] message)
+    {
+        var msg = new BigInteger(message);
+        var encrypted = BigInteger.ModPow(msg, e, n);
+        return encrypted.ToByteArray();
+    }
+    
+    public byte[] Decrypt(byte[] ciphertext)
+    {
+        var msg = new BigInteger(ciphertext);
+        var decrypted = BigInteger.ModPow(msg, d, n);
+        return decrypted.ToByteArray();
+    }
+    
+    public (BigInteger e, BigInteger n) GetPublicKey()
+    {
+        return (e, n);
+    }
+    
+    // Example usage
+    public static void Main()
+    {
+        var rsa = new RSA(512); // Smaller key size for demonstration
+        var message = "Hello, RSA!";
+        Console.WriteLine($"Original message: {message}");
+        
+        // Convert string to bytes
+        var messageBytes = System.Text.Encoding.UTF8.GetBytes(message);
+        
+        // Encrypt
+        var encrypted = rsa.Encrypt(messageBytes);
+        Console.WriteLine($"Encrypted: {BitConverter.ToString(encrypted)}");
+        
+        // Decrypt
+        var decrypted = rsa.Decrypt(encrypted);
+        var decryptedMessage = System.Text.Encoding.UTF8.GetString(decrypted);
+        Console.WriteLine($"Decrypted: {decryptedMessage}");
+    }
+}
+                                        </code></pre>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="algorithm-section">
+                        <h2>Advantages and Disadvantages</h2>
+                        <div class="pros-cons">
+                            <div class="pros">
+                                <h3>Advantages</h3>
+                                <ul>
+                                    <li>Strong security based on mathematical problems</li>
+                                    <li>Public key can be shared openly</li>
+                                    <li>Provides both encryption and digital signatures</li>
+                                </ul>
+                            </div>
+                            <div class="cons">
+                                <h3>Disadvantages</h3>
+                                <ul>
+                                    <li>Slower than symmetric encryption</li>
+                                    <li>Key generation can be computationally intensive</li>
+                                    <li>Vulnerable to quantum computing attacks</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+                </article>
+            </div>
+        </div>
+    </main>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.8/clipboard.min.js"></script>
+    <script src="../../static/js/prism.js"></script>
+    <script src="../../static/js/rsa-visualization.js"></script>
+</body>
+</html>
