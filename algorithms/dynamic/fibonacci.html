@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fibonacci (Dynamic Programming) - lVoidi Portal</title>
+    
+    <!-- CSS imports -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="../../static/css/style.css" rel="stylesheet">
+    <link href="../../static/css/algorithms.css" rel="stylesheet">
+    <link href="../../static/css/algorithm-page.css" rel="stylesheet">
+    <link href="../../static/css/prism.css" rel="stylesheet">
+
+    <!-- Icon -->
+    <link rel="icon" href="../../static/img/icon.png" type="image/x-icon">
+</head>
+<body>
+    
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="../../index.html">lVoidi</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="../index.html">Algorithms</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../../singularity/index.html">Technological Singularity</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../../void/index.html">The Pit of Endless Void</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+    <main class="container py-5">
+        <div class="row">
+            <!-- Sidebar -->
+            <div class="col-md-3">
+                <div class="algorithm-info-card">
+                    <h3>Quick Info</h3>
+                    <div class="info-item">
+                        <span class="info-label">Category:</span>
+                        <span class="info-value">Dynamic Programming</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Time Complexity:</span>
+                        <span class="info-value">O(n)</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Space Complexity:</span>
+                        <span class="info-value">O(1)</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Input Type:</span>
+                        <span class="info-value">Integer</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Content -->
+            <div class="col-md-9">
+                <article class="algorithm-content">
+                    <h1>Fibonacci (Dynamic Programming)</h1>
+                    <div class="algorithm-metadata">
+                        <span class="category-tag">Dynamic Programming</span>
+                        <span class="difficulty-tag">Easy</span>
+                    </div>
+
+                    <section class="algorithm-section">
+                        <h2>Description</h2>
+                        <p>The Fibonacci sequence is a series of numbers where each number is the sum of the two preceding ones, usually starting with 0 and 1. Dynamic programming optimizes the calculation by storing previously computed values.</p>
+                        
+                        <div class="formula-box">
+                            <p>F(n) = F(n-1) + F(n-2)</p>
+                            <p>where F(0) = 0 and F(1) = 1</p>
+                        </div>
+                    </section>
+
+                    <section class="algorithm-section">
+                        <h2>How It Works</h2>
+                        <ol>
+                            <li>Initialize variables for the two previous numbers (0 and 1)</li>
+                            <li>For each step up to n:
+                                <ul>
+                                    <li>Calculate next number by adding previous two</li>
+                                    <li>Update previous numbers</li>
+                                </ul>
+                            </li>
+                            <li>Return the final calculated number</li>
+                        </ol>
+                    </section>
+
+                    <section class="algorithm-section">
+                        <h2>Visualization</h2>
+                        <div class="visualization-container">
+                            <div class="visualization-controls">
+                                <div class="input-group">
+                                    <input type="number" id="fibInput" class="form-control" placeholder="Enter n" min="0" max="23">
+                                    <button class="btn btn-primary" id="calculateFib">Calculate</button>
+                                </div>
+                            </div>
+                            <div id="fibVisualization" class="visualization-area">
+                                <!-- Visualization will be rendered here -->
+                            </div>
+                            <div class="visualization-steps">
+                                <p id="currentStep">Enter a number to calculate its Fibonacci value</p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Implementation section will be added in the next message -->
+                    
+                    <section class="algorithm-section">
+                        <h2>Complexity Analysis</h2>
+                        <div class="complexity-analysis">
+                            <div class="complexity-item">
+                                <h3>Time Complexity</h3>
+                                <p><strong>O(n)</strong> where:</p>
+                                <ul>
+                                    <li>n is the input number</li>
+                                    <li>Each number is calculated exactly once</li>
+                                    <li>No recursive calls or redundant calculations</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="complexity-item">
+                                <h3>Space Complexity</h3>
+                                <p><strong>O(1)</strong> because:</p>
+                                <ul>
+                                    <li>Only three variables are used regardless of input size</li>
+                                    <li>No additional data structures needed</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="algorithm-section">
+                        <h2>Advantages and Disadvantages</h2>
+                        <div class="pros-cons">
+                            <div class="pros">
+                                <h3>Advantages</h3>
+                                <ul>
+                                    <li>Linear time complexity</li>
+                                    <li>Constant space complexity</li>
+                                    <li>Simple implementation</li>
+                                    <li>No recursion overhead</li>
+                                    <li>Handles large inputs efficiently</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="cons">
+                                <h3>Disadvantages</h3>
+                                <ul>
+                                    <li>Limited by integer overflow for large n</li>
+                                    <li>Not suitable for calculating specific terms without computing previous ones</li>
+                                    <li>May need BigInteger for large numbers</li>
+                                    <li>Cannot easily compute arbitrary terms in sequence</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="algorithm-section">
+                        <h2>Implementation</h2>
+                        <div class="implementation-container">
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" data-bs-toggle="tab" href="#python">Python</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-bs-toggle="tab" href="#cpp">C++</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-bs-toggle="tab" href="#csharp">C#</a>
+                                </li>
+                            </ul>
+                            
+                            <div class="tab-content">
+                                <!-- Python Implementation -->
+                                <div class="tab-pane fade show active" id="python">
+                                    <div class="code-wrapper">
+                                        <button class="copy-button" data-clipboard-target="#python-code">
+                                            <i class="fas fa-copy"></i>
+                                        </button>
+                                        <pre><code class="language-python" id="python-code">
+class Fibonacci:
+    @staticmethod
+    def fibonacci_dp(n: int) -> int:
+        """
+        Calculate the nth Fibonacci number using dynamic programming.
+        
+        Args:
+            n: The position in the Fibonacci sequence (0-based)
+            
+        Returns:
+            The nth Fibonacci number
+            
+        Raises:
+            ValueError: If n is negative
+        """
+        if n < 0:
+            raise ValueError("Fibonacci sequence is not defined for negative numbers")
+        
+        if n <= 1:
+            return n
+            
+        prev, curr = 0, 1
+        
+        for _ in range(2, n + 1):
+            prev, curr = curr, prev + curr
+            
+        return curr
+    
+    @staticmethod
+    def fibonacci_sequence(n: int) -> list[int]:
+        """
+        Generate Fibonacci sequence up to the nth number.
+        
+        Args:
+            n: The position in the Fibonacci sequence (0-based)
+            
+        Returns:
+            List containing the Fibonacci sequence up to n
+        """
+        if n < 0:
+            raise ValueError("Fibonacci sequence is not defined for negative numbers")
+            
+        sequence = [0]
+        if n == 0:
+            return sequence
+            
+        sequence.append(1)
+        
+        for i in range(2, n + 1):
+            sequence.append(sequence[i-1] + sequence[i-2])
+            
+        return sequence
+
+# Example usage
+if __name__ == "__main__":
+    # Calculate single Fibonacci number
+    n = 10
+    result = Fibonacci.fibonacci_dp(n)
+    print(f"F({n}) = {result}")
+    
+    # Generate sequence
+    sequence = Fibonacci.fibonacci_sequence(n)
+    print(f"Fibonacci sequence up to {n}:")
+    print(" ".join(map(str, sequence)))
+                                        </code></pre>
+                                    </div>
+                                </div>
+                                
+                                <!-- C++ Implementation -->
+                                <div class="tab-pane fade" id="cpp">
+                                    <div class="code-wrapper">
+                                        <button class="copy-button" data-clipboard-target="#cpp-code">
+                                            <i class="fas fa-copy"></i>
+                                        </button>
+                                        <pre><code class="language-cpp" id="cpp-code">
+#include &lt;iostream&gt;
+#include &lt;vector&gt;
+#include &lt;stdexcept&gt;
+
+class Fibonacci {
+public:
+    static long long fibonacciDP(int n) {
+        if (n < 0) {
+            throw std::invalid_argument("Fibonacci sequence is not defined for negative numbers");
+        }
+        
+        if (n <= 1) {
+            return n;
+        }
+        
+        long long prev = 0, curr = 1;
+        
+        for (int i = 2; i <= n; ++i) {
+            long long next = prev + curr;
+            prev = curr;
+            curr = next;
+        }
+        
+        return curr;
+    }
+    
+    static std::vector&lt;long long&gt; fibonacciSequence(int n) {
+        if (n < 0) {
+            throw std::invalid_argument("Fibonacci sequence is not defined for negative numbers");
+        }
+        
+        std::vector&lt;long long&gt; sequence;
+        sequence.push_back(0);
+        
+        if (n == 0) {
+            return sequence;
+        }
+        
+        sequence.push_back(1);
+        
+        for (int i = 2; i <= n; ++i) {
+            sequence.push_back(sequence[i-1] + sequence[i-2]);
+        }
+        
+        return sequence;
+    }
+    
+    static void printSequence(const std::vector&lt;long long&gt;& sequence) {
+        for (size_t i = 0; i < sequence.size(); ++i) {
+            std::cout << sequence[i];
+            if (i < sequence.size() - 1) {
+                std::cout << " ";
+            }
+        }
+        std::cout << std::endl;
+    }
+};
+
+// Example usage
+int main() {
+    try {
+        int n = 10;
+        
+        // Calculate single Fibonacci number
+        long long result = Fibonacci::fibonacciDP(n);
+        std::cout << "F(" << n << ") = " << result << std::endl;
+        
+        // Generate sequence
+        std::cout << "Fibonacci sequence up to " << n << ":" << std::endl;
+        auto sequence = Fibonacci::fibonacciSequence(n);
+        Fibonacci::printSequence(sequence);
+        
+    } catch (const std::exception& e) {
+        std::cerr << "Error: " << e.what() << std::endl;
+        return 1;
+    }
+    
+    return 0;
+}
+                                        </code></pre>
+                                    </div>
+                                </div>
+                                
+                                <!-- C# Implementation -->
+                                <div class="tab-pane fade" id="csharp">
+                                    <div class="code-wrapper">
+                                        <button class="copy-button" data-clipboard-target="#csharp-code">
+                                            <i class="fas fa-copy"></i>
+                                        </button>
+                                        <pre><code class="language-csharp" id="csharp-code">
+using System;
+using System.Collections.Generic;
+
+public class Fibonacci
+{
+    public static long FibonacciDP(int n)
+    {
+        if (n < 0)
+        {
+            throw new ArgumentException("Fibonacci sequence is not defined for negative numbers");
+        }
+        
+        if (n <= 1)
+        {
+            return n;
+        }
+        
+        long prev = 0, curr = 1;
+        
+        for (int i = 2; i <= n; i++)
+        {
+            long next = prev + curr;
+            prev = curr;
+            curr = next;
+        }
+        
+        return curr;
+    }
+    
+    public static List&lt;long&gt; FibonacciSequence(int n)
+    {
+        if (n < 0)
+        {
+            throw new ArgumentException("Fibonacci sequence is not defined for negative numbers");
+        }
+        
+        var sequence = new List&lt;long&gt; { 0 };
+        
+        if (n == 0)
+        {
+            return sequence;
+        }
+        
+        sequence.Add(1);
+        
+        for (int i = 2; i <= n; i++)
+        {
+            sequence.Add(sequence[i-1] + sequence[i-2]);
+        }
+        
+        return sequence;
+    }
+    
+    public static void PrintSequence(List&lt;long&gt; sequence)
+    {
+        Console.WriteLine(string.Join(" ", sequence));
+    }
+    
+    // Example usage
+    public static void Main()
+    {
+        try
+        {
+            int n = 10;
+            
+            // Calculate single Fibonacci number
+            long result = FibonacciDP(n);
+            Console.WriteLine($"F({n}) = {result}");
+            
+            // Generate sequence
+            Console.WriteLine($"Fibonacci sequence up to {n}:");
+            var sequence = FibonacciSequence(n);
+            PrintSequence(sequence);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine($"Error: {e.Message}");
+        }
+    }
+}
+                                        </code></pre>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </article>
+            </div>
+        </div>
+    </main>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.8/clipboard.min.js"></script>
+    <script src="../../static/js/prism.js"></script>
+    <script src="../../static/js/fibonacci-visualization.js"></script>
+</body>
+</html>
