@@ -413,6 +413,7 @@ pre[class*="language-"] {
     transition: all 0.3s ease;
     cursor: pointer;
     border-radius: 2px;
+    transition: background-color 0.3s ease;
 }
 
 .cell:hover {
@@ -606,4 +607,112 @@ pre[class*="language-"] {
 
 .graph-node, .edge-group {
     animation: fadeIn 0.3s ease;
+}
+
+/* Add these N-Queens specific styles */
+.chessboard {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    gap: 0;
+    background: #8B4513;
+    padding: 8px;
+    width: 100%;
+    max-width: 500px;
+    margin: 20px auto;
+    aspect-ratio: 1;
+    border-radius: 4px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+    font-size: 0;
+    line-height: 0;
+    transition: opacity 0.3s ease;
+}
+
+.cell {
+    width: 100%;
+    padding-bottom: 100%;
+    position: relative;
+    margin: 0;
+    font-size: 16px;
+    line-height: normal;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cell.dark {
+    background: #B58863;
+}
+
+.cell.light {
+    background: #F0D9B5;
+}
+
+.queen {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2.5em;
+    color: #000;
+    text-shadow: 1px 1px 1px rgba(255,255,255,0.5),
+                -1px -1px 1px rgba(0,0,0,0.3);
+    pointer-events: none;
+    /* Remove transitions temporarily to debug */
+    opacity: 1 !important;
+    display: block;
+    z-index: 1;
+}
+
+.cell .queen {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.5);
+}
+
+.cell .queen.active {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+@keyframes queenPlace {
+    from {
+        transform: scale(0.5);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.visualization-controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.visualization-steps {
+    text-align: center;
+    margin-top: 20px;
+}
+
+#solutionCount {
+    font-weight: bold;
+    color: var(--accent-color);
+}
+
+/* Add transitions to the board state */
+.chessboard.resetting {
+    opacity: 0.7;
+}
+
+/* Add transitions to the controls */
+.visualization-controls button {
+    transition: all 0.3s ease;
+}
+
+.visualization-controls button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
 } 
