@@ -130,23 +130,169 @@
                     <section class="algorithm-section">
                         <h2>Implementation</h2>
                         <div class="implementation-container">
-                            <ul class="nav nav-tabs" role="tablist">
-                                <li class="nav-item">
-                                    <a class="nav-link active" data-bs-toggle="tab" href="#cpp">C++</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" data-bs-toggle="tab" href="#csharp">C#</a>
-                                </li>
-                            </ul>
-                            
-                            <div class="tab-content">
-                                <!-- C++ Implementation -->
-                                <div class="tab-pane fade show active" id="cpp">
-                                    <div class="code-wrapper">
-                                        <button class="copy-button" data-clipboard-target="#cpp-code">
-                                            <i class="fas fa-copy"></i>
-                                        </button>
-                                        <pre><code class="language-cpp" id="cpp-code">
+                            <div class="implementation-tabs">
+                                <ul class="nav nav-tabs" role="tablist">
+                                    <li class="nav-item">
+                                        <a class="nav-link active" data-bs-toggle="tab" href="#python">Python</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" data-bs-toggle="tab" href="#cpp">C++</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" data-bs-toggle="tab" href="#csharp">C#</a>
+                                    </li>
+                                </ul>
+                                
+                                <div class="tab-content">
+                                    <!-- Python Implementation -->
+                                    <div class="tab-pane fade show active" id="python">
+                                        <div class="code-wrapper">
+                                            <button class="copy-button" data-clipboard-target="#python-code">
+                                                <i class="fas fa-copy"></i>
+                                            </button>
+                                            <pre><code class="language-python" id="python-code">
+from heapq import heappush, heappop
+from dataclasses import dataclass, field
+from typing import List, Set, Dict, Tuple
+
+@dataclass
+class Node:
+    x: int
+    y: int
+    f: float = 0.0
+    g: float = 0.0
+    h: float = 0.0
+    parent: 'Node' = None
+    
+    def __eq__(self, other):
+        return self.x == other.x and self.y == other.y
+    
+    def __lt__(self, other):
+        return self.f < other.f
+    
+    def __hash__(self):
+        return hash((self.x, self.y))
+
+class AStar:
+    @staticmethod
+    def heuristic(a: Node, b: Node) -> float:
+        # Manhattan distance
+        return abs(a.x - b.x) + abs(a.y - b.y)
+    
+    @staticmethod
+    def is_valid(x: int, y: int, rows: int, cols: int) -> bool:
+        return 0 <= x < rows and 0 <= y < cols
+    
+    @staticmethod
+    def find_path(grid: List[List[bool]], start_pos: Tuple[int, int], 
+                  end_pos: Tuple[int, int]) -> List[Tuple[int, int]]:
+        """
+        Find the shortest path using A* algorithm
+        
+        Args:
+            grid: 2D grid where True represents walls/obstacles
+            start_pos: Starting position (x, y)
+            end_pos: Target position (x, y)
+            
+        Returns:
+            List of coordinates representing the path
+        """
+        rows, cols = len(grid), len(grid[0])
+        start_x, start_y = start_pos
+        end_x, end_y = end_pos
+        
+        # Create start and end nodes
+        start_node = Node(start_x, start_y)
+        end_node = Node(end_x, end_y)
+        
+        # Initialize open and closed sets
+        open_set: List[Node] = []
+        closed_set: Set[Node] = set()
+        
+        # Add start node to open set
+        heappush(open_set, start_node)
+        
+        # Define possible movements (up, down, left, right)
+        directions = [(-1, 0), (1, 0), (0, -1), (0, 1)]
+        
+        while open_set:
+            current = heappop(open_set)
+            
+            if current == end_node:
+                path = []
+                while current:
+                    path.append((current.x, current.y))
+                    current = current.parent
+                return path[::-1]
+            
+            closed_set.add(current)
+            
+            # Check all neighboring nodes
+            for dx, dy in directions:
+                new_x, new_y = current.x + dx, current.y + dy
+                
+                # Skip if position is invalid or is a wall
+                if not AStar.is_valid(new_x, new_y, rows, cols) or grid[new_x][new_y]:
+                    continue
+                
+                neighbor = Node(new_x, new_y)
+                
+                # Skip if node has been evaluated
+                if neighbor in closed_set:
+                    continue
+                
+                # Calculate g, h, and f values
+                tentative_g = current.g + 1
+                
+                # Check if this path is better than previous ones
+                if neighbor not in open_set or tentative_g < neighbor.g:
+                    neighbor.parent = current
+                    neighbor.g = tentative_g
+                    neighbor.h = AStar.heuristic(neighbor, end_node)
+                    neighbor.f = neighbor.g + neighbor.h
+                    
+                    if neighbor not in open_set:
+                        heappush(open_set, neighbor)
+        
+        return []  # No path found
+    
+    @staticmethod
+    def print_path(path: List[Tuple[int, int]]):
+        """Print the path coordinates"""
+        print(" -> ".join(f"({x},{y})" for x, y in path))
+
+# Example usage
+if __name__ == "__main__":
+    # Create a sample grid (False = empty, True = wall)
+    grid = [
+        [False, False, False, False, False],
+        [True,  True,  False, True,  False],
+        [False, False, False, False, False],
+        [False, True,  True,  True,  False],
+        [False, False, False, False, False]
+    ]
+    
+    start = (0, 0)
+    end = (4, 4)
+    
+    path = AStar.find_path(grid, start, end)
+    
+    if path:
+        print("Path found:")
+        AStar.print_path(path)
+    else:
+        print("No path found!")
+                                            </code></pre>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- C++ Implementation -->
+                                    <div class="tab-pane fade" id="cpp">
+                                        <div class="code-wrapper">
+                                            <button class="copy-button" data-clipboard-target="#cpp-code">
+                                                <i class="fas fa-copy"></i>
+                                            </button>
+                                            <pre><code class="language-cpp" id="cpp-code">
 #include &lt;iostream&gt;
 #include &lt;vector&gt;
 #include &lt;queue&gt;
@@ -255,16 +401,16 @@ public:
     }
 };
                                         </code></pre>
+                                        </div>
                                     </div>
-                                </div>
-                                
-                                <!-- C# Implementation -->
-                                <div class="tab-pane fade" id="csharp">
-                                    <div class="code-wrapper">
-                                        <button class="copy-button" data-clipboard-target="#csharp-code">
-                                            <i class="fas fa-copy"></i>
-                                        </button>
-                                        <pre><code class="language-csharp" id="csharp-code">
+                                    
+                                    <!-- C# Implementation -->
+                                    <div class="tab-pane fade" id="csharp">
+                                        <div class="code-wrapper">
+                                            <button class="copy-button" data-clipboard-target="#csharp-code">
+                                                <i class="fas fa-copy"></i>
+                                            </button>
+                                            <pre><code class="language-csharp" id="csharp-code">
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -396,6 +542,7 @@ public class AStar
     }
 }
                                         </code></pre>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
