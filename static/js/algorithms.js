@@ -32,6 +32,13 @@ const algorithms = {
             description: "Finds the shortest path between nodes in a weighted graph",
             complexity: "O((V + E) log V)",
             link: "graph/dijkstra.html"
+        },
+        {
+            name: "A* Algorithm",
+            category: "graph",
+            description: "Finds the shortest path between nodes in a weighted graph",
+            complexity: "O((V + E) log V)",
+            link: "graph/astar.html"
         }
     ],
     dynamic: [

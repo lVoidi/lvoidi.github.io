@@ -385,4 +385,89 @@ pre[class*="language-"] {
     0% { stroke-width: 2; }
     50% { stroke-width: 4; }
     100% { stroke-width: 2; }
+}
+
+/* A* Grid Styles */
+.grid-container {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+    background: rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(25, 25px);
+    gap: 1px;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 1px;
+    border-radius: 4px;
+}
+
+.cell {
+    width: 25px;
+    height: 25px;
+    background: var(--background-color);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border-radius: 2px;
+}
+
+.cell:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.cell.wall {
+    background: #6272a4;
+    transform: scale(0.9);
+}
+
+.cell.start {
+    background: #50fa7b;
+    animation: pulse 2s infinite;
+}
+
+.cell.end {
+    background: #ff79c6;
+    animation: pulse 2s infinite;
+}
+
+.cell.path {
+    background: #f1fa8c;
+    animation: pathReveal 0.5s ease;
+}
+
+.cell.visited {
+    background: #bd93f9;
+    transform: scale(0.9);
+}
+
+.cell.considering {
+    background: #8be9fd;
+    transform: scale(0.95);
+}
+
+@keyframes pulse {
+    0% { transform: scale(0.95); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(0.95); }
+}
+
+@keyframes pathReveal {
+    from {
+        transform: scale(0);
+        background: #f1fa8c;
+    }
+    to {
+        transform: scale(1);
+        background: #f1fa8c;
+    }
+}
+
+.control-group {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
 } 

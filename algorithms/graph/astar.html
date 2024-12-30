@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A* Algorithm - lVoidi Portal</title>
+    
+    <!-- CSS imports -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="../../static/css/style.css" rel="stylesheet">
+    <link href="../../static/css/algorithms.css" rel="stylesheet">
+    <link href="../../static/css/algorithm-page.css" rel="stylesheet">
+    <link href="../../static/css/prism.css" rel="stylesheet">
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="../../index.html">lVoidi</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="../index.html">Algorithms</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../../singularity/index.html">Technological Singularity</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../../void/index.html">The Pit of Endless Void</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+    <main class="container py-5">
+        <div class="row">
+            <!-- Sidebar -->
+            <div class="col-md-3">
+                <div class="algorithm-info-card">
+                    <h3>Quick Info</h3>
+                    <div class="info-item">
+                        <span class="info-label">Category:</span>
+                        <span class="info-value">Pathfinding</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Time Complexity:</span>
+                        <span class="info-value">O(E log V)</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Space Complexity:</span>
+                        <span class="info-value">O(V)</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Input Type:</span>
+                        <span class="info-value">Grid/Graph</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Content -->
+            <div class="col-md-9">
+                <article class="algorithm-content">
+                    <h1>A* (A-Star) Algorithm</h1>
+                    <div class="algorithm-metadata">
+                        <span class="category-tag">Pathfinding</span>
+                        <span class="difficulty-tag">Medium</span>
+                    </div>
+
+                    <section class="algorithm-section">
+                        <h2>Description</h2>
+                        <p>A* is an informed search algorithm that finds the shortest path between nodes in a graph. Unlike Dijkstra's algorithm, A* uses heuristics to guide its search, making it more efficient for many practical applications.</p>
+                    </section>
+
+                    <section class="algorithm-section">
+                        <h2>How It Works</h2>
+                        <ol>
+                            <li>Initialize the open list with the starting node</li>
+                            <li>For each node, maintain:
+                                <ul>
+                                    <li>g(n): Cost from start to current node</li>
+                                    <li>h(n): Estimated cost from current node to goal</li>
+                                    <li>f(n) = g(n) + h(n): Total estimated cost</li>
+                                </ul>
+                            </li>
+                            <li>While the open list is not empty:
+                                <ol type="a">
+                                    <li>Get node with lowest f(n) from open list</li>
+                                    <li>If current node is goal, reconstruct path</li>
+                                    <li>Generate successors and calculate their scores</li>
+                                    <li>Add successors to open list if better path found</li>
+                                </ol>
+                            </li>
+                        </ol>
+                    </section>
+
+                    <section class="algorithm-section">
+                        <h2>Visualization</h2>
+                        <div class="visualization-container">
+                            <div class="visualization-controls">
+                                <div class="control-group">
+                                    <button class="btn btn-primary" id="startVisualization">
+                                        <i class="fas fa-play"></i> Start
+                                    </button>
+                                    <button class="btn btn-secondary" id="resetVisualization">
+                                        <i class="fas fa-redo"></i> Reset
+                                    </button>
+                                    <button class="btn btn-info" id="generateMaze">
+                                        <i class="fas fa-magic"></i> Generate Maze
+                                    </button>
+                                </div>
+                                <div class="speed-control">
+                                    <label>Speed:</label>
+                                    <input type="range" id="speedControl" min="1" max="5" value="3">
+                                </div>
+                            </div>
+                            <div class="grid-container">
+                                <div id="astarGrid" class="grid"></div>
+                            </div>
+                            <div class="visualization-steps">
+                                <p id="currentStep">Click on the grid to set start and end points</p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="algorithm-section">
+                        <h2>Implementation</h2>
+                        <div class="implementation-container">
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" data-bs-toggle="tab" href="#cpp">C++</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-bs-toggle="tab" href="#csharp">C#</a>
+                                </li>
+                            </ul>
+                            
+                            <div class="tab-content">
+                                <!-- C++ Implementation -->
+                                <div class="tab-pane fade show active" id="cpp">
+                                    <div class="code-wrapper">
+                                        <button class="copy-button" data-clipboard-target="#cpp-code">
+                                            <i class="fas fa-copy"></i>
+                                        </button>
+                                        <pre><code class="language-cpp" id="cpp-code">
+#include &lt;iostream&gt;
+#include &lt;vector&gt;
+#include &lt;queue&gt;
+#include &lt;cmath&gt;
+#include &lt;unordered_set&gt;
+
+class AStar {
+private:
+    struct Node {
+        int x, y;
+        double f, g, h;
+        Node* parent;
+        
+        Node(int x, int y) : x(x), y(y), f(0), g(0), h(0), parent(nullptr) {}
+        
+        bool operator==(const Node& other) const {
+            return x == other.x && y == other.y;
+        }
+    };
+    
+    struct NodeCompare {
+        bool operator()(const Node* a, const Node* b) const {
+            return a->f > b->f;
+        }
+    };
+    
+    static double heuristic(const Node* a, const Node* b) {
+        // Manhattan distance
+        return std::abs(a->x - b->x) + std::abs(a->y - b->y);
+    }
+    
+    static bool isValid(int x, int y, int rows, int cols) {
+        return x >= 0 && x < rows && y >= 0 && y < cols;
+    }
+    
+    static void printPath(const std::vector<std::pair<int, int>>& path) {
+        for (const auto& [x, y] : path) {
+            std::cout << "(" << x << "," << y << ") ";
+        }
+        std::cout << std::endl;
+    }
+
+public:
+    static std::vector<std::pair<int, int>> findPath(
+        const std::vector<std::vector<bool>>& grid,
+        int startX, int startY,
+        int endX, int endY
+    ) {
+        const int rows = grid.size();
+        const int cols = grid[0].size();
+        
+        std::priority_queue<Node*, std::vector<Node*>, NodeCompare> openSet;
+        std::unordered_set<Node*> closedSet;
+        
+        Node* startNode = new Node(startX, startY);
+        Node* endNode = new Node(endX, endY);
+        
+        openSet.push(startNode);
+        
+        const std::vector<std::pair<int, int>> directions = {
+            {-1, 0}, {1, 0}, {0, -1}, {0, 1}
+        };
+        
+        while (!openSet.empty()) {
+            Node* current = openSet.top();
+            openSet.pop();
+            
+            if (*current == *endNode) {
+                std::vector<std::pair<int, int>> path;
+                while (current != nullptr) {
+                    path.push_back({current->x, current->y});
+                    current = current->parent;
+                }
+                std::reverse(path.begin(), path.end());
+                return path;
+            }
+            
+            closedSet.insert(current);
+            
+            for (const auto& [dx, dy] : directions) {
+                int newX = current->x + dx;
+                int newY = current->y + dy;
+                
+                if (!isValid(newX, newY, rows, cols) || grid[newX][newY]) {
+                    continue;
+                }
+                
+                Node* neighbor = new Node(newX, newY);
+                if (closedSet.find(neighbor) != closedSet.end()) {
+                    delete neighbor;
+                    continue;
+                }
+                
+                double tentativeG = current->g + 1;
+                
+                neighbor->parent = current;
+                neighbor->g = tentativeG;
+                neighbor->h = heuristic(neighbor, endNode);
+                neighbor->f = neighbor->g + neighbor->h;
+                
+                openSet.push(neighbor);
+            }
+        }
+        
+        return std::vector<std::pair<int, int>>();
+    }
+};
+                                        </code></pre>
+                                    </div>
+                                </div>
+                                
+                                <!-- C# Implementation -->
+                                <div class="tab-pane fade" id="csharp">
+                                    <div class="code-wrapper">
+                                        <button class="copy-button" data-clipboard-target="#csharp-code">
+                                            <i class="fas fa-copy"></i>
+                                        </button>
+                                        <pre><code class="language-csharp" id="csharp-code">
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+public class AStar
+{
+    private class Node
+    {
+        public int X { get; }
+        public int Y { get; }
+        public double F { get; set; }
+        public double G { get; set; }
+        public double H { get; set; }
+        public Node Parent { get; set; }
+        
+        public Node(int x, int y)
+        {
+            X = x;
+            Y = y;
+            F = G = H = 0;
+            Parent = null;
+        }
+        
+        public override bool Equals(object obj)
+        {
+            if (obj is Node other)
+            {
+                return X == other.X && Y == other.Y;
+            }
+            return false;
+        }
+        
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(X, Y);
+        }
+    }
+    
+    private static double Heuristic(Node a, Node b)
+    {
+        // Manhattan distance
+        return Math.Abs(a.X - b.X) + Math.Abs(a.Y - b.Y);
+    }
+    
+    private static bool IsValid(int x, int y, int rows, int cols)
+    {
+        return x >= 0 && x < rows && y >= 0 && y < cols;
+    }
+    
+    public static List<(int, int)> FindPath(
+        bool[,] grid,
+        int startX, int startY,
+        int endX, int endY)
+    {
+        var rows = grid.GetLength(0);
+        var cols = grid.GetLength(1);
+        
+        var openSet = new SortedSet<Node>(Comparer<Node>.Create((a, b) =>
+            a.F != b.F ? a.F.CompareTo(b.F) : a.GetHashCode().CompareTo(b.GetHashCode())));
+            
+        var closedSet = new HashSet<Node>();
+        
+        var startNode = new Node(startX, startY);
+        var endNode = new Node(endX, endY);
+        
+        openSet.Add(startNode);
+        
+        var directions = new[]
+        {
+            (-1, 0), (1, 0), (0, -1), (0, 1)
+        };
+        
+        while (openSet.Count > 0)
+        {
+            var current = openSet.Min;
+            openSet.Remove(current);
+            
+            if (current.Equals(endNode))
+            {
+                var path = new List<(int, int)>();
+                while (current != null)
+                {
+                    path.Add((current.X, current.Y));
+                    current = current.Parent;
+                }
+                path.Reverse();
+                return path;
+            }
+            
+            closedSet.Add(current);
+            
+            foreach (var (dx, dy) in directions)
+            {
+                var newX = current.X + dx;
+                var newY = current.Y + dy;
+                
+                if (!IsValid(newX, newY, rows, cols) || grid[newX, newY])
+                {
+                    continue;
+                }
+                
+                var neighbor = new Node(newX, newY);
+                if (closedSet.Contains(neighbor))
+                {
+                    continue;
+                }
+                
+                var tentativeG = current.G + 1;
+                
+                neighbor.Parent = current;
+                neighbor.G = tentativeG;
+                neighbor.H = Heuristic(neighbor, endNode);
+                neighbor.F = neighbor.G + neighbor.H;
+                
+                openSet.Add(neighbor);
+            }
+        }
+        
+        return new List<(int, int)>();
+    }
+    
+    public static void PrintPath(List<(int, int)> path)
+    {
+        foreach (var (x, y) in path)
+        {
+            Console.Write($"({x},{y}) ");
+        }
+        Console.WriteLine();
+    }
+}
+                                        </code></pre>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="algorithm-section">
+                        <h2>Complexity Analysis</h2>
+                        <div class="complexity-analysis">
+                            <div class="complexity-item">
+                                <h3>Time Complexity</h3>
+                                <p><strong>O((V + E) log V)</strong> where:</p>
+                                <ul>
+                                    <li>V is the number of vertices (nodes)</li>
+                                    <li>E is the number of edges</li>
+                                    <li>log V comes from the priority queue operations</li>
+                                </ul>
+                                <p>Note: In a grid-based implementation, where each cell connects to its neighbors, the complexity can be expressed as O(n log n) where n is the number of cells.</p>
+                            </div>
+                            
+                            <div class="complexity-item">
+                                <h3>Space Complexity</h3>
+                                <p><strong>O(V)</strong> where:</p>
+                                <ul>
+                                    <li>V is the number of vertices (nodes)</li>
+                                    <li>Space is needed for the open and closed sets</li>
+                                    <li>Additional space for the path reconstruction</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="complexity-item">
+                                <h3>Best Case</h3>
+                                <p>O(1) when the target is the starting node or immediately adjacent.</p>
+                            </div>
+                            
+                            <div class="complexity-item">
+                                <h3>Worst Case</h3>
+                                <p>O((V + E) log V) when the algorithm needs to explore most of the graph before finding the target.</p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="algorithm-section">
+                        <h2>Advantages and Disadvantages</h2>
+                        <div class="pros-cons">
+                            <div class="pros">
+                                <h3>Advantages</h3>
+                                <ul>
+                                    <li>More efficient than Dijkstra's algorithm for most pathfinding scenarios</li>
+                                    <li>Guarantees the shortest path when using an admissible heuristic</li>
+                                    <li>Can be optimized with different heuristics for specific use cases</li>
+                                    <li>Widely used in games and robotics</li>
+                                    <li>Can handle both weighted and unweighted graphs</li>
+                                    <li>Easy to modify for different movement patterns</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="cons">
+                                <h3>Disadvantages</h3>
+                                <ul>
+                                    <li>Memory intensive for large graphs</li>
+                                    <li>Performance depends heavily on the heuristic function</li>
+                                    <li>May not perform well in maze-like environments with many obstacles</li>
+                                    <li>Can be slower than other algorithms when the heuristic is poor</li>
+                                    <li>More complex to implement than simpler algorithms like BFS</li>
+                                    <li>May explore unnecessary nodes if the heuristic overestimates</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="algorithm-section">
+                        <h2>Common Applications</h2>
+                        <ul class="applications-list">
+                            <li>Video game pathfinding (NPCs, navigation)</li>
+                            <li>Robotics and autonomous navigation</li>
+                            <li>GPS and navigation systems</li>
+                            <li>Network routing</li>
+                            <li>Puzzle solving (8-puzzle, sliding puzzles)</li>
+                            <li>Automated planning systems</li>
+                        </ul>
+                    </section>
+                </article>
+            </div>
+        </div>
+    </main>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.8/clipboard.min.js"></script>
+    <script src="../../static/js/prism.js"></script>
+    <script src="../../static/js/astar-visualization.js"></script>
+</body>
+</html> 
