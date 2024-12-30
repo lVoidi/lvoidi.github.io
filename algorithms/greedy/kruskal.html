@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kruskal's Algorithm - lVoidi Portal</title>
+    
+    <!-- CSS imports -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="../../static/css/style.css" rel="stylesheet">
+    <link href="../../static/css/algorithms.css" rel="stylesheet">
+    <link href="../../static/css/algorithm-page.css" rel="stylesheet">
+    <link href="../../static/css/prism.css" rel="stylesheet">
+
+    <!-- Icon -->
+    <link rel="icon" href="../../static/img/icon.png" type="image/x-icon">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="../../index.html">lVoidi</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="../index.html">Algorithms</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../../singularity/index.html">Technological Singularity</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../../void/index.html">The Pit of Endless Void</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+    <main class="container py-5">
+        <div class="row">
+            <!-- Sidebar -->
+            <div class="col-md-3">
+                <div class="algorithm-info-card">
+                    <h3>Quick Info</h3>
+                    <div class="info-item">
+                        <span class="info-label">Category:</span>
+                        <span class="info-value">Greedy</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Time Complexity:</span>
+                        <span class="info-value">O(E log E)</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Space Complexity:</span>
+                        <span class="info-value">O(V)</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Input Type:</span>
+                        <span class="info-value">Weighted Graph</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Content -->
+            <div class="col-md-9">
+                <article class="algorithm-content">
+                    <h1>Kruskal's Algorithm</h1>
+                    <div class="algorithm-metadata">
+                        <span class="category-tag">Greedy</span>
+                        <span class="difficulty-tag">Medium</span>
+                    </div>
+
+                    <section class="algorithm-section">
+                        <h2>Description</h2>
+                        <p>Kruskal's algorithm is a minimum spanning tree algorithm that finds an edge of the least possible weight that connects any two trees in the forest. It is a greedy algorithm as it finds a minimum spanning tree for a connected weighted graph adding increasing cost arcs at each step.</p>
+                    </section>
+
+                    <section class="algorithm-section">
+                        <h2>How It Works</h2>
+                        <ol>
+                            <li>Sort all edges in non-decreasing order of their weight</li>
+                            <li>Initialize a forest where each vertex is a separate tree</li>
+                            <li>For each edge in sorted order:
+                                <ul>
+                                    <li>If including the edge doesn't create a cycle:
+                                        <ul>
+                                            <li>Add it to the spanning tree</li>
+                                            <li>Union the sets of vertices it connects</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>Continue until spanning tree has (V-1) edges</li>
+                        </ol>
+                    </section>
+
+                    <section class="algorithm-section">
+                        <h2>Visualization</h2>
+                        <div class="visualization-container">
+                            <div class="visualization-controls">
+                                <button class="btn btn-primary" id="startVisualization">
+                                    <i class="fas fa-play"></i> Start
+                                </button>
+                                <button class="btn btn-secondary" id="resetVisualization">
+                                    <i class="fas fa-redo"></i> Reset
+                                </button>
+                                <div class="speed-control">
+                                    <label>Speed:</label>
+                                    <input type="range" id="speedControl" min="1" max="5" value="3">
+                                </div>
+                            </div>
+                            <div id="kruskalVisualization" class="visualization-area">
+                                <!-- SVG will be inserted here -->
+                            </div>
+                            <div class="visualization-steps">
+                                <p id="currentStep">Click Start to begin visualization</p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="algorithm-section">
+                        <h2>Implementation</h2>
+                        <div class="implementation-container">
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" data-bs-toggle="tab" href="#python">Python</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-bs-toggle="tab" href="#cpp">C++</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-bs-toggle="tab" href="#csharp">C#</a>
+                                </li>
+                            </ul>
+                            
+                            <div class="tab-content">
+                                <!-- Python Implementation -->
+                                <div class="tab-pane fade show active" id="python">
+                                    <div class="code-wrapper">
+                                        <button class="copy-button" data-clipboard-target="#python-code">
+                                            <i class="fas fa-copy"></i>
+                                        </button>
+                                        <pre><code class="language-python" id="python-code">
+class UnionFind:
+    def __init__(self, size):
+        self.parent = list(range(size))
+        self.rank = [0] * size
+    
+    def find(self, x):
+        if self.parent[x] != x:
+            self.parent[x] = self.find(self.parent[x])  # Path compression
+        return self.parent[x]
+    
+    def union(self, x, y):
+        px, py = self.find(x), self.find(y)
+        if px == py:
+            return False
+        
+        # Union by rank
+        if self.rank[px] < self.rank[py]:
+            px, py = py, px
+        self.parent[py] = px
+        if self.rank[px] == self.rank[py]:
+            self.rank[px] += 1
+        return True
+
+class Kruskal:
+    @staticmethod
+    def minimum_spanning_tree(vertices: int, edges: list[tuple[int, int, int]]) -> list[tuple[int, int, int]]:
+        """
+        Find the minimum spanning tree using Kruskal's algorithm.
+        
+        Args:
+            vertices: Number of vertices in the graph
+            edges: List of edges as tuples (from_vertex, to_vertex, weight)
+            
+        Returns:
+            List of edges in the minimum spanning tree
+        """
+        # Sort edges by weight
+        edges = sorted(edges, key=lambda x: x[2])
+        
+        # Initialize Union-Find data structure
+        uf = UnionFind(vertices)
+        
+        mst = []
+        total_weight = 0
+        
+        # Process edges in ascending order of weight
+        for u, v, weight in edges:
+            if uf.union(u, v):
+                mst.append((u, v, weight))
+                total_weight += weight
+                
+                # Stop when we have V-1 edges
+                if len(mst) == vertices - 1:
+                    break
+        
+        return mst
+
+# Example usage
+if __name__ == "__main__":
+    # Example graph
+    V = 4
+    edges = [
+        (0, 1, 10),  # Edge from vertex 0 to 1 with weight 10
+        (0, 2, 6),
+        (0, 3, 5),
+        (1, 3, 15),
+        (2, 3, 4)
+    ]
+    
+    mst = Kruskal.minimum_spanning_tree(V, edges)
+    
+    print("Minimum Spanning Tree edges:")
+    total_weight = 0
+    for u, v, weight in mst:
+        print(f"Edge {u}-{v}: weight = {weight}")
+        total_weight += weight
+    print(f"Total MST weight: {total_weight}")
+                                        </code></pre>
+                                    </div>
+                                </div>
+                                
+                                <!-- C++ Implementation -->
+                                <div class="tab-pane fade" id="cpp">
+                                    <div class="code-wrapper">
+                                        <button class="copy-button" data-clipboard-target="#cpp-code">
+                                            <i class="fas fa-copy"></i>
+                                        </button>
+                                        <pre><code class="language-cpp" id="cpp-code">
+#include &lt;iostream&gt;
+#include &lt;vector&gt;
+#include &lt;algorithm&gt;
+
+class UnionFind {
+private:
+    std::vector&lt;int&gt; parent;
+    std::vector&lt;int&gt; rank;
+    
+public:
+    UnionFind(int size) : parent(size), rank(size, 0) {
+        for (int i = 0; i < size; ++i) {
+            parent[i] = i;
+        }
+    }
+    
+    int find(int x) {
+        if (parent[x] != x) {
+            parent[x] = find(parent[x]);  // Path compression
+        }
+        return parent[x];
+    }
+    
+    bool union_sets(int x, int y) {
+        int px = find(x), py = find(y);
+        if (px == py) return false;
+        
+        // Union by rank
+        if (rank[px] < rank[py]) {
+            std::swap(px, py);
+        }
+        parent[py] = px;
+        if (rank[px] == rank[py]) {
+            rank[px]++;
+        }
+        return true;
+    }
+};
+
+class Kruskal {
+public:
+    struct Edge {
+        int from, to, weight;
+        
+        Edge(int f, int t, int w) : from(f), to(t), weight(w) {}
+        
+        bool operator<(const Edge& other) const {
+            return weight < other.weight;
+        }
+    };
+    
+    static std::vector&lt;Edge&gt; minimum_spanning_tree(int vertices, std::vector&lt;Edge&gt;& edges) {
+        // Sort edges by weight
+        std::sort(edges.begin(), edges.end());
+        
+        UnionFind uf(vertices);
+        std::vector&lt;Edge&gt; mst;
+        int total_weight = 0;
+        
+        for (const Edge& edge : edges) {
+            if (uf.union_sets(edge.from, edge.to)) {
+                mst.push_back(edge);
+                total_weight += edge.weight;
+                
+                if (mst.size() == vertices - 1) {
+                    break;
+                }
+            }
+        }
+        
+        return mst;
+    }
+};
+
+int main() {
+    // Example graph
+    int V = 4;
+    std::vector&lt;Kruskal::Edge&gt; edges = {
+        {0, 1, 10},  // Edge from vertex 0 to 1 with weight 10
+        {0, 2, 6},
+        {0, 3, 5},
+        {1, 3, 15},
+        {2, 3, 4}
+    };
+    
+    auto mst = Kruskal::minimum_spanning_tree(V, edges);
+    
+    std::cout << "Minimum Spanning Tree edges:\n";
+    int total_weight = 0;
+    for (const auto& edge : mst) {
+        std::cout << "Edge " << edge.from << "-" << edge.to 
+                  << ": weight = " << edge.weight << "\n";
+        total_weight += edge.weight;
+    }
+    std::cout << "Total MST weight: " << total_weight << "\n";
+    
+    return 0;
+}
+                                        </code></pre>
+                                    </div>
+                                </div>
+                                
+                                <!-- C# Implementation -->
+                                <div class="tab-pane fade" id="csharp">
+                                    <div class="code-wrapper">
+                                        <button class="copy-button" data-clipboard-target="#csharp-code">
+                                            <i class="fas fa-copy"></i>
+                                        </button>
+                                        <pre><code class="language-csharp" id="csharp-code">
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+public class UnionFind
+{
+    private int[] parent;
+    private int[] rank;
+    
+    public UnionFind(int size)
+    {
+        parent = Enumerable.Range(0, size).ToArray();
+        rank = new int[size];
+    }
+    
+    public int Find(int x)
+    {
+        if (parent[x] != x)
+        {
+            parent[x] = Find(parent[x]);  // Path compression
+        }
+        return parent[x];
+    }
+    
+    public bool Union(int x, int y)
+    {
+        int px = Find(x), py = Find(y);
+        if (px == py) return false;
+        
+        // Union by rank
+        if (rank[px] < rank[py])
+        {
+            (px, py) = (py, px);
+        }
+        parent[py] = px;
+        if (rank[px] == rank[py])
+        {
+            rank[px]++;
+        }
+        return true;
+    }
+}
+
+public class Kruskal
+{
+    public record Edge(int From, int To, int Weight);
+    
+    public static List&lt;Edge&gt; MinimumSpanningTree(int vertices, List&lt;Edge&gt; edges)
+    {
+        // Sort edges by weight
+        edges.Sort((a, b) => a.Weight.CompareTo(b.Weight));
+        
+        var uf = new UnionFind(vertices);
+        var mst = new List&lt;Edge&gt;();
+        int totalWeight = 0;
+        
+        foreach (var edge in edges)
+        {
+            if (uf.Union(edge.From, edge.To))
+            {
+                mst.Add(edge);
+                totalWeight += edge.Weight;
+                
+                if (mst.Count == vertices - 1)
+                {
+                    break;
+                }
+            }
+        }
+        
+        return mst;
+    }
+    
+    public static void Main()
+    {
+        // Example graph
+        int V = 4;
+        var edges = new List&lt;Edge>
+        {
+            new(0, 1, 10),  // Edge from vertex 0 to 1 with weight 10
+            new(0, 2, 6),
+            new(0, 3, 5),
+            new(1, 3, 15),
+            new(2, 3, 4)
+        };
+        
+        var mst = MinimumSpanningTree(V, edges);
+        
+        Console.WriteLine("Minimum Spanning Tree edges:");
+        int totalWeight = 0;
+        foreach (var edge in mst)
+        {
+            Console.WriteLine($"Edge {edge.From}-{edge.To}: weight = {edge.Weight}");
+            totalWeight += edge.Weight;
+        }
+        Console.WriteLine($"Total MST weight: {totalWeight}");
+    }
+}
+                                        </code></pre>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="algorithm-section">
+                        <h2>Complexity Analysis</h2>
+                        <div class="complexity-analysis">
+                            <div class="complexity-item">
+                                <h3>Time Complexity</h3>
+                                <p><strong>O(E log E)</strong> where:</p>
+                                <ul>
+                                    <li>E is the number of edges</li>
+                                    <li>Sorting edges takes O(E log E)</li>
+                                    <li>Union-Find operations take O(α(V)), which is nearly constant</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="complexity-item">
+                                <h3>Space Complexity</h3>
+                                <p><strong>O(V)</strong> where:</p>
+                                <ul>
+                                    <li>V is the number of vertices</li>
+                                    <li>Space needed for the disjoint-set data structure</li>
+                                    <li>Additional O(E) space for storing sorted edges</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="algorithm-section">
+                        <h2>Advantages and Disadvantages</h2>
+                        <div class="pros-cons">
+                            <div class="pros">
+                                <h3>Advantages</h3>
+                                <ul>
+                                    <li>Simple to implement</li>
+                                    <li>Works well with sparse graphs</li>
+                                    <li>Guarantees minimum spanning tree</li>
+                                    <li>Can be easily parallelized</li>
+                                    <li>Good for distributed systems</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="cons">
+                                <h3>Disadvantages</h3>
+                                <ul>
+                                    <li>Not as efficient for dense graphs</li>
+                                    <li>Requires sorting all edges</li>
+                                    <li>Requires Union-Find data structure</li>
+                                    <li>Not suitable for dynamic graphs</li>
+                                    <li>Memory intensive for large graphs</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="algorithm-section">
+                        <h2>Applications</h2>
+                        <ul class="applications-list">
+                            <li>Network design (computer networks, transportation)</li>
+                            <li>Circuit design in electronics</li>
+                            <li>Water supply networks</li>
+                            <li>Clustering algorithms</li>
+                            <li>Approximation algorithms for NP-hard problems</li>
+                        </ul>
+                    </section>
+                </article>
+            </div>
+        </div>
+    </main>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.8/clipboard.min.js"></script>
+    <script src="../../static/js/prism.js"></script>
+    <script src="../../static/js/kruskal-visualization.js"></script>
+</body>
+</html>

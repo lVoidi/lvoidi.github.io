@@ -172,8 +172,13 @@ if __name__ == "__main__":
                                         </code></pre>
                                     </div>
                                 </div>
+                                
                                 <div class="tab-pane fade" id="cpp">
-                                    <pre><code class="language-cpp">
+                                    <div class="code-wrapper">
+                                        <button class="copy-button" data-clipboard-target="#cpp-code">
+                                            <i class="fas fa-copy"></i>
+                                        </button>
+                                        <pre><code class="language-cpp" id="cpp-code">
 #include &lt;iostream&gt;
 #include &lt;vector&gt;
 
@@ -225,9 +230,14 @@ int main() {
     return 0;
 }
                                         </code></pre>
+                                    </div>
                                 </div>
                                 <div class="tab-pane fade" id="csharp">
-                                    <pre><code class="language-csharp">
+                                    <div class="code-wrapper">
+                                        <button class="copy-button" data-clipboard-target="#csharp-code">
+                                            <i class="fas fa-copy"></i>
+                                        </button>
+                                        <pre><code class="language-csharp" id="csharp-code">
 public class QuickSort
 {
     private static int Partition(int[] arr, int low, int high)
@@ -274,6 +284,7 @@ public class QuickSort
     }
 }
                                         </code></pre>
+                                    </div>
                                 </div>
                             </div>
                         </div>

@@ -526,4 +526,84 @@ pre[class*="language-"] {
 
 .formula-box p {
     margin: 0.5rem 0;
+}
+
+/* Add these Kruskal-specific styles */
+.graph-node {
+    fill: var(--background-color);
+    stroke: var(--accent-color);
+    stroke-width: 2;
+}
+
+.node-label {
+    fill: var(--text-color);
+    text-anchor: middle;
+    font-family: 'JetBrains Mono', monospace;
+    user-select: none;
+}
+
+.graph-edge {
+    stroke: var(--text-color);
+    stroke-width: 2;
+    transition: all 0.3s ease;
+}
+
+.edge-weight {
+    fill: var(--text-color);
+    text-anchor: middle;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+}
+
+.graph-edge.considering {
+    stroke: #8be9fd;
+    stroke-width: 3;
+}
+
+.graph-edge.included {
+    stroke: #50fa7b;
+    stroke-width: 3;
+}
+
+.graph-edge.rejected {
+    stroke: #ff5555;
+    stroke-width: 1;
+    stroke-dasharray: 5;
+}
+
+.edge-group {
+    transition: opacity 0.3s ease;
+}
+
+/* Add these enhanced styles */
+.layout-select {
+    width: auto;
+    margin-right: 10px;
+}
+
+.graph-node {
+    cursor: grab;
+}
+
+.graph-node.dragging {
+    cursor: grabbing;
+    filter: brightness(1.2);
+}
+
+.visualization-controls {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+/* Animation for new nodes/edges */
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.8); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+.graph-node, .edge-group {
+    animation: fadeIn 0.3s ease;
 } 
