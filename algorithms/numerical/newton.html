@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Newton's Method - lVoidi Portal</title>
+    
+    <!-- CSS imports -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="../../static/css/style.css" rel="stylesheet">
+    <link href="../../static/css/algorithms.css" rel="stylesheet">
+    <link href="../../static/css/algorithm-page.css" rel="stylesheet">
+    <link href="../../static/css/prism.css" rel="stylesheet">
+
+    <!-- Icon -->
+    <link rel="icon" href="../../static/img/icon.png" type="image/x-icon">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="../../index.html">lVoidi</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="../index.html">Algorithms</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../../singularity/index.html">Technological Singularity</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../../void/index.html">The Pit of Endless Void</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+    <main class="container py-5">
+        <div class="row">
+            <!-- Sidebar with Quick Info -->
+            <div class="col-md-3">
+                <div class="algorithm-info-card">
+                    <h3>Quick Info</h3>
+                    <div class="info-item">
+                        <span class="info-label">Category:</span>
+                        <span class="info-value">Numerical Methods</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Time Complexity:</span>
+                        <span class="info-value">O(log n)</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Space Complexity:</span>
+                        <span class="info-value">O(1)</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Input Type:</span>
+                        <span class="info-value">Function, Initial Guess</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Content -->
+            <div class="col-md-9">
+                <article class="algorithm-content">
+                    <h1>Newton's Method</h1>
+                    <div class="algorithm-metadata">
+                        <span class="category-tag">Numerical</span>
+                        <span class="difficulty-tag">Medium</span>
+                    </div>
+
+                    <section class="algorithm-section">
+                        <h2>Description</h2>
+                        <p>Newton's Method (also known as Newton-Raphson method) is an iterative method for finding successively better approximations to the roots of a real-valued function. It uses the first derivative of a function to find better approximations to the roots.</p>
+                    </section>
+
+                    <section class="algorithm-section">
+                        <h2>How It Works</h2>
+                        <ol>
+                            <li>Start with an initial guess x₀</li>
+                            <li>Calculate the function value f(x₀) and its derivative f'(x₀)</li>
+                            <li>Apply the formula: xₙ₊₁ = xₙ - f(xₙ)/f'(xₙ)</li>
+                            <li>Repeat until convergence or maximum iterations reached</li>
+                        </ol>
+                        <p>The method is based on the idea that a continuous and differentiable function can be approximated by its tangent line, and where that tangent line crosses the x-axis might be a better approximation to the root than the original guess.</p>
+                    </section>
+
+                    <section class="algorithm-section">
+                        <h2>Visualization</h2>
+                        <div class="visualization-container">
+                            <div class="visualization-controls">
+                                <div class="input-group mb-3">
+                                    <input type="text" id="functionInput" class="form-control" placeholder="Enter function (e.g., x^2 - 4)">
+                                    <input type="number" id="initialGuess" class="form-control" placeholder="Initial guess">
+                                    <button class="btn btn-primary" id="startBtn">
+                                        <i class="fas fa-play"></i> Start
+                                    </button>
+                                    <button class="btn btn-secondary" id="resetBtn">
+                                        <i class="fas fa-redo"></i> Reset
+                                    </button>
+                                </div>
+                                <div class="speed-control">
+                                    <label>Speed:</label>
+                                    <input type="range" id="speedControl" min="1" max="5" value="3">
+                                </div>
+                            </div>
+                            <div class="visualization-area">
+                                <canvas id="newtonCanvas"></canvas>
+                            </div>
+                            <div class="visualization-steps">
+                                <p id="currentStep">Enter a function and initial guess to begin</p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="algorithm-section">
+                        <h2>Complexity Analysis</h2>
+                        <div class="complexity-analysis">
+                            <h3>Time Complexity</h3>
+                            <ul>
+                                <li>
+                                    <strong>Per Iteration:</strong> O(1)
+                                    <ul>
+                                        <li>Function evaluation: O(1)</li>
+                                        <li>Derivative evaluation: O(1)</li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <strong>Overall:</strong> O(log n)
+                                    <ul>
+                                        <li>n is the desired precision (number of decimal places)</li>
+                                        <li>Quadratic convergence when close to root</li>
+                                    </ul>
+                                </li>
+                            </ul>
+
+                            <h3>Space Complexity</h3>
+                            <ul>
+                                <li>
+                                    <strong>Variables:</strong> O(1)
+                                    <ul>
+                                        <li>Only stores current approximation</li>
+                                        <li>Function and derivative evaluations</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </section>
+
+                    <section class="algorithm-section">
+                        <h2>Advantages and Disadvantages</h2>
+                        <div class="pros-cons">
+                            <div class="pros">
+                                <h3>Advantages</h3>
+                                <ul>
+                                    <li>Quadratic convergence near roots</li>
+                                    <li>Very efficient for well-behaved functions</li>
+                                    <li>Simple implementation</li>
+                                    <li>Works well with continuous functions</li>
+                                </ul>
+                            </div>
+                            <div class="cons">
+                                <h3>Disadvantages</h3>
+                                <ul>
+                                    <li>Requires derivative calculation</li>
+                                    <li>May diverge with poor initial guess</li>
+                                    <li>Can fail at stationary points</li>
+                                    <li>Not guaranteed to find all roots</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="algorithm-section">
+                        <h2>Implementation</h2>
+                        <div class="implementation-tabs">
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" data-bs-toggle="tab" href="#python">Python</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-bs-toggle="tab" href="#cpp">C++</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-bs-toggle="tab" href="#csharp">C#</a>
+                                </li>
+                            </ul>
+                            <div class="tab-content">
+                                <!-- Python Implementation -->
+                                <div class="tab-pane fade show active" id="python">
+                                    <div class="code-wrapper">
+                                        <button class="copy-button" data-clipboard-target="#python-code">
+                                            <i class="fas fa-copy"></i>
+                                        </button>
+                                        <pre><code class="language-python" id="python-code">
+def newton_method(f, df, x0, epsilon=1e-6, max_iter=100):
+    """
+    Find root of f(x) = 0 using Newton's method.
+    
+    Parameters:
+        f: function - The function to find roots for
+        df: function - The derivative of f
+        x0: float - Initial guess
+        epsilon: float - Error tolerance
+        max_iter: int - Maximum number of iterations
+    
+    Returns:
+        float: Approximate root
+        int: Number of iterations
+        bool: Whether the method converged
+    """
+    x = x0
+    
+    for i in range(max_iter):
+        fx = f(x)
+        dfx = df(x)
+        
+        # Check if derivative is too close to zero
+        if abs(dfx) < epsilon:
+            return x, i, False
+        
+        # Newton's method formula
+        x_new = x - fx / dfx
+        
+        # Check for convergence
+        if abs(x_new - x) < epsilon:
+            return x_new, i + 1, True
+            
+        x = x_new
+    
+    return x, max_iter, False
+
+# Example usage
+if __name__ == "__main__":
+    # Example 1: Find square root of 16
+    def f1(x): return x**2 - 16
+    def df1(x): return 2*x
+    
+    root, iterations, converged = newton_method(f1, df1, x0=1.0)
+    print(f"√16 ≈ {root:.6f} (found in {iterations} iterations)")
+    
+    # Example 2: Find cube root of 27
+    def f2(x): return x**3 - 27
+    def df2(x): return 3*x**2
+    
+    root, iterations, converged = newton_method(f2, df2, x0=2.0)
+    print(f"∛27 ≈ {root:.6f} (found in {iterations} iterations)")
+</code></pre>
+                                    </div>
+                                </div>
+
+                                <!-- C++ Implementation -->
+                                <div class="tab-pane fade" id="cpp">
+                                    <div class="code-wrapper">
+                                        <button class="copy-button" data-clipboard-target="#cpp-code">
+                                            <i class="fas fa-copy"></i>
+                                        </button>
+                                        <pre><code class="language-cpp" id="cpp-code">
+#include &lt;iostream&gt;
+#include &lt;cmath&gt;
+#include &lt;functional&gt;
+#include &lt;tuple&gt;
+
+class NewtonMethod {
+private:
+    double epsilon;
+    int max_iterations;
+
+public:
+    NewtonMethod(double eps = 1e-6, int max_iter = 100) 
+        : epsilon(eps), max_iterations(max_iter) {}
+    
+    std::tuple&lt;double, int, bool&gt; solve(
+        const std::function&lt;double(double)&gt;& f,
+        const std::function&lt;double(double)&gt;& df,
+        double x0
+    ) {
+        double x = x0;
+        
+        for (int i = 0; i < max_iterations; ++i) {
+            double fx = f(x);
+            double dfx = df(x);
+            
+            // Check if derivative is too close to zero
+            if (std::abs(dfx) < epsilon) {
+                return std::make_tuple(x, i, false);
+            }
+            
+            // Newton's method formula
+            double x_new = x - fx / dfx;
+            
+            // Check for convergence
+            if (std::abs(x_new - x) < epsilon) {
+                return std::make_tuple(x_new, i + 1, true);
+            }
+            
+            x = x_new;
+        }
+        
+        return std::make_tuple(x, max_iterations, false);
+    }
+};
+
+int main() {
+    NewtonMethod newton;
+    
+    // Example 1: Find square root of 16
+    auto f1 = [](double x) { return x*x - 16; };
+    auto df1 = [](double x) { return 2*x; };
+    
+    auto [root1, iter1, conv1] = newton.solve(f1, df1, 1.0);
+    std::cout << "√16 ≈ " << root1 << " (found in " << iter1 << " iterations)\n";
+    
+    // Example 2: Find cube root of 27
+    auto f2 = [](double x) { return x*x*x - 27; };
+    auto df2 = [](double x) { return 3*x*x; };
+    
+    auto [root2, iter2, conv2] = newton.solve(f2, df2, 2.0);
+    std::cout << "∛27 ≈ " << root2 << " (found in " << iter2 << " iterations)\n";
+    
+    return 0;
+}
+</code></pre>
+                                    </div>
+                                </div>
+
+                                <!-- C# Implementation -->
+                                <div class="tab-pane fade" id="csharp">
+                                    <div class="code-wrapper">
+                                        <button class="copy-button" data-clipboard-target="#csharp-code">
+                                            <i class="fas fa-copy"></i>
+                                        </button>
+                                        <pre><code class="language-csharp" id="csharp-code">
+public class NewtonMethod
+{
+    private readonly double epsilon;
+    private readonly int maxIterations;
+    
+    public NewtonMethod(double epsilon = 1e-6, int maxIterations = 100)
+    {
+        this.epsilon = epsilon;
+        this.maxIterations = maxIterations;
+    }
+    
+    public (double root, int iterations, bool converged) Solve(
+        Func&lt;double, double&gt; f,
+        Func&lt;double, double&gt; df,
+        double x0)
+    {
+        double x = x0;
+        
+        for (int i = 0; i < maxIterations; i++)
+        {
+            double fx = f(x);
+            double dfx = df(x);
+            
+            // Check if derivative is too close to zero
+            if (Math.Abs(dfx) < epsilon)
+            {
+                return (x, i, false);
+            }
+            
+            // Newton's method formula
+            double xNew = x - fx / dfx;
+            
+            // Check for convergence
+            if (Math.Abs(xNew - x) < epsilon)
+            {
+                return (xNew, i + 1, true);
+            }
+            
+            x = xNew;
+        }
+        
+        return (x, maxIterations, false);
+    }
+    
+    public static void Main()
+    {
+        var newton = new NewtonMethod();
+        
+        // Example 1: Find square root of 16
+        double F1(double x) => x * x - 16;
+        double DF1(double x) => 2 * x;
+        
+        var (root1, iter1, conv1) = newton.Solve(F1, DF1, 1.0);
+        Console.WriteLine($"√16 ≈ {root1:F6} (found in {iter1} iterations)");
+        
+        // Example 2: Find cube root of 27
+        double F2(double x) => x * x * x - 27;
+        double DF2(double x) => 3 * x * x;
+        
+        var (root2, iter2, conv2) = newton.Solve(F2, DF2, 2.0);
+        Console.WriteLine($"∛27 ≈ {root2:F6} (found in {iter2} iterations)");
+    }
+}
+</code></pre>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </article>
+            </div>
+        </div>
+    </main>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.8/clipboard.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/9.4.4/math.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="../../static/js/prism.js"></script>
+    <script src="../../static/js/newton-visualization.js"></script>
+</body>
+</html>
