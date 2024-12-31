@@ -1,0 +1,103 @@
+/* Visualization container styles */
+.visualization-container {
+    background: rgba(30, 30, 30, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+/* Input area styles */
+#trainingText {
+    background: rgba(20, 20, 20, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--text-color);
+    font-family: monospace;
+    resize: vertical;
+    min-height: 100px;
+}
+
+#trainingText:focus {
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 2px rgba(var(--accent-color-rgb), 0.1);
+}
+
+/* Number input styles */
+#chainLength,
+#outputLength {
+    background: rgba(20, 20, 20, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #dfe6e9;  /* Light gray text */
+    width: 100px;
+    padding: 0.5rem;
+    border-radius: 4px;
+}
+
+/* Output area styles */
+#markovOutput {
+    background: rgba(20, 20, 20, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    padding: 1rem;
+    min-height: 150px;
+    font-family: monospace;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    margin-top: 1rem;
+}
+
+/* Button styles */
+.visualization-controls .btn {
+    min-width: 100px;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+}
+
+.visualization-controls .btn-primary {
+    background-color: #6c5ce7;  /* Bright purple */
+    border-color: #6c5ce7;
+    color: white;
+}
+
+.visualization-controls .btn-primary:hover {
+    background-color: #5f3dc4;  /* Darker purple on hover */
+    border-color: #5f3dc4;
+}
+
+.visualization-controls .btn-secondary {
+    background-color: #2d3436;  /* Dark gray */
+    border-color: rgba(255, 255, 255, 0.1);
+    color: #dfe6e9;  /* Light gray text */
+}
+
+.visualization-controls .btn-secondary:hover {
+    background-color: #353b48;
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Input group spacing */
+.visualization-controls .input-group {
+    gap: 10px;
+}
+
+/* Error message styles */
+.text-danger {
+    color: #ff6b6b !important;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .visualization-controls .input-group {
+        flex-direction: column;
+    }
+    
+    .visualization-controls .input-group > * {
+        margin-bottom: 0.5rem;
+        width: 100%;
+    }
+    
+    #chainLength,
+    #outputLength {
+        width: 100%;
+    }
+} 

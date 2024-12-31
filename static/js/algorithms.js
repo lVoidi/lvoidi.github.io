@@ -93,6 +93,13 @@ const algorithms = {
             description: "Knuth-Morris-Pratt pattern matching algorithm for efficient string searching",
             complexity: "O(n + m)",
             link: "string/kmp.html"
+        },
+        {
+            name: "Markov Chain",
+            category: "string",
+            description: "Markov chain for efficient string searching",
+            complexity: "O(n + m)",
+            link: "string/markov.html"
         }
     ],
     numerical: [
