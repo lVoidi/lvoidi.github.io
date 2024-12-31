@@ -4,32 +4,59 @@ document.addEventListener('DOMContentLoaded', () => {
     const filterButtons = document.querySelectorAll('.filters .btn');
     let currentFilter = 'all';
 
-    // Generate all cards from data
-    function renderCards(posts) {
-        articlesContainer.innerHTML = posts
-            .map(post => createCardHTML(post))
+    function filterPosts() {
+        const searchTerm = searchInput.value.toLowerCase();
+        const filteredPosts = SINGULARITY_POSTS.filter(post => {
+            // Check if post matches current category filter
+            const matchesCategory = currentFilter === 'all' || post.category.toLowerCase() === currentFilter;
+            
+            // Check if post matches search term in title, description, or tags
+            const matchesSearch = 
+                post.title.toLowerCase().includes(searchTerm) ||
+                post.description.toLowerCase().includes(searchTerm) ||
+                post.tags.some(tag => tag.toLowerCase().includes(searchTerm));
+            
+            return matchesCategory && matchesSearch;
+        });
+
+        renderPosts(filteredPosts);
+    }
+
+    function renderPosts(posts) {
+        if (posts.length === 0) {
+            articlesContainer.innerHTML = `
+                <div class="col-12 text-center">
+                    <p class="lead text-muted">No posts found matching your search.</p>
+                </div>
+            `;
+            return;
+        }
+
+        // Sort posts by date (newest first)
+        const sortedPosts = [...posts].sort((a, b) => 
+            new Date(b.date) - new Date(a.date)
+        );
+
+        articlesContainer.innerHTML = sortedPosts
+            .map(post => createPostCardHTML(post))
             .join('');
+
+        // Add fade-in animation
+        articlesContainer.querySelectorAll('.col-md-6').forEach((card, index) => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            setTimeout(() => {
+                card.style.opacity = '1';
+                card.style.transform = 'translateY(0)';
+            }, index * 100);
+        });
     }
 
     // Initial render
-    renderCards(BLOG_POSTS);
+    renderPosts(SINGULARITY_POSTS);
 
     // Search functionality
-    searchInput.addEventListener('input', () => {
-        const searchTerm = searchInput.value.toLowerCase();
-        const filteredPosts = BLOG_POSTS.filter(post => {
-            const matchesSearch = 
-                post.title.toLowerCase().includes(searchTerm) || 
-                post.description.toLowerCase().includes(searchTerm);
-            const matchesFilter = 
-                currentFilter === 'all' || 
-                post.tags.includes(currentFilter);
-            
-            return matchesSearch && matchesFilter;
-        });
-        
-        renderCards(filteredPosts);
-    });
+    searchInput.addEventListener('input', filterPosts);
 
     // Filter functionality
     filterButtons.forEach(button => {
@@ -37,12 +64,7 @@ document.addEventListener('DOMContentLoaded', () => {
             filterButtons.forEach(btn => btn.classList.remove('active'));
             button.classList.add('active');
             currentFilter = button.getAttribute('data-filter');
-            
-            const filteredPosts = currentFilter === 'all' 
-                ? BLOG_POSTS 
-                : BLOG_POSTS.filter(post => post.tags.includes(currentFilter));
-            
-            renderCards(filteredPosts);
+            filterPosts();
         });
     });
 }); 
