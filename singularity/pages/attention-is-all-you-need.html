@@ -50,12 +50,12 @@
                     <span class="post-date">March 15, 2024</span>
                     <span class="post-category">AI</span>
                     <span class="post-read-time">
-                        <i class="fas fa-clock"></i> 5 min read
+                        <i class="fas fa-clock"></i> 10 min read
                     </span>
                 </div>
-                <h1 class="post-title">Understanding Attention Mechanisms in Large Language Models</h1>
+                <h1 class="post-title">Attention Is All You Need</h1>
                 <div class="post-subtitle">
-                    An in-depth look at how attention mechanisms work in modern language models and their impact on performance
+                    I review the paper 'Attention Is All You Need' by Vaswani et al. and explain the transformer architecture.
                 </div>
                 <div class="post-author">
                     <img src="../../static/img/author.jpg" alt="Author" class="author-image">
@@ -72,7 +72,10 @@
 
                 <h3>Abstract</h3>
                 <p class="lead">
-                    The attention mechanism has revolutionized natural language processing, becoming a cornerstone of modern AI systems.
+                    The attention mechanism has revolutionized natural language processing,
+                    becoming a cornerstone of modern AI systems. This article will provide a detailed
+                    explanation of how attention mechanisms work in modern language models and their impact on performance, while 
+                    citing the paper "Attention is All You Need" by Vaswani et al. (2017). 
                 </p>
 
                 <!-- Table of Contents -->
@@ -81,48 +84,472 @@
                     <ul>
                         <li><a href="#introduction">Introduction</a></li>
                         <li><a href="#what-is-attention">What is Attention?</a></li>
-                        <li><a href="#how-it-works">How it Works</a></li>
-                        <li><a href="#implementation">Implementation</a></li>
-                        <li><a href="#conclusion">Conclusion</a></li>
+                        <li><a href="#the-transformer">The Transformer</a></li>
+                        <li><a href="#ffn">Feed-Forward Network</a></li>
+                        <li><a href="#layer-norm">Layer Normalization</a></li>
+                        <li><a href="#concluding">Concluding</a></li>
                     </ul>
                 </nav>
 
                 <!-- Post Sections -->
                 <section id="introduction">
                     <h2>Introduction</h2>
-                    <p>Your introduction text here...</p>
+                    <p>
+                        The attention mechanism has revolutionized natural language processing,
+                        becoming a cornerstone of modern AI systems. First of all, let's define what attention is.
+                        For a human, attention is the process of focusing on a specific task or object. For example, when 
+                        we work on that leetcode problem, we focus on the problem statement and the solution. But, how 
+                        do we translate this concept to a machine? <br>
+
+                        For a machine, <b>attention</b> is the process of focusing on a specific part of the input.
+                        For example, when we train a machine learning model, we want to focus on the most important features
+                        of the input. 
+
+                    <div class="example-box">
+                        <h4>Example: Translation Attention</h4>
+                        <p>Consider the Spanish sentence: "El gato negro duerme en el jardín"</p>
+                        <p>When translating to English "The black cat sleeps in the garden", the attention mechanism works like this:</p>
+                        <ul>
+                            <li>For translating "black cat", the model pays high attention to "gato negro"</li>
+                            <li>For "sleeps", attention focuses strongly on "duerme"</li>
+                            <li>For "in the garden", attention concentrates on "en el jardín"</li>
+                        </ul>
+                        <p class="example-note">The attention mechanism allows the model to dynamically focus on relevant parts of the input sentence while generating each word of the translation, rather than trying to remember the entire sentence at once.</p>
+                    </div>
+
+                        We can see that the attention mechanism allows the model to focus on the most important parts of the input.
+                        This is the key idea behind attention mechanisms. Now, let's define the attention mechanism in a more formal way.
+                    </p>
                 </section>
 
                 <section id="what-is-attention">
                     <h2>What is Attention?</h2>
-                    <p>Your content about attention here...</p>
-                </section>
+                    <p>
+                        Let's add some math to the mix.
 
-                <section id="how-it-works">
-                    <h2>How it Works</h2>
-                    <div class="code-wrapper">
-                        <button class="copy-button" data-clipboard-target="#code-block-python">
-                            <i class="fas fa-copy"></i>
-                        </button>
-                        <pre><code class="language-python" id="code-block-python">
-def attention(query, key, value):
-    # Attention code example
-    scores = torch.matmul(query, key.transpose(-2, -1))
-    attention_weights = F.softmax(scores, dim=-1)
-    return torch.matmul(attention_weights, value)
-                        </code></pre>
+                    <div class="example-box" style="background: rgba(163, 103, 252, 0.1); border-left-color: #a367fc;">
+                        <h4 style="color: #a367fc;">Mathematical Definition</h4>
+                        <p>Attention can be expressed as a mathematical function:</p>
+                        <p>Attention(Q, K, V) = softmax(QK<sup>T</sup>)V</p>
+                        <ul>
+                            <li>Q (Query): What we're looking for</li>
+                            <li>K (Key): What we're comparing against</li>
+                            <li>V (Value): The actual information we want to extract</li>
+                        </ul>
+                        <p class="example-note">This formula allows the model to compute relevance scores between elements and create weighted combinations of values based on those scores.</p>
                     </div>
+                    
+                    We can cite the paper here:
+
+                    <blockquote class="example-box" style="font-style: italic; border-left-color: #a367fc;">
+                        <p>"An attention function can be described as mapping a query and a set of key-value pairs to an output,
+                        where the query, keys, values, and output are all vectors. The output is computed as a weighted sum
+                        of the values, where the weight assigned to each value is computed by a compatibility function of the
+                        query with the corresponding key."</p>
+                        <footer style="color: var(--text-muted); margin-top: 1rem;">
+                            - Attention Is All You Need (Vaswani et al., 2017)
+                        </footer>
+                    </blockquote>
+                    
+                    What does this mean? First of all, we have a query, which is the input we want to translate.
+                    We also have a key, which is the input we want to compare against. 
+                    Finally, we have a value, which is the actual information we want to extract.
+
+                    This is the key idea behind attention mechanisms. Now, let's see how it works. 
+
+                    <div class="example-box" style="background: rgba(163, 103, 252, 0.1); border-left-color: #a367fc;">
+                        <h4 style="color: #a367fc;">How it works</h4>
+                        <p>The attention mechanism works by computing the similarity between the query and the key,
+                        and then using the softmax function to normalize the results. The softmax function is a function that
+                        takes a vector and returns a vector of the same length, where each element is the softmax of the corresponding
+                        element in the input vector.</p>
+                    </div>
+                    
+                    Explaining how it works is a bit complex, but we can see that the attention mechanism
+                    allows the model to focus on the most important parts of the input. Now that we understand
+                    how it works, let's see what Google did with this information.
+                    <h3>Multi-Head Attention</h3>
+                    <p>
+                    Instead of performing attention once, the transformer uses multiple attention heads in parallel. This is called multi-head attention.
+
+                    <div class="example-box" style="background: rgba(163, 103, 252, 0.1); border-left-color: #a367fc;">
+                        <h4 style="color: #a367fc;">Multi-Head Attention Explained</h4>
+                        <p>Multi-head attention allows the model to:</p>
+                        <ul>
+                            <li>Focus on different parts of the input sequence simultaneously</li>
+                            <li>Capture different types of relationships between words</li>
+                            <li>Learn multiple representation subspaces</li>
+                        </ul>
+                        <p>For example, one attention head might focus on syntactic relationships, while another focuses on semantic relationships.</p>
+                    </div>
+
+                    The paper uses 8 attention heads, each operating in parallel. Think of it like having 8 different "perspectives" or "views" of the same input data. Each head can learn to focus on different aspects of the relationships between words.
+
+                    <div class="example-box" style="background: rgba(163, 103, 252, 0.1); border-left-color: #a367fc;">
+                        <h4 style="color: #a367fc;">Mathematical View</h4>
+                        <p>For each head i:</p>
+                        <p>head<sub>i</sub> = Attention(QW<sub>i</sub><sup>Q</sup>, KW<sub>i</sub><sup>K</sup>, VW<sub>i</sub><sup>V</sup>)</p>
+                        <p>The final output is a concatenation of all heads, projected through a linear layer:</p>
+                        <p>MultiHead(Q,K,V) = Concat(head<sub>1</sub>,...,head<sub>h</sub>)W<sup>O</sup></p>
+                    </div>
+
+                    This multi-head approach is one of the key innovations that makes transformers so powerful. By processing information in parallel through multiple attention mechanisms, the model can capture rich, nuanced relationships in the data.
+                    
+                    <div class="example-box" style="background: rgba(163, 103, 252, 0.1); border-left-color: #a367fc;">
+                        <h4 style="color: #a367fc;">Attention Example: Understanding Complex Phrases</h4>
+                        <p>Let's analyze how attention might work on the phrase: "A fire-breathing dragon lives in my garage"</p>
+                        
+                        <p>When processing this sentence, different attention heads might focus on different aspects:</p>
+                        
+                        <ul>
+                            <li><strong>Head 1 (Subject-Verb Relations):</strong>
+                                <ul>
+                                    <li>When processing "lives", pays high attention to "dragon" (who is doing the living?)</li>
+                                    <li>Lower attention to other words like "fire-breathing" or "garage"</li>
+                                </ul>
+                            </li>
+                            
+                            <li><strong>Head 2 (Descriptive Relations):</strong>
+                                <ul>
+                                    <li>When looking at "dragon", pays high attention to "fire-breathing" (what kind of dragon?)</li>
+                                    <li>Creates connections between the subject and its attributes</li>
+                                </ul>
+                            </li>
+                            
+                            <li><strong>Head 3 (Location Relations):</strong>
+                                <ul>
+                                    <li>Focuses on "lives in" and "garage" (where is the dragon?)</li>
+                                    <li>Establishes spatial relationships in the sentence</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                        <p>The attention scores might look something like this:</p>
+                        <pre style="background-color: rgba(163, 103, 252, 0.05); padding: 1rem;">
+Word             | Main words it attends to
+----------------|------------------------
+fire-breathing  → dragon (0.8), lives (0.1)
+dragon          → lives (0.6), fire-breathing (0.3)
+lives           → dragon (0.7), garage (0.2)
+garage          → lives (0.4), in (0.4)</pre>
+
+                        <p>These multiple attention heads working in parallel allow the model to understand:</p>
+                        <ul>
+                            <li>The main subject (dragon) and its action (lives)</li>
+                            <li>The subject's characteristics (fire-breathing)</li>
+                            <li>The location (garage) and how it relates to the subject</li>
+                        </ul>
+                    </div>
+                    </p>
+
+                    <h3>Cross-Attention</h3>
+                    <p>
+                        The cross-attention mechanism is used in the decoder to attend to the encoder's output.
+                        This is the case of the transformer, which takes the input and outputs the final result.
+                    <div class="example-box" style="background: rgba(163, 103, 252, 0.1); border-left-color: #a367fc;">
+                        <h4 style="color: #a367fc;">Understanding Cross-Attention</h4>
+                        <p>Cross-attention is a crucial mechanism that allows the decoder to access information from the encoder. Here's how it works:</p>
+
+                        <ol>
+                            <li><strong>Query-Key-Value Interaction:</strong>
+                                <ul>
+                                    <li>Queries (Q) come from the decoder's previous layer</li>
+                                    <li>Keys (K) and Values (V) come from the encoder's output</li>
+                                    <li>This allows the decoder to "look back" at the source sequence while generating output</li>
+                                </ul>
+                            </li>
+                            <li><strong>Information Flow:</strong>
+                                <ul>
+                                    <li>The decoder can access any part of the input sequence at any time</li>
+                                    <li>This creates a direct path between input and output, helping with long-range dependencies</li>
+                                </ul>
+                            </li>
+                        </ol>
+
+                        <h5>Example: Translation with Cross-Attention</h5>
+                        <p>Consider translating: "The red car" → "La voiture rouge"</p>
+                        
+                        <pre style="background-color: rgba(163, 103, 252, 0.05); padding: 1rem;">
+When generating...   | Strongly attends to...
+-------------------|--------------------
+"La"              → "The" (article)
+"voiture"         → "car" (noun)
+"rouge"           → "red" (adjective)</pre>
+
+                        <p>Key Benefits of Cross-Attention:</p>
+                        <ul>
+                            <li>Enables precise word-by-word translation</li>
+                            <li>Handles word order differences between languages</li>
+                            <li>Maintains context throughout the translation process</li>
+                            <li>Allows flexible attention patterns based on the current generation needs</li>
+                        </ul>
+                    </div>
+
+                    The cross-attention mechanism essentially creates a bridge between the encoder and decoder, allowing the model to maintain context and make informed decisions during sequence generation. This is particularly important in tasks like translation, where word order and context can vary significantly between languages.
+                    </p>
+                    </p>
+                </section> 
+
+                <section id="the-transformer">
+                    <h2>The Transformer</h2>
+                    <p>
+
+                        <div class="example-box" style="background: rgba(163, 103, 252, 0.1); border-left-color: #a367fc;">
+                            <h4 style="color: #a367fc;">Visual Representation</h4>
+                            <figure class="text-center">
+                                <img src="../../static/img/singularity/transformer.png" 
+                                    alt="Transformer Architecture" 
+                                    class="img-fluid rounded shadow-lg" 
+                                    style="max-width: 100%; height: auto; transition: transform 0.3s ease-in-out;"
+                                    onmouseover="this.style.transform='scale(1.02)'" 
+                                    onmouseout="this.style.transform='scale(1)'">
+                                <figcaption class="mt-3" style="color: var(--text-muted); font-style: italic;">
+                                    The Transformer architecture showing the attention mechanism in action
+                                </figcaption>
+                            </figure>
+                        </div>
+
+                        The transformer is a model that uses the attention mechanism to process sequences. 
+                        This model was introduced in the paper "Attention is All You Need" by Vaswani et al. (2017).
+                        The transformer architecture is a seq2seq model that uses the attention mechanism to process sequences 
+                        and it is the backbone of the modern AI systems. Let's break it down. 
+
+                        <h3>What is a seq2seq model?</h3>
+                        <p>
+                            A seq2seq model is a model that takes a sequence as input and outputs a sequence.
+                            This is the case of the transformer, which takes a sequence of words as input and outputs a sequence of words.
+
+                            <div class="example-box" style="background: rgba(163, 103, 252, 0.1); border-left-color: #a367fc;">
+                                <h4 style="color: #a367fc;">Seq2Seq Example: Language Translation</h4>
+                                <p>Consider translating an English sentence to French:</p>
+                                <ul>
+                                    <li><strong>Input sequence:</strong> "How are you?"</li>
+                                    <li><strong>Output sequence:</strong> "Comment allez-vous?"</li>
+                                </ul>
+                                <p>The model processes the input sequence word by word:</p>
+                                <ol>
+                                    <li>Reads "How" → Processes</li>
+                                    <li>Reads "are" → Processes</li>
+                                    <li>Reads "you?" → Processes</li>
+                                </ol>
+                                <p>Then generates the output sequence word by word:</p>
+                                <ol>
+                                    <li>Outputs "Comment"</li>
+                                    <li>Outputs "allez"</li>
+                                    <li>Outputs "vous?"</li>
+                                </ol>
+                                <p class="example-note">
+                                    This is a simplified example. In practice, the model handles more complex sentence
+                                     structures and maintains context throughout the sequence.
+                                </p>
+                            </div>
+                        </p>
+                        Let's read what's written in the paper:
+                        <div class="example-box" style="background: rgba(163, 103, 252, 0.1); border-left-color: #a367fc;">
+                            <h4 style="color: #a367fc;">From the Paper: Architecture Details</h4>
+                            
+                            <p><strong>On the Encoder:</strong></p>
+                            <blockquote>
+                                "The encoder is composed of a stack of N = 6 identical layers. Each layer has two
+                                sub-layers. The first is a multi-head self-attention mechanism, and the second is a simple, position-
+                                wise fully connected feed-forward network. We employ a residual connection around each of
+                                the two sub-layers, followed by layer normalization. That is, the output of each sub-layer is
+                                LayerNorm(x + Sublayer(x)), where Sublayer(x) is the function implemented by the sub-layer
+                                itself. To facilitate these residual connections, all sub-layers in the model, as well as the embedding
+                                layers, produce outputs of dimension dmodel = 512."
+                            </blockquote>
+
+                            <p><strong>On the Decoder:</strong></p>
+                            <blockquote>
+                                "The decoder is also composed of a stack of N = 6 identical layers. In addition to the two
+                                sub-layers in each encoder layer, the decoder inserts a third sub-layer, which performs multi-head
+                                attention over the output of the encoder stack. Similar to the encoder, we employ residual connections
+                                around each of the sub-layers, followed by layer normalization. We also modify the self-attention
+                                sub-layer in the decoder stack to prevent positions from attending to subsequent positions. This
+                                masking, combined with fact that the output embeddings are offset by one position, ensures that the
+                                predictions for position i can depend only on the known outputs at positions less than i."
+                            </blockquote>
+                        </div>
+                        In a way simpler way, the encoder is a stack of 6 layers, each layer has a self-attention 
+                        mechanism and a feed-forward network. The decoder is also a stack of 6 layers, each layer 
+                        has a self-attention mechanism, a encoder-decoder attention mechanism and a feed-forward network.
+                        The self-attention mechanism is the same as the one used in the encoder, but it is applied to the
+                        output of the encoder. The encoder-decoder attention mechanism is the same as the one used in the
+                        transformer, but it is applied to the output of the encoder and the input of the decoder.
+
+                        <h3>How is it different from traditional RNNs?</h3>
+                        <p>
+                            The transformer is different from traditional RNNs because it uses the attention mechanism to
+                            process sequences. The attention mechanism allows the model to focus on the most important parts of the input,
+                            which is not the case of traditional RNNs, where the model processes the input sequence step by step.
+                        </p>
+
+                        Google's paper also mentions that the transformer is faster than the traditional RNNs, but it is not
+                        as good at capturing long-term dependencies. 
+
+                        <div class="example-box" style="background: rgba(163, 103, 252, 0.1); border-left-color: #a367fc;">
+                            <h4 style="color: #a367fc;">From the Paper: Computational Complexity</h4>
+                            <blockquote>
+                                "As noted in Table 1, a self-attention layer connects all positions with a constant number of sequentially
+                                executed operations, whereas a recurrent layer requires O(n) sequential operations. In terms of
+                                computational complexity, <b>self-attention layers are faster than recurrent layers when the sequence
+                                length n is smaller than the representation dimensionality d</b>, which is most often the case with
+                                sentence representations used by state-of-the-art models in machine translations, such as word-piece
+                                [31] and byte-pair [25] representations. To improve computational performance for tasks involving
+                                very long sequences, self-attention could be restricted to considering only a neighborhood of size r in
+                                the input sequence centered around the respective output position. This would increase the maximum
+                                path length to O(n/r). We plan to investigate this approach further in future work."
+                            </blockquote>
+                        </div>
+
+                        Visualization of the transformer architecture:
+                        
+                    </p>
+                </section>
+                
+                
+                <section id="ffn">
+                    <h2>Feed-Forward Network</h2>
+                    <p>
+                        The feed-forward network is a network that takes the input and outputs the final result. Let's see what the paper says about it:
+
+                    <div class="example-box" style="background: rgba(163, 103, 252, 0.1); border-left-color: #a367fc;">
+                        <h4 style="color: #a367fc;">From the Paper: Feed-Forward Network</h4>
+                        <blockquote>
+                            "In addition to attention sub-layers, each of the layers in our encoder and decoder contains a fully
+                            connected feed-forward network, which is applied to each position separately and identically. This
+                            consists of two linear transformations with a ReLU activation in between.
+                            FFN(x) = max(0, xW1 + b1)W2 + b2 (2)
+                            While the linear transformations are the same across different positions, they use different parameters
+                            from layer to layer. Another way of describing this is as two convolutions with kernel size 1.
+                            The dimensionality of input and output is dmodel = 512, and the inner-layer has dimensionality
+                            df f = 2048."
+                        </blockquote>
+
+                        <p>
+                            Let's break down what feed-forward networks are and why they're important in the transformer architecture:
+                        </p>
+
+                        <ul>
+                            <li><b>Position-wise Processing:</b> The feed-forward network processes each position in the sequence independently. This means if you have a sequence of 10 words, the same feed-forward network is applied to each word's representation separately.</li>
+                            
+                            <li><b>Two Linear Transformations:</b> As mentioned in the paper, it consists of two linear layers with a ReLU activation function between them. This can be thought of as:
+                                <ul>
+                                    <li>First transformation: Takes the 512-dimensional input and projects it to 2048 dimensions</li>
+                                    <li>ReLU activation: Introduces non-linearity by setting negative values to zero</li>
+                                    <li>Second transformation: Projects back from 2048 dimensions to 512 dimensions</li>
+                                </ul>
+                            </li>
+
+                            <li><b>Purpose:</b> The feed-forward network adds another level of abstraction to the model. While the attention mechanism captures relationships between different positions in the sequence, the feed-forward network allows the model to process this information further and learn more complex patterns.</li>
+                        </ul>
+
+                        <p>
+                            Think of it as giving each position in the sequence a chance to "think deeply" about the information it has gathered through attention, before passing it on to the next layer. The increased dimensionality in the hidden layer (2048 vs 512) gives the network more capacity to learn complex patterns.
+                        </p>
+                    </div>
+
+
+                    </p>
+                </section>
+                
+                <section id="layer-norm">
+                    <h2>Layer Normalization</h2>
+                    <p>
+                        Layer normalization is a technique used to stabilize the learning process in deep neural networks.
+                        It normalizes the input to each layer, which helps with faster convergence and better performance.
+                    <div class="example-box" style="background: rgba(163, 103, 252, 0.1); border-left-color: #a367fc;">
+                        <h4 style="color: #a367fc;">From the Paper: Layer Normalization</h4>
+                        <blockquote>
+                            "We employ a residual connection around each of the sub-layers, followed by layer normalization. 
+                            That is, the output of each sub-layer is LayerNorm(x + Sublayer(x)), where Sublayer(x) is the 
+                            function implemented by the sub-layer itself."
+                        </blockquote>
+
+                        <p>
+                            Let's break down how layer normalization works and why it's crucial in transformers:
+                        </p>
+
+                        <ul>
+                            <li><b>What it Does:</b> Layer normalization computes the mean and variance across the features 
+                            of each individual example in a batch, and uses these statistics to normalize the features.</li>
+                            
+                            <li><b>Key Components:</b>
+                                <ul>
+                                    <li>Normalization: Subtracts the mean and divides by the standard deviation</li>
+                                    <li>Learnable Parameters: Scale (γ) and shift (β) parameters that allow the network to 
+                                    undo the normalization if needed</li>
+                                    <li>Applied After Each Sub-layer: Used after both self-attention and feed-forward networks</li>
+                                </ul>
+                            </li>
+
+                            <li><b>Benefits:</b>
+                                <ul>
+                                    <li>Stabilizes Training: Helps prevent the vanishing/exploding gradient problem</li>
+                                    <li>Reduces Training Time: Allows for higher learning rates and faster convergence</li>
+                                    <li>Independence: Each example is normalized independently, making it suitable for 
+                                    variable-length sequences</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                        <p>
+                            The combination of residual connections and layer normalization is crucial for training deep 
+                            transformer networks effectively. It helps maintain stable gradients throughout the network and 
+                            enables the model to learn more effectively.
+                        </p>
+                    </div>
+                    </p>
                 </section>
 
-                <section id="implementation">
-                    <h2>Implementation</h2>
-                    <p>Implementation details here...</p>
+                <section id="concluding">
+                    <h2>Concluding</h2>
+                    <p>
+                        The transformer has had a huge impact on the field of natural language processing. It has
+                        revolutionized the way we understand language and it has opened the door to a whole new
+                        set of applications. This is the case of the GPT-3 model, which is a transformer-based model
+                        that has revolutionized the field of natural language processing. 
+
+                        <div class="example-box" style="background: rgba(163, 103, 252, 0.1); border-left-color: #a367fc;">
+                            <h4 style="color: #a367fc;">ChatGPT 3</h4>
+                            <blockquote>
+                                "ChatGPT 3 is a transformer-based model that has revolutionized 
+                                the field of natural language processing. It is a model that can generate
+                                human-like text, and it has been used to create a whole new set of applications. It's name 
+                                comes from Generative Pre-trained Transformer 3, which is the name of the model."
+                            </blockquote>
+                        </div>
+                        
+                        <div class="example-box" style="background: rgba(0, 123, 255, 0.1); border-left-color: #007bff;">
+                            <h4 style="color: #007bff;">Key Takeaways</h4>
+                            <p>
+                                The Transformer architecture represents a pivotal moment in deep learning, introducing several 
+                                groundbreaking concepts that have become fundamental to modern NLP. The self-attention mechanism 
+                                allows models to dynamically focus on relevant parts of the input, breaking free from the 
+                                sequential limitations of RNNs. Multi-head attention takes this further by enabling parallel 
+                                processing of information from different representation subspaces.
+                            </p>
+                            <p>
+                                The architecture's strength lies in its carefully designed components working in harmony: 
+                                positional encodings preserve sequential information, layer normalization and residual 
+                                connections ensure stable training, and the feed-forward networks add crucial non-linear 
+                                processing capability. This elegant combination has proven so effective that it has spawned 
+                                numerous variants and applications beyond just NLP, influencing fields from computer vision 
+                                to biological sequence analysis.
+                            </p>
+                            <p>
+                                Perhaps most importantly, the Transformer has shown us that with the right architectural 
+                                choices, we can build models that not only process information efficiently but also learn 
+                                to understand context and relationships in ways that more closely mirror human-like 
+                                comprehension. This breakthrough has set the stage for the current era of large language 
+                                models and continues to influence the direction of artificial intelligence research.
+                            </p>
+                        </div>
+
+                        Thanks for reading! Read more about the transformer architecture <a href="https://arxiv.org/abs/1706.03762">here</a>.
+                    </p>
                 </section>
 
-                <section id="conclusion">
-                    <h2>Conclusion</h2>
-                    <p>Concluding thoughts here...</p>
-                </section>
             </div>
 
             <!-- Post Footer -->

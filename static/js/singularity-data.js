@@ -1,12 +1,12 @@
 const SINGULARITY_POSTS = [
     {
         id: "attention-is-all-you-need",
-        title: "Understanding Attention Mechanisms in Large Language Models",
-        description: "An in-depth look at how attention mechanisms work in modern language models and their impact on performance",
+        title: "Attention Is All You Need",
+        description: "I review the paper 'Attention Is All You Need' by Vaswani et al. and explain the transformer architecture.",
         image: "../static/img/singularity/attention-is-all-you-need.png",
         tags: ["AI", "Machine Learning", "NLP"],
-        readTime: 5,
-        date: "2024-03-15",
+        readTime: 10,
+        date: "2024-12-31",
         author: "Rodrigo Arce",
         category: "AI"
     },
