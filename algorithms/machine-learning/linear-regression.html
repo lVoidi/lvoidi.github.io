@@ -521,5 +521,19 @@ public class LinearRegression
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="../../static/js/prism.js"></script>
     <script src="../../static/js/linear-regression-visualization.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const clipboard = new ClipboardJS('.copy-button');
+            
+            clipboard.on('success', (e) => {
+                const button = e.trigger;
+                button.innerHTML = '<i class="fas fa-check"></i>';
+                setTimeout(() => {
+                    button.innerHTML = '<i class="fas fa-copy"></i>';
+                }, 2000);
+                e.clearSelection();
+            });
+        });
+    </script>
 </body>
 </html>
