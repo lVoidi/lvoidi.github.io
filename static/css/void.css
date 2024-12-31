@@ -1,0 +1,154 @@
+/* Card styling */
+.card {
+    background: rgba(30, 30, 30, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+    backdrop-filter: blur(10px);
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(128, 0, 255, 0.2);
+}
+
+.card-img-top {
+    height: 200px;
+    object-fit: cover;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    filter: grayscale(30%);
+    transition: filter 0.3s;
+}
+
+.card:hover .card-img-top {
+    filter: grayscale(0%);
+}
+
+.card-title {
+    color: var(--text-color);
+    font-size: 1.25rem;
+    margin-bottom: 0.75rem;
+    font-weight: 600;
+}
+
+.card-text {
+    color: var(--text-muted);
+    line-height: 1.6;
+}
+
+/* Tags styling */
+.tags {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.tag {
+    padding: 0.25rem 0.75rem;
+    border-radius: 50px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.tag-non-tech {
+    background: rgba(147, 51, 234, 0.2);
+    color: #c084fc;
+}
+
+.tag-yapping {
+    background: rgba(236, 72, 153, 0.2);
+    color: #f472b6;
+}
+
+.read-time {
+    color: var(--text-muted);
+    font-size: 0.875rem;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+/* Search bar styling */
+.search-container {
+    max-width: 600px;
+    margin: 0 auto 2rem;
+}
+
+.input-group {
+    background: rgba(30, 30, 30, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+}
+
+.input-group-text {
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    padding-left: 1rem;
+}
+
+#searchInput {
+    background: transparent;
+    border: none;
+    color: var(--text-color);
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+}
+
+#searchInput::placeholder {
+    color: var(--text-muted);
+}
+
+#searchInput:focus {
+    box-shadow: none;
+    outline: none;
+}
+
+.input-group:focus-within {
+    border-color: #9333ea;
+    box-shadow: 0 0 0 2px rgba(147, 51, 234, 0.1);
+}
+
+/* Filter buttons */
+.filters {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2rem;
+}
+
+.btn-outline-primary {
+    color: var(--text-color);
+    border-color: #9333ea;
+    padding: 0.5rem 1.25rem;
+    font-weight: 500;
+}
+
+.btn-outline-primary:hover,
+.btn-outline-primary.active {
+    background-color: #9333ea;
+    border-color: #9333ea;
+    color: #fff;
+}
+
+/* Date styling */
+.post-date {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    margin-bottom: 1rem;
+    display: block;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .card-img-top {
+        height: 160px;
+    }
+    
+    .filters .btn-group {
+        width: 100%;
+    }
+} 
