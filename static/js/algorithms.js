@@ -30,6 +30,13 @@ const algorithms = {
             description: "Efficient search algorithm for sorted arrays using divide-and-conquer approach",
             complexity: "O(log n)",
             link: "searching/bfs.html"
+        },
+        {
+            name: "Depth First Search",
+            category: "searching",
+            description: "Graph traversal algorithm that explores as far as possible along each branch before backtracking",
+            complexity: "O(V + E)",
+            link: "searching/dfs.html"
         }
     ],
     graph: [

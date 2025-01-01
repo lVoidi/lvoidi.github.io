@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Breadth First Search - lVoidi Portal</title>
+    <title>Depth First Search - lVoidi Portal</title>
     
     <!-- CSS imports -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -17,6 +17,7 @@
     <link rel="icon" href="../../static/img/icon.png" type="image/x-icon">
 </head>
 <body>
+    <!-- Navigation Bar -->
     <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
         <div class="container">
             <a class="navbar-brand" href="../../index.html">lVoidi</a>
@@ -67,7 +68,7 @@
             <!-- Main Content -->
             <div class="col-md-9">
                 <article class="algorithm-content">
-                    <h1>Breadth First Search (BFS)</h1>
+                    <h1>Depth First Search (DFS)</h1>
                     <div class="algorithm-metadata">
                         <span class="category-tag">Graph</span>
                         <span class="category-tag">Searching</span>
@@ -76,12 +77,13 @@
 
                     <section class="algorithm-section">
                         <h2>Description</h2>
-                        <p>Breadth First Search (BFS) is a graph traversal algorithm that explores all vertices at the present depth before moving on to vertices at the next depth level. Starting from a chosen source vertex, it systematically explores the graph layer by layer, making it particularly effective for:</p>
+                        <p>Depth First Search (DFS) is a graph traversal algorithm that explores as far as possible along each branch before backtracking. Starting from a chosen source vertex, it explores the graph by going deeper through adjacent nodes before visiting sibling nodes. DFS is particularly useful for:</p>
                         <ul>
-                            <li>Finding shortest paths in unweighted graphs</li>
-                            <li>Testing if a graph is bipartite</li>
-                            <li>Finding all nodes within one connected component</li>
-                            <li>Finding the shortest cycle in an unweighted graph</li>
+                            <li>Detecting cycles in a graph</li>
+                            <li>Finding connected components</li>
+                            <li>Topological sorting</li>
+                            <li>Solving puzzles with only one solution (like mazes)</li>
+                            <li>Finding strongly connected components</li>
                         </ul>
                     </section>
 
@@ -106,31 +108,31 @@
                                 </div>
                             </div>
                             <div class="visualization-area">
-                                <svg id="bfsVisualization" width="100%" height="400"></svg>
+                                <svg id="dfsVisualization" width="100%" height="400"></svg>
                             </div>
                             <div class="visualization-steps">
-                                <p id="currentStep">Click on a node to start BFS traversal</p>
+                                <p id="currentStep">Click on a node to start DFS traversal</p>
                             </div>
                         </div>
                     </section>
 
                     <section class="algorithm-section">
                         <h2>How It Works</h2>
-                        <p>BFS works by following these steps:</p>
+                        <p>DFS works by following these steps:</p>
                         <ol>
                             <li>Start at a chosen vertex (root node)</li>
-                            <li>Explore all neighboring vertices at the present depth</li>
-                            <li>Move to the next level of vertices</li>
-                            <li>Repeat until all vertices have been visited</li>
+                            <li>Mark the current vertex as visited</li>
+                            <li>Recursively visit any unvisited adjacent vertices</li>
+                            <li>Backtrack when no unvisited adjacent vertices remain</li>
                         </ol>
 
                         <div class="example-box">
                             <h4>Key Characteristics</h4>
                             <ul>
-                                <li>Uses a queue data structure</li>
-                                <li>Visits vertices in layers</li>
-                                <li>Guarantees shortest path in unweighted graphs</li>
-                                <li>Complete traversal of all reachable vertices</li>
+                                <li>Uses a stack (or recursion) for implementation</li>
+                                <li>Memory efficient for deep graphs</li>
+                                <li>Can get stuck in infinite paths without cycle detection</li>
+                                <li>Not guaranteed to find shortest paths</li>
                             </ul>
                         </div>
                     </section>
@@ -156,21 +158,31 @@
                                             <i class="fas fa-copy"></i>
                                         </button>
                                         <pre><code class="language-python" id="code-block-python">
-from collections import deque
-
-def bfs(graph, start):
-    visited = set([start])
-    queue = deque([start])
+def dfs_recursive(graph, vertex, visited=None):
+    if visited is None:
+        visited = set()
     
-    while queue:
-        vertex = queue.popleft()
-        print(vertex, end=' ')  # Process current vertex
-        
-        # Add all unvisited neighbors to queue
-        for neighbor in graph[vertex]:
-            if neighbor not in visited:
-                visited.add(neighbor)
-                queue.append(neighbor)</code></pre>
+    visited.add(vertex)
+    print(vertex, end=' ')  # Process current vertex
+    
+    for neighbor in graph[vertex]:
+        if neighbor not in visited:
+            dfs_recursive(graph, neighbor, visited)
+
+def dfs_iterative(graph, start):
+    visited = set()
+    stack = [start]
+    
+    while stack:
+        vertex = stack.pop()
+        if vertex not in visited:
+            visited.add(vertex)
+            print(vertex, end=' ')  # Process current vertex
+            
+            # Add unvisited neighbors to stack
+            for neighbor in reversed(graph[vertex]):
+                if neighbor not in visited:
+                    stack.append(neighbor)</code></pre>
                                     </div>
                                 </div>
                                 <div class="tab-pane fade" id="cpp">
@@ -178,27 +190,41 @@ def bfs(graph, start):
                                         <button class="copy-button" data-clipboard-target="#code-block-cpp">
                                             <i class="fas fa-copy"></i>
                                         </button>
-                                        <pre><code class="language-cpp" id="code-block-cpp">#include &lt;queue&gt;
+                                        <pre><code class="language-cpp" id="code-block-cpp">#include &lt;stack&gt;
 #include &lt;vector&gt;
 #include &lt;unordered_set&gt;
 
-void bfs(const vector&lt;vector&lt;int&gt;&gt;& graph, int start) {
+void dfs_recursive(const vector&lt;vector&lt;int&gt;&gt;& graph, int vertex,
+                  unordered_set&lt;int&gt;& visited) {
+    visited.insert(vertex);
+    cout << vertex << " ";  // Process current vertex
+    
+    for (int neighbor : graph[vertex]) {
+        if (visited.find(neighbor) == visited.end()) {
+            dfs_recursive(graph, neighbor, visited);
+        }
+    }
+}
+
+void dfs_iterative(const vector&lt;vector&lt;int&gt;&gt;& graph, int start) {
     unordered_set&lt;int&gt; visited;
-    queue&lt;int&gt; q;
+    stack&lt;int&gt; s;
+    s.push(start);
     
-    visited.insert(start);
-    q.push(start);
-    
-    while (!q.empty()) {
-        int vertex = q.front();
-        q.pop();
-        cout << vertex << " ";  // Process current vertex
+    while (!s.empty()) {
+        int vertex = s.top();
+        s.pop();
         
-        // Add all unvisited neighbors to queue
-        for (int neighbor : graph[vertex]) {
-            if (visited.find(neighbor) == visited.end()) {
-                visited.insert(neighbor);
-                q.push(neighbor);
+        if (visited.find(vertex) == visited.end()) {
+            visited.insert(vertex);
+            cout << vertex << " ";  // Process current vertex
+            
+            // Add unvisited neighbors to stack
+            for (int i = graph[vertex].size() - 1; i >= 0; --i) {
+                int neighbor = graph[vertex][i];
+                if (visited.find(neighbor) == visited.end()) {
+                    s.push(neighbor);
+                }
             }
         }
     }
@@ -210,27 +236,45 @@ void bfs(const vector&lt;vector&lt;int&gt;&gt;& graph, int start) {
                                         <button class="copy-button" data-clipboard-target="#code-block-csharp">
                                             <i class="fas fa-copy"></i>
                                         </button>
-                                        <pre><code class="language-csharp" id="code-block-csharp">public class BFS {
-    public void Search(Dictionary&lt;int, List&lt;int&gt;&gt; graph, int start)
+                                        <pre><code class="language-csharp" id="code-block-csharp">public class DFS {
+    public void DfsRecursive(Dictionary&lt;int, List&lt;int&gt;&gt; graph, 
+                            int vertex, HashSet&lt;int&gt; visited = null)
+    {
+        visited ??= new HashSet&lt;int&gt;();
+        
+        visited.Add(vertex);
+        Console.Write($"{vertex} ");  // Process current vertex
+        
+        foreach (int neighbor in graph[vertex])
+        {
+            if (!visited.Contains(neighbor))
+            {
+                DfsRecursive(graph, neighbor, visited);
+            }
+        }
+    }
+    
+    public void DfsIterative(Dictionary&lt;int, List&lt;int&gt;&gt; graph, int start)
     {
         var visited = new HashSet&lt;int&gt;();
-        var queue = new Queue&lt;int&gt;();
+        var stack = new Stack&lt;int&gt;();
+        stack.Push(start);
         
-        visited.Add(start);
-        queue.Enqueue(start);
-        
-        while (queue.Count > 0)
+        while (stack.Count > 0)
         {
-            int vertex = queue.Dequeue();
-            Console.Write($"{vertex} ");  // Process current vertex
-            
-            // Add all unvisited neighbors to queue
-            foreach (int neighbor in graph[vertex])
+            int vertex = stack.Pop();
+            if (!visited.Contains(vertex))
             {
-                if (!visited.Contains(neighbor))
+                visited.Add(vertex);
+                Console.Write($"{vertex} ");  // Process current vertex
+                
+                // Add unvisited neighbors to stack
+                foreach (int neighbor in graph[vertex].Reverse())
                 {
-                    visited.Add(neighbor);
-                    queue.Enqueue(neighbor);
+                    if (!visited.Contains(neighbor))
+                    {
+                        stack.Push(neighbor);
+                    }
                 }
             }
         }
@@ -275,21 +319,21 @@ void bfs(const vector&lt;vector&lt;int&gt;&gt;& graph, int start) {
                             <div class="pros">
                                 <h3>Advantages</h3>
                                 <ul>
-                                    <li>Guarantees shortest path in unweighted graphs</li>
-                                    <li>Visits vertices in order of their distance from source</li>
-                                    <li>Memory efficient for sparse graphs</li>
-                                    <li>Optimal for searching closest nodes first</li>
-                                    <li>Simple to implement and understand</li>
+                                    <li>Memory efficient for deep graphs</li>
+                                    <li>Naturally recursive implementation</li>
+                                    <li>Useful for finding paths and cycles</li>
+                                    <li>Good for topological sorting</li>
+                                    <li>Simple to implement</li>
                                 </ul>
                             </div>
                             <div class="cons">
                                 <h3>Disadvantages</h3>
                                 <ul>
-                                    <li>Requires more memory than DFS</li>
-                                    <li>Not suitable for weighted graphs</li>
-                                    <li>May be slower than DFS for deep graphs</li>
-                                    <li>Queue operations can be expensive</li>
-                                    <li>Not space-efficient for dense graphs</li>
+                                    <li>Can get stuck in infinite paths</li>
+                                    <li>Not guaranteed to find shortest path</li>
+                                    <li>May use more stack space in recursive implementation</li>
+                                    <li>Less suitable for finding shortest paths</li>
+                                    <li>Can be slower for shallow, wide graphs</li>
                                 </ul>
                             </div>
                         </div>
@@ -298,12 +342,12 @@ void bfs(const vector&lt;vector&lt;int&gt;&gt;& graph, int start) {
                     <section class="algorithm-section">
                         <h2>Applications</h2>
                         <ul class="applications-list">
-                            <li>Shortest path finding in unweighted graphs</li>
+                            <li>Solving mazes and puzzles</li>
+                            <li>Topological sorting in DAGs</li>
+                            <li>Finding connected components</li>
+                            <li>Cycle detection in graphs</li>
+                            <li>Path finding in game trees</li>
                             <li>Web crawling</li>
-                            <li>Social networking (finding connections)</li>
-                            <li>GPS navigation systems</li>
-                            <li>Peer-to-peer networks</li>
-                            <li>Broadcasting in network</li>
                         </ul>
                     </section>
                 </article>
@@ -341,7 +385,7 @@ void bfs(const vector&lt;vector&lt;int&gt;&gt;& graph, int start) {
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.8/clipboard.min.js"></script>
     <script src="../../static/js/prism.js"></script>
-    <script src="../../static/js/bfs-visualization.js"></script>
+    <script src="../../static/js/dfs-visualization.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const clipboard = new ClipboardJS('.copy-button');
