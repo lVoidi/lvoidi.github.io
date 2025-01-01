@@ -53,6 +53,13 @@ const algorithms = {
             description: "Finds the shortest path between nodes in a weighted graph",
             complexity: "O((V + E) log V)",
             link: "graph/astar.html"
+        },
+        {
+            name: "Bellman-Ford Algorithm",
+            category: "graph",
+            description: "Finds shortest paths from source vertex to all vertices, handles negative weights",
+            complexity: "O(VE)",
+            link: "graph/bellman-ford.html"
         }
     ],
     dynamic: [

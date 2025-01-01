@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bellman-Ford Algorithm - lVoidi Portal</title>
+    
+    <!-- CSS imports -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="../../static/css/style.css" rel="stylesheet">
+    <link href="../../static/css/algorithms.css" rel="stylesheet">
+    <link href="../../static/css/algorithm-page.css" rel="stylesheet">
+    <link href="../../static/css/prism.css" rel="stylesheet">
+
+    <!-- Icon -->
+    <link rel="icon" href="../../static/img/icon.png" type="image/x-icon">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="../../index.html">lVoidi</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="../index.html">Algorithms</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../../singularity/index.html">Technological Singularity</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../../void/index.html">The Pit of Endless Void</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+    <main class="container py-5">
+        <div class="row">
+            <!-- Sidebar -->
+            <div class="col-md-3">
+                <div class="algorithm-info-card">
+                    <h3>Quick Info</h3>
+                    <div class="info-item">
+                        <span class="info-label">Category:</span>
+                        <span class="info-value">Graph</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Time Complexity:</span>
+                        <span class="info-value">O(VE)</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Space Complexity:</span>
+                        <span class="info-value">O(V)</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Input Type:</span>
+                        <span class="info-value">Weighted Graph</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Content -->
+            <div class="col-md-9">
+                <article class="algorithm-content">
+                    <h1>Bellman-Ford Algorithm</h1>
+                    <div class="algorithm-metadata">
+                        <span class="category-tag">Graph</span>
+                        <span class="category-tag">Shortest Path</span>
+                        <span class="difficulty-tag">Medium</span>
+                    </div>
+
+                    <section class="algorithm-section">
+                        <h2>Description</h2>
+                        <p>The Bellman-Ford algorithm finds the shortest paths from a source vertex to all other vertices in a weighted graph. Unlike Dijkstra's algorithm, it can handle graphs with negative weight edges and detect negative weight cycles. The algorithm works by repeatedly relaxing all edges V-1 times, where V is the number of vertices.</p>
+                        <ul>
+                            <li>Can detect negative cycles in the graph</li>
+                            <li>Works with both positive and negative edge weights</li>
+                            <li>Guarantees shortest paths in absence of negative cycles</li>
+                            <li>Simpler but slower than Dijkstra's algorithm</li>
+                        </ul>
+                    </section>
+
+                    <section class="algorithm-section">
+                        <h2>Visualization</h2>
+                        <div class="visualization-container">
+                            <div class="visualization-controls">
+                                <div class="control-group">
+                                    <button class="btn btn-primary" id="startVisualization">
+                                        <i class="fas fa-play"></i> Start
+                                    </button>
+                                    <button class="btn btn-secondary" id="resetVisualization">
+                                        <i class="fas fa-redo"></i> Reset
+                                    </button>
+                                    <button class="btn btn-info" id="generateGraph">
+                                        <i class="fas fa-project-diagram"></i> Generate Graph
+                                    </button>
+                                </div>
+                                <div class="speed-control">
+                                    <label>Speed:</label>
+                                    <input type="range" id="speedControl" min="1" max="5" value="3">
+                                </div>
+                            </div>
+                            <div class="visualization-area">
+                                <svg id="bellmanFordVisualization" width="100%" height="400"></svg>
+                            </div>
+                            <div class="visualization-steps">
+                                <p id="currentStep">Select a source vertex to start Bellman-Ford algorithm</p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="algorithm-section">
+                        <h2>How It Works</h2>
+                        <ol>
+                            <li>Initialize distances to all vertices as infinite except the source (distance = 0)</li>
+                            <li>Repeat V-1 times:
+                                <ul>
+                                    <li>For each edge (u, v) with weight w:</li>
+                                    <li>If distance[u] + w < distance[v]:</li>
+                                    <li>Update distance[v] = distance[u] + w</li>
+                                </ul>
+                            </li>
+                            <li>Check for negative weight cycles:
+                                <ul>
+                                    <li>If any distance can be reduced further</li>
+                                    <li>Graph contains a negative weight cycle</li>
+                                </ul>
+                            </li>
+                        </ol>
+                    </section>
+
+                    <section class="algorithm-section">
+                        <h2>Implementation</h2>
+                        <div class="implementation-tabs">
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" data-bs-toggle="tab" href="#python">Python</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-bs-toggle="tab" href="#cpp">C++</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-bs-toggle="tab" href="#csharp">C#</a>
+                                </li>
+                            </ul>
+                            <div class="tab-content mt-3">
+                                <div class="tab-pane fade show active" id="python">
+                                    <div class="code-wrapper">
+                                        <button class="copy-button" data-clipboard-target="#code-block-python">
+                                            <i class="fas fa-copy"></i>
+                                        </button>
+                                        <pre><code class="language-python" id="code-block-python">def bellman_ford(graph, source):
+    # Initialize distances and predecessors
+    distances = {vertex: float('infinity') for vertex in graph}
+    predecessors = {vertex: None for vertex in graph}
+    distances[source] = 0
+    
+    # Relax edges |V| - 1 times
+    for _ in range(len(graph) - 1):
+        for u in graph:
+            for v, weight in graph[u].items():
+                if distances[u] + weight < distances[v]:
+                    distances[v] = distances[u] + weight
+                    predecessors[v] = u
+    
+    # Check for negative weight cycles
+    for u in graph:
+        for v, weight in graph[u].items():
+            if distances[u] + weight < distances[v]:
+                raise ValueError("Graph contains a negative weight cycle")
+    
+    return distances, predecessors</code></pre>
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="cpp">
+                                    <div class="code-wrapper">
+                                        <button class="copy-button" data-clipboard-target="#code-block-cpp">
+                                            <i class="fas fa-copy"></i>
+                                        </button>
+                                        <pre><code class="language-cpp" id="code-block-cpp">#include &lt;vector&gt;
+#include &lt;limits&gt;
+#include &lt;stdexcept&gt;
+
+struct Edge {
+    int src, dest;
+    int weight;
+};
+
+class BellmanFord {
+public:
+    static vector&lt;int&gt; FindShortestPaths(const vector&lt;Edge&gt;& edges, 
+                                          int V, int source) {
+        vector&lt;int&gt; distances(V, numeric_limits&lt;int&gt;::max());
+        distances[source] = 0;
+        
+        // Relax edges |V| - 1 times
+        for (int i = 0; i < V - 1; i++) {
+            for (const Edge& edge : edges) {
+                if (distances[edge.src] != numeric_limits&lt;int&gt;::max() &&
+                    distances[edge.src] + edge.weight < distances[edge.dest]) {
+                    distances[edge.dest] = distances[edge.src] + edge.weight;
+                }
+            }
+        }
+        
+        // Check for negative weight cycles
+        for (const Edge& edge : edges) {
+            if (distances[edge.src] != numeric_limits&lt;int&gt;::max() &&
+                distances[edge.src] + edge.weight < distances[edge.dest]) {
+                throw runtime_error("Graph contains negative weight cycle");
+            }
+        }
+        
+        return distances;
+    }
+};</code></pre>
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="csharp">
+                                    <div class="code-wrapper">
+                                        <button class="copy-button" data-clipboard-target="#code-block-csharp">
+                                            <i class="fas fa-copy"></i>
+                                        </button>
+                                        <pre><code class="language-csharp" id="code-block-csharp">public class BellmanFord
+{
+    public class Edge
+    {
+        public int Source { get; set; }
+        public int Destination { get; set; }
+        public int Weight { get; set; }
+    }
+
+    public static Dictionary&lt;int, int&gt; FindShortestPaths(List&lt;Edge&gt; edges, 
+                                                         int vertexCount, 
+                                                         int source)
+    {
+        var distances = new Dictionary&lt;int, int&gt;();
+        
+        // Initialize distances
+        for (int i = 0; i < vertexCount; i++)
+        {
+            distances[i] = int.MaxValue;
+        }
+        distances[source] = 0;
+        
+        // Relax edges |V| - 1 times
+        for (int i = 0; i < vertexCount - 1; i++)
+        {
+            foreach (var edge in edges)
+            {
+                if (distances[edge.Source] != int.MaxValue &&
+                    distances[edge.Source] + edge.Weight < distances[edge.Destination])
+                {
+                    distances[edge.Destination] = distances[edge.Source] + edge.Weight;
+                }
+            }
+        }
+        
+        // Check for negative weight cycles
+        foreach (var edge in edges)
+        {
+            if (distances[edge.Source] != int.MaxValue &&
+                distances[edge.Source] + edge.Weight < distances[edge.Destination])
+            {
+                throw new InvalidOperationException(
+                    "Graph contains a negative weight cycle");
+            }
+        }
+        
+        return distances;
+    }
+}</code></pre>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="algorithm-section">
+                        <h2>Complexity Analysis</h2>
+                        <table class="complexity-table">
+                            <tr>
+                                <th>Operation</th>
+                                <th>Time Complexity</th>
+                                <th>Space Complexity</th>
+                            </tr>
+                            <tr>
+                                <td>Worst Case</td>
+                                <td>O(VE)</td>
+                                <td>O(V)</td>
+                            </tr>
+                            <tr>
+                                <td>Average Case</td>
+                                <td>O(VE)</td>
+                                <td>O(V)</td>
+                            </tr>
+                            <tr>
+                                <td>Best Case</td>
+                                <td>O(E)</td>
+                                <td>O(V)</td>
+                            </tr>
+                        </table>
+                        <p class="mt-3">Where V is the number of vertices and E is the number of edges in the graph.</p>
+                    </section>
+
+                    <section class="algorithm-section">
+                        <h2>Advantages and Disadvantages</h2>
+                        <div class="pros-cons">
+                            <div class="pros">
+                                <h3>Advantages</h3>
+                                <ul>
+                                    <li>Handles negative edge weights</li>
+                                    <li>Detects negative cycles</li>
+                                    <li>Simple to implement</li>
+                                    <li>Works with any graph structure</li>
+                                    <li>Guarantees shortest paths if no negative cycles</li>
+                                </ul>
+                            </div>
+                            <div class="cons">
+                                <h3>Disadvantages</h3>
+                                <ul>
+                                    <li>Slower than Dijkstra's algorithm</li>
+                                    <li>O(VE) complexity can be high for dense graphs</li>
+                                    <li>Not suitable for graphs with negative cycles</li>
+                                    <li>Requires all edges to be processed V-1 times</li>
+                                    <li>Higher memory usage than some alternatives</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="algorithm-section">
+                        <h2>Applications</h2>
+                        <ul class="applications-list">
+                            <li>Network routing protocols (like RIP)</li>
+                            <li>Currency exchange and arbitrage detection</li>
+                            <li>Traffic routing with potential negative costs</li>
+                            <li>Network delay analysis</li>
+                            <li>Constraint satisfaction problems</li>
+                        </ul>
+                    </section>
+                </article>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer mt-auto py-4">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6 text-center text-md-start">
+                    <p class="mb-0">&copy; 2024 lVoidi. All rights reserved.</p>
+                </div>
+                <div class="col-md-6">
+                    <ul class="social-links list-inline mb-0 text-center text-md-end">
+                        <li class="list-inline-item">
+                            <a href="https://github.com/lVoidi" target="_blank" rel="noopener noreferrer" 
+                               class="social-link" aria-label="GitHub">
+                                <i class="fab fa-github"></i>
+                            </a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="https://linkedin.com/in/roarba" target="_blank" rel="noopener noreferrer" 
+                               class="social-link" aria-label="LinkedIn">
+                                <i class="fab fa-linkedin"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.8/clipboard.min.js"></script>
+    <script src="../../static/js/prism.js"></script>
+    <script src="../../static/js/bellman-ford-visualization.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const clipboard = new ClipboardJS('.copy-button');
+            
+            clipboard.on('success', (e) => {
+                const button = e.trigger;
+                button.innerHTML = '<i class="fas fa-check"></i>';
+                setTimeout(() => {
+                    button.innerHTML = '<i class="fas fa-copy"></i>';
+                }, 2000);
+                e.clearSelection();
+            });
+        });
+    </script>
+</body>
+</html> 
