@@ -60,6 +60,13 @@ const algorithms = {
             description: "Finds shortest paths from source vertex to all vertices, handles negative weights",
             complexity: "O(VE)",
             link: "graph/bellman-ford.html"
+        },
+        {
+            name: "Floyd-Warshall Algorithm",
+            category: "graph",
+            description: "Finds the shortest paths between all pairs of vertices in a weighted graph",
+            complexity: "O(V³)",
+            link: "graph/floyd-warshall.html"
         }
     ],
     dynamic: [

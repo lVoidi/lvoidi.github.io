@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Floyd-Warshall Algorithm - lVoidi Portal</title>
+    
+    <!-- CSS imports -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="../../static/css/style.css" rel="stylesheet">
+    <link href="../../static/css/algorithms.css" rel="stylesheet">
+    <link href="../../static/css/algorithm-page.css" rel="stylesheet">
+    <link href="../../static/css/prism.css" rel="stylesheet">
+
+    <!-- Icon -->
+    <link rel="icon" href="../../static/img/icon.png" type="image/x-icon">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="../../index.html">lVoidi</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="../index.html">Algorithms</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../../singularity/index.html">Technological Singularity</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../../void/index.html">The Pit of Endless Void</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+    <main class="container py-5">
+        <div class="row">
+            <!-- Sidebar -->
+            <div class="col-md-3">
+                <div class="algorithm-info-card">
+                    <h3>Quick Info</h3>
+                    <div class="info-item">
+                        <span class="info-label">Category:</span>
+                        <span class="info-value">Graph</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Time Complexity:</span>
+                        <span class="info-value">O(V³)</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Space Complexity:</span>
+                        <span class="info-value">O(V²)</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Input Type:</span>
+                        <span class="info-value">Weighted Graph</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Content -->
+            <div class="col-md-9">
+                <article class="algorithm-content">
+                    <h1>Floyd-Warshall Algorithm</h1>
+                    <div class="algorithm-metadata">
+                        <span class="category-tag">Graph</span>
+                        <span class="category-tag">All-Pairs Shortest Path</span>
+                        <span class="difficulty-tag">Medium</span>
+                    </div>
+
+                    <section class="algorithm-section">
+                        <h2>Description</h2>
+                        <p>The Floyd-Warshall algorithm finds the shortest paths between all pairs of vertices in a weighted graph. It can handle both positive and negative edge weights, but not negative cycles. The algorithm works by incrementally improving an estimate on the shortest path between two vertices by considering if using an intermediate vertex would create a shorter path.</p>
+                        <ul>
+                            <li>Finds shortest paths between all pairs of vertices</li>
+                            <li>Works with both directed and undirected graphs</li>
+                            <li>Can handle negative edge weights (but not negative cycles)</li>
+                            <li>Uses dynamic programming approach</li>
+                        </ul>
+                    </section>
+
+                    <section class="algorithm-section">
+                        <h2>How It Works</h2>
+                        <ol>
+                            <li>Initialize the distance matrix:
+                                <ul>
+                                    <li>Set distance[i][j] = weight of edge (i,j) if it exists</li>
+                                    <li>Set distance[i][j] = ∞ if no direct edge exists</li>
+                                    <li>Set distance[i][i] = 0 for all vertices</li>
+                                </ul>
+                            </li>
+                            <li>For each vertex k as intermediate:
+                                <ul>
+                                    <li>For each pair of vertices (i,j):</li>
+                                    <li>If distance[i][j] > distance[i][k] + distance[k][j]</li>
+                                    <li>Update distance[i][j] = distance[i][k] + distance[k][j]</li>
+                                </ul>
+                            </li>
+                            <li>After all iterations:
+                                <ul>
+                                    <li>distance[i][j] contains the shortest path length from i to j</li>
+                                    <li>Check diagonal elements for negative cycles</li>
+                                </ul>
+                            </li>
+                        </ol>
+                    </section>
+
+                    <section class="algorithm-section">
+                        <h2>Visualization</h2>
+                        <div class="visualization-container">
+                            <div class="visualization-controls">
+                                <div class="control-group">
+                                    <button class="btn btn-primary" id="startVisualization">
+                                        <i class="fas fa-play"></i> Start
+                                    </button>
+                                    <button class="btn btn-secondary" id="resetVisualization">
+                                        <i class="fas fa-redo"></i> Reset
+                                    </button>
+                                    <button class="btn btn-info" id="generateGraph">
+                                        <i class="fas fa-project-diagram"></i> Generate Graph
+                                    </button>
+                                </div>
+                                <div class="speed-control">
+                                    <label>Speed:</label>
+                                    <input type="range" id="speedControl" min="1" max="5" value="3">
+                                </div>
+                            </div>
+                            <div class="visualization-area">
+                                <div class="graph-view">
+                                    <svg id="floydWarshallVisualization" width="100%" height="300"></svg>
+                                </div>
+                                <div class="matrix-view">
+                                    <div id="distanceMatrix"></div>
+                                </div>
+                            </div>
+                            <div class="visualization-steps">
+                                <p id="currentStep">Click Start to begin Floyd-Warshall algorithm</p>
+                            </div>
+                        </div>
+                    </section>
+                    <section class="algorithm-section">
+                        <h2>Implementation</h2>
+                        <div class="implementation-tabs">
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" data-bs-toggle="tab" href="#python">Python</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-bs-toggle="tab" href="#cpp">C++</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-bs-toggle="tab" href="#csharp">C#</a>
+                                </li>
+                            </ul>
+                            <div class="tab-content mt-3">
+                                <div class="tab-pane fade show active" id="python">
+                                    <div class="code-wrapper">
+                                        <button class="copy-button" data-clipboard-target="#code-block-python">
+                                            <i class="fas fa-copy"></i>
+                                        </button>
+                                        <pre><code class="language-python" id="code-block-python">def floyd_warshall(graph):
+    V = len(graph)
+    dist = [[float('inf')] * V for _ in range(V)]
+    next_vertex = [[None] * V for _ in range(V)]
+    
+    # Initialize distances and next vertices
+    for i in range(V):
+        for j in range(V):
+            if i == j:
+                dist[i][j] = 0
+            elif j in graph[i]:
+                dist[i][j] = graph[i][j]
+                next_vertex[i][j] = j
+    
+    # Main algorithm
+    for k in range(V):
+        for i in range(V):
+            for j in range(V):
+                if dist[i][k] != float('inf') and dist[k][j] != float('inf'):
+                    if dist[i][j] > dist[i][k] + dist[k][j]:
+                        dist[i][j] = dist[i][k] + dist[k][j]
+                        next_vertex[i][j] = next_vertex[i][k]
+    
+    # Check for negative cycles
+    for i in range(V):
+        if dist[i][i] < 0:
+            raise ValueError("Graph contains negative cycle")
+    
+    return dist, next_vertex</code></pre>
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="cpp">
+                                    <div class="code-wrapper">
+                                        <button class="copy-button" data-clipboard-target="#code-block-cpp">
+                                            <i class="fas fa-copy"></i>
+                                        </button>
+                                        <pre><code class="language-cpp" id="code-block-cpp">#include &lt;vector&gt;
+#include &lt;limits&gt;
+#include &lt;stdexcept&gt;
+
+class FloydWarshall {
+public:
+    static pair&lt;vector&lt;vector&lt;int&gt;&gt;, vector&lt;vector&lt;int&gt;&gt;&gt; 
+    FindAllPairsShortestPaths(const vector&lt;vector&lt;int&gt;&gt;& graph) {
+        int V = graph.size();
+        vector&lt;vector&lt;int&gt;&gt; dist(V, vector&lt;int&gt;(V));
+        vector&lt;vector&lt;int&gt;&gt; next(V, vector&lt;int&gt;(V, -1));
+        
+        // Initialize distances and next vertices
+        for (int i = 0; i < V; i++) {
+            for (int j = 0; j < V; j++) {
+                dist[i][j] = graph[i][j];
+                if (graph[i][j] != numeric_limits&lt;int&gt;::max() && i != j) {
+                    next[i][j] = j;
+                }
+            }
+        }
+        
+        // Main algorithm
+        for (int k = 0; k < V; k++) {
+            for (int i = 0; i < V; i++) {
+                for (int j = 0; j < V; j++) {
+                    if (dist[i][k] != numeric_limits&lt;int&gt;::max() && 
+                        dist[k][j] != numeric_limits&lt;int&gt;::max() &&
+                        dist[i][j] > dist[i][k] + dist[k][j]) {
+                        dist[i][j] = dist[i][k] + dist[k][j];
+                        next[i][j] = next[i][k];
+                    }
+                }
+            }
+        }
+        
+        // Check for negative cycles
+        for (int i = 0; i < V; i++) {
+            if (dist[i][i] < 0) {
+                throw runtime_error("Graph contains negative cycle");
+            }
+        }
+        
+        return {dist, next};
+    }
+};</code></pre>
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="csharp">
+                                    <div class="code-wrapper">
+                                        <button class="copy-button" data-clipboard-target="#code-block-csharp">
+                                            <i class="fas fa-copy"></i>
+                                        </button>
+                                        <pre><code class="language-csharp" id="code-block-csharp">public class FloydWarshall
+{
+    public static (int[,], int[,]) FindAllPairsShortestPaths(int[,] graph)
+    {
+        int V = graph.GetLength(0);
+        int[,] dist = new int[V, V];
+        int[,] next = new int[V, V];
+        
+        // Initialize distances and next vertices
+        for (int i = 0; i < V; i++)
+        {
+            for (int j = 0; j < V; j++)
+            {
+                dist[i, j] = graph[i, j];
+                next[i, j] = graph[i, j] != int.MaxValue && i != j ? j : -1;
+            }
+        }
+        
+        // Main algorithm
+        for (int k = 0; k < V; k++)
+        {
+            for (int i = 0; i < V; i++)
+            {
+                for (int j = 0; j < V; j++)
+                {
+                    if (dist[i, k] != int.MaxValue && 
+                        dist[k, j] != int.MaxValue &&
+                        dist[i, j] > dist[i, k] + dist[k, j])
+                    {
+                        dist[i, j] = dist[i, k] + dist[k, j];
+                        next[i, j] = next[i, k];
+                    }
+                }
+            }
+        }
+        
+        // Check for negative cycles
+        for (int i = 0; i < V; i++)
+        {
+            if (dist[i, i] < 0)
+            {
+                throw new InvalidOperationException(
+                    "Graph contains negative cycle");
+            }
+        }
+        
+        return (dist, next);
+    }
+    
+    // Helper method to reconstruct path
+    public static List&lt;int&gt; GetPath(int[,] next, int start, int end)
+    {
+        if (next[start, end] == -1)
+            return new List&lt;int&gt;();
+            
+        var path = new List&lt;int&gt; { start };
+        while (start != end)
+        {
+            start = next[start, end];
+            path.Add(start);
+        }
+        
+        return path;
+    }
+}</code></pre>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="algorithm-section">
+                        <h2>Complexity Analysis</h2>
+                        <table class="complexity-table">
+                            <tr>
+                                <th>Operation</th>
+                                <th>Time Complexity</th>
+                                <th>Space Complexity</th>
+                            </tr>
+                            <tr>
+                                <td>Worst Case</td>
+                                <td>O(V³)</td>
+                                <td>O(V²)</td>
+                            </tr>
+                            <tr>
+                                <td>Average Case</td>
+                                <td>O(V³)</td>
+                                <td>O(V²)</td>
+                            </tr>
+                            <tr>
+                                <td>Best Case</td>
+                                <td>O(V³)</td>
+                                <td>O(V²)</td>
+                            </tr>
+                        </table>
+                        <p class="mt-3">Where V is the number of vertices in the graph. The algorithm always performs the same number of operations regardless of input.</p>
+                    </section>
+
+                    <section class="algorithm-section">
+                        <h2>Advantages and Disadvantages</h2>
+                        <div class="pros-cons">
+                            <div class="pros">
+                                <h3>Advantages</h3>
+                                <ul>
+                                    <li>Finds all pairs shortest paths in a single execution</li>
+                                    <li>Works with negative edge weights</li>
+                                    <li>Simple to implement and understand</li>
+                                    <li>Can detect negative cycles</li>
+                                    <li>Works with both directed and undirected graphs</li>
+                                </ul>
+                            </div>
+                            <div class="cons">
+                                <h3>Disadvantages</h3>
+                                <ul>
+                                    <li>High time complexity O(V³)</li>
+                                    <li>High space complexity O(V²)</li>
+                                    <li>Not suitable for large graphs</li>
+                                    <li>Cannot handle negative cycles</li>
+                                    <li>May not be efficient for sparse graphs</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="algorithm-section">
+                        <h2>Applications</h2>
+                        <ul class="applications-list">
+                            <li>Network routing protocols
+                                <ul>
+                                    <li>Finding optimal routes between all network nodes</li>
+                                    <li>Computing alternative paths for redundancy</li>
+                                </ul>
+                            </li>
+                            <li>Traffic systems
+                                <ul>
+                                    <li>Computing shortest routes between all locations</li>
+                                    <li>Planning public transportation networks</li>
+                                </ul>
+                            </li>
+                            <li>Computer networks
+                                <ul>
+                                    <li>Finding minimum latency paths</li>
+                                    <li>Network topology optimization</li>
+                                </ul>
+                            </li>
+                            <li>Operations research
+                                <ul>
+                                    <li>Solving all-pairs shortest path problems</li>
+                                    <li>Resource allocation optimization</li>
+                                </ul>
+                            </li>
+                            <li>Graph analysis
+                                <ul>
+                                    <li>Computing graph metrics</li>
+                                    <li>Finding graph diameter and center</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </section>
+                </article>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer mt-auto py-4">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6 text-center text-md-start">
+                    <p class="mb-0">&copy; 2024 lVoidi. All rights reserved.</p>
+                </div>
+                <div class="col-md-6">
+                    <ul class="social-links list-inline mb-0 text-center text-md-end">
+                        <li class="list-inline-item">
+                            <a href="https://github.com/lVoidi" target="_blank" rel="noopener noreferrer" 
+                               class="social-link" aria-label="GitHub">
+                                <i class="fab fa-github"></i>
+                            </a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="https://linkedin.com/in/roarba" target="_blank" rel="noopener noreferrer" 
+                               class="social-link" aria-label="LinkedIn">
+                                <i class="fab fa-linkedin"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.8/clipboard.min.js"></script>
+    <script src="../../static/js/prism.js"></script>
+    <script src="../../static/js/floyd-warshall-visualization.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const clipboard = new ClipboardJS('.copy-button');
+            
+            clipboard.on('success', (e) => {
+                const button = e.trigger;
+                button.innerHTML = '<i class="fas fa-check"></i>';
+                setTimeout(() => {
+                    button.innerHTML = '<i class="fas fa-copy"></i>';
+                }, 2000);
+                e.clearSelection();
+            });
+        });
+    </script>
+</body>
+</html> 
