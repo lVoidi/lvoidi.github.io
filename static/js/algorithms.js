@@ -67,6 +67,13 @@ const algorithms = {
             description: "Finds the shortest paths between all pairs of vertices in a weighted graph",
             complexity: "O(V³)",
             link: "graph/floyd-warshall.html"
+        },
+        {
+            name: "Prim's Algorithm",
+            category: "graph",
+            description: "Finds the minimum spanning tree in a weighted graph",
+            complexity: "O(E log E)",
+            link: "graph/prim.html"
         }
     ],
     dynamic: [

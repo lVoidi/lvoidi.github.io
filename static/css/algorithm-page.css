@@ -768,6 +768,39 @@ pre[class*="language-"] {
     color: rgba(255, 255, 255, 0.6);
 }
 
+.history-box {
+    background-color: #2d2d3a;
+    color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    margin-top: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    border-left: 5px solid #6a5acd;
+}
+
+.history-content {
+    display: flex;
+    align-items: flex-start;
+}
+
+.history-image {
+    margin-right: 20px;
+    width: 150px;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.history-box h2 {
+    color: #6a5acd;
+    margin-bottom: 15px;
+}
+
+.history-content p {
+    line-height: 1.6;
+    margin: 0;
+}
+
 .speed-control {
     display: flex;
     align-items: center;
