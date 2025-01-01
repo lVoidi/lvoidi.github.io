@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Breadth First Search - lVoidi Portal</title>
+    
+    <!-- CSS imports -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="../../static/css/style.css" rel="stylesheet">
+    <link href="../../static/css/algorithms.css" rel="stylesheet">
+    <link href="../../static/css/algorithm-page.css" rel="stylesheet">
+    <link href="../../static/css/prism.css" rel="stylesheet">
+
+    <!-- Icon -->
+    <link rel="icon" href="../../static/img/icon.png" type="image/x-icon">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="../../index.html">lVoidi</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="../index.html">Algorithms</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../../singularity/index.html">Technological Singularity</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../../void/index.html">The Pit of Endless Void</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+    <main class="container py-5">
+        <div class="row">
+            <!-- Sidebar -->
+            <div class="col-md-3">
+                <div class="algorithm-info-card">
+                    <h3>Quick Info</h3>
+                    <div class="info-item">
+                        <span class="info-label">Category:</span>
+                        <span class="info-value">Graph/Searching</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Time Complexity:</span>
+                        <span class="info-value">O(V + E)</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Space Complexity:</span>
+                        <span class="info-value">O(V)</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Input Type:</span>
+                        <span class="info-value">Graph</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Content -->
+            <div class="col-md-9">
+                <article class="algorithm-content">
+                    <h1>Breadth First Search (BFS)</h1>
+                    <div class="algorithm-metadata">
+                        <span class="category-tag">Graph</span>
+                        <span class="category-tag">Searching</span>
+                        <span class="difficulty-tag">Easy</span>
+                    </div>
+
+                    <section class="algorithm-section">
+                        <h2>Description</h2>
+                        <p>Breadth First Search (BFS) is a graph traversal algorithm that explores all vertices at the present depth before moving on to vertices at the next depth level. Starting from a chosen source vertex, it systematically explores the graph layer by layer, making it particularly effective for:</p>
+                        <ul>
+                            <li>Finding shortest paths in unweighted graphs</li>
+                            <li>Testing if a graph is bipartite</li>
+                            <li>Finding all nodes within one connected component</li>
+                            <li>Finding the shortest cycle in an unweighted graph</li>
+                        </ul>
+                    </section>
+
+                    <section class="algorithm-section">
+                        <h2>Visualization</h2>
+                        <div class="visualization-container">
+                            <div class="visualization-controls">
+                                <div class="control-group">
+                                    <button class="btn btn-primary" id="startVisualization">
+                                        <i class="fas fa-play"></i> Start
+                                    </button>
+                                    <button class="btn btn-secondary" id="resetVisualization">
+                                        <i class="fas fa-redo"></i> Reset
+                                    </button>
+                                    <button class="btn btn-info" id="generateGraph">
+                                        <i class="fas fa-project-diagram"></i> Generate Graph
+                                    </button>
+                                </div>
+                                <div class="speed-control">
+                                    <label>Speed:</label>
+                                    <input type="range" id="speedControl" min="1" max="5" value="3">
+                                </div>
+                            </div>
+                            <div class="visualization-area">
+                                <svg id="bfsVisualization" width="100%" height="400"></svg>
+                            </div>
+                            <div class="visualization-steps">
+                                <p id="currentStep">Click on a node to start BFS traversal</p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="algorithm-section">
+                        <h2>How It Works</h2>
+                        <p>BFS works by following these steps:</p>
+                        <ol>
+                            <li>Start at a chosen vertex (root node)</li>
+                            <li>Explore all neighboring vertices at the present depth</li>
+                            <li>Move to the next level of vertices</li>
+                            <li>Repeat until all vertices have been visited</li>
+                        </ol>
+
+                        <div class="example-box">
+                            <h4>Key Characteristics</h4>
+                            <ul>
+                                <li>Uses a queue data structure</li>
+                                <li>Visits vertices in layers</li>
+                                <li>Guarantees shortest path in unweighted graphs</li>
+                                <li>Complete traversal of all reachable vertices</li>
+                            </ul>
+                        </div>
+                    </section>
+
+                    <section class="algorithm-section">
+                        <h2>Implementation</h2>
+                        <div class="implementation-tabs">
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" data-bs-toggle="tab" href="#python">Python</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-bs-toggle="tab" href="#cpp">C++</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-bs-toggle="tab" href="#csharp">C#</a>
+                                </li>
+                            </ul>
+                            <div class="tab-content mt-3">
+                                <div class="tab-pane fade show active" id="python">
+                                    <pre><code class="language-python">from collections import deque
+
+def bfs(graph, start):
+    visited = set()
+    queue = deque([start])
+    visited.add(start)
+    
+    while queue:
+        vertex = queue.popleft()
+        print(vertex, end=' ')  # Process current vertex
+        
+        # Add all unvisited neighbors to queue
+        for neighbor in graph[vertex]:
+            if neighbor not in visited:
+                visited.add(neighbor)
+                queue.append(neighbor)
+</code></pre>
+                                </div>
+                                <div class="tab-pane fade" id="cpp">
+                                    <pre><code class="language-cpp">#include &lt;queue&gt;
+#include &lt;vector&gt;
+#include &lt;unordered_set&gt;
+
+void bfs(const vector&lt;vector&lt;int&gt;&gt;& graph, int start) {
+    unordered_set&lt;int&gt; visited;
+    queue&lt;int&gt; q;
+    
+    q.push(start);
+    visited.insert(start);
+    
+    while (!q.empty()) {
+        int vertex = q.front();
+        q.pop();
+        cout << vertex << " ";  // Process current vertex
+        
+        // Add all unvisited neighbors to queue
+        for (int neighbor : graph[vertex]) {
+            if (visited.find(neighbor) == visited.end()) {
+                visited.insert(neighbor);
+                q.push(neighbor);
+            }
+        }
+    }
+}</code></pre>
+                                </div>
+                                <div class="tab-pane fade" id="csharp">
+                                    <pre><code class="language-csharp">public void BFS(Dictionary&lt;int, List&lt;int&gt;&gt; graph, int start)
+{
+    HashSet&lt;int&gt; visited = new HashSet&lt;int&gt;();
+    Queue&lt;int&gt; queue = new Queue&lt;int&gt;();
+    
+    queue.Enqueue(start);
+    visited.Add(start);
+    
+    while (queue.Count > 0)
+    {
+        int vertex = queue.Dequeue();
+        Console.Write($"{vertex} ");  // Process current vertex
+        
+        // Add all unvisited neighbors to queue
+        foreach (int neighbor in graph[vertex])
+        {
+            if (!visited.Contains(neighbor))
+            {
+                visited.Add(neighbor);
+                queue.Enqueue(neighbor);
+            }
+        }
+    }
+}</code></pre>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="algorithm-section">
+                        <h2>Complexity Analysis</h2>
+                        <table class="complexity-table">
+                            <tr>
+                                <th>Operation</th>
+                                <th>Time Complexity</th>
+                                <th>Space Complexity</th>
+                            </tr>
+                            <tr>
+                                <td>Worst Case</td>
+                                <td>O(V + E)</td>
+                                <td>O(V)</td>
+                            </tr>
+                            <tr>
+                                <td>Average Case</td>
+                                <td>O(V + E)</td>
+                                <td>O(V)</td>
+                            </tr>
+                            <tr>
+                                <td>Best Case</td>
+                                <td>O(1)</td>
+                                <td>O(1)</td>
+                            </tr>
+                        </table>
+                        <p class="mt-3">Where V is the number of vertices and E is the number of edges in the graph.</p>
+                    </section>
+
+                    <section class="algorithm-section">
+                        <h2>Advantages and Disadvantages</h2>
+                        <div class="pros-cons">
+                            <div class="pros">
+                                <h3>Advantages</h3>
+                                <ul>
+                                    <li>Guarantees shortest path in unweighted graphs</li>
+                                    <li>Visits vertices in order of their distance from source</li>
+                                    <li>Memory efficient for sparse graphs</li>
+                                    <li>Optimal for searching closest nodes first</li>
+                                    <li>Simple to implement and understand</li>
+                                </ul>
+                            </div>
+                            <div class="cons">
+                                <h3>Disadvantages</h3>
+                                <ul>
+                                    <li>Requires more memory than DFS</li>
+                                    <li>Not suitable for weighted graphs</li>
+                                    <li>May be slower than DFS for deep graphs</li>
+                                    <li>Queue operations can be expensive</li>
+                                    <li>Not space-efficient for dense graphs</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="algorithm-section">
+                        <h2>Applications</h2>
+                        <ul class="applications-list">
+                            <li>Shortest path finding in unweighted graphs</li>
+                            <li>Web crawling</li>
+                            <li>Social networking (finding connections)</li>
+                            <li>GPS navigation systems</li>
+                            <li>Peer-to-peer networks</li>
+                            <li>Broadcasting in network</li>
+                        </ul>
+                    </section>
+                </article>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer mt-auto py-4">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6 text-center text-md-start">
+                    <p class="mb-0">&copy; 2024 lVoidi. All rights reserved.</p>
+                </div>
+                <div class="col-md-6">
+                    <ul class="social-links list-inline mb-0 text-center text-md-end">
+                        <li class="list-inline-item">
+                            <a href="https://github.com/lVoidi" target="_blank" rel="noopener noreferrer" 
+                               class="social-link" aria-label="GitHub">
+                                <i class="fab fa-github"></i>
+                            </a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="https://linkedin.com/in/roarba" target="_blank" rel="noopener noreferrer" 
+                               class="social-link" aria-label="LinkedIn">
+                                <i class="fab fa-linkedin"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.8/clipboard.min.js"></script>
+    <script src="../../static/js/prism.js"></script>
+    <script src="../../static/js/bfs-visualization.js"></script>
+</body>
+</html> 

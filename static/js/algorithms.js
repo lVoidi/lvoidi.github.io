@@ -23,6 +23,13 @@ const algorithms = {
             description: "Efficient search algorithm for sorted arrays using divide-and-conquer approach",
             complexity: "O(log n)",
             link: "searching/binary-search.html"
+        },
+        {
+            name: "Breadth First Search",
+            category: "searching",
+            description: "Efficient search algorithm for sorted arrays using divide-and-conquer approach",
+            complexity: "O(log n)",
+            link: "searching/bfs.html"
         }
     ],
     graph: [
