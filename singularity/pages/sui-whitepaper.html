@@ -11,6 +11,9 @@
     <link href="../../static/css/style.css" rel="stylesheet">
     <link href="../../static/css/blog-post.css" rel="stylesheet">
     <link href="../../static/css/prism.css" rel="stylesheet">
+
+    <!-- Icon -->
+    <link rel="icon" href="../../static/img/icon.png" type="image/x-icon">
 </head>
 <body>
     <!-- Reading Progress Bar -->
@@ -52,7 +55,7 @@
                     <img src="../../static/img/author.jpg" alt="Rodrigo Arce" class="author-image">
                     <div class="author-info">
                         <span class="author-name">Rodrigo Arce</span>
-                        <span class="author-title">Blockchain Developer</span>
+                        <span class="author-title">Computer Engineer</span>
                     </div>
                 </div>
             </header>
@@ -302,38 +305,390 @@ public fun swords_created(self: &Forge): u64 {
                             <li><strong>Byzantine Agreement:</strong> Used only for shared objects, ensuring consistency across multiple users</li>
                         </ul>
                     </div>
-                    
+                    <p>Let's examine each consensus mechanism in detail:</p>
+
+                    <div class="consensus-details">
+                        <h4>Byzantine Consistent Broadcast (BCB)</h4>
+                        <ul>
+                            <li><strong>Use Case:</strong> Single-owner objects and simple payments</li>
+                            <li><strong>Key Benefits:</strong>
+                                <ul>
+                                    <li>Near-instant finality (1-2 seconds)</li>
+                                    <li>Higher throughput due to minimal validator coordination</li>
+                                    <li>Lower gas fees from reduced computational overhead</li>
+                                </ul>
+                            </li>
+                            <li><strong>Process:</strong>
+                                <ul>
+                                    <li>Owner signs and broadcasts transaction</li>
+                                    <li>Validators check validity independently</li>
+                                    <li>Transaction finalizes with ⅔ validator signatures</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                        <h4>Byzantine Agreement (BA)</h4>
+                        <ul>
+                            <li><strong>Use Case:</strong> Shared objects and complex DeFi operations</li>
+                            <li><strong>Key Features:</strong>
+                                <ul>
+                                    <li>Strong consistency guarantees</li>
+                                    <li>Total ordering of transactions</li>
+                                    <li>Protection against double-spending attacks</li>
+                                </ul>
+                            </li>
+                            <li><strong>Process:</strong>
+                                <ul>
+                                    <li>Validators participate in multi-round consensus</li>
+                                    <li>Agreement reached on transaction order</li>
+                                    <li>State updates applied atomically</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                        <div class="info-box">
+                            <p><strong>Key Innovation:</strong> Sui's dual consensus approach allows it to optimize for different transaction types. Simple transfers can bypass full consensus, while complex operations maintain strong consistency where needed. This hybrid model significantly improves overall network performance without sacrificing security.</p>
+                        </div>
+                    </div>
+                    <div class="example-box" style="background: rgba(163, 103, 252, 0.1); border-left-color: #a367fc;">
+                        <h4 style="color: #a367fc;">Visual Representation</h4>
+                        <figure class="text-center">
+                            <img src="../../static/img/singularity/sui-transaction.png" 
+                                alt="Transformer Architecture" 
+                                class="img-fluid rounded shadow-lg" 
+                                style="max-width: 100%; height: auto; transition: transform 0.3s ease-in-out;"
+                                onmouseover="this.style.transform='scale(1.02)'" 
+                                onmouseout="this.style.transform='scale(1)'">
+                            <figcaption class="mt-3" style="color: var(--text-muted); font-style: italic;">
+                                Key Interaction to process transactions
+                            </figcaption>
+                        </figure>
+                    </div>
                 </section>
 
                 <section id="transactions">
                     <h2>Transaction Processing</h2>
                     <p>
-                        Transactions in Sui follow a two-phase processing model:
+                        Sui's transaction processing is one of its most innovative features. It uses a two-phase approach that 
+                        enables parallel execution while maintaining safety:
+                    </p>
+
+                    <div class="example-box">
+                        <h4>Transaction Processing Phases</h4>
+                        <ol>
+                            <li><strong>Lock Acquisition Phase:</strong> Ensures exclusive access to input objects at specific versions</li>
+                            <li><strong>Execution Phase:</strong> Parallel execution of the transaction and commitment of effects</li>
+                        </ol>
+                    </div>
+
+                    <h3>Transaction Structure</h3>
+                    <p>
+                        A Sui transaction contains several key components:
+                    </p>
+                    <pre><code class="language-move">// Transaction components
+struct Transaction {
+    // The package object containing the Move code to execute
+    call_target: CallTarget,
+    // Input objects and arguments
+    inputs: Vec<CallArg>,
+    // Gas payment information
+    gas_info: GasInfo,
+    // Sender's address and authenticator
+    sender: Address,
+    authenticator: Authenticator
+}</code></pre>
+
+                    <h3>Object Handling</h3>
+                    <p>
+                        When processing transactions, Sui handles objects differently based on their ownership:
                     </p>
                     <div class="example-box">
-                        <h4>Processing Phases</h4>
-                        <ol>
-                            <li>Lock acquisition on input objects</li>
-                            <li>Parallel execution and commitment</li>
-                        </ol>
-                        <p class="example-note">
-                            This model enables high throughput while maintaining safety guarantees.
+                        <h4>Object Processing Rules</h4>
+                        <ul>
+                            <li><strong>Owned Objects:</strong> Use Byzantine consistent broadcast - faster, requires only 2 round trips</li>
+                            <li><strong>Shared Objects:</strong> Require full Byzantine agreement - 4-8 round trips to quorums</li>
+                            <li><strong>Immutable Objects:</strong> Can be read concurrently without locks</li>
+                        </ul>
+                    </div>
+
+                    <h3>Transaction Finality</h3>
+                    <p>
+                        A transaction reaches finality when:
+                    </p>
+                    <ul>
+                        <li>A quorum (>2/3) of authorities have processed and signed the transaction certificate</li>
+                        <li>The effects certificate is available, providing transferable proof of finality</li>
+                        <li>All causal dependencies in the transaction's path are also final</li>
+                    </ul>
+
+                    <div class="example-box" style="background: rgba(163, 103, 252, 0.1); border-left-color: #a367fc;">
+                        <h4>Understanding Quorum</h4>
+                        <p>
+                            A quorum in Sui refers to a threshold of authorities (validators) that must agree for a decision to be considered valid.
                         </p>
+                        
+                        <ul>
+                            <li><strong>Size:</strong> More than ⅔ (two-thirds) of all authorities by stake weight</li>
+                            <li><strong>Purpose:</strong> Ensures Byzantine fault tolerance by requiring:
+                                <ul>
+                                    <li>Enough honest validators to prevent malicious actions</li>
+                                    <li>Sufficient stake representation for network security</li>
+                                </ul>
+                            </li>
+                            <li><strong>Example:</strong> In a network with 100 validators:
+                                <ul>
+                                    <li>At least 67 validators must agree for finality</li>
+                                    <li>Can tolerate up to 33 malicious validators</li>
+                                    <li>Ensures safety as long as > ⅔ are honest</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    
+                        <div class="info-note">
+                            <p><strong>Note:</strong> Quorum requirements are based on stake weight, not just validator count. A validator with more delegated stake has proportionally more voting power.</p>
+                        </div>
+                    </div>                    
+
+                    <h3>Gas and Fees</h3>
+                    <p>
+                        Sui uses an EIP-1559-style fee mechanism, inspired by Ethereum's fee market model:
+                    </p>
+                    <div class="example-box" style="background: rgba(69, 69, 69, 0.1); border-left-color: #7382cc;">
+                        <h4>EIP-1559 Fee Model</h4>
+                        <p>
+                            EIP-1559 introduced a "base fee + tip" model that makes transaction fees more predictable and efficient:
+                        </p>
+                        <ul>
+                            <li><strong>Base Fee:</strong>
+                                <ul>
+                                    <li>Automatically adjusts based on network congestion</li>
+                                    <li>Increases when blocks are full, decreases when empty</li>
+                                    <li>Provides a predictable starting point for users</li>
+                                </ul>
+                            </li>
+                            <li><strong>Priority Fee (Tip):</strong>
+                                <ul>
+                                    <li>Optional fee to incentivize faster processing</li>
+                                    <li>Helps during high congestion periods</li>
+                                    <li>Goes directly to validators</li>
+                                </ul>
+                            </li>
+                            <li><strong>Benefits:</strong>
+                                <ul>
+                                    <li>More predictable fees for users</li>
+                                    <li>Better fee market efficiency</li>
+                                    <li>Reduced fee volatility</li>
+                                </ul>
+                            </li>
+                            <div class="info-note">
+                                <p><strong>tl;dr:</strong> Sui's fee model is designed to be more predictable and efficient, providing a better user experience.</p>
+                            </div>
+                        </ul>
+                    </div>
+
+                    <pre><code class="language-move">struct GasInfo {
+    payment: ObjectRef,     // Reference to gas payment object
+    max_gas: u64,          // Maximum gas units allowed
+    base_fee: u64,         // Protocol-defined base fee
+    tip: u64               // Optional priority fee
+}</code></pre>
+
+                    <div class="example-box">
+                        <h4>Fee Calculation</h4>
+                        <p>Total Fee = (Gas Used × Base Fee) + Tip</p>
+                        <ul>
+                            <li>Base fee adjusts algorithmically at epoch boundaries</li>
+                            <li>Tips help prioritize transactions during congestion</li>
+                            <li>Fees are distributed to authorities and their delegators</li>
+                        </ul>
+                    </div>
+
+                    <h3>Error Handling</h3>
+                    <p>
+                        Transactions in Sui have all-or-nothing semantics:
+                    </p>
+                    <div class="example-box" style="background: rgba(69, 69, 69, 0.1); border-left-color: #7382cc;">
+                        <h4>Transaction Error Handling</h4>
+                        <ul>
+                            <li><strong>Atomic Execution:</strong>
+                                <ul>
+                                    <li>All changes are reverted if execution aborts</li>
+                                    <li>No partial state updates are possible</li>
+                                    <li>Object versions remain unchanged on failure</li>
+                                </ul>
+                            </li>
+                            <li><strong>Gas Charges:</strong>
+                                <ul>
+                                    <li>Gas fees are charged even for failed transactions</li>
+                                    <li>Prevents denial-of-service attacks</li>
+                                    <li>Compensates validators for computational resources</li>
+                                </ul>
+                            </li>
+                            <li><strong>Error Information:</strong>
+                                <ul>
+                                    <li>Detailed abort codes for debugging</li>
+                                    <li>Module and function location of the error</li>
+                                    <li>Stack trace for complex failures</li>
+                                </ul>
+                            </li>
+                            <li><strong>Common Error Types:</strong>
+                                <ul>
+                                    <li>Insufficient gas</li>
+                                    <li>Invalid object references</li>
+                                    <li>Authorization failures</li>
+                                    <li>Move execution aborts</li>
+                                    <li>Consensus-related failures</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                        <div class="info-note">
+                            <p><strong>Note:</strong> While transaction execution is atomic, gas charges are not part of the atomicity guarantee. This ensures validators are compensated for their work even if the transaction fails.</p>
+                        </div>
+                    </div>
+
+                    <h4>Error Handling in Move Code</h4>
+                    <pre><code class="language-move">public fun transfer(obj: Object, recipient: address) {
+    // Example of error handling in Move
+    assert!(is_transferable(&obj), 0 /* error code */);
+    
+    if (!is_valid_recipient(recipient)) {
+        abort 1 // Explicit abort with error code
+    };
+    
+    // ... transfer logic ...
+}</code></pre>
+
+                    <div class="example-box">
+                        <h4>Best Practices for Error Handling</h4>
+                        <ul>
+                            <li>Use descriptive error codes for different failure cases</li>
+                            <li>Validate inputs early to save gas</li>
+                            <li>Include proper error messages in assertions</li>
+                            <li>Handle expected failure cases gracefully</li>
+                            <li>Document error codes and their meanings</li>
+                        </ul>
+
+                        <div class="info-note">
+                            Just like any programming language... 
+                        </div>
                     </div>
                 </section>
 
                 <section id="scalability">
                     <h2>Scalability Features</h2>
                     <p>
-                        Sui achieves horizontal scalability through several key features:
+                        Sui achieves horizontal scalability through several key architectural decisions and technical features:
                     </p>
-                    <div class="example-box">
+
+                    <div class="example-box" style="background: rgba(69, 69, 69, 0.1); border-left-color: #7382cc;">
+                        <h4>Core Scalability Mechanisms</h4>
+                        
+                        <h5>1. Parallel Transaction Processing</h5>
                         <ul>
-                            <li>Parallel execution of non-conflicting transactions</li>
-                            <li>Sharded object storage and processing</li>
-                            <li>Minimal synchronization points</li>
-                            <li>Aggressive caching for read operations</li>
+                            <li><strong>Two-Phase Processing:</strong>
+                                <ul>
+                                    <li>Phase 1: Lock acquisition for object versions</li>
+                                    <li>Phase 2: Parallel execution and commitment</li>
+                                </ul>
+                            </li>
+                            <li><strong>Lock Management:</strong>
+                                <ul>
+                                    <li>Distributed locks at object granularity</li>
+                                    <li>Sharded across machines by ObjectID</li>
+                                    <li>No global synchronization for owned objects</li>
+                                </ul>
+                            </li>
                         </ul>
+
+                        <h5>2. Object Storage Architecture</h5>
+                        <ul>
+                            <li><strong>Distributed Key-Value Store:</strong>
+                                <ul>
+                                    <li>Loose consistency requirements</li>
+                                    <li>Horizontally scalable across machines</li>
+                                    <li>Efficient versioned object storage</li>
+                                </ul>
+                            </li>
+                            <li><strong>Caching Strategy:</strong>
+                                <ul>
+                                    <li>Aggressive caching for read operations</li>
+                                    <li>Distributed cache architecture</li>
+                                    <li>Static data serving for light clients</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                        <h5>3. Consensus Optimization</h5>
+                        <ul>
+                            <li><strong>Minimal Synchronization:</strong>
+                                <ul>
+                                    <li>Byzantine broadcast for owned objects</li>
+                                    <li>Consensus only for shared objects</li>
+                                    <li>Parallel agreement paths</li>
+                                </ul>
+                            </li>
+                            <li><strong>Version Management:</strong>
+                                <ul>
+                                    <li>Object-centric versioning</li>
+                                    <li>Causal history tracking</li>
+                                    <li>Efficient state updates</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                        <div class="info-note">
+                            <p><strong>Key Innovation:</strong> Sui's scalability comes from minimizing global synchronization points and allowing parallel execution whenever possible. The system can scale by adding more computational resources, with quasi-linear throughput improvements.</p>
+                        </div>
+                    </div>
+
+                    <h3>Performance Characteristics</h3>
+                    <div class="example-box">
+                        <h4>Throughput Scaling</h4>
+                        <ul>
+                            <li><strong>Resource Utilization:</strong>
+                                <ul>
+                                    <li>CPU: Parallel transaction execution</li>
+                                    <li>Memory: Distributed object caching</li>
+                                    <li>Network: Sharded communication</li>
+                                    <li>Storage: Distributed state management</li>
+                                </ul>
+                            </li>
+                            <li><strong>Bottleneck Mitigation:</strong>
+                                <ul>
+                                    <li>No global locks for owned objects</li>
+                                    <li>Minimal cross-machine coordination</li>
+                                    <li>Efficient state commitment</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <h3>State Management</h3>
+                    <div class="example-box">
+                        <h4>Checkpointing and State Commitment</h4>
+                        <ul>
+                            <li>Off critical path processing</li>
+                            <li>Distributed computation of state roots</li>
+                            <li>Efficient proof generation for light clients</li>
+                            <li>Periodic state pruning capabilities</li>
+                        </ul>
+                    </div>
+
+                    <div class="example-box" style="background: rgba(163, 103, 252, 0.1); border-left-color: #a367fc;">
+                        <h4>Smart Contract Design Implications</h4>
+                        <p>
+                            To maximize scalability benefits, smart contract developers should:
+                        </p>
+                        <ul>
+                            <li>Design data models that minimize shared object usage</li>
+                            <li>Leverage owned objects for user-specific state</li>
+                            <li>Use immutable objects for shared read-only data</li>
+                            <li>Structure transactions to enable parallel execution</li>
+                        </ul>
+                        <div class="info-note">
+                            <p><strong>Note:</strong> The choice between owned and shared objects directly impacts transaction latency and throughput. Owned objects can process in parallel, while shared objects require consensus.</p>
+                        </div>
                     </div>
                 </section>
 
@@ -342,26 +697,196 @@ public fun swords_created(self: &Forge): u64 {
                     <p>
                         Security in Sui is maintained through multiple layers:
                     </p>
-                    <div class="example-box">
+
+                    <div class="example-box" style="background: rgba(69, 69, 69, 0.1); border-left-color: #7382cc;">
+                        <h4>Core Security Features</h4>
+                        
+                        <h5>1. Object Safety</h5>
                         <ul>
-                            <li>Strong ownership model</li>
-                            <li>Resource safety through Move's type system</li>
-                            <li>Light client support with cryptographic proofs</li>
-                            <li>Fraud proofs for Byzantine behavior detection</li>
+                            <li><strong>Ownership Model:</strong>
+                                <ul>
+                                    <li>Strong ownership tracking</li>
+                                    <li>Version-based access control</li>
+                                    <li>Immutable object guarantees</li>
+                                </ul>
+                            </li>
+                            <li><strong>Resource Safety:</strong>
+                                <ul>
+                                    <li>Move's linear type system</li>
+                                    <li>No accidental object duplication</li>
+                                    <li>No accidental object deletion</li>
+                                    <li>Explicit transfer semantics</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                        <h5>2. Cryptographic Guarantees</h5>
+                        <ul>
+                            <li><strong>Transaction Certificates:</strong>
+                                <ul>
+                                    <li>Multi-signature validation</li>
+                                    <li>Quorum-based certification</li>
+                                    <li>Transferable proof of finality</li>
+                                </ul>
+                            </li>
+                            <li><strong>Light Client Support:</strong>
+                                <ul>
+                                    <li>Merkle proof verification</li>
+                                    <li>Efficient state authentication</li>
+                                    <li>Minimal trust assumptions</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                        <h5>3. Byzantine Fault Tolerance</h5>
+                        <ul>
+                            <li><strong>Consensus Mechanisms:</strong>
+                                <ul>
+                                    <li>Byzantine consistent broadcast for owned objects</li>
+                                    <li>Byzantine agreement for shared objects</li>
+                                    <li>Tolerates up to f < n/3 malicious validators</li>
+                                </ul>
+                            </li>
+                            <li><strong>Fraud Detection:</strong>
+                                <ul>
+                                    <li>Cryptographic proofs of misbehavior</li>
+                                    <li>Automatic detection of equivocation</li>
+                                    <li>Stake slashing for malicious behavior</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                        <div class="info-note">
+                            <p>
+                            Sui implements a comprehensive security model combining Move's type safety, cryptographic guarantees through multi-signature validation, and Byzantine fault tolerance to protect against malicious actors while ensuring safe smart contract execution.
+                            </p>
+                        </div>
+                    </div>
+
+                    <h3>Move Type Safety</h3>
+                    <pre><code class="language-move">// Example of Move's safety features
+struct Token has key {
+    id: VersionedID,
+    value: u64
+}
+
+public fun transfer(token: Token, recipient: address) {
+    // Type system ensures:
+    // 1. Token can't be copied (linear type)
+    // 2. Token can't be dropped (must be consumed)
+    // 3. Only this module can create/destroy Token
+    transfer::transfer(token, recipient)
+}</code></pre>
+
+                    <div class="example-box" style="background: rgba(163, 103, 252, 0.1); border-left-color: #a367fc;">
+                        <h4>Security Best Practices</h4>
+                        <p>
+                            Smart contract developers should follow these security guidelines:
+                        </p>
+                        <ul>
+                            <li><strong>Access Control:</strong>
+                                <ul>
+                                    <li>Use capability objects for privileged operations</li>
+                                    <li>Implement proper ownership checks</li>
+                                    <li>Validate all inputs thoroughly</li>
+                                </ul>
+                            </li>
+                            <li><strong>Resource Management:</strong>
+                                <ul>
+                                    <li>Leverage Move's type system for asset safety</li>
+                                    <li>Use appropriate ability constraints</li>
+                                    <li>Handle all error cases explicitly</li>
+                                </ul>
+                            </li>
+                            <li><strong>State Management:</strong>
+                                <ul>
+                                    <li>Maintain object invariants</li>
+                                    <li>Use versioning for upgrades</li>
+                                    <li>Implement proper cleanup logic</li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <div class="info-note">
+                            <p><strong>Note:</strong> Sui's security model combines Move's static guarantees with runtime checks and cryptographic proofs to ensure safe execution of smart contracts.</p>
+                        </div>
+                    </div>
+
+                    <h3>Light Client Security</h3>
+                    <div class="example-box">
+                        <h4>Verification Capabilities</h4>
+                        <ul>
+                            <li>Efficient state verification without full node requirements</li>
+                            <li>Cryptographic proofs of object existence and ownership</li>
+                            <li>Transaction finality verification through certificates</li>
+                            <li>Support for cross-chain bridge security</li>
                         </ul>
                     </div>
                 </section>
 
                 <section id="move">
                     <h2>Move Programming Model</h2>
-                    <p>
-                        Move provides a safe and expressive programming model for Sui:
-                    </p>
+                    
+                    <div class="example-box" style="background: rgba(69, 69, 69, 0.1); border-left-color: #7382cc;">
+                        <h4>What is Move?</h4>
+                        <p>
+                            Move is a safe and expressive programming language designed specifically for blockchain smart contracts.
+                        </p>
+                        
+                        <h5>Historical Background</h5>
+                        <ul>
+                            <li><strong>Origins:</strong>
+                                <ul>
+                                    <li>Originally developed at Facebook/Meta for the Diem blockchain (2019)</li>
+                                    <li>Designed to address limitations in existing smart contract languages</li>
+                                    <li>Now platform-agnostic and open source</li>
+                                </ul>
+                            </li>
+                            <li><strong>Key Innovations:</strong>
+                                <ul>
+                                    <li>First-class resources with linear types</li>
+                                    <li>Built-in asset safety guarantees</li>
+                                    <li>Module-based architecture for composability</li>
+                                </ul>
+                            </li>
+                            <li><strong>Adoption:</strong>
+                                <ul>
+                                    <li>Sui: Primary smart contract language</li>
+                                    <li>Aptos: Core programming language</li>
+                                    <li>0L Network: Alternative implementation</li>
+                                    <li>Growing ecosystem of Move-based projects</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                        <h5>Core Features</h5>
+                        <ul>
+                            <li><strong>Safety:</strong>
+                                <ul>
+                                    <li>Static type checking</li>
+                                    <li>Resource safety verification</li>
+                                    <li>Formal verification support</li>
+                                </ul>
+                            </li>
+                            <li><strong>Performance:</strong>
+                                <ul>
+                                    <li>Efficient bytecode execution</li>
+                                    <li>Optimized for blockchain operations</li>
+                                    <li>Low runtime overhead</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                        <div class="info-note">
+                            <p><strong>Note:</strong> Move's name comes from its ability to "move" resources between storage locations while maintaining strict safety guarantees - unlike traditional programming languages that copy data.</p>
+                        </div>
+                    </div>
+
                     <pre><code class="language-move">module {
     struct declarations
     function declarations
     module initializer
 }</code></pre>
+
                     <div class="example-box">
                         <h4>Key Features</h4>
                         <ul>
