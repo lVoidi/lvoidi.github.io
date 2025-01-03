@@ -55,9 +55,16 @@
             <header class="post-header">
                 <h1>Quantum Teleportation in Optical Fibers</h1>
                 <div class="post-meta">
-                    <span><i class="fas fa-calendar"></i> March 20, 2024</span>
-                    <span><i class="fas fa-user"></i> lVoidi</span>
+                    <span><i class="fas fa-calendar"></i> January 3, 2025</span>
+
                     <span><i class="fas fa-clock"></i> 15 min read</span>
+                    <div class="post-author">
+                        <img src="../../static/img/author.jpg" alt="Rodrigo Arce" class="author-image">
+                        <div class="author-info">
+                            <span class="author-name">Rodrigo Arce</span>
+                            <span class="author-title">Computer Engineer</span>
+                        </div>
+                    </div>
                 </div>
             </header>
 
@@ -75,7 +82,227 @@
                 </ul>
             </div>
 
-            <!-- Content sections will continue here -->
+            <section id="technical-overview">
+                <h2>Technical Overview</h2>
+                
+                <div class="example-box" style="background: rgba(69, 69, 69, 0.1); border-left-color: #7382cc;">
+                    <h4>Key Innovation</h4>
+                    <p>
+                        First demonstration of quantum teleportation over optical fibers while simultaneously carrying 
+                        conventional telecommunications traffic. The experiment achieved:
+                    </p>
+                    <ul>
+                        <li><strong>Distance:</strong> 30.2 km fiber link</li>
+                        <li><strong>Classical Data:</strong> 400-Gbps C-band traffic</li>
+                        <li><strong>Quantum Channel:</strong> O-band (1290 nm)</li>
+                        <li><strong>High Fidelity:</strong> Average fidelity of 89.9 ± 3.1%</li>
+                    </ul>
+                </div>
+                
+                <h3>System Architecture</h3>
+                <div class="example-box">
+                    <h4>Three-Node Configuration</h4>
+                    <ul>
+                        <li><strong>Alice (Sender):</strong>
+                            <ul>
+                                <li>Prepares quantum state |𝜓⟩𝐴 for teleportation</li>
+                                <li>Uses heralded single-photon source</li>
+                                <li>Encodes qubits in photon polarization</li>
+                            </ul>
+                        </li>
+                        <li><strong>Charlie (Midpoint):</strong>
+                            <ul>
+                                <li>Performs Bell State Measurement (BSM)</li>
+                                <li>Uses Hong-Ou-Mandel interference</li>
+                                <li>Employs 50:50 beam splitter configuration</li>
+                            </ul>
+                        </li>
+                        <li><strong>Bob (Receiver):</strong>
+                            <ul>
+                                <li>Generates entangled photon pairs</li>
+                                <li>Maintains one photon locally</li>
+                                <li>Sends other photon to Charlie</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <figure class="text-center">
+                        <img src="../../static/img/singularity/nodes.png" 
+                            alt="Quantum teleportation nodes" 
+                            class="img-fluid rounded shadow-lg" 
+                            style="max-width: 100%; height: auto; transition: transform 0.3s ease-in-out;"
+                            onmouseover="this.style.transform='scale(1.02)'" 
+                            onmouseout="this.style.transform='scale(1)'">
+                        <figcaption class="mt-3" style="color: var(--text-muted); font-style: italic;">
+                            Three nodes configuration.
+                        </figcaption>
+                    </figure>
+                </div>
+
+                <h3>Noise Mitigation Techniques</h3>
+                <div class="example-box" style="background: rgba(163, 103, 252, 0.1); border-left-color: #a367fc;">
+                    <h4>Key Strategies</h4>
+                    <ul>
+                        <li><strong>Wavelength Selection:</strong>
+                            <ul>
+                                <li>O-band quantum channels (1290 nm)</li>
+                                <li>Minimizes Raman scattering from C-band</li>
+                                <li>Anti-Stokes frequency detuning</li>
+                            </ul>
+                        </li>
+                        <li><strong>Filtering:</strong>
+                            <ul>
+                                <li>Narrow-band spectro-temporal filtering</li>
+                                <li>60-pm bandwidth Fiber Bragg Gratings</li>
+                                <li>>190 dB rejection of C-band light</li>
+                            </ul>
+                        </li>
+                        <li><strong>Detection:</strong>
+                            <ul>
+                                <li>Multi-photon coincidence detection</li>
+                                <li>500-ps coincidence window</li>
+                                <li>Superconducting nanowire detectors (>90% efficiency)</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="example-box">
+                    <h4>Performance Metrics</h4>
+                    <img src="../../static/img/singularity/quantum-teleportation-results.jpg" alt="Quantum Teleportation Results" class="img-fluid">
+                    <p class="figure-caption">
+                        Fig. 4 from the paper showing density matrices and fidelity measurements for different quantum states.
+                    </p>
+                    <ul>
+                        <li><strong>State Fidelity:</strong>
+                            <ul>
+                                <li>H/V basis: 97.5 ± 1.2% (|H⟩), 95.8 ± 2.5% (|V⟩)</li>
+                                <li>D/A basis: 87.5 ± 3.9% (|D⟩), 85.5 ± 3.7% (|A⟩)</li>
+                                <li>Average: 89.9 ± 3.1%</li>
+                            </ul>
+                        </li>
+                        <li><strong>Classical Power Handling:</strong>
+                            <ul>
+                                <li>Supports up to 74 mW C-band power</li>
+                                <li>150x higher than minimum required power</li>
+                                <li>Potential for multi-Tbps classical data</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+
+            <section id="experimental-setup">
+                <h2>Experimental Setup</h2>
+                
+                <p>
+                    The photon generation system employs a sophisticated configuration utilizing Type-0
+                    cascaded second harmonic generation (SHG) combined with spontaneous parametric down-conversion (SPDC).
+                    At the heart of this setup are PPLN (Periodically Poled Lithium Niobate) waveguides that are specifically phase-matched
+                    for 650 nm second harmonic generation. The system is driven by a 1300-nm continuous-wave distributed feedback laser serving 
+                    as the pump source. This laser operates with precise temporal characteristics - a 65-picosecond temporal full-width 
+                    at half maximum and a pulse repetition rate of 500 MHz. These carefully chosen parameters ensure optimal photon pair 
+                    generation while maintaining the coherence necessary for quantum teleportation.
+                </p>
+                <div class="example-box">
+                    <h4>Fiber Network Configuration</h4>
+                    <ul>
+                        <li><strong>Quantum Links:</strong>
+                            <ul>
+                                <li>Alice to Charlie: 15.2 km spooled fiber</li>
+                                <li>Bob to Charlie: 15.0 km spooled fiber</li>
+                                <li>Total quantum distribution: 30.2 km</li>
+                            </ul>
+                        </li>
+                        <li><strong>Classical Link:</strong>
+                            <ul>
+                                <li>Total distance: 78.2 km (including deployed fiber)</li>
+                                <li>24 km deployed fiber to Chicago campus</li>
+                                <li>30.2 km experimental spool</li>
+                                <li>Additional 24 km deployed fiber</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <figure class="text-center">
+                        <img src="../../static/img/singularity/nodes.png" 
+                            alt="Quantum teleportation nodes" 
+                            class="img-fluid rounded shadow-lg" 
+                            style="max-width: 100%; height: auto; transition: transform 0.3s ease-in-out;"
+                            onmouseover="this.style.transform='scale(1.02)'" 
+                            onmouseout="this.style.transform='scale(1)'">
+                        <figcaption class="mt-3" style="color: var(--text-muted); font-style: italic;">
+                            Three nodes configuration.
+                        </figcaption>
+                    </figure>
+                </div>
+            </section>
+
+            <section id="results">
+                <h2>Experimental Results</h2>
+
+                <div class="example-box" style="background: rgba(163, 103, 252, 0.1); border-left-color: #a367fc;">
+                    <h4>Key Measurements</h4>
+                    
+                    <h5>1. Entanglement Distribution</h5>
+                    <ul>
+                        <li><strong>Visibility:</strong>
+                            <ul>
+                                <li>Vertical basis: 97.5 ± 0.1%</li>
+                                <li>Anti-diagonal basis: 95.3 ± 0.2%</li>
+                                <li>Well above 1/√2 bound for non-local entanglement</li>
+                            </ul>
+                        </li>
+                    </ul>
+
+                    <h5>2. Hong-Ou-Mandel Interference</h5>
+                    <ul>
+                        <li><strong>Visibility:</strong>
+                            <ul>
+                                <li>Without classical signal: 82.9 ± 4.5%</li>
+                                <li>With 74 mW classical power: 80.3 ± 3.8%</li>
+                                <li>Exceeds classical bound of 50%</li>
+                            </ul>
+                        </li>
+                    </ul>
+
+                    <h5>3. State Transfer Fidelity</h5>
+                    <ul>
+                        <li><strong>H/V Basis:</strong>
+                            <ul>
+                                <li>|H⟩: 97.5 ± 1.2%</li>
+                                <li>|V⟩: 95.8 ± 2.5%</li>
+                            </ul>
+                        </li>
+                        <li><strong>D/A Basis:</strong>
+                            <ul>
+                                <li>|D⟩: 87.5 ± 3.9%</li>
+                                <li>|A⟩: 85.5 ± 3.7%</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="example-box">
+                    <h4>Classical Communication Performance</h4>
+                    <ul>
+                        <li><strong>Data Rate:</strong> 400 Gbps</li>
+                        <li><strong>Wavelength:</strong> 1547.32 nm (C-band)</li>
+                        <li><strong>Power Levels:</strong>
+                            <ul>
+                                <li>Minimum required: 0.5 mW (-3 dBm)</li>
+                                <li>Maximum tested: 74 mW (18.7 dBm)</li>
+                                <li>150x higher than minimum required power</li>
+                            </ul>
+                        </li>
+                        <li><strong>Link Budget:</strong>
+                            <ul>
+                                <li>Total loss: 22.8 dB over 78.2 km</li>
+                                <li>Quantum channel loss: 10.1 dB over 30.2 km</li>
+                                <li>BSM bypass insertion loss: 1.2 dB</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </section>
 
         </article>
     </main>
