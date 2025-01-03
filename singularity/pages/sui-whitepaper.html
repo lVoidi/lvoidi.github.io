@@ -38,7 +38,6 @@
             </div>
         </div>
     </nav>
-    
 
     <main class="container py-5">
         <article class="post-container">
@@ -48,12 +47,12 @@
                     <span><i class="fas fa-clock"></i> 15 min read</span>
                 </div>
                 <h1 class="post-title">Understanding the Sui Blockchain</h1>
-                <p class="post-subtitle">A deep dive into Sui's novel parallel execution engine and object-centric data model that enables high throughput and low latency transactions.</p>
+                <p class="post-subtitle">A deep dive into Sui's novel parallel execution engine and object-centric data model</p>
                 <div class="post-author">
                     <img src="../../static/img/author.jpg" alt="Rodrigo Arce" class="author-image">
                     <div class="author-info">
                         <span class="author-name">Rodrigo Arce</span>
-                        <span class="author-title">Computer Engineer</span>
+                        <span class="author-title">Blockchain Developer</span>
                     </div>
                 </div>
             </header>
@@ -62,47 +61,331 @@
                 <h2>Table of Contents</h2>
                 <ul>
                     <li><a href="#introduction">Introduction</a></li>
-                    <li><a href="#object-centric">Object-Centric Data Model</a></li>
-                    <li><a href="#parallel-execution">Parallel Transaction Execution</a></li>
-                    <li><a href="#consensus">Sui Consensus</a></li>
-                    <li><a href="#move-language">The Move Programming Language</a></li>
-                    <li><a href="#conclusion">Conclusion</a></li>
+                    <li><a href="#architecture">Core Architecture</a></li>
+                    <li><a href="#object-model">Object-Centric Model</a></li>
+                    <li><a href="#consensus">Consensus Innovation</a></li>
+                    <li><a href="#transactions">Transaction Processing</a></li>
+                    <li><a href="#scalability">Scalability Features</a></li>
+                    <li><a href="#security">Safety & Security</a></li>
+                    <li><a href="#move">Move Programming Model</a></li>
+                    <li><a href="#economics">Economic Model</a></li>
                 </ul>
             </div>
 
             <div class="post-content">
                 <section id="introduction">
                     <h2>Introduction</h2>
-                    <p class="lead">
-                        Sui is a Layer 1 blockchain designed to enable high-throughput, low-latency applications while maintaining strong security guarantees. Unlike traditional blockchains that process transactions sequentially, Sui introduces a novel parallel execution model that can process non-conflicting transactions simultaneously.
+                    <p>
+                        Sui is a decentralized permissionless smart contract platform specifically designed for low-latency asset management. 
+                        What sets it apart is its unique approach to handling digital assets and its innovative consensus mechanism that enables 
+                        parallel processing of transactions.
                     </p>
-                    <!-- Add more content -->
+                    <p>
+                        Sui has been getting a little bit of attention lately, because of many reasons: <br>
+                        1. In the year of 2024, Sui was up 400% it's price. <br>
+                        2. Even with big shakeouts of the market, Sui still managed to keep it's price high. <br>
+                        3. Community is growing, the number of developers and users is increasing. <br>
+                        4. Sui has had a huge growth in the last year, and it's still growing. <br>
+                        5. Sui has a lot of potential to be a gamechanger in the blockchain space.
+                    </p>
+                    <p>
+                        These are some of the reasons why i wanted to talk about Sui because i've been using 
+                        this blockchain for a while now and now i can't go to any other because of how good it is.
+                        Obviously all of this is subjective, there are a lot of blockchains that are fast and 
+                        low on gas and latency, like Solana, Aptos, etc. But Sui is growing for a lot of reasons,
+                        and i think it's a good idea to talk about it.
+                    </p>
+
                 </section>
 
-                <section id="object-centric">
-                    <h2>Object-Centric Data Model</h2>
+                <section id="architecture">
+                    <h2>Core Architecture</h2>
                     <p>
-                        At the core of Sui's design is its object-centric data model. Instead of using accounts and balances like traditional blockchains, Sui represents all data as objects that can be owned, transferred, and modified according to predefined rules.
+                        At its core, Sui leverages the Move programming language to define and manage digital assets. The platform's 
+                        architecture is built around the concept of objects, with a clear separation between different types of objects 
+                        to optimize performance.
                     </p>
                     <div class="example-box">
-                        <h4>Key Features of Sui Objects</h4>
+                        <h4>Key Architectural Components</h4>
                         <ul>
-                            <li>Unique global IDs for all objects</li>
-                            <li>Explicit ownership model</li>
-                            <li>Version numbers for state tracking</li>
-                            <li>Composable object relationships</li>
+                            <li>Move-based smart contracts</li>
+                            <li>Object-centric data model</li>
+                            <li>Parallel execution engine</li>
+                            <li>Dual consensus mechanism</li>
                         </ul>
                     </div>
-                    <!-- Add more content -->
+
+                    <p>
+                        Let's compare this with other blockchains like Solana. First of all, a lot of people like me, 
+                        think that Sui is going to replace Solana and flip it in market cap in a near future. Solana is 
+                        good and it has demonstrated that it can handle a lot of transactions, but Sui is faster and 
+                        cheaper. Also, Sui network is not down 99% of the time like Solana. Sui has indeed been down 
+                        one time, but it was fixed very quickly.
+                    </p>
+                    <p>
+                        Another key difference is Move. Sui uses Move, which is a programming language that is very similar to Rust.
+                        In my opinion, Move is way easier to use than Rust, and it's a lot more intuitive. This atracts a lot of 
+                        developers to use Sui, and more people will build with it. Solana uses Rust, and it's a very hard language 
+                        to learn, and it's not very intuitive. 
+                    </p>
+                    <p>
+                        While Solana does an amazing quantity of more than 5000 transactions per second, these are the transactions per second that
+                        Sui can do: 
+                        
+                        <div class="example-box">
+                            <h4>Transactions per second</h4>
+                            <ul>
+                                <li>A Sui network with 100 globally distributed validators achieved peak throughput ranging from 10,871 TPS to 297,000 TPS on various workloads</li>
+                                <li>Sui's time to finality is ~480 milliseconds</li>
+                            </ul>
+                            <p class="example-note">
+                                Source: <a href="https://blog.sui.io/sui-performance-update/">Sui Performance Benchmark Results</a>
+                            </p>
+                        </div>
+                    </p>
+
                 </section>
 
-                <!-- Add remaining sections -->
-
-                <section id="conclusion">
-                    <h2>Conclusion</h2>
+                <section id="object-model">
+                    <h2>Object-Centric Model</h2>
                     <p>
-                        Sui represents a significant advancement in blockchain architecture, offering a unique combination of high performance, strong security, and developer-friendly features. Its object-centric model and parallel execution engine make it particularly well-suited for high-throughput applications like gaming and DeFi.
+                        Sui's object model is one of its most distinctive features. Every piece of data in Sui is represented as an object 
+                        with a globally unique identifier.
                     </p>
+                    <pre><code class="language-move">struct Obj has key {
+    id: VersionedID,  // Globally unique ID and version
+    // Custom fields...
+}</code></pre>
+                    <div class="example-box">
+                        <h4>Object Types</h4>
+                        <ul>
+                            <li>Owned Objects: Controlled by a single address</li>
+                            <li>Shared Objects: Accessible by multiple users</li>
+                            <li>Immutable Objects: Read-only, accessible by anyone</li>
+                        </ul>
+                    </div>
+
+                    <p>
+                        Let's see an example of a Move package:
+                    </p>
+                    <pre><code class="language-toml"># examples/move/first_package/Move.toml
+[package]
+name = "my_first_package"
+edition = "2024.beta" # edition = "legacy" to use legacy (pre-2024) Move
+# license = ""        # e.g., "MIT", "GPL", "Apache 2.0"
+# authors = ["..."]   # e.g., ["Joe Smith (joesmith@noemail.com)", "John Snow (johnsnow@noemail.com)"]
+
+[dependencies]
+Sui = { git = "https://github.com/MystenLabs/sui.git", subdir = "crates/sui-framework/packages/sui-framework", rev = "framework/testnet" }
+
+[addresses]
+my_first_package = "0x0"
+
+[dev-dependencies]
+# The dev-dependencies section allows overriding dependencies for `--test` and
+# `--dev` modes. You can introduce test-only dependencies here.
+# Local = { local = "../path/to/dev-build" }
+
+[dev-addresses]
+# The dev-addresses section allows overwriting named addresses for the `--test`
+# and `--dev` modes.
+# alice = "0xB0B"</code></pre>
+
+                    <p>
+                        And the move code:
+                    </p>
+
+                    <pre><code class="language-move">// examples/move/first_package/sources/example.move
+module my_first_package::example;
+// Part 1: These imports are provided by default
+// use sui::object::{Self, UID};
+// use sui::transfer;
+// use sui::tx_context::{Self, TxContext};
+
+// Part 2: struct definitions
+public struct Sword has key, store {
+    id: UID,
+    magic: u64,
+    strength: u64,
+}
+
+public struct Forge has key {
+    id: UID,
+    swords_created: u64,
+}
+
+// Part 3: Module initializer to be executed when this module is published
+fun init(ctx: &mut TxContext) {
+    let admin = Forge {
+        id: object::new(ctx),
+        swords_created: 0,
+    };
+
+    // Transfer the forge object to the module/package publisher
+    transfer::transfer(admin, ctx.sender());
+}
+
+// Part 4: Accessors required to read the struct fields
+public fun magic(self: &Sword): u64 {
+    self.magic
+}
+
+public fun strength(self: &Sword): u64 {
+    self.strength
+}
+
+public fun swords_created(self: &Forge): u64 {
+    self.swords_created
+}
+
+// Part 5: Public/entry functions (introduced later in the tutorial)
+
+// Part 6: Tests
+
+                    </code></pre>
+                    <p><i>Source: <a href="https://docs.sui.io/guides/developer/first-app/write-package">Sui Documentation</a></i></p>
+
+                    <p>
+                    <p>Let's break down this Move code example to understand how Sui's object-centric model works:</p>
+
+                    <h4>Key Components:</h4>
+
+                    <ol>
+                        <li><strong>Struct Definitions:</strong>
+                            <ul>
+                                <li><code>Sword</code> - A game item with <code>key</code> and <code>store</code> abilities:
+                                    <ul>
+                                        <li><code>key</code> makes it a Sui object that can be transferred</li>
+                                        <li><code>store</code> allows it to be stored inside other objects</li>
+                                        <li>Has properties: unique ID, magic power, and strength</li>
+                                    </ul>
+                                </li>
+                                <li><code>Forge</code> - An admin object that tracks sword creation:
+                                    <ul>
+                                        <li>Has <code>key</code> ability but not <code>store</code></li>
+                                        <li>Contains a counter for swords created</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li><strong>Module Initialization:</strong>
+                            <ul>
+                                <li>The <code>init</code> function runs once when the module is published</li>
+                                <li>Creates a <code>Forge</code> object and transfers it to the module publisher</li>
+                                <li>This establishes the initial admin capabilities</li>
+                            </ul>
+                        </li>
+
+                        <li><strong>Accessor Functions:</strong>
+                            <ul>
+                                <li>Provide read-only access to object properties</li>
+                                <li>Follow Move's principle of data encapsulation</li>
+                                <li>Enable other modules to safely interact with the objects</li>
+                            </ul>
+                        </li>
+                    </ol>
+
+                    <p>This example demonstrates Sui's object-centric programming model where each object has a unique ID and explicit ownership rules. The abilities (<code>key</code>, <code>store</code>) determine how objects can be used and transferred within the system.</p>
+                    </p>
+                </section>
+
+                <section id="consensus">
+                    <h2>Consensus Innovation</h2>
+                    <p>
+                        Sui implements a dual consensus mechanism that optimizes for different use cases:
+                    </p>
+                    <div class="example-box">
+                        <h4>Consensus Mechanisms</h4>
+                        <ul>
+                            <li><strong>Byzantine Consistent Broadcast:</strong> Used for owned objects, providing faster finality</li>
+                            <li><strong>Byzantine Agreement:</strong> Used only for shared objects, ensuring consistency across multiple users</li>
+                        </ul>
+                    </div>
+                    
+                </section>
+
+                <section id="transactions">
+                    <h2>Transaction Processing</h2>
+                    <p>
+                        Transactions in Sui follow a two-phase processing model:
+                    </p>
+                    <div class="example-box">
+                        <h4>Processing Phases</h4>
+                        <ol>
+                            <li>Lock acquisition on input objects</li>
+                            <li>Parallel execution and commitment</li>
+                        </ol>
+                        <p class="example-note">
+                            This model enables high throughput while maintaining safety guarantees.
+                        </p>
+                    </div>
+                </section>
+
+                <section id="scalability">
+                    <h2>Scalability Features</h2>
+                    <p>
+                        Sui achieves horizontal scalability through several key features:
+                    </p>
+                    <div class="example-box">
+                        <ul>
+                            <li>Parallel execution of non-conflicting transactions</li>
+                            <li>Sharded object storage and processing</li>
+                            <li>Minimal synchronization points</li>
+                            <li>Aggressive caching for read operations</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <section id="security">
+                    <h2>Safety & Security</h2>
+                    <p>
+                        Security in Sui is maintained through multiple layers:
+                    </p>
+                    <div class="example-box">
+                        <ul>
+                            <li>Strong ownership model</li>
+                            <li>Resource safety through Move's type system</li>
+                            <li>Light client support with cryptographic proofs</li>
+                            <li>Fraud proofs for Byzantine behavior detection</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <section id="move">
+                    <h2>Move Programming Model</h2>
+                    <p>
+                        Move provides a safe and expressive programming model for Sui:
+                    </p>
+                    <pre><code class="language-move">module {
+    struct declarations
+    function declarations
+    module initializer
+}</code></pre>
+                    <div class="example-box">
+                        <h4>Key Features</h4>
+                        <ul>
+                            <li>Type-safe and resource-aware programming</li>
+                            <li>Module-based encapsulation</li>
+                            <li>Strong composability</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <section id="economics">
+                    <h2>Economic Model</h2>
+                    <p>
+                        The SUI token plays a central role in the platform's economics:
+                    </p>
+                    <div class="example-box">
+                        <h4>Token Utility</h4>
+                        <ul>
+                            <li>Gas payments for transaction processing</li>
+                            <li>Stake delegation to validators</li>
+                            <li>Governance participation</li>
+                            <li>Fee distribution to validators and delegators</li>
+                        </ul>
+                    </div>
                 </section>
             </div>
 
