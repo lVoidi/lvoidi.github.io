@@ -72,6 +72,8 @@
                     <li><a href="#security">Safety & Security</a></li>
                     <li><a href="#move">Move Programming Model</a></li>
                     <li><a href="#economics">Economic Model</a></li>
+                    <li><a href="#community">Community</a></li>
+                    <li><a href="#conclusion">Conclusion</a></li>
                 </ul>
             </div>
 
@@ -900,17 +902,355 @@ public fun transfer(token: Token, recipient: address) {
                 <section id="economics">
                     <h2>Economic Model</h2>
                     <p>
-                        The SUI token plays a central role in the platform's economics:
+                        The SUI token plays a central role in the platform's economics, serving multiple purposes in the ecosystem:
                     </p>
-                    <div class="example-box">
-                        <h4>Token Utility</h4>
+
+                    <div class="example-box" style="background: rgba(69, 69, 69, 0.1); border-left-color: #7382cc;">
+                        <h4>Token Economics Overview</h4>
+                        
+                        <h5>1. Supply Characteristics</h5>
                         <ul>
-                            <li>Gas payments for transaction processing</li>
-                            <li>Stake delegation to validators</li>
-                            <li>Governance participation</li>
-                            <li>Fee distribution to validators and delegators</li>
+                            <li><strong>Token Supply:</strong>
+                                <ul>
+                                    <li>Fixed total supply</li>
+                                    <li>No inflation mechanism</li>
+                                    <li>Controlled distribution schedule</li>
+                                </ul>
+                            </li>
+                            <li><strong>Distribution Model:</strong>
+                                <ul>
+                                    <li>Initial allocation to early stakeholders</li>
+                                    <li>Validator rewards</li>
+                                    <li>Ecosystem development fund</li>
+                                    <li>Community incentives</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                        <h5>2. Utility Functions</h5>
+                        <ul>
+                            <li><strong>Gas Payments:</strong>
+                                <ul>
+                                    <li>Transaction fee payments</li>
+                                    <li>Storage fees for state management</li>
+                                    <li>Computation costs for smart contract execution</li>
+                                </ul>
+                            </li>
+                            <li><strong>Staking Mechanism:</strong>
+                                <ul>
+                                    <li>Validator stake requirements</li>
+                                    <li>Delegation opportunities for token holders</li>
+                                    <li>Stake-weighted voting power</li>
+                                </ul>
+                            </li>
+                            <li><strong>Governance:</strong>
+                                <ul>
+                                    <li>Protocol upgrade voting</li>
+                                    <li>Parameter adjustments</li>
+                                    <li>System configuration changes</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                        <div class="info-note">
+                            <p><strong>Key Point:</strong> The economic model is designed to align incentives between validators, delegators, and users while ensuring network security and efficiency.</p>
+                        </div>
+                    </div>
+
+                    <h3>Validator Economics</h3>
+                    <div class="example-box">
+                        <h4>Validator Incentives</h4>
+                        <ul>
+                            <li><strong>Revenue Streams:</strong>
+                                <ul>
+                                    <li>Transaction fee shares</li>
+                                    <li>Storage fee allocation</li>
+                                    <li>Stake rewards</li>
+                                </ul>
+                            </li>
+                            <li><strong>Costs and Responsibilities:</strong>
+                                <ul>
+                                    <li>Infrastructure operation</li>
+                                    <li>Security maintenance</li>
+                                    <li>Network participation</li>
+                                </ul>
+                            </li>
+                            <li><strong>Slashing Conditions:</strong>
+                                <ul>
+                                    <li>Byzantine behavior penalties</li>
+                                    <li>Downtime consequences</li>
+                                    <li>Performance requirements</li>
+                                </ul>
+                            </li>
                         </ul>
                     </div>
+
+                    <h3>Delegation System</h3>
+                    <div class="example-box" style="background: rgba(163, 103, 252, 0.1); border-left-color: #a367fc;">
+                        <h4>Delegation Mechanics</h4>
+                        <p>
+                            Token holders can participate in network security and earn rewards through delegation:
+                        </p>
+                        <ul>
+                            <li><strong>Delegation Process:</strong>
+                                <ul>
+                                    <li>Flexible delegation amounts</li>
+                                    <li>Multiple validator selection</li>
+                                    <li>Epoch-based rewards</li>
+                                </ul>
+                            </li>
+                            <li><strong>Reward Distribution:</strong>
+                                <ul>
+                                    <li>Proportional to delegation amount</li>
+                                    <li>Validator commission rates</li>
+                                    <li>Performance-based adjustments</li>
+                                </ul>
+                            </li>
+                            <li><strong>Risk Management:</strong>
+                                <ul>
+                                    <li>Slashing protection mechanisms</li>
+                                    <li>Unbonding periods</li>
+                                    <li>Validator performance tracking</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <h3>Fee Market</h3>
+                    <div class="example-box">
+                        <h4>Fee Dynamics</h4>
+                        <ul>
+                            <li><strong>Reference Gas Price:</strong>
+                                <ul>
+                                    <li>Algorithmically adjusted each epoch</li>
+                                    <li>Based on network utilization</li>
+                                    <li>Predictable cost basis</li>
+                                </ul>
+                            </li>
+                            <li><strong>Fee Distribution:</strong>
+                                <ul>
+                                    <li>Validator rewards pool</li>
+                                    <li>Delegator share calculation</li>
+                                    <li>Stake-weighted allocation</li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <div class="info-note">
+                            <p><strong>Note:</strong> The fee market is designed to provide stable, predictable costs while ensuring efficient resource allocation during periods of high demand.</p>
+                        </div>
+                    </div>
+
+                    <h3>Storage Fund</h3>
+                    <div class="example-box">
+                        <h4>Long-term State Management</h4>
+                        <ul>
+                            <li>Dedicated fund for storage costs</li>
+                            <li>Sustainable state growth model</li>
+                            <li>Incentivizes efficient state management</li>
+                            <li>Supports long-term network sustainability</li>
+                        </ul>
+                    </div>
+                </section>
+                <section id="community">
+                    <h2>Community</h2>
+                    <p>
+                        Sui has a great community, in fact, is one of the most active 
+                        and <i>bullish</i> communities i have ever seen. Like, we don't 
+                        shut up about it. You know that meme of a linux user that 
+                        has to talk about linux? We're that. We're that meme, but about sui. 
+                    </p>
+                    <h3>Memecoins</h3>
+                    <p>
+                        Total market cap of memecoins in sui are less than $1B, that means that 
+                        memecoins space are still pretty fresh and has a lot of room for growth.
+                        You can launch your own memecoins in sui in platforms like movepump, turbos
+                        or you can code your own token and open a liquidity pool for it in something 
+                        like Cetus. Sadly, a lot of memecoins are still rug pulls or scams, there 
+                        are even honeypots that pay dex boosts to get more people to scam.
+                    </p>
+                    <div class="example-box" style="background: rgba(69, 69, 69, 0.1); border-left-color: #7382cc;">
+                        <h4>Avoiding Scams in Memecoins</h4>
+                        
+                        <h5>1. Red Flags to Watch For</h5>
+                        <ul>
+                            <li><strong>Contract Analysis:</strong>
+                                <ul>
+                                    <li>Hidden minting functions</li>
+                                    <li>Blacklist capabilities</li>
+                                    <li>Suspicious transfer restrictions</li>
+                                    <li>Undocumented admin privileges</li>
+                                </ul>
+                            </li>
+                            <li><strong>Liquidity Concerns:</strong>
+                                <ul>
+                                    <li>Unlocked liquidity pools</li>
+                                    <li>Single large liquidity provider</li>
+                                    <li>Unusual price impact on small trades</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                        <h5>2. Due Diligence Steps</h5>
+                        <ul>
+                            <li><strong>Community Research:</strong>
+                                <ul>
+                                    <li>Check team's background and history</li>
+                                    <li>Review social media presence</li>
+                                    <li>Look for independent audits</li>
+                                </ul>
+                            </li>
+                            <li><strong>Technical Verification:</strong>
+                                <ul>
+                                    <li>Test small transactions first</li>
+                                    <li>Verify contract source code</li>
+                                    <li>Check token distribution</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                        <div class="info-note">
+                            <p><strong>Remember:</strong> If something seems too good to be true, it probably is. Always invest only what you can afford to lose and prioritize well-established projects with transparent teams.</p>
+                        </div>
+                    </div>
+                    <div class="example-box" style="background: rgba(163, 103, 252, 0.1); border-left-color: #a367fc;">
+                        <h4 style="color: #a367fc;">Some examples of honeypots</h4>
+                        <p>
+                            These honeypots can trick any newbie into believing: "this thing only goes up", and then, it might trick 
+                            someone into believing: "this has volume, this can't be a honeypot, right?". This volume is likely caused 
+                            by bot activity and insiders, for example, you can si in the second image that the chart only goes up and 
+                            then someone full clips a giant red candle. These are likely the insiders taking profit.
+                         </p>
+                        <figure class="text-center">
+                            <img src="../../static/img/singularity/honeypot.png" 
+                                alt="Transformer Architecture" 
+                                class="img-fluid rounded shadow-lg" 
+                                style="max-width: 100%; height: auto; transition: transform 0.3s ease-in-out;"
+                                onmouseover="this.style.transform='scale(1.02)'" 
+                                onmouseout="this.style.transform='scale(1)'">
+                            <img src="../../static/img/singularity/honeypot2.png" 
+                                alt="Transformer Architecture" 
+                                class="img-fluid rounded shadow-lg" 
+                                style="max-width: 100%; height: auto; transition: transform 0.3s ease-in-out;"
+                                onmouseover="this.style.transform='scale(1.02)'" 
+                                onmouseout="this.style.transform='scale(1)'">
+                            <figcaption class="mt-3" style="color: var(--text-muted); font-style: italic;">
+                                These are actual honeypots i found on dexscreener not so long ago.
+                            </figcaption>
+                        </figure>
+                    </div>
+
+                    <h3>More tokens that are not scams</h3>
+                    <p>
+                        There are a lot of tokens that are not scams. For example, you can trust 
+                        tokens that are built for a purpose. For example, we have Deep, Cetus and Send, which are 
+                        great tokens, with great tokenomics and managed by great teams, also monitorized by Mysten Labs. 
+                        Community tokens are also great, we can see some tokens that resisted huge shakeouts. 
+
+                        <h4>Suiyan incident</h4>
+                        <p>
+                            Suiyan is a memecoin i love so much. It isn't a community token because it has a development team behind, 
+                            but it's a great example of a token that resisted a huge shakeout. Let's see the chart:
+                        </p>
+                    </p>
+                    <div class="example-box" style="background: rgba(163, 103, 252, 0.1); border-left-color: #a367fc;">
+                        <h4 style="color: #a367fc;">Suiyan terrorific shakeout that almost gave me a heart attack</h4>
+                        <p>
+                            I was eating my lunch and when i came buck, my whole net worth turned to dust for a moment. Telegram 
+                            chat was in pure CHAOS, everyone was panicking and then, the developer givar, explained everything. He 
+                            got hacked by a fake zoom link.
+                            <blockquote class="quote-block" style="border-left: 4px solid #a367fc; padding: 1rem; background: rgba(163, 103, 252, 0.05); margin: 1rem 0;">
+                                <p style="font-style: italic; margin-bottom: 0.5rem;">
+                                    "I'm stupid. I got hacked. A zoom link that asked me to update zoom and then installed something on my Mac that allowed the hackers to get access to all my funds on SUI. All the team wallets of Suiyan got drained except one that is locked through Streamflow finance that I dont have access to."
+                                </p>
+                                <footer style="font-size: 0.9rem; color: #666;">
+                                    — Givar, Suiyan Developer
+                                </footer>
+                            </blockquote>
+                         </p>
+                         <p>
+
+                            Even with that scary situation, a lot of whales started buying the floor and the token resisted an almost inminent death for 
+                            any other token. This in an example of a huge community and a token you can trust.
+                         </p>
+                        <figure class="text-center">
+                            <img src="../../static/img/singularity/suiyan.png" 
+                                alt="Transformer Architecture" 
+                                class="img-fluid rounded shadow-lg" 
+                                style="max-width: 100%; height: auto; transition: transform 0.3s ease-in-out;"
+                                onmouseover="this.style.transform='scale(1.02)'" 
+                                onmouseout="this.style.transform='scale(1)'">
+                            <figcaption class="mt-3" style="color: var(--text-muted); font-style: italic;">
+                                These are actual honeypots i found on dexscreener not so long ago.
+                            </figcaption>
+                        </figure>
+                    </div>
+                    <h3>AI Narrative</h3>
+                    <p>
+                        Artificial Intelligence tokens have been a huge trend in the last months. 
+                        AI tokens are cryptocurrencies that leverage artificial intelligence technology or are focused on AI-related projects. On Sui, we've seen several interesting AI token projects emerge:
+                    </p>
+
+                    <div class="example-box" style="background: rgba(69, 69, 69, 0.1); border-left-color: #7382cc;">
+                        <h4>Key AI Token Categories</h4>
+                        
+                        <h5>1. AI Infrastructure Tokens</h5>
+                        <ul>
+                            <li><strong>Computing Resources:</strong>
+                                <ul>
+                                    <li>Tokens for AI model training and inference</li>
+                                    <li>Distributed computing networks</li>
+                                    <li>Data storage and processing</li>
+                                </ul>
+                            </li>
+                            <li><strong>Development Tools:</strong>
+                                <ul>
+                                    <li>AI model marketplaces</li>
+                                    <li>Developer frameworks</li>
+                                    <li>Testing and deployment platforms</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                        <h5>2. AI Agents</h5>
+                        <ul>
+                            <li><strong>Autonomous Agents:</strong>
+                                <ul>
+                                    <li>Self-executing smart contracts</li>
+                                    <li>Automated trading systems</li>
+                                    <li>Decision-making protocols</li>
+                                </ul>
+                            </li>
+                            <li><strong>Agent Networks:</strong>
+                                <ul>
+                                    <li>Multi-agent coordination</li>
+                                    <li>Decentralized AI governance</li>
+                                    <li>Collaborative learning systems</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                        <div class="info-note">
+                            <p><strong>Note:</strong> While AI tokens show promise, it's important to evaluate their actual technological implementation rather than just marketing claims. Many projects use "AI" as a buzzword without substantial AI integration.</p>
+                        </div>
+                    </div>
+
+                    <p>
+                        The integration of AI agents with blockchain technology creates new possibilities for autonomous decision-making and value creation. These agents can operate independently, execute complex strategies, and interact with smart contracts based on AI-driven insights.
+                    </p>
+                    
+                </section>
+
+                <section id="conclusion">
+                    <h2>Conclusion</h2>
+                    <p>
+                        In conclusion, sui represents a great advancement in the 
+                        blockchain community. It's parallel execution model, it's move programming language, 
+                        and it's architecture are all great innovations. By the day i'm writing this,
+                        sui is the third blockchain by Total Value Locked growth in 2024. It has 
+                        $3.3B TVL and is growing at an absurd rate. Sui might be the new thing, our first objective 
+                        might be to enter in the top 10 network by market cap. Once we enter there, we can reach 
+                        top 5 easily. 
+                    </p>
                 </section>
             </div>
 
