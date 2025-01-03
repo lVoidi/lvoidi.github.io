@@ -1,5 +1,16 @@
 const SINGULARITY_POSTS = [
     {
+        id: "sui-whitepaper",
+        title: "Understanding the Sui Blockchain",
+        description: "A deep dive into Sui's novel parallel execution engine and object-centric data model that enables high throughput and low latency transactions.",
+        image: "../static/img/singularity/sui.jpg",
+        tags: ["Blockchain", "Layer 1", "Move"],
+        readTime: 15,
+        date: "2025-01-02",
+        author: "Rodrigo Arce",
+        category: "blockchain"
+    },
+    {
         id: "attention-is-all-you-need",
         title: "Attention Is All You Need",
         description: "I review the paper 'Attention Is All You Need' by Vaswani et al. and explain the transformer architecture.",
