@@ -17,11 +17,21 @@ const SINGULARITY_POSTS = [
         image: "../static/img/singularity/attention-is-all-you-need.png",
         tags: ["AI", "Machine Learning", "NLP"],
         readTime: 10,
-        date: "2024-12-31",
+        date: "2025-01-03",
         author: "Rodrigo Arce",
         category: "AI"
     },
-    // Add more posts here
+    {
+        id: "quantum-teleportation",
+        title: "Quantum teleportation coexisting with classical communications in optical fiber",
+        description: "A groundbreaking study by researchers at Northwestern University demonstrates quantum teleportation coexisting with classical communications in optical fiber networks.",
+        image: "../static/img/singularity/quantum-teleportation.png",
+        tags: ["Quantum", "Physics", "Networks"],
+        readTime: 15,
+        date: "2025-01-03",
+        author: "Rodrigo Arce",
+        category: "Misc"
+    }
 ];
 
 // Function to generate HTML for a single card
