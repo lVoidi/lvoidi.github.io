@@ -24,8 +24,8 @@ const VOID_POSTS = [
         description: "Reversing an integer, huh? Easy.",
         image: "../static/img/void/leetcode.png",  
         tags: ["leetcode"],
-        readTime: 8,
-        date: "2024-03-21",
+        readTime: 5,
+        date: "2025-01-02",
         author: "Rodrigo Arce"
     }
 ];

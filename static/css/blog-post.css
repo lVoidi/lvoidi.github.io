@@ -239,3 +239,26 @@
         font-size: 1rem;
     }
 } 
+
+/* Dark Theme Table Styling */
+.dark-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+}
+
+.dark-table th {
+    background: #1a1a3a;
+    color: #e0e0e0;
+    padding: 0.8rem;
+    text-align: left;
+}
+
+.dark-table td {
+    padding: 0.8rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.dark-table tr:nth-child(even) {
+    background: rgba(255, 255, 255, 0.03);
+} 
