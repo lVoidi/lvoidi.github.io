@@ -9,10 +9,25 @@ const AVAILABLE_TAGS = {
         label: 'Yapping',
         color: 'rgba(236, 72, 153, 0.2)',
         textColor: '#f472b6'
+    },
+    'leetcode': {
+        label: 'Leetcode',
+        color: 'rgba(255, 215, 0, 0.2)',
+        textColor: '#ffd700'
     }
 };
 
 const VOID_POSTS = [
+    {
+        id: "leetcode-reverse-number",
+        title: "LeetCode #7: Reverse Integer",
+        description: "Reversing an integer, huh? Easy.",
+        image: "../static/img/void/leetcode.png",  
+        tags: ["leetcode"],
+        readTime: 8,
+        date: "2024-03-21",
+        author: "Rodrigo Arce"
+    }
 ];
 
 // Function to generate HTML for tags
@@ -52,7 +67,7 @@ function createPostCardHTML(post) {
                     </span>
                     <h5 class="card-title">${post.title}</h5>
                     <p class="card-text">${post.description}</p>
-                    <a href="posts/${post.id}.html" class="btn btn-primary">Read More</a>
+                    <a href="pages/${post.id}.html" class="btn btn-primary">Read More</a>
                 </div>
             </article>
         </div>
