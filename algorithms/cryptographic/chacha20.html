@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChaCha20 - lVoidi Portal</title>
+    
+    <!-- CSS imports -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="../../static/css/style.css" rel="stylesheet">
+    <link href="../../static/css/algorithms.css" rel="stylesheet">
+    <link href="../../static/css/algorithm-page.css" rel="stylesheet">
+    <link href="../../static/css/prism.css" rel="stylesheet">
+
+    <!-- Icon -->
+    <link rel="icon" href="../../static/img/icon.png" type="image/x-icon">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="../../index.html">lVoidi</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="../../algorithms/index.html">Algorithms</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="../index.html">Technological Singularity</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../../void/index.html">The Pit of Endless Void</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+    <main class="container py-5">
+        <div class="row">
+            <!-- Sidebar -->
+            <div class="col-md-3">
+                <div class="algorithm-info-card">
+                    <h3>Quick Info</h3>
+                    <div class="info-item">
+                        <span class="info-label">Category:</span>
+                        <span class="info-value">Cryptography</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Time Complexity:</span>
+                        <span class="info-value">O(n)</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Key Size:</span>
+                        <span class="info-value">256 bits</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Nonce Size:</span>
+                        <span class="info-value">96 bits</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Content -->
+            <div class="col-md-9">
+                <article class="algorithm-content">
+                    <h1>ChaCha20</h1>
+                    <div class="algorithm-metadata">
+                        <span class="category-tag">Cryptography</span>
+                        <span class="category-tag">Stream Cipher</span>
+                        <span class="difficulty-tag">Advanced</span>
+                    </div>
+
+                    <section class="algorithm-section">
+                        <h2>Description</h2>
+                        <p>ChaCha20 is a modern stream cipher designed by Daniel J. Bernstein in 2008. It's an evolution of the Salsa20 cipher, offering improved security and performance. ChaCha20 is widely used in combination with the Poly1305 authenticator for secure communication protocols.</p>
+                        <ul>
+                            <li>Uses a 256-bit key and 96-bit nonce</li>
+                            <li>Generates a keystream using quarter-round operations</li>
+                            <li>Performs 20 rounds of mixing operations</li>
+                            <li>Provides high security and excellent performance on various platforms</li>
+                        </ul>
+                    </section>
+
+                    <section class="algorithm-section history-box">
+                        <h2>History</h2>
+                        <div class="history-content">
+                            <img src="../../static/img/djb.jpg" alt="Daniel J. Bernstein" class="history-image">
+                            <div>
+                                <p>ChaCha20 was created by Daniel J. Bernstein in 2008 as a modification of his earlier Salsa20 cipher. The main goal was to increase diffusion per round while maintaining, and even improving, performance.</p>
+                                <p>The cipher gained significant attention when Google selected ChaCha20-Poly1305 to replace RC4 in TLS connections for Chrome on Android devices. This decision was made due to ChaCha20's superior performance on mobile devices compared to AES when hardware acceleration is not available.</p>
+                                <p>Today, ChaCha20-Poly1305 is widely used in various protocols, including TLS 1.3, SSH, and Signal, demonstrating its importance in modern cryptography.</p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="algorithm-section">
+                        <h2>How It Works</h2>
+                        <ol>
+                            <li>Initial State Setup
+                                <ul>
+                                    <li>Constant words: "expand 32-byte k"</li>
+                                    <li>256-bit key (8 words)</li>
+                                    <li>32-bit counter</li>
+                                    <li>96-bit nonce (3 words)</li>
+                                </ul>
+                            </li>
+                            <li>Quarter Round Function
+                                <ul>
+                                    <li>Four 32-bit words input</li>
+                                    <li>Series of ARX operations (Add-Rotate-XOR)</li>
+                                    <li>Applies diffusion to input words</li>
+                                </ul>
+                            </li>
+                            <li>Round Function (20 rounds)
+                                <ul>
+                                    <li>Alternates between column and diagonal rounds</li>
+                                    <li>Applies quarter-round to four words at a time</li>
+                                    <li>Ensures thorough mixing of the state</li>
+                                </ul>
+                            </li>
+                            <li>Keystream Generation
+                                <ul>
+                                    <li>Add final state to initial state</li>
+                                    <li>Convert to little-endian bytes</li>
+                                    <li>XOR with plaintext to encrypt</li>
+                                </ul>
+                            </li>
+                        </ol>
+                    </section>
+
+                    <section class="algorithm-section">
+                        <h2>Visualization</h2>
+                        <div class="visualization-container">
+                            <div class="visualization-controls">
+                                <div class="control-group">
+                                    <button class="btn btn-primary" id="startVisualization">
+                                        <i class="fas fa-play"></i> Start
+                                    </button>
+                                    <button class="btn btn-secondary" id="resetVisualization">
+                                        <i class="fas fa-redo"></i> Reset
+                                    </button>
+                                    <button class="btn btn-info" id="generateInput">
+                                        <i class="fas fa-random"></i> Generate Input
+                                    </button>
+                                </div>
+                                <div class="speed-control">
+                                    <label>Speed:</label>
+                                    <input type="range" id="speedControl" min="1" max="5" value="3">
+                                </div>
+                            </div>
+                            <div id="chacha20Visualization" class="visualization-area">
+                                <div class="state-matrix-container">
+                                    <h3>State Matrix</h3>
+                                    <!-- Matrix will be generated by JavaScript -->
+                                </div>
+                            </div>
+                            <div class="visualization-steps">
+                                <p id="currentStep">Click Start to begin ChaCha20 encryption</p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="algorithm-section">
+                        <h2>Implementation</h2>
+                        <div class="implementation-tabs">
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" data-bs-toggle="tab" href="#python">Python</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-bs-toggle="tab" href="#cpp">C++</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-bs-toggle="tab" href="#csharp">C#</a>
+                                </li>
+                            </ul>
+                            <div class="tab-content mt-3">
+                                <div class="tab-pane fade show active" id="python">
+                                    <div class="code-wrapper">
+                                        <button class="copy-button" data-clipboard-target="#code-block-python">
+                                            <i class="fas fa-copy"></i>
+                                        </button>
+                                        <pre><code class="language-python" id="code-block-python">from typing import List
+import struct
+
+def rotl32(v: int, c: int) -> int:
+    """32-bit left rotation"""
+    return ((v << c) & 0xffffffff) | (v >> (32 - c))
+
+def quarter_round(state: List[int], a: int, b: int, c: int, d: int):
+    """ChaCha20 quarter round function"""
+    state[a] = (state[a] + state[b]) & 0xffffffff
+    state[d] = rotl32(state[d] ^ state[a], 16)
+    
+    state[c] = (state[c] + state[d]) & 0xffffffff
+    state[b] = rotl32(state[b] ^ state[c], 12)
+    
+    state[a] = (state[a] + state[b]) & 0xffffffff
+    state[d] = rotl32(state[d] ^ state[a], 8)
+    
+    state[c] = (state[c] + state[d]) & 0xffffffff
+    state[b] = rotl32(state[b] ^ state[c], 7)
+
+class ChaCha20:
+    def __init__(self, key: bytes, nonce: bytes):
+        if len(key) != 32:
+            raise ValueError("Key must be 32 bytes")
+        if len(nonce) != 12:
+            raise ValueError("Nonce must be 12 bytes")
+            
+        # Constants for "expand 32-byte k"
+        self.state = [0x61707865, 0x3320646e, 0x79622d32, 0x6b206574]
+        
+        # Add key to state (8 words)
+        self.state.extend(struct.unpack("<IIIIIIII", key))
+        
+        # Add counter and nonce
+        self.state.append(0)  # counter
+        self.state.extend(struct.unpack("<III", nonce))
+        
+    def block(self, counter: int) -> bytes:
+        """Generate a keystream block"""
+        working_state = self.state.copy()
+        working_state[12] = counter
+        
+        # 20 rounds (10 iterations of 2 rounds each)
+        for _ in range(10):
+            # Column round
+            quarter_round(working_state, 0, 4, 8, 12)
+            quarter_round(working_state, 1, 5, 9, 13)
+            quarter_round(working_state, 2, 6, 10, 14)
+            quarter_round(working_state, 3, 7, 11, 15)
+            
+            # Diagonal round
+            quarter_round(working_state, 0, 5, 10, 15)
+            quarter_round(working_state, 1, 6, 11, 12)
+            quarter_round(working_state, 2, 7, 8, 13)
+            quarter_round(working_state, 3, 4, 9, 14)
+        
+        # Add working state to initial state
+        result = bytes()
+        for i in range(16):
+            result += struct.pack("<I", (working_state[i] + self.state[i]) & 0xffffffff)
+            
+        return result
+        
+    def encrypt(self, plaintext: bytes) -> bytes:
+        """Encrypt plaintext using ChaCha20"""
+        counter = 0
+        result = bytearray()
+        
+        while plaintext:
+            keystream = self.block(counter)
+            chunk = plaintext[:64]
+            plaintext = plaintext[64:]
+            
+            result.extend(x ^ y for x, y in zip(chunk, keystream))
+            counter += 1
+            
+        return bytes(result)
+        
+    def decrypt(self, ciphertext: bytes) -> bytes:
+        """Decrypt ciphertext using ChaCha20"""
+        return self.encrypt(ciphertext)  # XOR is symmetric
+
+# Example usage
+key = b"SuperSecretKey12345SuperSecretKey123"  # 32 bytes
+nonce = b"RandomNonce123"  # 12 bytes
+message = b"Hello, ChaCha20!"
+
+cipher = ChaCha20(key, nonce)
+encrypted = cipher.encrypt(message)
+decrypted = cipher.decrypt(encrypted)
+
+print(f"Original: {message}")
+print(f"Encrypted: {encrypted.hex()}")
+print(f"Decrypted: {decrypted}")</code></pre>
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="cpp">
+                                    <div class="code-wrapper">
+                                        <button class="copy-button" data-clipboard-target="#code-block-cpp">
+                                            <i class="fas fa-copy"></i>
+                                        </button>
+                                        <pre><code class="language-cpp" id="code-block-cpp">#include &lt;vector&gt;
+#include &lt;cstring&gt;
+#include &lt;stdint.h&gt;
+
+class ChaCha20 {
+private:
+    uint32_t state[16];
+
+    static uint32_t rotl32(uint32_t x, int n) {
+        return (x << n) | (x >> (32 - n));
+    }
+
+    static void quarter_round(uint32_t& a, uint32_t& b, uint32_t& c, uint32_t& d) {
+        a += b; d ^= a; d = rotl32(d, 16);
+        c += d; b ^= c; b = rotl32(b, 12);
+        a += b; d ^= a; d = rotl32(d, 8);
+        c += d; b ^= c; b = rotl32(b, 7);
+    }
+
+public:
+    ChaCha20(const std::vector&lt;uint8_t&gt;& key, const std::vector&lt;uint8_t&gt;& nonce) {
+        if (key.size() != 32) throw std::runtime_error("Key must be 32 bytes");
+        if (nonce.size() != 12) throw std::runtime_error("Nonce must be 12 bytes");
+
+        // Constants "expand 32-byte k"
+        state[0] = 0x61707865;
+        state[1] = 0x3320646e;
+        state[2] = 0x79622d32;
+        state[3] = 0x6b206574;
+
+        // Key
+        memcpy(&state[4], key.data(), 32);
+
+        // Counter
+        state[12] = 0;
+
+        // Nonce
+        memcpy(&state[13], nonce.data(), 12);
+    }
+
+    std::vector&lt;uint8_t&gt; block(uint32_t counter) {
+        uint32_t working[16];
+        memcpy(working, state, 64);
+        working[12] = counter;
+
+        for (int i = 0; i < 10; i++) {
+            // Column rounds
+            quarter_round(working[0], working[4], working[8], working[12]);
+            quarter_round(working[1], working[5], working[9], working[13]);
+            quarter_round(working[2], working[6], working[10], working[14]);
+            quarter_round(working[3], working[7], working[11], working[15]);
+
+            // Diagonal rounds
+            quarter_round(working[0], working[5], working[10], working[15]);
+            quarter_round(working[1], working[6], working[11], working[12]);
+            quarter_round(working[2], working[7], working[8], working[13]);
+            quarter_round(working[3], working[4], working[9], working[14]);
+        }
+
+        std::vector&lt;uint8_t&gt; output(64);
+        for (int i = 0; i < 16; i++) {
+            uint32_t value = working[i] + state[i];
+            output[4*i+0] = value & 0xff;
+            output[4*i+1] = (value >> 8) & 0xff;
+            output[4*i+2] = (value >> 16) & 0xff;
+            output[4*i+3] = (value >> 24) & 0xff;
+        }
+        return output;
+    }
+
+    std::vector&lt;uint8_t&gt; encrypt(const std::vector&lt;uint8_t&gt;& plaintext) {
+        std::vector&lt;uint8_t&gt; ciphertext;
+        uint32_t counter = 0;
+        
+        for (size_t i = 0; i < plaintext.size(); i += 64) {
+            auto keystream = block(counter++);
+            size_t chunk_size = std::min(size_t(64), plaintext.size() - i);
+            
+            for (size_t j = 0; j < chunk_size; j++) {
+                ciphertext.push_back(plaintext[i + j] ^ keystream[j]);
+            }
+        }
+        return ciphertext;
+    }
+
+    std::vector&lt;uint8_t&gt; decrypt(const std::vector&lt;uint8_t&gt;& ciphertext) {
+        return encrypt(ciphertext); // XOR is symmetric
+    }
+};</code></pre>
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="csharp">
+                                    <div class="code-wrapper">
+                                        <button class="copy-button" data-clipboard-target="#code-block-csharp">
+                                            <i class="fas fa-copy"></i>
+                                        </button>
+                                        <pre><code class="language-csharp" id="code-block-csharp">using System;
+using System.Linq;
+
+public class ChaCha20
+{
+    private uint[] state = new uint[16];
+
+    public ChaCha20(byte[] key, byte[] nonce)
+    {
+        if (key.Length != 32)
+            throw new ArgumentException("Key must be 32 bytes");
+        if (nonce.Length != 12)
+            throw new ArgumentException("Nonce must be 12 bytes");
+
+        // Constants "expand 32-byte k"
+        state[0] = 0x61707865;
+        state[1] = 0x3320646e;
+        state[2] = 0x79622d32;
+        state[3] = 0x6b206574;
+
+        // Key
+        Buffer.BlockCopy(key, 0, state, 16, 32);
+
+        // Counter
+        state[12] = 0;
+
+        // Nonce
+        Buffer.BlockCopy(nonce, 0, state, 52, 12);
+    }
+
+    private static uint RotL32(uint x, int n) =>
+        (x << n) | (x >> (32 - n));
+
+    private static void QuarterRound(uint[] state, int a, int b, int c, int d)
+    {
+        state[a] += state[b]; state[d] ^= state[a]; state[d] = RotL32(state[d], 16);
+        state[c] += state[d]; state[b] ^= state[c]; state[b] = RotL32(state[b], 12);
+        state[a] += state[b]; state[d] ^= state[a]; state[d] = RotL32(state[d], 8);
+        state[c] += state[d]; state[b] ^= state[c]; state[b] = RotL32(state[b], 7);
+    }
+
+    private byte[] Block(uint counter)
+    {
+        var working = (uint[])state.Clone();
+        working[12] = counter;
+
+        for (int i = 0; i < 10; i++)
+        {
+            // Column rounds
+            QuarterRound(working, 0, 4, 8, 12);
+            QuarterRound(working, 1, 5, 9, 13);
+            QuarterRound(working, 2, 6, 10, 14);
+            QuarterRound(working, 3, 7, 11, 15);
+
+            // Diagonal rounds
+            QuarterRound(working, 0, 5, 10, 15);
+            QuarterRound(working, 1, 6, 11, 12);
+            QuarterRound(working, 2, 7, 8, 13);
+            QuarterRound(working, 3, 4, 9, 14);
+        }
+
+        var output = new byte[64];
+        for (int i = 0; i < 16; i++)
+        {
+            uint value = working[i] + state[i];
+            output[4*i+0] = (byte)(value & 0xff);
+            output[4*i+1] = (byte)((value >> 8) & 0xff);
+            output[4*i+2] = (byte)((value >> 16) & 0xff);
+            output[4*i+3] = (byte)((value >> 24) & 0xff);
+        }
+        return output;
+    }
+
+    public byte[] Encrypt(byte[] plaintext)
+    {
+        var ciphertext = new byte[plaintext.Length];
+        uint counter = 0;
+
+        for (int i = 0; i < plaintext.Length; i += 64)
+        {
+            var keystream = Block(counter++);
+            int chunk_size = Math.Min(64, plaintext.Length - i);
+            
+            for (int j = 0; j < chunk_size; j++)
+            {
+                ciphertext[i + j] = (byte)(plaintext[i + j] ^ keystream[j]);
+            }
+        }
+        return ciphertext;
+    }
+
+    public byte[] Decrypt(byte[] ciphertext) =>
+        Encrypt(ciphertext); // XOR is symmetric
+}</code></pre>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="algorithm-section">
+                        <h2>Complexity Analysis</h2>
+                        <table class="complexity-table">
+                            <tr>
+                                <th>Operation</th>
+                                <th>Time Complexity</th>
+                                <th>Space Complexity</th>
+                            </tr>
+                            <tr>
+                                <td>Encryption/Decryption</td>
+                                <td>O(n)</td>
+                                <td>O(1)</td>
+                            </tr>
+                            <tr>
+                                <td>Block Generation</td>
+                                <td>O(1)</td>
+                                <td>O(1)</td>
+                            </tr>
+                        </table>
+                        <p class="mt-3">The complexity is linear in the size of the input because ChaCha20 needs to process each byte of the input exactly once. The block generation itself is constant time as it always performs exactly 20 rounds of operations on a fixed-size state.</p>
+                    </section>
+
+                    <section class="algorithm-section">
+                        <h2>Advantages and Disadvantages</h2>
+                        <div class="pros-cons">
+                            <div class="pros">
+                                <h3>Advantages</h3>
+                                <ul>
+                                    <li>High performance on software implementations</li>
+                                    <li>No need for lookup tables (cache-timing resistant)</li>
+                                    <li>Simple design makes analysis easier</li>
+                                    <li>Excellent security margin</li>
+                                    <li>Constant-time operations help prevent timing attacks</li>
+                                </ul>
+                            </div>
+                            <div class="cons">
+                                <h3>Disadvantages</h3>
+                                <ul>
+                                    <li>Less hardware acceleration support compared to AES</li>
+                                    <li>Relatively new compared to other ciphers</li>
+                                    <li>Requires proper nonce management</li>
+                                    <li>No built-in authentication (usually paired with Poly1305)</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+                </article>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer mt-auto py-3">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6 text-center text-md-start">
+                    <p class="mb-0">&copy; 2024 lVoidi. All rights reserved.</p>
+                </div>
+                <div class="col-md-6">
+                    <ul class="social-links list-inline mb-0 text-center text-md-end">
+                        <li class="list-inline-item">
+                            <a href="https://github.com/lVoidi" target="_blank" rel="noopener noreferrer" 
+                               class="social-link" aria-label="GitHub">
+                                <i class="fab fa-github"></i>
+                            </a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="https://linkedin.com/in/roarba" target="_blank" rel="noopener noreferrer" 
+                               class="social-link" aria-label="LinkedIn">
+                                <i class="fab fa-linkedin"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.8/clipboard.min.js"></script>
+    <script src="../../static/js/prism.js"></script>
+    <script src="../../static/js/chacha20-visualization.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const clipboard = new ClipboardJS('.copy-button');
+            
+            clipboard.on('success', (e) => {
+                const button = e.trigger;
+                button.innerHTML = '<i class="fas fa-check"></i>';
+                setTimeout(() => {
+                    button.innerHTML = '<i class="fas fa-copy"></i>';
+                }, 2000);
+                e.clearSelection();
+            });
+        });
+    </script>
+</body>
+</html>

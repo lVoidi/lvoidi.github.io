@@ -117,6 +117,13 @@ const algorithms = {
             description: "A symmetric block cipher algorithm used worldwide",
             complexity: "O(1) per block",
             link: "cryptographic/aes.html"
+        },
+        {
+            name: "ChaCha20",
+            category: "cryptographic",
+            description: "A stream cipher algorithm used worldwide",
+            complexity: "O(1) per block",
+            link: "cryptographic/chacha20.html"
         }
     ],
     machine_learning: [
