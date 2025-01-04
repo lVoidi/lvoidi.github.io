@@ -110,6 +110,13 @@ const algorithms = {
             description: "Public-key cryptosystem for secure data transmission",
             complexity: "Key Generation: O(log N), Encryption: O(log N), Decryption: O(log N)",
             link: "cryptographic/rsa.html"
+        },
+        {
+            name: "AES (Advanced Encryption Standard)",
+            category: "cryptographic",
+            description: "A symmetric block cipher algorithm used worldwide",
+            complexity: "O(1) per block",
+            link: "cryptographic/aes.html"
         }
     ],
     machine_learning: [
