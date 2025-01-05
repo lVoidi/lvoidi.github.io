@@ -687,6 +687,146 @@ the principles of decentralization and the power of anonymous contribution to so
                 </div>
             </section>
 
+            <section id="proof-of-work">
+                <h2>Proof-of-Work</h2>
+
+                <div class="example-box">
+                    <h4>Consensus Mechanism</h4>
+                    <p>
+                        Proof-of-Work (PoW) is Bitcoin's solution to establishing consensus in a trustless, 
+                        distributed system. It requires participants (miners) to expend computational resources 
+                        to create valid blocks, making it economically costly to attempt to modify the blockchain's 
+                        history.
+                    </p>
+                </div>
+
+                <div class="example-box" style="background: rgba(69, 69, 69, 0.1); border-left-color: #7382cc;">
+                    <h4>Technical Implementation</h4>
+                    <ul>
+                        <li><strong>Block Structure:</strong>
+                            <p>
+                                Each block contains:
+                            </p>
+                            <ul>
+                                <li>Version number</li>
+                                <li>Previous block hash</li>
+                                <li>Merkle root of transactions</li>
+                                <li>Timestamp</li>
+                                <li>Target difficulty</li>
+                                <li>Nonce</li>
+                            </ul>
+                        </li>
+                        <li><strong>Mining Process:</strong>
+                            <p>
+                                Miners must find a nonce that, when combined with the block header, produces a hash 
+                                below the target difficulty. This process is:
+                            </p>
+                            <ul>
+                                <li>Computationally intensive to produce</li>
+                                <li>Trivial to verify</li>
+                                <li>Adjustable in difficulty</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="code-note">
+                    <h4>Block Header Example</h4>
+                    <pre><code class="language-json">{
+    "version": 1,
+    "previousblockhash": "000000000019d6689c085ae165831e934ff763ae46a2a6c172b3f1b60a8ce26f",
+    "merkleroot": "4a5e1e4baab89f3a32518a88c31bc87f618f76673e2cc77ab2127b7afdeda33b",
+    "time": 1231006505,
+    "bits": "1d00ffff",
+    "nonce": 2083236893
+}</code></pre>
+                </div>
+
+                <div class="example-box" style="background: rgba(163, 103, 252, 0.1); border-left-color: #a367fc;">
+                    <h4>Difficulty Adjustment</h4>
+                    <p>
+                        Bitcoin automatically adjusts the mining difficulty every 2,016 blocks (approximately two weeks) 
+                        to maintain an average block time of 10 minutes. This adjustment:
+                    </p>
+                    <ul>
+                        <li><strong>Calculation:</strong>
+                            <p>
+                                New Target = Old Target * (Actual Time / Expected Time)
+                            </p>
+                        </li>
+                        <li><strong>Constraints:</strong>
+                            <p>
+                                The adjustment is limited to a factor of 4 in either direction to prevent extreme 
+                                changes. The difficulty can never go below the minimum set in the code.
+                            </p>
+                        </li>
+                        <li><strong>Purpose:</strong>
+                            <p>
+                                This mechanism ensures the network maintains a steady block production rate regardless 
+                                of changes in total mining power.
+                            </p>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="info-note">
+                    <h4>Security Properties</h4>
+                    <p>
+                        Proof-of-Work provides several key security guarantees:
+                    </p>
+                    <ul>
+                        <li><strong>51% Attack Resistance:</strong> 
+                            <p>
+                                An attacker would need to control more than 50% of the network's total computing 
+                                power to reliably modify transaction history.
+                            </p>
+                        </li>
+                        <li><strong>Immutability:</strong>
+                            <p>
+                                Each block builds upon previous blocks, making it exponentially harder to modify 
+                                older transactions.
+                            </p>
+                        </li>
+                        <li><strong>Decentralization:</strong>
+                            <p>
+                                Anyone can participate in mining by committing computational resources, preventing 
+                                centralized control.
+                            </p>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="example-box">
+                    <h4>Energy Considerations</h4>
+                    <p>
+                        The energy consumption of Bitcoin mining is often debated. While significant, it serves 
+                        several purposes:
+                    </p>
+                    <ul>
+                        <li>Secures the network against attacks</li>
+                        <li>Provides a fair distribution mechanism for new coins</li>
+                        <li>Creates real-world cost for attempting to manipulate the system</li>
+                        <li>Incentivizes use of cheap, often stranded or renewable energy sources</li>
+                    </ul>
+                    <p>
+                        The energy cost effectively transforms electrical power into digital security, creating 
+                        what some call "proof of work as stored energy."
+                    </p>
+                </div>
+
+                <div class="code-note">
+                    <h4>Mining Algorithm (Simplified)</h4>
+                    <pre><code class="language-python">def mine_block(block_header, target):
+    nonce = 0
+    while True:
+        block_header.nonce = nonce
+        block_hash = sha256(sha256(block_header))
+        if block_hash < target:
+            return nonce
+        nonce += 1</code></pre>
+                </div>
+            </section>
+
             <!-- Would you like me to continue with more sections? -->
 
         </article>
