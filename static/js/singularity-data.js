@@ -11,6 +11,17 @@ const SINGULARITY_POSTS = [
         category: "blockchain"
     },
     {
+        id: "bitcoin-whitepaper",
+        title: "The Bitcoin Whitepaper",
+        description: "A detailed analysis of the Bitcoin whitepaper by Satoshi Nakamoto, exploring the concept of a decentralized digital currency.",
+        image: "../static/img/singularity/bitcoin.png",
+        tags: ["Blockchain", "Cryptography", "Bitcoin"],
+        readTime: 10,
+        date: "2025-01-02",
+        author: "Rodrigo Arce",
+        category: "blockchain"
+    },
+    {
         id: "attention-is-all-you-need",
         title: "Attention Is All You Need",
         description: "I review the paper 'Attention Is All You Need' by Vaswani et al. and explain the transformer architecture.",
