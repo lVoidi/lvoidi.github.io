@@ -827,6 +827,640 @@ the principles of decentralization and the power of anonymous contribution to so
                 </div>
             </section>
 
+            <section id="network">
+                <h2>Network Architecture</h2>
+
+                <div class="example-box">
+                    <h4>Peer-to-Peer Design</h4>
+                    <p>
+                        Bitcoin operates on a decentralized peer-to-peer network where each node participates in 
+                        maintaining and validating the blockchain. This design eliminates single points of failure 
+                        and ensures no central authority can control the system.
+                    </p>
+                </div>
+
+                <div class="example-box" style="background: rgba(69, 69, 69, 0.1); border-left-color: #7382cc;">
+                    <h4>Network Node Types</h4>
+                    <ul>
+                        <li><strong>Full Nodes:</strong>
+                            <p>
+                                Download and verify the entire blockchain. They:
+                            </p>
+                            <ul>
+                                <li>Maintain a complete copy of the blockchain</li>
+                                <li>Verify all transactions and blocks</li>
+                                <li>Relay transactions and blocks to peers</li>
+                                <li>Serve blockchain data to other nodes</li>
+                            </ul>
+                        </li>
+                        <li><strong>Mining Nodes:</strong>
+                            <p>
+                                Full nodes that also compete to create new blocks. Additional functions:
+                            </p>
+                            <ul>
+                                <li>Collect and verify pending transactions</li>
+                                <li>Assemble candidate blocks</li>
+                                <li>Perform proof-of-work calculations</li>
+                                <li>Broadcast newly mined blocks</li>
+                            </ul>
+                        </li>
+                        <li><strong>Light Clients (SPV Nodes):</strong>
+                            <p>
+                                Simplified Payment Verification nodes that:
+                            </p>
+                            <ul>
+                                <li>Only download block headers</li>
+                                <li>Verify transactions using merkle proofs</li>
+                                <li>Rely on full nodes for complete validation</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="example-box" style="background: rgba(163, 103, 252, 0.1); border-left-color: #a367fc;">
+                    <h4>Network Protocol</h4>
+                    <ul>
+                        <li><strong>Node Discovery:</strong>
+                            <p>
+                                New nodes find peers through:
+                            </p>
+                            <ul>
+                                <li>DNS seeds - hardcoded domain names</li>
+                                <li>Node address sharing between peers</li>
+                                <li>Manual peer configuration</li>
+                            </ul>
+                        </li>
+                        <li><strong>Message Types:</strong>
+                            <p>
+                                Key protocol messages include:
+                            </p>
+                            <ul>
+                                <li>VERSION: Handshake initiation</li>
+                                <li>INV: Announce transactions/blocks</li>
+                                <li>GETDATA: Request specific items</li>
+                                <li>BLOCK: Complete block data</li>
+                                <li>TX: Transaction data</li>
+                                <li>MEMPOOL: Request pending transactions</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="code-note">
+                    <h4>Network Message Structure</h4>
+                    <pre><code class="language-cpp">struct NetworkMessage {
+    // Header
+    uint32_t magic;       // Network identifier
+    char command[12];     // Command name
+    uint32_t length;      // Payload length
+    uint32_t checksum;    // First 4 bytes of SHA256(SHA256(payload))
+    
+    // Payload
+    unsigned char payload[];
+};</code></pre>
+                </div>
+
+                <div class="info-note">
+                    <h4>Network Security</h4>
+                    <p>
+                        Bitcoin's network implements several security measures:
+                    </p>
+                    <ul>
+                        <li><strong>Transaction Propagation:</strong>
+                            <p>
+                                Transactions are flooded to all nodes, making censorship difficult.
+                            </p>
+                        </li>
+                        <li><strong>Block Propagation:</strong>
+                            <p>
+                                New blocks are rapidly shared to maintain consensus.
+                            </p>
+                        </li>
+                        <li><strong>DoS Protection:</strong>
+                            <p>
+                                Nodes implement rate limiting, banning, and other protections against 
+                                denial-of-service attacks.
+                            </p>
+                        </li>
+                        <li><strong>Fork Resolution:</strong>
+                            <p>
+                                Nodes always follow the chain with the most accumulated proof-of-work.
+                            </p>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="example-box">
+                    <h4>Network Challenges</h4>
+                    <p>
+                        The Bitcoin network faces several ongoing challenges:
+                    </p>
+                    <ul>
+                        <li><strong>Scalability:</strong>
+                            <p>
+                                Balancing network traffic with block size and transaction throughput.
+                            </p>
+                        </li>
+                        <li><strong>Latency:</strong>
+                            <p>
+                                Block propagation time affects mining decentralization and fork rates.
+                            </p>
+                        </li>
+                        <li><strong>Eclipse Attacks:</strong>
+                            <p>
+                                Preventing malicious nodes from isolating honest nodes from the network.
+                            </p>
+                        </li>
+                        <li><strong>Network Partitioning:</strong>
+                            <p>
+                                Maintaining consensus when network splits occur.
+                            </p>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="code-note">
+                    <h4>Node Connection Example</h4>
+                    <pre><code class="language-python">def connect_to_network():
+    # Find peers through DNS seeds
+    peers = dns_seed_lookup()
+    
+    for peer in peers:
+        # Establish connection
+        socket = connect(peer)
+        
+        # Send version message
+        send_version(socket)
+        
+        # Wait for verack
+        if receive_verack(socket):
+            # Begin normal operation
+            start_message_handler(socket)</code></pre>
+                </div>
+            </section>
+
+            <section id="incentive">
+                <h2>Network Incentives</h2>
+
+                <div class="example-box">
+                    <h4>Economic Model</h4>
+                    <p>
+                        Bitcoin's incentive structure is carefully designed to align the interests of all participants 
+                        with the network's security and stability. This creates a self-sustaining system where 
+                        rational economic behavior reinforces network security.
+                    </p>
+                </div>
+
+                <div class="example-box" style="background: rgba(69, 69, 69, 0.1); border-left-color: #7382cc;">
+                    <h4>Mining Rewards</h4>
+                    <ul>
+                        <li><strong>Block Reward:</strong>
+                            <p>
+                                The primary incentive for miners consists of:
+                            </p>
+                            <ul>
+                                <li>New coins created with each block (block subsidy)</li>
+                                <li>Started at 50 BTC per block</li>
+                                <li>Halves every 210,000 blocks (approximately 4 years)</li>
+                                <li>Current reward: 6.25 BTC per block (as of 2024)</li>
+                                <li>Will eventually reach 0 BTC around year 2140</li>
+                            </ul>
+                        </li>
+                        <li><strong>Transaction Fees:</strong>
+                            <p>
+                                Secondary incentive mechanism:
+                            </p>
+                            <ul>
+                                <li>Voluntary fees paid by transaction senders</li>
+                                <li>Become more important as block reward decreases</li>
+                                <li>Market-based fee determination</li>
+                                <li>Prioritizes transactions during high demand</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="example-box" style="background: rgba(163, 103, 252, 0.1); border-left-color: #a367fc;">
+                    <h4>Game Theory</h4>
+                    <ul>
+                        <li><strong>Honest Mining:</strong>
+                            <p>
+                                Miners are incentivized to:
+                            </p>
+                            <ul>
+                                <li>Follow protocol rules to avoid rejected blocks</li>
+                                <li>Include valid transactions to collect fees</li>
+                                <li>Protect network security to maintain Bitcoin's value</li>
+                                <li>Invest in efficient mining equipment</li>
+                            </ul>
+                        </li>
+                        <li><strong>Network Effects:</strong>
+                            <p>
+                                As the network grows:
+                            </p>
+                            <ul>
+                                <li>Bitcoin becomes more valuable</li>
+                                <li>Mining rewards increase in fiat terms</li>
+                                <li>Network security strengthens</li>
+                                <li>Attack costs increase</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="code-note">
+                    <h4>Block Reward Calculation</h4>
+                    <pre><code class="language-python">def calculate_block_reward(block_height):
+    INITIAL_REWARD = 50 * SATOSHIS_PER_BITCOIN
+    HALVING_INTERVAL = 210000
+    
+    halvings = block_height // HALVING_INTERVAL
+    reward = INITIAL_REWARD >> halvings  # Right shift operator for division by 2
+    
+    return reward if reward > 0 else 0</code></pre>
+                </div>
+
+                <div class="info-note">
+                    <h4>Long-term Sustainability</h4>
+                    <p>
+                        The transition from block rewards to transaction fees raises important questions:
+                    </p>
+                    <ul>
+                        <li><strong>Fee Market Development:</strong>
+                            <p>
+                                As block rewards decrease, will transaction fees provide sufficient incentive?
+                            </p>
+                        </li>
+                        <li><strong>Security Budget:</strong>
+                            <p>
+                                How much security is needed and how will it be funded?
+                            </p>
+                        </li>
+                        <li><strong>Mining Decentralization:</strong>
+                            <p>
+                                Will reduced rewards affect mining decentralization?
+                            </p>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="example-box">
+                    <h4>Attack Costs</h4>
+                    <p>
+                        The incentive structure makes attacks economically irrational:
+                    </p>
+                    <ul>
+                        <li><strong>51% Attack:</strong>
+                            <ul>
+                                <li>Requires massive hardware investment</li>
+                                <li>High ongoing electricity costs</li>
+                                <li>Damages Bitcoin value, hurting attacker's investment</li>
+                                <li>Cannot steal coins, only reverse recent transactions</li>
+                            </ul>
+                        </li>
+                        <li><strong>Selfish Mining:</strong>
+                            <ul>
+                                <li>Theoretically possible but practically difficult</li>
+                                <li>Requires significant hash power</li>
+                                <li>Risk of losing blocks if detected</li>
+                                <li>Network can adapt to counter the strategy</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="code-note">
+                    <h4>Mining Revenue Example</h4>
+                    <pre><code class="language-javascript">{
+    "block_height": 800000,
+    "block_reward": 6.25,
+    "total_fees": 0.12345678,
+    "total_revenue_btc": 6.37345678,
+    "btc_price_usd": 50000,
+    "revenue_usd": 318672.839,
+    "mining_cost_usd": 250000,
+    "profit_usd": 68672.839
+}</code></pre>
+                </div>
+            </section>
+
+            <section id="privacy">
+                <h2>Privacy Model</h2>
+
+                <div class="example-box">
+                    <h4>Traditional vs Bitcoin Privacy</h4>
+                    <p>
+                        Bitcoin implements a different privacy model from traditional banking. While traditional 
+                        banks achieve privacy by limiting access to information, Bitcoin makes all transactions 
+                        publicly visible but keeps the real-world identities pseudonymous.
+                    </p>
+                </div>
+
+                <div class="example-box" style="background: rgba(69, 69, 69, 0.1); border-left-color: #7382cc;">
+                    <h4>Pseudonymity</h4>
+                    <ul>
+                        <li><strong>Public Key Privacy:</strong>
+                            <p>
+                                Bitcoin addresses function as pseudonyms:
+                            </p>
+                            <ul>
+                                <li>Generated from public keys</li>
+                                <li>No inherent link to real-world identity</li>
+                                <li>Can create new addresses for each transaction</li>
+                                <li>One-time use recommended for maximum privacy</li>
+                            </ul>
+                        </li>
+                        <li><strong>Transaction Flow:</strong>
+                            <p>
+                                While all transactions are public, their context remains private:
+                            </p>
+                            <ul>
+                                <li>Who owns specific addresses</li>
+                                <li>Purpose of transactions</li>
+                                <li>Relationship between participants</li>
+                                <li>Total holdings of individuals</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="example-box" style="background: rgba(163, 103, 252, 0.1); border-left-color: #a367fc;">
+                    <h4>Privacy Challenges</h4>
+                    <ul>
+                        <li><strong>Chain Analysis:</strong>
+                            <p>
+                                Advanced techniques can reveal patterns:
+                            </p>
+                            <ul>
+                                <li>Transaction graph analysis</li>
+                                <li>Clustering of addresses</li>
+                                <li>Common-input-ownership heuristic</li>
+                                <li>Change address identification</li>
+                            </ul>
+                        </li>
+                        <li><strong>Identity Linking:</strong>
+                            <p>
+                                Real-world identity can be exposed through:
+                            </p>
+                            <ul>
+                                <li>KYC/AML requirements at exchanges</li>
+                                <li>Merchant payment information</li>
+                                <li>IP address monitoring</li>
+                                <li>Poor privacy practices</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="code-note">
+                    <h4>Address Generation Example</h4>
+                    <pre><code class="language-python">def create_new_address(private_key):
+    # Generate public key from private key
+    public_key = generate_public_key(private_key)
+    
+    # Generate address from public key
+    sha256_hash = sha256(public_key)
+    ripemd160_hash = ripemd160(sha256_hash)
+    
+    # Add version byte and checksum
+    version_hash = add_version_byte(ripemd160_hash)
+    checksum = double_sha256(version_hash)[:4]
+    
+    # Combine and encode in base58
+    binary_address = version_hash + checksum
+    return base58_encode(binary_address)</code></pre>
+                </div>
+
+                <div class="info-note">
+                    <h4>Privacy Enhancement Techniques</h4>
+                    <p>
+                        Users can employ several methods to enhance privacy:
+                    </p>
+                    <ul>
+                        <li><strong>Address Management:</strong>
+                            <ul>
+                                <li>Use new addresses for each transaction</li>
+                                <li>Avoid address reuse</li>
+                                <li>Implement HD wallets for better key management</li>
+                            </ul>
+                        </li>
+                        <li><strong>Transaction Techniques:</strong>
+                            <ul>
+                                <li>CoinJoin transactions</li>
+                                <li>Pay-to-EndPoint (P2EP)</li>
+                                <li>Avoid merge transactions</li>
+                                <li>Use privacy-focused wallets</li>
+                            </ul>
+                        </li>
+                        <li><strong>Network Privacy:</strong>
+                            <ul>
+                                <li>Use Tor or VPN</li>
+                                <li>Run full nodes</li>
+                                <li>Avoid SPV wallets when possible</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="example-box">
+                    <h4>Future Privacy Developments</h4>
+                    <p>
+                        Several proposals aim to improve Bitcoin's privacy:
+                    </p>
+                    <ul>
+                        <li><strong>Taproot:</strong>
+                            <p>
+                                Improves script privacy and makes different types of transactions look identical.
+                            </p>
+                        </li>
+                        <li><strong>Schnorr Signatures:</strong>
+                            <p>
+                                Enables more efficient multi-signature transactions and signature aggregation.
+                            </p>
+                        </li>
+                        <li><strong>Lightning Network:</strong>
+                            <p>
+                                Off-chain transactions provide additional privacy benefits by not recording all 
+                                transactions on the public blockchain.
+                            </p>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="code-note">
+                    <h4>CoinJoin Transaction Structure</h4>
+                    <pre><code class="language-json">{
+    "txid": "abc123...",
+    "inputs": [
+        {"address": "1A1zP1...", "value": 1.2},
+        {"address": "1B2zP2...", "value": 0.8},
+        {"address": "1C3zP3...", "value": 0.5}
+    ],
+    "outputs": [
+        {"address": "1X1zX1...", "value": 0.5},
+        {"address": "1Y2zY2...", "value": 0.5},
+        {"address": "1Z3zZ3...", "value": 0.5}
+    ]
+}</code></pre>
+                </div>
+            </section>
+
+            <section id="quantum-computing">
+                <h2>Quantum Computing and Bitcoin</h2>
+
+                <div class="example-box">
+                    <h4>The Quantum Threat</h4>
+                    <p>
+                        Quantum computing poses potential challenges to Bitcoin's cryptographic foundations. 
+                        The primary concern is that sufficiently powerful quantum computers could break the 
+                        elliptic curve cryptography (ECDSA) that Bitcoin uses for securing transactions.
+                    </p>
+                </div>
+
+                <div class="example-box" style="background: rgba(69, 69, 69, 0.1); border-left-color: #7382cc;">
+                    <h4>Vulnerable Components</h4>
+                    <ul>
+                        <li><strong>Public Key Cryptography:</strong>
+                            <p>
+                                Bitcoin's vulnerable areas to quantum attacks:
+                            </p>
+                            <ul>
+                                <li>ECDSA signatures used in transactions</li>
+                                <li>Public key to private key derivation</li>
+                                <li>Address generation algorithms</li>
+                                <li>Reused addresses with exposed public keys</li>
+                            </ul>
+                        </li>
+                        <li><strong>Shor's Algorithm:</strong>
+                            <p>
+                                This quantum algorithm could theoretically:
+                            </p>
+                            <ul>
+                                <li>Break ECDSA in polynomial time</li>
+                                <li>Derive private keys from public keys</li>
+                                <li>Compromise digital signatures</li>
+                                <li>Enable theft from exposed addresses</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="example-box" style="background: rgba(163, 103, 252, 0.1); border-left-color: #a367fc;">
+                    <h4>Current Protections</h4>
+                    <ul>
+                        <li><strong>Hash Functions:</strong>
+                            <p>
+                                Bitcoin's SHA-256 hashing remains relatively quantum-resistant:
+                            </p>
+                            <ul>
+                                <li>Grover's algorithm only provides quadratic speedup</li>
+                                <li>Mining would remain secure with doubled hash length</li>
+                                <li>Address hashing provides additional protection layer</li>
+                            </ul>
+                        </li>
+                        <li><strong>Address Protection:</strong>
+                            <p>
+                                Current address scheme provides some quantum resistance:
+                            </p>
+                            <ul>
+                                <li>Public keys hidden behind RIPEMD160(SHA256()) hash until spent</li>
+                                <li>One-time use addresses recommended</li>
+                                <li>P2PKH and P2SH provide additional protection layers</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="info-note">
+                    <h4>Quantum-Resistant Development</h4>
+                    <p>
+                        Bitcoin developers are working on several approaches to enhance quantum resistance:
+                    </p>
+                    <ul>
+                        <li><strong>Post-Quantum Cryptography:</strong>
+                            <ul>
+                                <li>Researching lattice-based cryptography</li>
+                                <li>Investigating hash-based signatures</li>
+                                <li>Exploring multivariate cryptography</li>
+                                <li>Developing quantum-resistant signature schemes</li>
+                            </ul>
+                        </li>
+                        <li><strong>Protocol Upgrades:</strong>
+                            <ul>
+                                <li>Taproot upgrade improves script privacy</li>
+                                <li>Schnorr signatures enable future enhancements</li>
+                                <li>Preparation for quantum-resistant signature schemes</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="example-box">
+                    <h4>Timeline and Risk Assessment</h4>
+                    <p>
+                        Current estimates and considerations:
+                    </p>
+                    <ul>
+                        <li><strong>Quantum Development Timeline:</strong>
+                            <ul>
+                                <li>Error-corrected quantum computers still years away</li>
+                                <li>Millions of qubits needed for effective attacks</li>
+                                <li>Current largest quantum computers have less than 1000 qubits</li>
+                                <li>Technical challenges in scaling quantum systems</li>
+                            </ul>
+                        </li>
+                        <li><strong>Transition Window:</strong>
+                            <ul>
+                                <li>Early warning signs would be visible</li>
+                                <li>Soft fork can implement quantum-resistant features</li>
+                                <li>Users can migrate to new address types</li>
+                                <li>Gradual transition possible without disruption</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="code-note">
+                    <h4>Example of Quantum-Resistant Address Structure</h4>
+                    <pre><code class="language-python">def create_quantum_resistant_address(message, quantum_signature):
+    # Example of potential future quantum-resistant structure
+    class QuantumResistantAddress:
+        def __init__(self):
+            self.lattice_params = generate_lattice_parameters()
+            self.hash_tree = create_hash_tree()
+            
+        def sign_transaction(self, message):
+            # Use quantum-resistant signature scheme
+            signature = quantum_signature_algorithm(
+                message,
+                self.lattice_params
+            )
+            return signature
+            
+        def verify_signature(self, message, signature):
+            # Verify using post-quantum cryptography
+            return verify_quantum_signature(
+                message,
+                signature,
+                self.lattice_params
+            )</code></pre>
+                </div>
+
+                <div class="info-note">
+                    <h4>Recommendations for Users</h4>
+                    <p>
+                        Current best practices for quantum resistance:
+                    </p>
+                    <ul>
+                        <li>Never reuse addresses</li>
+                        <li>Move funds from addresses that have exposed public keys</li>
+                        <li>Use P2PKH or newer address types</li>
+                        <li>Keep software updated for security improvements</li>
+                        <li>Follow developments in quantum-resistant upgrades</li>
+                    </ul>
+                </div>
+            </section>
+
             <!-- Would you like me to continue with more sections? -->
 
         </article>
