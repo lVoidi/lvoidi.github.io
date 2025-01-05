@@ -569,6 +569,124 @@ the principles of decentralization and the power of anonymous contribution to so
                 </div>
             </section>
 
+            <section id="transactions">
+                <h2>Transactions</h2>
+
+                <div class="example-box">
+                    <h4>Digital Currency Fundamentals</h4>
+                    <p>
+                        Bitcoin defines an electronic coin as a chain of digital signatures. Each owner transfers 
+                        coins by digitally signing a hash of the previous transaction and the public key of the 
+                        next owner, adding these to the end of the coin's transaction history.
+                    </p>
+                </div>
+
+                <div class="example-box" style="background: rgba(69, 69, 69, 0.1); border-left-color: #7382cc;">
+                    <h4>Transaction Structure</h4>
+                    <ul>
+                        <li><strong>Inputs:</strong>
+                            <p>
+                                References to previous transactions where coins were received. Each input includes:
+                            </p>
+                            <ul>
+                                <li>Transaction ID of the source</li>
+                                <li>Index of the output being spent</li>
+                                <li>Digital signature proving ownership</li>
+                                <li>Public key of the current owner</li>
+                            </ul>
+                        </li>
+                        <li><strong>Outputs:</strong>
+                            <p>
+                                New ownership assignments, each containing:
+                            </p>
+                            <ul>
+                                <li>Amount of bitcoins</li>
+                                <li>Locking script (usually containing recipient's public key hash)</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="code-note">
+                    <h4>Basic Transaction Example</h4>
+                    <pre><code class="language-json">{
+    "txid": "7c4025380945f9d5c731...",
+    "inputs": [{
+        "previous_tx": "2d7a9f0c...",
+        "index": 0,
+        "signature": "304502...",
+        "pubkey": "04a97c..."
+    }],
+    "outputs": [{
+        "value": 5000000000,
+        "script": "OP_DUP OP_HASH160 404371705fa9bd789a2..."
+    }]
+}</code></pre>
+                </div>
+
+                <div class="example-box" style="background: rgba(163, 103, 252, 0.1); border-left-color: #a367fc;">
+                    <h4>Digital Signatures</h4>
+                    <p>
+                        Bitcoin uses the Elliptic Curve Digital Signature Algorithm (ECDSA) with the secp256k1 curve 
+                        for cryptographic signatures. This provides:
+                    </p>
+                    <ul>
+                        <li><strong>Authentication:</strong>
+                            <p>
+                                Proves that the owner of a private key authorized the transaction, as only they 
+                                could have produced a valid signature.
+                            </p>
+                        </li>
+                        <li><strong>Non-repudiation:</strong>
+                            <p>
+                                Once signed, a transaction cannot be denied by its creator, as the signature 
+                                mathematically proves their authorization.
+                            </p>
+                        </li>
+                        <li><strong>Integrity:</strong>
+                            <p>
+                                Any modification to the transaction after signing would invalidate the signature, 
+                                ensuring transactions cannot be tampered with.
+                            </p>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="info-note">
+                    <h4>The Double-Spending Problem</h4>
+                    <p>
+                        The core challenge that Bitcoin solves is preventing an owner from spending the same coins 
+                        multiple times. Traditional solutions relied on a trusted central authority to verify 
+                        transactions. Bitcoin innovates by:
+                    </p>
+                    <ul>
+                        <li>Making all transactions publicly announced</li>
+                        <li>Creating a system for participants to agree on a single history</li>
+                        <li>Requiring computational work to add transactions to the history</li>
+                        <li>Making the history practically immutable once confirmed</li>
+                    </ul>
+                </div>
+
+                <div class="example-box">
+                    <h4>Transaction Verification</h4>
+                    <p>
+                        When a node receives a transaction, it performs several checks:
+                    </p>
+                    <ul>
+                        <li>Syntax and data structure are correct</li>
+                        <li>Neither inputs or outputs are empty</li>
+                        <li>Transaction size is less than MAX_BLOCK_SIZE</li>
+                        <li>Each output value is within allowed range</li>
+                        <li>Input values are valid (exist and haven't been spent)</li>
+                        <li>Digital signatures are valid for each input</li>
+                    </ul>
+                    <p>
+                        Only if all these checks pass will the transaction be considered valid and relayed to 
+                        other nodes in the network.
+                    </p>
+                </div>
+            </section>
+
             <!-- Would you like me to continue with more sections? -->
 
         </article>
