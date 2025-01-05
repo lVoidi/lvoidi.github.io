@@ -22,6 +22,12 @@
     <meta name="twitter:title" content="Bitcoin: A Peer-to-Peer Electronic Cash System - lVoidi Portal">
     <meta name="twitter:description" content="An analysis of Satoshi Nakamoto's revolutionary Bitcoin whitepaper and its impact on digital currency">
     <meta name="twitter:image" content="../../static/img/singularity/bitcoin-whitepaper.jpg">
+
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    
+
 </head>
 <body>
     <!-- Reading Progress Bar -->
@@ -1461,7 +1467,265 @@ the principles of decentralization and the power of anonymous contribution to so
                 </div>
             </section>
 
-            <!-- Would you like me to continue with more sections? -->
+            <section id="calculations">
+                <h2>Mathematical Analysis</h2>
+
+                <div class="example-box">
+                    <h4>Probability Calculations</h4>
+                    <p>
+                        The Bitcoin whitepaper includes crucial probability calculations that demonstrate the 
+                        system's security against various attack scenarios, particularly the probability of 
+                        an attacker catching up with the honest chain.
+                    </p>
+                </div>
+
+                <div class="example-box" style="background: rgba(69, 69, 69, 0.1); border-left-color: #7382cc;">
+                    <h4>Attack Probability Model</h4>
+                    <ul>
+                        <li><strong>Binomial Random Walk:</strong>
+                            <p>
+                                The race between honest chain and attacker follows a Binomial Random Walk where:
+                            </p>
+                            <ul>
+                                <li>p = probability honest node finds next block</li>
+                                <li>q = probability attacker finds next block</li>
+                                <li>q<sub>z</sub> = probability attacker catches up from z blocks behind</li>
+                            </ul>
+                        </li>
+                        <li><strong>Mathematical Formula:</strong>
+                            <div class="math-block">
+                                \[
+                                q_z = \begin{cases}
+                                1 & \text{if } p \leq q \\
+                                (q/p)^z & \text{if } p > q
+                                \end{cases}
+                                \]
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="example-box" style="background: rgba(163, 103, 252, 0.1); border-left-color: #a367fc;">
+                    <h4>Practical Security Analysis</h4>
+                    <ul>
+                        <li><strong>Confirmation Waiting Time:</strong>
+                            <p>
+                                Given a desired probability of success for the attacker (P):
+                            </p>
+                            <pre><code class="language-python">def calculate_confirmations_needed(attacker_hashpower, desired_security):
+    p = 1 - attacker_hashpower
+    q = attacker_hashpower
+    z = 0
+    
+    while (q/p)**z > desired_security:
+        z += 1
+    
+    return z</code></pre>
+                        </li>
+                        <li><strong>Example Calculations:</strong>
+                            <div class="table-responsive">
+                                <table class="table table-dark table-hover">
+                                    <thead class="table-header">
+                                        <tr>
+                                            <th scope="col">Attacker Hashpower</th>
+                                            <th scope="col">Confirmations Needed</th>
+                                            <th scope="col">Success Probability</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>10%</td>
+                                            <td>6</td>
+                                            <td>0.0001%</td>
+                                        </tr>
+                                        <tr>
+                                            <td>25%</td>
+                                            <td>10</td>
+                                            <td>0.001%</td>
+                                        </tr>
+                                        <tr>
+                                            <td>30%</td>
+                                            <td>15</td>
+                                            <td>0.0001%</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="info-note">
+                    <h4>Network Performance Calculations</h4>
+                    <p>
+                        Key metrics for network operation:
+                    </p>
+                    <ul>
+                        <li><strong>Block Generation:</strong>
+                            <ul>
+                                <li>Target: 10 minutes average</li>
+                                <li>Poisson distribution of block times</li>
+                                <li>Difficulty adjustment every 2016 blocks</li>
+                            </ul>
+                        </li>
+                        <li><strong>Transaction Capacity:</strong>
+                            <ul>
+                                <li>Maximum block size: 1MB (base)</li>
+                                <li>Average transaction size: ~250 bytes</li>
+                                <li>Theoretical maximum: ~7 transactions per second</li>
+                                <li>SegWit effective increase: up to 4x</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="example-box">
+                    <h4>Economic Calculations</h4>
+                    <p>
+                        Long-term economic model calculations:
+                    </p>
+                    <pre><code class="language-python">def calculate_total_supply(current_block):
+    INITIAL_REWARD = 50 * SATOSHIS_PER_BITCOIN
+    HALVING_INTERVAL = 210000
+    
+    total_supply = 0
+    reward = INITIAL_REWARD
+    
+    for height in range(0, current_block):
+        if height % HALVING_INTERVAL == 0 and height > 0:
+            reward //= 2
+        total_supply += reward
+    
+    return total_supply / SATOSHIS_PER_BITCOIN</code></pre>
+                </div>
+
+                <div class="info-note">
+                    <h4>Key Mathematical Properties</h4>
+                    <ul>
+                        <li><strong>Total Supply:</strong>
+                            <p>
+                                Maximum of 20,999,999.9769 BTC due to geometric series:
+                            </p>
+                            <div class="math-block">
+                                \[
+                                \text{Total Supply} = 50 \cdot \sum_{n=0}^{\infty} \frac{210,000}{2^n} \approx 21 \text{ million BTC}
+                                \]
+                            </div>
+                        </li>
+                        <li><strong>Difficulty Adjustment:</strong>
+                            <p>
+                                Retarget formula:
+                            </p>
+                            <div class="math-block">
+                                \[
+                                \text{new_target} = \text{old_target} \cdot \frac{\text{actual_timespan}}{\text{target_timespan}}
+                                \]
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+
+            <section id="conclusion">
+                <h2>Conclusion</h2>
+
+                <div class="example-box">
+                    <h4>Bitcoin's Core Innovation</h4>
+                    <p>
+                        Satoshi Nakamoto's Bitcoin whitepaper introduced a revolutionary solution to the 
+                        double-spending problem through a decentralized peer-to-peer network using proof-of-work 
+                        to record a public history of transactions. This innovation has spawned an entire industry 
+                        and fundamentally changed how we think about money and trust in digital systems.
+                    </p>
+                </div>
+
+                <div class="example-box" style="background: rgba(69, 69, 69, 0.1); border-left-color: #7382cc;">
+                    <h4>Key Achievements</h4>
+                    <ul>
+                        <li><strong>Technical Innovation:</strong>
+                            <ul>
+                                <li>First solution to double-spending without trusted third party</li>
+                                <li>Practical implementation of decentralized consensus</li>
+                                <li>Novel combination of cryptography, game theory, and networking</li>
+                                <li>Creation of digital scarcity</li>
+                            </ul>
+                        </li>
+                        <li><strong>Economic Impact:</strong>
+                            <ul>
+                                <li>Introduction of programmable money</li>
+                                <li>Creation of new asset class</li>
+                                <li>Inspiration for blockchain technology</li>
+                                <li>Catalyst for financial innovation</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="info-note">
+                    <h4>Future Considerations</h4>
+                    <p>
+                        As Bitcoin continues to evolve, several key areas remain important:
+                    </p>
+                    <ul>
+                        <li><strong>Scalability:</strong>
+                            <p>
+                                Development of Layer 2 solutions like Lightning Network to handle increased 
+                                transaction volume while maintaining decentralization.
+                            </p>
+                        </li>
+                        <li><strong>Privacy:</strong>
+                            <p>
+                                Implementation of privacy-enhancing technologies while maintaining the 
+                                network's transparency and security.
+                            </p>
+                        </li>
+                        <li><strong>Security:</strong>
+                            <p>
+                                Continued development of quantum-resistant cryptography and other security 
+                                measures to protect against future threats.
+                            </p>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="example-box" style="background: rgba(163, 103, 252, 0.1); border-left-color: #a367fc;">
+                    <h4>Historical Significance</h4>
+                    <p>
+                        The Bitcoin whitepaper represents a watershed moment in the history of technology, 
+                        finance, and social organization. Its impact extends beyond cryptocurrency to 
+                        influence discussions about:
+                    </p>
+                    <ul>
+                        <li>The nature of money and value</li>
+                        <li>Trust in digital systems</li>
+                        <li>Decentralization of power</li>
+                        <li>Financial inclusion and sovereignty</li>
+                        <li>The role of technology in society</li>
+                    </ul>
+                </div>
+
+                <div class="code-note">
+                    <h4>Whitepaper's Closing Statement</h4>
+                    <pre><code class="language-text">"We have proposed a system for electronic transactions without relying on trust... 
+The network is robust in its unstructured simplicity."
+- Satoshi Nakamoto, Bitcoin Whitepaper</code></pre>
+                </div>
+
+                <div class="info-note">
+                    <h4>Legacy</h4>
+                    <p>
+                        Bitcoin continues to demonstrate the robustness of its design through:
+                    </p>
+                    <ul>
+                        <li>Uninterrupted operation since 2009</li>
+                        <li>Growing network of participants</li>
+                        <li>Resistance to attacks and manipulation</li>
+                        <li>Inspiration for technological innovation</li>
+                        <li>Catalyst for global financial change</li>
+                    </ul>
+                </div>
+            </section>
+
 
         </article>
     </main>
@@ -1504,5 +1768,6 @@ the principles of decentralization and the power of anonymous contribution to so
             document.querySelector('.reading-progress-bar').style.width = scrolled + '%';
         });
     </script>
+
 </body>
 </html> 
