@@ -866,4 +866,27 @@ pre[class*="language-"] {
 
 .array-element.placing {
     fill: #8be9fd;
+}
+
+/* Add these to your existing CSS */
+.bucket-element {
+    fill: var(--accent-color);
+    opacity: 0.8;
+    transition: all 0.3s ease;
+}
+
+.array-element.current-digit {
+    fill: #ff79c6;
+}
+
+.bucket-label {
+    fill: var(--text-color);
+    font-size: 12px;
+    font-family: 'JetBrains Mono', monospace;
+}
+
+.buckets text {
+    fill: var(--text-color);
+    font-size: 14px;
+    font-weight: bold;
 } 
