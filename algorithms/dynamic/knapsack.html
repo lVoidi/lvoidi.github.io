@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>0/1 Knapsack - lVoidi Portal</title>
+    
+    <!-- CSS imports -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../static/css/style.css" rel="stylesheet">
+    <link href="../../static/css/algorithms.css" rel="stylesheet">
+    <link href="../../static/css/algorithm-page.css" rel="stylesheet">
+    <link href="../../static/css/prism.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+
+    <!-- Icon -->
+    <link rel="icon" href="../../static/img/icon.png" type="image/x-icon">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="../../index.html">lVoidi</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="../index.html">Algorithms</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../../singularity/index.html">Technological Singularity</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../../void/index.html">The Pit of Endless Void</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container py-5">
+        <div class="row">
+            <!-- Sidebar -->
+            <div class="col-md-3">
+                <div class="algorithm-info-card">
+                    <h3>Quick Info</h3>
+                    <div class="info-item">
+                        <span class="info-label">Category:</span>
+                        <span class="info-value">Dynamic Programming</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Time Complexity:</span>
+                        <span class="info-value">O(nW)</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Space Complexity:</span>
+                        <span class="info-value">O(nW)</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Optimal:</span>
+                        <span class="info-value">Yes</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">In-Place:</span>
+                        <span class="info-value">No</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Content -->
+            <div class="col-md-9">
+                <article class="algorithm-content">
+                    <h1>0/1 Knapsack Problem</h1>
+                    <div class="algorithm-metadata">
+                        <span class="category-tag">Dynamic Programming</span>
+                        <span class="difficulty-tag">Medium</span>
+                    </div>
+
+                    <section class="algorithm-section">
+                        <h2>Description</h2>
+                        <p>The 0/1 Knapsack problem is a classic optimization problem where given a set of items, each with a weight and value, we need to determine which items to include in a collection so that the total weight is less than or equal to a given limit and the total value is as large as possible. The term "0/1" indicates that we must either take an item completely (1) or leave it (0).</p>
+                    </section>
+
+                    <section class="algorithm-section history-box">
+                        <h2>History</h2>
+                        <div class="history-content">
+                            <img src="../../static/img/knapsack.jpg" alt="Knapsack Problem Concept" class="history-image">
+                            <p>
+                                The Knapsack problem was first studied in the early 20th century and has since become one of the most researched problems in combinatorial optimization. Its name comes from the problem faced by someone who is constrained by a fixed-size knapsack and must fill it with the most valuable items.
+                                
+                                The problem has found applications in resource allocation, cargo loading, cutting stock problems, and even in cryptography. The dynamic programming solution was developed in the 1950s and remains the most practical approach for moderate-sized instances.
+                            </p>
+                        </div>
+                    </section>
+
+                    <section class="algorithm-section">
+                        <h2>How It Works</h2>
+                        <ol>
+                            <li><strong>Initialize DP Table:</strong>
+                                <ul>
+                                    <li>Create a table of size (n+1) × (W+1)</li>
+                                    <li>n is number of items, W is capacity</li>
+                                    <li>Initialize first row and column with zeros</li>
+                                </ul>
+                            </li>
+                            <li><strong>Fill DP Table:</strong>
+                                <ul>
+                                    <li>For each item i and weight w</li>
+                                    <li>If item can fit (weight ≤ w), choose maximum of:</li>
+                                    <li>- Including item: value[i] + dp[i-1][w-weight[i]]</li>
+                                    <li>- Excluding item: dp[i-1][w]</li>
+                                </ul>
+                            </li>
+                            <li><strong>Trace Solution:</strong>
+                                <ul>
+                                    <li>Start from bottom-right cell</li>
+                                    <li>Compare with cell above to determine if item was included</li>
+                                    <li>Move to previous state based on decision</li>
+                                </ul>
+                            </li>
+                        </ol>
+                    </section>
+
+                    <section class="algorithm-section">
+                        <h2>Visualization</h2>
+                        <div class="visualization-container">
+                            <div class="visualization-controls">
+                                <button class="btn btn-primary" id="startVisualization">
+                                    <i class="fas fa-play"></i> Start
+                                </button>
+                                <button class="btn btn-secondary" id="resetVisualization">
+                                    <i class="fas fa-redo"></i> Reset
+                                </button>
+                                <div class="speed-control">
+                                    <label>Speed:</label>
+                                    <input type="range" id="speedControl" min="1" max="5" value="3">
+                                </div>
+                            </div>
+                            <div class="visualization-area">
+                                <svg id="knapsackVisualization" width="100%" height="400"></svg>
+                            </div>
+                            <div class="visualization-steps">
+                                <p id="currentStep">Click Start to begin visualization</p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="algorithm-section">
+                        <h2>Implementation</h2>
+                        <div class="implementation-tabs">
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" data-bs-toggle="tab" href="#python">Python</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-bs-toggle="tab" href="#cpp">C++</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-bs-toggle="tab" href="#csharp">C#</a>
+                                </li>
+                            </ul>
+                            <div class="tab-content">
+                                <!-- Python Implementation -->
+                                <div class="tab-pane fade show active" id="python">
+                                    <div class="code-wrapper">
+                                        <button class="copy-button" data-clipboard-target="#python-code">
+                                            <i class="fas fa-copy"></i>
+                                        </button>
+                                        <pre><code class="language-python" id="python-code">
+def knapsack(values, weights, capacity):
+    n = len(values)
+    dp = [[0 for _ in range(capacity + 1)] for _ in range(n + 1)]
+    
+    # Fill dp table
+    for i in range(1, n + 1):
+        for w in range(capacity + 1):
+            if weights[i-1] <= w:
+                dp[i][w] = max(
+                    values[i-1] + dp[i-1][w-weights[i-1]],  # Include item
+                    dp[i-1][w]                              # Exclude item
+                )
+            else:
+                dp[i][w] = dp[i-1][w]  # Can't include item
+    
+    # Find selected items
+    selected = []
+    i, w = n, capacity
+    while i > 0 and w > 0:
+        if dp[i][w] != dp[i-1][w]:
+            selected.append(i-1)
+            w -= weights[i-1]
+        i -= 1
+    
+    return dp[n][capacity], selected[::-1]
+
+# Example usage
+if __name__ == "__main__":
+    values = [3, 4, 5, 6]
+    weights = [2, 3, 4, 5]
+    capacity = 10
+    
+    max_value, selected_items = knapsack(values, weights, capacity)
+    print(f"Maximum value: {max_value}")
+    print(f"Selected items: {selected_items}")</code></pre>
+                                    </div>
+                                </div>
+                                
+                                <!-- C++ Implementation -->
+                                <div class="tab-pane fade" id="cpp">
+                                    <div class="code-wrapper">
+                                        <button class="copy-button" data-clipboard-target="#cpp-code">
+                                            <i class="fas fa-copy"></i>
+                                        </button>
+                                        <pre><code class="language-cpp" id="cpp-code">
+#include &lt;vector&gt;
+#include &lt;iostream&gt;
+
+struct KnapsackResult {
+    int maxValue;
+    std::vector<int> selectedItems;
+};
+
+KnapsackResult knapsack(const std::vector<int>& values, 
+                       const std::vector<int>& weights, 
+                       int capacity) {
+    int n = values.size();
+    std::vector<std::vector<int>> dp(n + 1, 
+        std::vector<int>(capacity + 1, 0));
+    
+    // Fill dp table
+    for(int i = 1; i <= n; i++) {
+        for(int w = 0; w <= capacity; w++) {
+            if(weights[i-1] <= w) {
+                dp[i][w] = std::max(
+                    values[i-1] + dp[i-1][w-weights[i-1]],
+                    dp[i-1][w]
+                );
+            } else {
+                dp[i][w] = dp[i-1][w];
+            }
+        }
+    }
+    
+    // Find selected items
+    std::vector<int> selected;
+    int i = n, w = capacity;
+    while(i > 0 && w > 0) {
+        if(dp[i][w] != dp[i-1][w]) {
+            selected.push_back(i-1);
+            w -= weights[i-1];
+        }
+        i--;
+    }
+    
+    // Reverse to get items in original order
+    std::reverse(selected.begin(), selected.end());
+    
+    return {dp[n][capacity], selected};
+}
+
+int main() {
+    std::vector<int> values = {3, 4, 5, 6};
+    std::vector<int> weights = {2, 3, 4, 5};
+    int capacity = 10;
+    
+    auto result = knapsack(values, weights, capacity);
+    
+    std::cout << "Maximum value: " << result.maxValue << std::endl;
+    std::cout << "Selected items: ";
+    for(int item : result.selectedItems) {
+        std::cout << item << " ";
+    }
+    std::cout << std::endl;
+    
+    return 0;
+}</code></pre>
+                                    </div>
+                                </div>
+                                
+                                <!-- C# Implementation -->
+                                <div class="tab-pane fade" id="csharp">
+                                    <div class="code-wrapper">
+                                        <button class="copy-button" data-clipboard-target="#csharp-code">
+                                            <i class="fas fa-copy"></i>
+                                        </button>
+                                        <pre><code class="language-csharp" id="csharp-code">
+using System;
+using System.Collections.Generic;
+
+public class KnapsackSolver {
+    public class KnapsackResult {
+        public int MaxValue { get; set; }
+        public List&lt;int&gt; SelectedItems { get; set; }
+    }
+    
+    public static KnapsackResult Solve(int[] values, int[] weights, int capacity) {
+        int n = values.Length;
+        int[,] dp = new int[n + 1, capacity + 1];
+        
+        // Fill dp table
+        for(int i = 1; i <= n; i++) {
+            for(int w = 0; w <= capacity; w++) {
+                if(weights[i-1] <= w) {
+                    dp[i,w] = Math.Max(
+                        values[i-1] + dp[i-1,w-weights[i-1]],
+                        dp[i-1,w]
+                    );
+                } else {
+                    dp[i,w] = dp[i-1,w];
+                }
+            }
+        }
+        
+        // Find selected items
+        List&lt;int&gt; selected = new List&lt;int&gt;();
+        int currentWeight = capacity;
+        for(int i = n; i > 0 && currentWeight > 0; i--) {
+            if(dp[i,currentWeight] != dp[i-1,currentWeight]) {
+                selected.Add(i-1);
+                currentWeight -= weights[i-1];
+            }
+        }
+        
+        // Reverse to get items in original order
+        selected.Reverse();
+        
+        return new KnapsackResult {
+            MaxValue = dp[n,capacity],
+            SelectedItems = selected
+        };
+    }
+    
+    public static void Main(string[] args) {
+        int[] values = {3, 4, 5, 6};
+        int[] weights = {2, 3, 4, 5};
+        int capacity = 10;
+        
+        var result = Solve(values, weights, capacity);
+        
+        Console.WriteLine($"Maximum value: {result.MaxValue}");
+        Console.WriteLine($"Selected items: {string.Join(" ", result.SelectedItems)}");
+    }
+}
+</code></pre>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </article>
+            </div>
+        </div>
+    </main>
+
+    <!-- JavaScript imports -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.10/clipboard.min.js"></script>
+    <script src="../../static/js/script.js"></script>
+    <script src="../../static/js/algorithms.js"></script>
+    <script src="../../static/js/algorithm-page.js"></script>
+    <script src="../../static/js/prism.js"></script>
+</body>
+</html>
