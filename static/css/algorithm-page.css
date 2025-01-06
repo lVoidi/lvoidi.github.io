@@ -889,4 +889,28 @@ pre[class*="language-"] {
     fill: var(--text-color);
     font-size: 14px;
     font-weight: bold;
+}
+
+/* Add these to your existing CSS */
+.bucket-container {
+    fill: var(--background-color);
+    stroke: var(--accent-color);
+    stroke-width: 2;
+    opacity: 0.3;
+}
+
+.bucket-element {
+    fill: var(--accent-color);
+    opacity: 0.8;
+    transition: all 0.3s ease;
+}
+
+.array-element.distributing {
+    fill: #ff79c6;
+}
+
+.bucket-label {
+    fill: var(--text-color);
+    font-size: 12px;
+    font-family: 'JetBrains Mono', monospace;
 } 
