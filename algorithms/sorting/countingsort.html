@@ -197,7 +197,108 @@ def counting_sort(arr):
                                         </code></pre>
                                     </div>
                                 </div>
-                                <!-- Add C++ and JavaScript implementations -->
+                                <div class="tab-pane fade" id="cpp">
+                                    <div class="code-wrapper">
+                                        <button class="copy-button" data-clipboard-target="#cpp-code">
+                                            <i class="fas fa-copy"></i>
+                                        </button>
+                                        <pre><code class="language-cpp" id="cpp-code">
+void countingSort(vector<int>& arr) {
+    // Find range of array elements
+    int max_val = *max_element(arr.begin(), arr.end());
+    int min_val = *min_element(arr.begin(), arr.end());
+    int range = max_val - min_val + 1;
+    
+    // Create count array and output array
+    vector<int> count(range), output(arr.size());
+    
+    // Store count of each element
+    for(int i = 0; i < arr.size(); i++)
+        count[arr[i] - min_val]++;
+        
+    // Modify count array to store actual positions
+    for(int i = 1; i < count.size(); i++)
+        count[i] += count[i-1];
+        
+    // Build output array
+    for(int i = arr.size()-1; i >= 0; i--) {
+        output[count[arr[i] - min_val] - 1] = arr[i];
+        count[arr[i] - min_val]--;
+    }
+    
+    // Copy output array to input array
+    for(int i = 0; i < arr.size(); i++)
+        arr[i] = output[i];
+}
+
+// Example usage
+int main() {
+    vector<int> arr = {64, 34, 25, 12, 22, 11, 90};
+    cout << "Original array: ";
+    for(int num : arr) cout << num << " ";
+    
+    countingSort(arr);
+    
+    cout << "\nSorted array: ";
+    for(int num : arr) cout << num << " ";
+    return 0;
+}
+                                        </code></pre>
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="csharp">
+                                    <div class="code-wrapper">
+                                        <button class="copy-button" data-clipboard-target="#csharp-code">
+                                            <i class="fas fa-copy"></i>
+                                        </button>
+                                        <pre><code class="language-csharp" id="csharp-code">
+public class CountingSort
+{
+    public static void Sort(int[] arr)
+    {
+        // Find range of array elements
+        int maxVal = arr.Max();
+        int minVal = arr.Min();
+        int range = maxVal - minVal + 1;
+        
+        // Create count array and output array
+        int[] count = new int[range];
+        int[] output = new int[arr.Length];
+        
+        // Store count of each element
+        for(int i = 0; i < arr.Length; i++)
+            count[arr[i] - minVal]++;
+            
+        // Modify count array to store actual positions
+        for(int i = 1; i < count.Length; i++)
+            count[i] += count[i - 1];
+            
+        // Build output array
+        for(int i = arr.Length - 1; i >= 0; i--)
+        {
+            output[count[arr[i] - minVal] - 1] = arr[i];
+            count[arr[i] - minVal]--;
+        }
+        
+        // Copy output array to input array
+        for(int i = 0; i < arr.Length; i++)
+            arr[i] = output[i];
+    }
+    
+    // Example usage
+    public static void Main(string[] args)
+    {
+        int[] arr = { 64, 34, 25, 12, 22, 11, 90 };
+        Console.WriteLine("Original array: " + string.Join(" ", arr));
+        
+        Sort(arr);
+        
+        Console.WriteLine("Sorted array: " + string.Join(" ", arr));
+    }
+}
+                                        </code></pre>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </section>
