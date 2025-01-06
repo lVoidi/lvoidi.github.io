@@ -913,4 +913,53 @@ pre[class*="language-"] {
     fill: var(--text-color);
     font-size: 12px;
     font-family: 'JetBrains Mono', monospace;
+}
+
+/* Add these LCS-specific styles to your existing CSS */
+.dp-grid {
+    font-family: 'JetBrains Mono', monospace;
+}
+
+.dp-cell {
+    fill: var(--background-color);
+    stroke: var(--accent-color);
+    stroke-width: 1;
+    transition: all 0.3s ease;
+}
+
+.dp-cell.current {
+    fill: #6272a4;
+}
+
+.dp-cell.comparing {
+    fill: #ff79c6;
+}
+
+.dp-cell.match {
+    fill: #50fa7b;
+}
+
+.dp-cell.no-match {
+    fill: #ff5555;
+}
+
+.dp-cell.path {
+    fill: #bd93f9;
+}
+
+.sequence-label {
+    fill: var(--text-color);
+    font-size: 14px;
+}
+
+.cell-text {
+    fill: var(--text-color);
+    font-size: 12px;
+    user-select: none;
+}
+
+.visualization-steps {
+    margin-top: 20px;
+    text-align: center;
+    font-family: 'JetBrains Mono', monospace;
 } 
