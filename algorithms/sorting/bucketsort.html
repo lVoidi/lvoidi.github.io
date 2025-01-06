@@ -217,43 +217,49 @@ if __name__ == "__main__":
                                             <i class="fas fa-copy"></i>
                                         </button>
                                         <pre><code class="language-cpp" id="cpp-code">
-void bucketSort(vector<double>& arr) {
+#include &lt;vector&gt;
+#include &lt;algorithm&gt;
+#include &lt;iostream&gt;
+
+void bucketSort(std::vector&lt;float&gt;& arr) {
     int n = arr.size();
-    if (n == 0) return;
     
-    // Create buckets
-    vector<vector<double>> buckets(n);
+    // Create n empty buckets
+    std::vector&lt;std::vector&lt;float&gt;&gt; buckets(n);
     
-    // Distribute elements into buckets
+    // Put array elements into different buckets
     for(int i = 0; i < n; i++) {
-        int bucket_idx = n * arr[i];
-        buckets[bucket_idx].push_back(arr[i]);
+        int bucketIndex = n * arr[i];
+        buckets[bucketIndex].push_back(arr[i]);
     }
     
     // Sort individual buckets
-    for(auto& bucket : buckets) {
-        sort(bucket.begin(), bucket.end());
+    for(int i = 0; i < n; i++) {
+        std::sort(buckets[i].begin(), buckets[i].end());
     }
     
-    // Concatenate all buckets into final result
+    // Concatenate all buckets into arr[]
     int index = 0;
-    for(const auto& bucket : buckets) {
-        for(double num : bucket) {
-            arr[index++] = num;
+    for(int i = 0; i < n; i++) {
+        for(float j : buckets[i]) {
+            arr[index++] = j;
         }
     }
 }
 
-// Example usage
 int main() {
-    vector<double> arr = {0.78, 0.17, 0.39, 0.26, 0.72, 0.94, 0.21, 0.12, 0.23, 0.68};
-    cout << "Original array: ";
-    for(double num : arr) cout << num << " ";
+    std::vector&lt;float&gt; arr = {0.897, 0.565, 0.656, 0.1234, 0.665, 0.3434};
+    
+    std::cout << "Original array: ";
+    for(float i : arr) std::cout << i << " ";
+    std::cout << std::endl;
     
     bucketSort(arr);
     
-    cout << "\nSorted array: ";
-    for(double num : arr) cout << num << " ";
+    std::cout << "Sorted array: ";
+    for(float i : arr) std::cout << i << " ";
+    std::cout << std::endl;
+    
     return 0;
 }
                                         </code></pre>
@@ -267,48 +273,45 @@ int main() {
                                             <i class="fas fa-copy"></i>
                                         </button>
                                         <pre><code class="language-csharp" id="csharp-code">
-public class BucketSort
-{
-    public static void Sort(double[] arr)
-    {
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+public class BucketSort {
+    public static void Sort(float[] arr) {
         int n = arr.Length;
-        if (n == 0) return;
         
-        // Create buckets
-        List<double>[] buckets = new List<double>[n];
-        for(int i = 0; i < n; i++)
-            buckets[i] = new List<double>();
+        // Create n empty buckets
+        List&lt;float&gt;[] buckets = new List&lt;float&gt;[n];
+        for(int i = 0; i < n; i++) {
+            buckets[i] = new List&lt;float&gt;();
+        }
         
-        // Distribute elements into buckets
-        for(int i = 0; i < n; i++)
-        {
-            int bucket_idx = (int)(n * arr[i]);
-            buckets[bucket_idx].Add(arr[i]);
+        // Put array elements into different buckets
+        for(int i = 0; i < n; i++) {
+            int bucketIndex = (int)(n * arr[i]);
+            buckets[bucketIndex].Add(arr[i]);
         }
         
         // Sort individual buckets
-        for(int i = 0; i < n; i++)
+        for(int i = 0; i < n; i++) {
             buckets[i].Sort();
+        }
         
-        // Concatenate all buckets into final result
+        // Concatenate all buckets into arr[]
         int index = 0;
-        for(int i = 0; i < n; i++)
-        {
-            foreach(double num in buckets[i])
-            {
-                arr[index++] = num;
+        for(int i = 0; i < n; i++) {
+            foreach(float item in buckets[i]) {
+                arr[index++] = item;
             }
         }
     }
     
-    // Example usage
-    public static void Main(string[] args)
-    {
-        double[] arr = { 0.78, 0.17, 0.39, 0.26, 0.72, 0.94, 0.21, 0.12, 0.23, 0.68 };
+    public static void Main(string[] args) {
+        float[] arr = { 0.897f, 0.565f, 0.656f, 0.1234f, 0.665f, 0.3434f };
+        
         Console.WriteLine("Original array: " + string.Join(" ", arr));
-        
         Sort(arr);
-        
         Console.WriteLine("Sorted array: " + string.Join(" ", arr));
     }
 }
