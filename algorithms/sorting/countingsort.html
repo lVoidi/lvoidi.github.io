@@ -337,6 +337,50 @@ public class CountingSort
                             </div>
                         </div>
                     </section>
+
+                    <section class="algorithm-section">
+                        <h2>Complexity Analysis</h2>
+                        <div class="complexity-analysis">
+                            <table class="complexity-table">
+                                <tr>
+                                    <th>Case</th>
+                                    <th>Time Complexity</th>
+                                    <th>Description</th>
+                                </tr>
+                                <tr>
+                                    <td>Best Case</td>
+                                    <td>Ω(n + k)</td>
+                                    <td>Always performs same operations regardless of input arrangement</td>
+                                </tr>
+                                <tr>
+                                    <td>Average Case</td>
+                                    <td>Θ(n + k)</td>
+                                    <td>Requires two passes through array of size n and one through count array of size k</td>
+                                </tr>
+                                <tr>
+                                    <td>Worst Case</td>
+                                    <td>O(n + k)</td>
+                                    <td>Same as other cases due to non-comparative nature</td>
+                                </tr>
+                                <tr>
+                                    <td>Space Complexity</td>
+                                    <td>O(k)</td>
+                                    <td>Requires count array of size k and output array of size n</td>
+                                </tr>
+                            </table>
+
+                            <div class="complexity-notes">
+                                <h3>Notes:</h3>
+                                <ul>
+                                    <li><strong>n</strong> - Number of elements in the input array</li>
+                                    <li><strong>k</strong> - Range of input (max - min + 1)</li>
+                                    <li>Linear time complexity when k = O(n)</li>
+                                    <li>Not efficient when k >> n (range much larger than array size)</li>
+                                    <li>Performance independent of input distribution</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
                 </article>
             </div>
         </div>
