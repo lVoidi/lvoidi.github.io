@@ -21,6 +21,13 @@ const algorithms = {
             description: "A comparison-based sorting algorithm using a binary heap data structure",
             complexity: "O(n log n)",
             link: "sorting/heapsort.html"
+        },
+        {
+            name: "Shell Sort",
+            category: "sorting",
+            description: "An in-place comparison sort that generalizes insertion sort by allowing the exchange of items that are far apart",
+            complexity: "O(n log n) to O(n²) depending on gap sequence",
+            link: "sorting/shellsort.html"
         }
     ],
     searching: [
