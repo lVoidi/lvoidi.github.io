@@ -35,6 +35,13 @@ const algorithms = {
             description: "A non-comparison based sorting algorithm that works by counting the frequency of elements",
             complexity: "O(n + k) where k is the range of input",
             link: "sorting/countingsort.html"
+        },
+        {
+            name: "Radix Sort",
+            category: "sorting",
+            description: "A non-comparative sorting algorithm that sorts integers by processing each digit position, from least significant to most significant",
+            complexity: "O(d * (n + k)) where d is the number of digits and k is the range of each digit",
+            link: "sorting/radixsort.html"
         }
     ],
     searching: [
