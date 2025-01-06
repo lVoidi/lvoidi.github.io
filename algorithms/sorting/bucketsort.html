@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bucket Sort - lVoidi Portal</title>
+    
+    <!-- CSS imports -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../static/css/style.css" rel="stylesheet">
+    <link href="../../static/css/algorithms.css" rel="stylesheet">
+    <link href="../../static/css/algorithm-page.css" rel="stylesheet">
+    <link href="../../static/css/prism.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+
+    <!-- Icon -->
+    <link rel="icon" href="../../static/img/icon.png" type="image/x-icon">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="../../index.html">lVoidi</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="../index.html">Algorithms</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../../singularity/index.html">Technological Singularity</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../../void/index.html">The Pit of Endless Void</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container py-5">
+        <div class="row">
+            <!-- Sidebar -->
+            <div class="col-md-3">
+                <div class="algorithm-info-card">
+                    <h3>Quick Info</h3>
+                    <div class="info-item">
+                        <span class="info-label">Category:</span>
+                        <span class="info-value">Sorting</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Time Complexity:</span>
+                        <span class="info-value">Best: Ω(n+k)<br>Average: Θ(n+k)<br>Worst: O(n²)</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Space Complexity:</span>
+                        <span class="info-value">O(n+k)</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Stable:</span>
+                        <span class="info-value">Yes</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">In-Place:</span>
+                        <span class="info-value">No</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Content -->
+            <div class="col-md-9">
+                <article class="algorithm-content">
+                    <h1>Bucket Sort</h1>
+                    <div class="algorithm-metadata">
+                        <span class="category-tag">Sorting</span>
+                        <span class="difficulty-tag">Medium</span>
+                    </div>
+
+                    <section class="algorithm-section">
+                        <h2>Description</h2>
+                        <p>Bucket Sort is a distribution-based sorting algorithm that works by distributing elements into a number of buckets, sorting these buckets individually, and then concatenating them to get the final sorted array. It's particularly efficient when input is uniformly distributed over a range.</p>
+                    </section>
+
+                    <section class="algorithm-section history-box">
+                        <h2>History</h2>
+                        <div class="history-content">
+                            <img src="../../static/img/bucket-sort.jpg" alt="Bucket Sort Concept" class="history-image">
+                            <p>
+                                Bucket Sort emerged from the need to sort large datasets with uniformly distributed values. Its origins can be traced back to the early days of computer science when researchers were exploring ways to sort data more efficiently than comparison-based methods.
+                                
+                                The algorithm gained prominence in the 1950s alongside other distribution-based sorting methods. Its ability to achieve linear time complexity under certain conditions made it particularly valuable for specific applications, such as sorting floating-point numbers between 0 and 1.
+                                
+                                The concept of bucket sort has influenced various modern sorting techniques and is still used in specialized applications where data distribution is known to be roughly uniform.
+                            </p>
+                        </div>
+                    </section>
+
+
+                    <section class="algorithm-section">
+                        <h2>How It Works</h2>
+                        <ol>
+                            <li><strong>Create Buckets:</strong>
+                                <ul>
+                                    <li>Initialize array of empty buckets</li>
+                                    <li>Number of buckets based on input range</li>
+                                </ul>
+                            </li>
+                            <li><strong>Distribute:</strong>
+                                <ul>
+                                    <li>Scatter elements into appropriate buckets</li>
+                                    <li>Based on element values</li>
+                                </ul>
+                            </li>
+                            <li><strong>Sort Buckets:</strong>
+                                <ul>
+                                    <li>Sort elements within each bucket</li>
+                                    <li>Can use any sorting algorithm</li>
+                                </ul>
+                            </li>
+                            <li><strong>Gather:</strong>
+                                <ul>
+                                    <li>Concatenate all buckets in order</li>
+                                    <li>Results in final sorted array</li>
+                                </ul>
+                            </li>
+                        </ol>
+                    </section>
+
+                    <section class="algorithm-section">
+                        <h2>Visualization</h2>
+                        <div class="visualization-container">
+                            <div class="visualization-controls">
+                                <button class="btn btn-primary" id="startVisualization">
+                                    <i class="fas fa-play"></i> Start
+                                </button>
+                                <button class="btn btn-secondary" id="resetVisualization">
+                                    <i class="fas fa-redo"></i> Reset
+                                </button>
+                                <div class="speed-control">
+                                    <label>Speed:</label>
+                                    <input type="range" id="speedControl" min="1" max="5" value="3">
+                                </div>
+                            </div>
+                            <div class="visualization-area">
+                                <svg id="bucketSortVisualization" width="100%" height="400"></svg>
+                            </div>
+                            <div class="visualization-steps">
+                                <p id="currentStep">Click Start to begin visualization</p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="algorithm-section">
+                        <h2>Implementation</h2>
+                        <div class="implementation-tabs">
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" data-bs-toggle="tab" href="#python">Python</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-bs-toggle="tab" href="#cpp">C++</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-bs-toggle="tab" href="#csharp">C#</a>
+                                </li>
+                            </ul>
+                            <div class="tab-content">
+                                <!-- Python Implementation -->
+                                <div class="tab-pane fade show active" id="python">
+                                    <div class="code-wrapper">
+                                        <button class="copy-button" data-clipboard-target="#python-code">
+                                            <i class="fas fa-copy"></i>
+                                        </button>
+                                        <pre><code class="language-python" id="python-code">
+def bucket_sort(arr):
+    # Find range of input array
+    if len(arr) == 0:
+        return arr
+        
+    # Create buckets
+    n_buckets = len(arr)
+    buckets = [[] for _ in range(n_buckets)]
+    
+    # Distribute elements into buckets
+    for num in arr:
+        # Assuming numbers are in range [0,1)
+        bucket_idx = int(n_buckets * num)
+        buckets[bucket_idx].append(num)
+    
+    # Sort individual buckets
+    for bucket in buckets:
+        bucket.sort()
+    
+    # Concatenate all buckets into final result
+    result = []
+    for bucket in buckets:
+        result.extend(bucket)
+    
+    return result
+
+# Example usage
+if __name__ == "__main__":
+    arr = [0.78, 0.17, 0.39, 0.26, 0.72, 0.94, 0.21, 0.12, 0.23, 0.68]
+    print("Original array:", arr)
+    sorted_arr = bucket_sort(arr)
+    print("Sorted array:", sorted_arr)
+                                        </code></pre>
+                                    </div>
+                                </div>
+                                
+                                <!-- C++ Implementation -->
+                                <div class="tab-pane fade" id="cpp">
+                                    <div class="code-wrapper">
+                                        <button class="copy-button" data-clipboard-target="#cpp-code">
+                                            <i class="fas fa-copy"></i>
+                                        </button>
+                                        <pre><code class="language-cpp" id="cpp-code">
+void bucketSort(vector<double>& arr) {
+    int n = arr.size();
+    if (n == 0) return;
+    
+    // Create buckets
+    vector<vector<double>> buckets(n);
+    
+    // Distribute elements into buckets
+    for(int i = 0; i < n; i++) {
+        int bucket_idx = n * arr[i];
+        buckets[bucket_idx].push_back(arr[i]);
+    }
+    
+    // Sort individual buckets
+    for(auto& bucket : buckets) {
+        sort(bucket.begin(), bucket.end());
+    }
+    
+    // Concatenate all buckets into final result
+    int index = 0;
+    for(const auto& bucket : buckets) {
+        for(double num : bucket) {
+            arr[index++] = num;
+        }
+    }
+}
+
+// Example usage
+int main() {
+    vector<double> arr = {0.78, 0.17, 0.39, 0.26, 0.72, 0.94, 0.21, 0.12, 0.23, 0.68};
+    cout << "Original array: ";
+    for(double num : arr) cout << num << " ";
+    
+    bucketSort(arr);
+    
+    cout << "\nSorted array: ";
+    for(double num : arr) cout << num << " ";
+    return 0;
+}
+                                        </code></pre>
+                                    </div>
+                                </div>
+                                
+                                <!-- C# Implementation -->
+                                <div class="tab-pane fade" id="csharp">
+                                    <div class="code-wrapper">
+                                        <button class="copy-button" data-clipboard-target="#csharp-code">
+                                            <i class="fas fa-copy"></i>
+                                        </button>
+                                        <pre><code class="language-csharp" id="csharp-code">
+public class BucketSort
+{
+    public static void Sort(double[] arr)
+    {
+        int n = arr.Length;
+        if (n == 0) return;
+        
+        // Create buckets
+        List<double>[] buckets = new List<double>[n];
+        for(int i = 0; i < n; i++)
+            buckets[i] = new List<double>();
+        
+        // Distribute elements into buckets
+        for(int i = 0; i < n; i++)
+        {
+            int bucket_idx = (int)(n * arr[i]);
+            buckets[bucket_idx].Add(arr[i]);
+        }
+        
+        // Sort individual buckets
+        for(int i = 0; i < n; i++)
+            buckets[i].Sort();
+        
+        // Concatenate all buckets into final result
+        int index = 0;
+        for(int i = 0; i < n; i++)
+        {
+            foreach(double num in buckets[i])
+            {
+                arr[index++] = num;
+            }
+        }
+    }
+    
+    // Example usage
+    public static void Main(string[] args)
+    {
+        double[] arr = { 0.78, 0.17, 0.39, 0.26, 0.72, 0.94, 0.21, 0.12, 0.23, 0.68 };
+        Console.WriteLine("Original array: " + string.Join(" ", arr));
+        
+        Sort(arr);
+        
+        Console.WriteLine("Sorted array: " + string.Join(" ", arr));
+    }
+}
+                                        </code></pre>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="algorithm-section">
+                        <h2>Applications</h2>
+                        <ul>
+                            <li>Sorting uniformly distributed data</li>
+                            <li>Sorting floating-point numbers in range [0,1)</li>
+                            <li>Database operations</li>
+                            <li>External sorting with limited memory</li>
+                            <li>Parallel sorting implementations</li>
+                        </ul>
+                    </section>
+
+                    <section class="algorithm-section">
+                        <h2>Complexity Analysis</h2>
+                        <div class="complexity-analysis">
+                            <table class="complexity-table">
+                                <tr>
+                                    <th>Case</th>
+                                    <th>Time Complexity</th>
+                                    <th>Description</th>
+                                </tr>
+                                <tr>
+                                    <td>Best Case</td>
+                                    <td>Ω(n + k)</td>
+                                    <td>When elements are uniformly distributed across buckets</td>
+                                </tr>
+                                <tr>
+                                    <td>Average Case</td>
+                                    <td>Θ(n + k)</td>
+                                    <td>With uniform distribution and O(1) elements per bucket</td>
+                                </tr>
+                                <tr>
+                                    <td>Worst Case</td>
+                                    <td>O(n²)</td>
+                                    <td>When all elements go to the same bucket</td>
+                                </tr>
+                                <tr>
+                                    <td>Space Complexity</td>
+                                    <td>O(n + k)</td>
+                                    <td>Where k is the number of buckets</td>
+                                </tr>
+                            </table>
+
+                            <div class="complexity-notes">
+                                <h3>Notes:</h3>
+                                <ul>
+                                    <li><strong>n</strong> - Number of elements in the array</li>
+                                    <li><strong>k</strong> - Number of buckets</li>
+                                    <li>Performance heavily depends on input distribution</li>
+                                    <li>Number of buckets affects time-space trade-off</li>
+                                    <li>Individual bucket sorting affects overall complexity</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+                    <section class="algorithm-section">
+                        <h2>Advantages and Disadvantages</h2>
+                        <div class="pros-cons">
+                            <div class="pros">
+                                <h3>Advantages</h3>
+                                <ul>
+                                    <li>Linear time complexity for uniform distribution</li>
+                                    <li>Stable sorting algorithm</li>
+                                    <li>Can be parallelized easily</li>
+                                    <li>Good for floating-point numbers</li>
+                                </ul>
+                            </div>
+                            <div class="cons">
+                                <h3>Disadvantages</h3>
+                                <ul>
+                                    <li>Not in-place sorting</li>
+                                    <li>Requires extra space</li>
+                                    <li>Performance depends on data distribution</li>
+                                    <li>Not suitable for integer sorting</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+                </article>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer mt-auto py-4">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6 text-center text-md-start">
+                    <p class="mb-0">&copy; 2024 lVoidi. All rights reserved.</p>
+                </div>
+                <div class="col-md-6">
+                    <ul class="social-links list-inline mb-0 text-center text-md-end">
+                        <li class="list-inline-item">
+                            <a href="https://github.com/lVoidi" target="_blank" rel="noopener noreferrer" 
+                               class="social-link" aria-label="GitHub">
+                                <i class="fab fa-github"></i>
+                            </a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="https://linkedin.com/in/roarba" target="_blank" rel="noopener noreferrer" 
+                               class="social-link" aria-label="LinkedIn">
+                                <i class="fab fa-linkedin"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.8/clipboard.min.js"></script>
+    <script src="../../static/js/prism.js"></script>
+    <script src="../../static/js/bucketsort-visualization.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const clipboard = new ClipboardJS('.copy-button');
+            
+            clipboard.on('success', (e) => {
+                const button = e.trigger;
+                button.innerHTML = '<i class="fas fa-check"></i>';
+                setTimeout(() => {
+                    button.innerHTML = '<i class="fas fa-copy"></i>';
+                }, 2000);
+                e.clearSelection();
+            });
+        });
+    </script>
+</body>
+</html> 
