@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Longest Common Subsequence - lVoidi Portal</title>
+    
+    <!-- CSS imports -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../static/css/style.css" rel="stylesheet">
+    <link href="../../static/css/algorithms.css" rel="stylesheet">
+    <link href="../../static/css/algorithm-page.css" rel="stylesheet">
+    <link href="../../static/css/prism.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+
+    <!-- Icon -->
+    <link rel="icon" href="../../static/img/icon.png" type="image/x-icon">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="../../index.html">lVoidi</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="../index.html">Algorithms</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../../singularity/index.html">Technological Singularity</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../../void/index.html">The Pit of Endless Void</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container py-5">
+        <div class="row">
+            <!-- Sidebar -->
+            <div class="col-md-3">
+                <div class="algorithm-info-card">
+                    <h3>Quick Info</h3>
+                    <div class="info-item">
+                        <span class="info-label">Category:</span>
+                        <span class="info-value">Dynamic Programming</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Time Complexity:</span>
+                        <span class="info-value">O(mn)</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Space Complexity:</span>
+                        <span class="info-value">O(mn)</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Optimal:</span>
+                        <span class="info-value">Yes</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">In-Place:</span>
+                        <span class="info-value">No</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Content -->
+            <div class="col-md-9">
+                <article class="algorithm-content">
+                    <h1>Longest Common Subsequence</h1>
+                    <div class="algorithm-metadata">
+                        <span class="category-tag">Dynamic Programming</span>
+                        <span class="difficulty-tag">Medium</span>
+                    </div>
+
+                    <section class="algorithm-section">
+                        <h2>Description</h2>
+                        <p>The Longest Common Subsequence (LCS) algorithm finds the longest subsequence common to two sequences. Unlike substrings, subsequences are not required to occupy consecutive positions within the original sequences. It's a classic dynamic programming problem with applications in bioinformatics and file comparison.</p>
+                    </section>
+
+                    <section class="algorithm-section history-box">
+                        <h2>History</h2>
+                        <div class="history-content">
+                            <img src="../../static/img/lcs.jpg" alt="LCS Concept" class="history-image">
+                            <p>
+                                The Longest Common Subsequence problem emerged in the early days of computer science, particularly in the context of computational biology and text comparison. The dynamic programming solution was first formalized in the 1970s.
+                                
+                                The algorithm gained significant importance with the rise of bioinformatics, where it's used to compare DNA sequences and identify evolutionary relationships. It also became fundamental in the development of diff tools for version control systems.
+                                
+                                Today, LCS remains a cornerstone algorithm in sequence comparison, file differencing, and various applications in computational biology.
+                            </p>
+                        </div>
+                    </section>
+
+                    <section class="algorithm-section">
+                        <h2>How It Works</h2>
+                        <ol>
+                            <li><strong>Initialize DP Table:</strong>
+                                <ul>
+                                    <li>Create a table of size (m+1) × (n+1)</li>
+                                    <li>Initialize first row and column with zeros</li>
+                                </ul>
+                            </li>
+                            <li><strong>Fill DP Table:</strong>
+                                <ul>
+                                    <li>Compare characters from both sequences</li>
+                                    <li>If characters match, add 1 to diagonal value</li>
+                                    <li>If not, take maximum of left and top cells</li>
+                                </ul>
+                            </li>
+                            <li><strong>Build Solution:</strong>
+                                <ul>
+                                    <li>Start from bottom-right cell</li>
+                                    <li>Trace back to construct the subsequence</li>
+                                </ul>
+                            </li>
+                        </ol>
+                    </section>
+
+                    <section class="algorithm-section">
+                        <h2>Visualization</h2>
+                        <div class="visualization-container">
+                            <div class="visualization-controls">
+                                <button class="btn btn-primary" id="startVisualization">
+                                    <i class="fas fa-play"></i> Start
+                                </button>
+                                <button class="btn btn-secondary" id="resetVisualization">
+                                    <i class="fas fa-redo"></i> Reset
+                                </button>
+                                <div class="speed-control">
+                                    <label>Speed:</label>
+                                    <input type="range" id="speedControl" min="1" max="5" value="3">
+                                </div>
+                            </div>
+                            <div class="visualization-area">
+                                <svg id="lcsVisualization" width="100%" height="400"></svg>
+                            </div>
+                            <div class="visualization-steps">
+                                <p id="currentStep">Click Start to begin visualization</p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="algorithm-section">
+                        <h2>Implementation</h2>
+                        <div class="implementation-tabs">
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" data-bs-toggle="tab" href="#python">Python</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-bs-toggle="tab" href="#cpp">C++</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-bs-toggle="tab" href="#csharp">C#</a>
+                                </li>
+                            </ul>
+                            <div class="tab-content">
+                                <!-- Python Implementation -->
+                                <div class="tab-pane fade show active" id="python">
+                                    <div class="code-wrapper">
+                                        <button class="copy-button" data-clipboard-target="#python-code">
+                                            <i class="fas fa-copy"></i>
+                                        </button>
+                                        <pre><code class="language-python" id="python-code">
+def lcs(X, Y):
+    m, n = len(X), len(Y)
+    dp = [[0] * (n + 1) for _ in range(m + 1)]
+    
+    # Fill dp table
+    for i in range(1, m + 1):
+        for j in range(1, n + 1):
+            if X[i-1] == Y[j-1]:
+                dp[i][j] = dp[i-1][j-1] + 1
+            else:
+                dp[i][j] = max(dp[i-1][j], dp[i][j-1])
+    
+    # Reconstruct the LCS
+    lcs = []
+    i, j = m, n
+    while i > 0 and j > 0:
+        if X[i-1] == Y[j-1]:
+            lcs.append(X[i-1])
+            i -= 1
+            j -= 1
+        elif dp[i-1][j] > dp[i][j-1]:
+            i -= 1
+        else:
+            j -= 1
+            
+    return ''.join(reversed(lcs))
+
+# Example usage
+if __name__ == "__main__":
+    X = "ABCDGH"
+    Y = "AEDFHR"
+    print(f"LCS of {X} and {Y} is {lcs(X, Y)}")</code></pre>
+                                    </div>
+                                </div>
+                                
+                                <!-- C++ Implementation -->
+                                <div class="tab-pane fade" id="cpp">
+                                    <div class="code-wrapper">
+                                        <button class="copy-button" data-clipboard-target="#cpp-code">
+                                            <i class="fas fa-copy"></i>
+                                        </button>
+                                        <pre><code class="language-cpp" id="cpp-code">
+#include <string>
+#include <vector>
+#include <algorithm>
+#include <iostream>
+
+std::string lcs(const std::string& X, const std::string& Y) {
+    int m = X.length();
+    int n = Y.length();
+    
+    // Create DP table
+    std::vector<std::vector<int>> dp(m + 1, std::vector<int>(n + 1, 0));
+    
+    // Fill dp table
+    for(int i = 1; i <= m; i++) {
+        for(int j = 1; j <= n; j++) {
+            if(X[i-1] == Y[j-1]) {
+                dp[i][j] = dp[i-1][j-1] + 1;
+            } else {
+                dp[i][j] = std::max(dp[i-1][j], dp[i][j-1]);
+            }
+        }
+    }
+    
+    // Reconstruct the LCS
+    std::string lcs;
+    int i = m, j = n;
+    while(i > 0 && j > 0) {
+        if(X[i-1] == Y[j-1]) {
+            lcs = X[i-1] + lcs;
+            i--; j--;
+        } else if(dp[i-1][j] > dp[i][j-1]) {
+            i--;
+        } else {
+            j--;
+        }
+    }
+    
+    return lcs;
+}
+
+int main() {
+    std::string X = "ABCDGH";
+    std::string Y = "AEDFHR";
+    
+    std::cout << "String 1: " << X << std::endl;
+    std::cout << "String 2: " << Y << std::endl;
+    std::cout << "LCS: " << lcs(X, Y) << std::endl;
+    
+    return 0;
+}</code></pre>
+                                    </div>
+                                </div>
+                                
+                                <!-- C# Implementation -->
+                                <div class="tab-pane fade" id="csharp">
+                                    <div class="code-wrapper">
+                                        <button class="copy-button" data-clipboard-target="#csharp-code">
+                                            <i class="fas fa-copy"></i>
+                                        </button>
+                                        <pre><code class="language-csharp" id="csharp-code">
+using System;
+
+public class LCS {
+    public static string FindLCS(string X, string Y) {
+        int m = X.Length;
+        int n = Y.Length;
+        
+        // Create DP table
+        int[,] dp = new int[m + 1, n + 1];
+        
+        // Fill dp table
+        for(int i = 1; i <= m; i++) {
+            for(int j = 1; j <= n; j++) {
+                if(X[i-1] == Y[j-1]) {
+                    dp[i,j] = dp[i-1,j-1] + 1;
+                } else {
+                    dp[i,j] = Math.Max(dp[i-1,j], dp[i,j-1]);
+                }
+            }
+        }
+        
+        // Reconstruct the LCS
+        char[] lcs = new char[dp[m,n]];
+        int index = dp[m,n];
+        int i = m, j = n;
+        
+        while(i > 0 && j > 0) {
+            if(X[i-1] == Y[j-1]) {
+                lcs[--index] = X[i-1];
+                i--; j--;
+            } else if(dp[i-1,j] > dp[i,j-1]) {
+                i--;
+            } else {
+                j--;
+            }
+        }
+        
+        return new string(lcs);
+    }
+    
+    public static void Main(string[] args) {
+        string X = "ABCDGH";
+        string Y = "AEDFHR";
+        
+        Console.WriteLine($"String 1: {X}");
+        Console.WriteLine($"String 2: {Y}");
+        Console.WriteLine($"LCS: {FindLCS(X, Y)}");
+    }
+}</code></pre>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="algorithm-section">
+                        <h2>Applications</h2>
+                        <ul>
+                            <li>DNA sequence alignment in bioinformatics</li>
+                            <li>File difference comparison (diff tools)</li>
+                            <li>Version control systems</li>
+                            <li>Speech recognition</li>
+                            <li>Pattern recognition in time series data</li>
+                        </ul>
+                    </section>
+
+                    <section class="algorithm-section">
+                        <h2>Complexity Analysis</h2>
+                        <div class="complexity-analysis">
+                            <table class="complexity-table">
+                                <tr>
+                                    <th>Case</th>
+                                    <th>Time Complexity</th>
+                                    <th>Description</th>
+                                </tr>
+                                <tr>
+                                    <td>Best Case</td>
+                                    <td>Ω(mn)</td>
+                                    <td>Always needs to fill entire DP table</td>
+                                </tr>
+                                <tr>
+                                    <td>Average Case</td>
+                                    <td>Θ(mn)</td>
+                                    <td>Requires comparing all character pairs</td>
+                                </tr>
+                                <tr>
+                                    <td>Worst Case</td>
+                                    <td>O(mn)</td>
+                                    <td>Same as other cases due to DP approach</td>
+                                </tr>
+                                <tr>
+                                    <td>Space Complexity</td>
+                                    <td>O(mn)</td>
+                                    <td>Requires DP table of size m×n</td>
+                                </tr>
+                            </table>
+
+                            <div class="complexity-notes">
+                                <h3>Notes:</h3>
+                                <ul>
+                                    <li><strong>m</strong> - Length of first sequence</li>
+                                    <li><strong>n</strong> - Length of second sequence</li>
+                                    <li>Space can be optimized to O(min(m,n))</li>
+                                    <li>Time complexity is optimal for the general case</li>
+                                    <li>Performance is independent of sequence content</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="algorithm-section">
+                        <h2>Advantages and Disadvantages</h2>
+                        <div class="pros-cons">
+                            <div class="pros">
+                                <h3>Advantages</h3>
+                                <ul>
+                                    <li>Optimal solution guaranteed</li>
+                                    <li>Works with any sequence type</li>
+                                    <li>Basis for many string algorithms</li>
+                                    <li>Easy to modify for variations</li>
+                                </ul>
+                            </div>
+                            <div class="cons">
+                                <h3>Disadvantages</h3>
+                                <ul>
+                                    <li>Quadratic space complexity</li>
+                                    <li>Not suitable for very long sequences</li>
+                                    <li>Cannot handle multiple sequences efficiently</li>
+                                    <li>No early termination possible</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+                </article>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer mt-auto py-4">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6 text-center text-md-start">
+                    <p class="mb-0">&copy; 2024 lVoidi. All rights reserved.</p>
+                </div>
+                <div class="col-md-6">
+                    <ul class="social-links list-inline mb-0 text-center text-md-end">
+                        <li class="list-inline-item">
+                            <a href="https://github.com/lVoidi" target="_blank" rel="noopener noreferrer" 
+                               class="social-link" aria-label="GitHub">
+                                <i class="fab fa-github"></i>
+                            </a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="https://linkedin.com/in/roarba" target="_blank" rel="noopener noreferrer" 
+                               class="social-link" aria-label="LinkedIn">
+                                <i class="fab fa-linkedin"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.8/clipboard.min.js"></script>
+    <script src="../../static/js/prism.js"></script>
+    <script src="../../static/js/lcs-visualization.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const clipboard = new ClipboardJS('.copy-button');
+            
+            clipboard.on('success', (e) => {
+                const button = e.trigger;
+                button.innerHTML = '<i class="fas fa-check"></i>';
+                setTimeout(() => {
+                    button.innerHTML = '<i class="fas fa-copy"></i>';
+                }, 2000);
+                e.clearSelection();
+            });
+        });
+    </script>
+</body>
+</html> 
