@@ -837,4 +837,12 @@ pre[class*="language-"] {
     color: #fff;
     font-size: 1rem;
     margin: 0;
+}
+
+.array-element.heap-parent {
+    fill: #bd93f9;
+}
+
+.array-element.heap-child {
+    fill: #6272a4;
 } 

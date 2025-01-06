@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heap Sort - lVoidi Portal</title>
+    
+    <!-- CSS imports -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../static/css/style.css" rel="stylesheet">
+    <link href="../../static/css/algorithms.css" rel="stylesheet">
+    <link href="../../static/css/algorithm-page.css" rel="stylesheet">
+    <link href="../../static/css/prism.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+
+    <!-- Icon -->
+    <link rel="icon" href="../../static/img/icon.png" type="image/x-icon">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="../../index.html">lVoidi</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="../../algorithms/index.html">Algorithms</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="../index.html">Technological Singularity</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../../void/index.html">The Pit of Endless Void</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <main class="container py-5">
+        <div class="row">
+            <!-- Sidebar -->
+            <div class="col-md-3">
+                <div class="algorithm-info-card">
+                    <h3>Quick Info</h3>
+                    <div class="info-item">
+                        <span class="info-label">Category:</span>
+                        <span class="info-value">Sorting</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Time Complexity:</span>
+                        <span class="info-value">O(n log n)</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Space Complexity:</span>
+                        <span class="info-value">O(1)</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Stable:</span>
+                        <span class="info-value">No</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">In-Place:</span>
+                        <span class="info-value">Yes</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Content -->
+            <div class="col-md-9">
+                <article class="algorithm-content">
+                    <h1>Heap Sort</h1>
+                    <div class="algorithm-metadata">
+                        <span class="category-tag">Sorting</span>
+                        <span class="difficulty-tag">Medium</span>
+                    </div>
+
+                    <section class="algorithm-section">
+                        <h2>Description</h2>
+                        <p>Heap Sort is a comparison-based sorting algorithm that uses a binary heap data structure. It divides its input into a sorted and an unsorted region, and iteratively shrinks the unsorted region by extracting the largest element and moving it to the sorted region.</p>
+                    </section>
+
+                    <section class="algorithm-section history-box">
+                        <h2>History</h2>
+                        <div class="history-content">
+                            <img src="../../static/img/williams.jpg" alt="J.W.J. Williams" class="history-image">
+                            <p>
+                                Heap Sort was invented by J.W.J. Williams in 1964, marking a significant milestone in the history of sorting algorithms. The algorithm was first published in the paper "Algorithm 232 - Heapsort" in the Communications of the ACM. 
+                                
+                                The development of Heap Sort was particularly notable because it was the first sorting algorithm to achieve optimal time complexity O(n log n) in the worst case while using only O(1) auxiliary space. This was a significant improvement over Quick Sort's worst-case time complexity of O(n²).
+
+                                The binary heap data structure, which is fundamental to Heap Sort, was also introduced in this same paper. Robert W. Floyd later improved the algorithm in 1964 with his "bottom-up" heap construction method, which reduced the complexity of building the initial heap from O(n log n) to O(n).
+                            </p>
+                        </div>
+                    </section>
+
+                    <section class="algorithm-section">
+                        <h2>Understanding Heaps</h2>
+                        <p>A binary heap is a complete binary tree with the following properties:</p>
+                        <ul>
+                            <li><strong>Structure Property:</strong> A binary heap is a complete binary tree, which means all levels are fully filled except possibly the last level, which is filled from left to right.</li>
+                            <li><strong>Heap Property:</strong> In a max-heap, for any given node I, the value of I is greater than or equal to the values of its children. The opposite is true for a min-heap.</li>
+                        </ul>
+                        <p>For an array-based implementation, given an index i:</p>
+                        <div class="formula-box">
+                            <p>Parent(i) = ⌊(i - 1) / 2⌋</p>
+                            <p>LeftChild(i) = 2i + 1</p>
+                            <p>RightChild(i) = 2i + 2</p>
+                        </div>
+                    </section>
+
+                    <section class="algorithm-section">
+                        <h2>How It Works</h2>
+                        <ol>
+                            <li><strong>Build Max Heap:</strong> Convert the input array into a max heap structure</li>
+                            <li><strong>Heapify:</strong> Recursively ensure the heap property is maintained</li>
+                            <li><strong>Extract and Sort:</strong>
+                                <ul>
+                                    <li>Swap the root (maximum element) with the last element</li>
+                                    <li>Reduce heap size by 1</li>
+                                    <li>Heapify the root to maintain the heap property</li>
+                                    <li>Repeat until heap is empty</li>
+                                </ul>
+                            </li>
+                        </ol>
+                    </section>
+
+                    <section class="algorithm-section">
+                        <h2>Visualization</h2>
+                        <div class="visualization-container">
+                            <div class="visualization-controls">
+                                <button class="btn btn-primary" id="startVisualization">
+                                    <i class="fas fa-play"></i> Start
+                                </button>
+                                <button class="btn btn-secondary" id="resetVisualization">
+                                    <i class="fas fa-redo"></i> Reset
+                                </button>
+                                <div class="speed-control">
+                                    <label>Speed:</label>
+                                    <input type="range" id="speedControl" min="1" max="5" value="3">
+                                </div>
+                            </div>
+                            <div class="visualization-area">
+                                <svg id="heapSortVisualization" width="100%" height="300"></svg>
+                            </div>
+                            <div class="visualization-steps">
+                                <p id="currentStep">Click Start to begin visualization</p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="algorithm-section">
+                        <h2>Implementation</h2>
+                        <div class="implementation-tabs">
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" data-bs-toggle="tab" href="#python">Python</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-bs-toggle="tab" href="#cpp">C++</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-bs-toggle="tab" href="#csharp">C#</a>
+                                </li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane fade show active" id="python">
+                                    <div class="code-wrapper">
+                                        <button class="copy-button" data-clipboard-target="#python-code">
+                                            <i class="fas fa-copy"></i>
+                                        </button>
+                                        <pre><code class="language-python" id="python-code">
+class HeapSort:
+    @staticmethod
+    def heapify(arr, n, i):
+        largest = i
+        left = 2 * i + 1
+        right = 2 * i + 2
+
+        # Compare with left child
+        if left < n and arr[left] > arr[largest]:
+            largest = left
+
+        # Compare with right child
+        if right < n and arr[right] > arr[largest]:
+            largest = right
+
+        # If largest is not root
+        if largest != i:
+            arr[i], arr[largest] = arr[largest], arr[i]
+            HeapSort.heapify(arr, n, largest)
+
+    @staticmethod
+    def sort(arr):
+        n = len(arr)
+
+        # Build max heap
+        for i in range(n // 2 - 1, -1, -1):
+            HeapSort.heapify(arr, n, i)
+
+        # Extract elements from heap one by one
+        for i in range(n - 1, 0, -1):
+            arr[0], arr[i] = arr[i], arr[0]
+            HeapSort.heapify(arr, i, 0)
+
+        return arr
+
+# Example usage
+if __name__ == "__main__":
+    arr = [64, 34, 25, 12, 22, 11, 90]
+    print("Original array:", arr)
+    HeapSort.sort(arr)
+    print("Sorted array:", arr)
+                                        </code></pre>
+                                    </div>
+                                </div>
+                                
+                                <div class="tab-pane fade" id="cpp">
+                                    <div class="code-wrapper">
+                                        <button class="copy-button" data-clipboard-target="#cpp-code">
+                                            <i class="fas fa-copy"></i>
+                                        </button>
+                                        <pre><code class="language-cpp" id="cpp-code">
+#include &lt;iostream&gt;
+#include &lt;vector&gt;
+
+class HeapSort {
+private:
+    static void heapify(std::vector&lt;int&gt;& arr, int n, int i) {
+        int largest = i;
+        int left = 2 * i + 1;
+        int right = 2 * i + 2;
+
+        if (left < n && arr[left] > arr[largest])
+            largest = left;
+
+        if (right < n && arr[right] > arr[largest])
+            largest = right;
+
+        if (largest != i) {
+            std::swap(arr[i], arr[largest]);
+            heapify(arr, n, largest);
+        }
+    }
+
+public:
+    static void sort(std::vector&lt;int&gt;& arr) {
+        int n = arr.size();
+
+        // Build max heap
+        for (int i = n / 2 - 1; i >= 0; i--)
+            heapify(arr, n, i);
+
+        // Extract elements from heap one by one
+        for (int i = n - 1; i > 0; i--) {
+            std::swap(arr[0], arr[i]);
+            heapify(arr, i, 0);
+        }
+    }
+};
+
+// Example usage
+int main() {
+    std::vector&lt;int&gt; arr = {64, 34, 25, 12, 22, 11, 90};
+    
+    std::cout << "Original array: ";
+    for (int num : arr) std::cout << num << " ";
+    std::cout << std::endl;
+    
+    HeapSort::sort(arr);
+    
+    std::cout << "Sorted array: ";
+    for (int num : arr) std::cout << num << " ";
+    std::cout << std::endl;
+    
+    return 0;
+}
+                                        </code></pre>
+                                    </div>
+                                </div>
+
+                                <div class="tab-pane fade" id="csharp">
+                                    <div class="code-wrapper">
+                                        <button class="copy-button" data-clipboard-target="#csharp-code">
+                                            <i class="fas fa-copy"></i>
+                                        </button>
+                                        <pre><code class="language-csharp" id="csharp-code">
+public class HeapSort
+{
+    private static void Heapify(int[] arr, int n, int i)
+    {
+        int largest = i;
+        int left = 2 * i + 1;
+        int right = 2 * i + 2;
+
+        if (left < n && arr[left] > arr[largest])
+            largest = left;
+
+        if (right < n && arr[right] > arr[largest])
+            largest = right;
+
+        if (largest != i)
+        {
+            (arr[i], arr[largest]) = (arr[largest], arr[i]);
+            Heapify(arr, n, largest);
+        }
+    }
+
+    public static void Sort(int[] arr)
+    {
+        int n = arr.Length;
+
+        // Build max heap
+        for (int i = n / 2 - 1; i >= 0; i--)
+            Heapify(arr, n, i);
+
+        // Extract elements from heap one by one
+        for (int i = n - 1; i > 0; i--)
+        {
+            (arr[0], arr[i]) = (arr[i], arr[0]);
+            Heapify(arr, i, 0);
+        }
+    }
+
+    // Example usage
+    public static void Main()
+    {
+        int[] arr = { 64, 34, 25, 12, 22, 11, 90 };
+        
+        Console.WriteLine("Original array: " + string.Join(" ", arr));
+        Sort(arr);
+        Console.WriteLine("Sorted array: " + string.Join(" ", arr));
+    }
+}
+                                        </code></pre>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="algorithm-section">
+                        <h2>Complexity Analysis</h2>
+                        <table class="complexity-table">
+                            <tr>
+                                <th>Operation</th>
+                                <th>Time Complexity</th>
+                            </tr>
+                            <tr>
+                                <td>Build Heap</td>
+                                <td>O(n)</td>
+                            </tr>
+                            <tr>
+                                <td>Heapify</td>
+                                <td>O(log n)</td>
+                            </tr>
+                            <tr>
+                                <td>Overall Sorting</td>
+                                <td>O(n log n)</td>
+                            </tr>
+                        </table>
+                    </section>
+
+                    <section class="algorithm-section">
+                        <h2>Advantages and Disadvantages</h2>
+                        <div class="pros-cons">
+                            <div class="pros">
+                                <h3>Advantages</h3>
+                                <ul>
+                                    <li>Guaranteed O(n log n) time complexity</li>
+                                    <li>In-place sorting algorithm</li>
+                                    <li>No extra space required</li>
+                                    <li>Great for partially sorted arrays</li>
+                                </ul>
+                            </div>
+                            <div class="cons">
+                                <h3>Disadvantages</h3>
+                                <ul>
+                                    <li>Not stable sort</li>
+                                    <li>Poor cache performance</li>
+                                    <li>Generally slower than quicksort</li>
+                                    <li>Not adaptive</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+                </article>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer mt-auto py-4">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6 text-center text-md-start">
+                    <p class="mb-0">&copy; 2024 lVoidi. All rights reserved.</p>
+                </div>
+                <div class="col-md-6">
+                    <ul class="social-links list-inline mb-0 text-center text-md-end">
+                        <li class="list-inline-item">
+                            <a href="https://github.com/lVoidi" target="_blank" rel="noopener noreferrer" 
+                               class="social-link" aria-label="GitHub">
+                                <i class="fab fa-github"></i>
+                            </a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="https://linkedin.com/in/roarba" target="_blank" rel="noopener noreferrer" 
+                               class="social-link" aria-label="LinkedIn">
+                                <i class="fab fa-linkedin"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.8/clipboard.min.js"></script>
+    <script src="../../static/js/prism.js"></script>
+    <script src="../../static/js/heapsort-visualization.js"></script>
+    <script>
+        // Initialize clipboard.js
+        document.addEventListener('DOMContentLoaded', () => {
+            const clipboard = new ClipboardJS('.copy-button');
+            
+            clipboard.on('success', (e) => {
+                const button = e.trigger;
+                button.innerHTML = '<i class="fas fa-check"></i>';
+                setTimeout(() => {
+                    button.innerHTML = '<i class="fas fa-copy"></i>';
+                }, 2000);
+                e.clearSelection();
+            });
+        });
+    </script>
+</body>
+</html> 

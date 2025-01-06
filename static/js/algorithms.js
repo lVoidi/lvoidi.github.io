@@ -14,6 +14,13 @@ const algorithms = {
             description: "A stable, divide-and-conquer sorting algorithm with guaranteed O(n log n) performance",
             complexity: "O(n log n)",
             link: "sorting/mergesort.html"
+        },
+        {
+            name: "Heap Sort",
+            category: "sorting",
+            description: "A comparison-based sorting algorithm using a binary heap data structure",
+            complexity: "O(n log n)",
+            link: "sorting/heapsort.html"
         }
     ],
     searching: [
