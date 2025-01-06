@@ -152,7 +152,7 @@
                                     <a class="nav-link" data-bs-toggle="tab" href="#cpp">C++</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" data-bs-toggle="tab" href="#javascript">JavaScript</a>
+                                    <a class="nav-link" data-bs-toggle="tab" href="#csharp">C#</a>
                                 </li>
                             </ul>
                             <div class="tab-content">
@@ -192,7 +192,98 @@ if __name__ == "__main__":
                                     </div>
                                 </div>
                                 
-                                <!-- Add C++ and JavaScript implementations similarly -->
+                                <div class="tab-pane fade" id="cpp">
+                                    <div class="code-wrapper">
+                                        <button class="copy-button" data-clipboard-target="#cpp-code">
+                                            <i class="fas fa-copy"></i>
+                                        </button>
+                                        <pre><code class="language-cpp" id="cpp-code">
+void shellSort(vector<int>& arr) {
+    int n = arr.size();
+    
+    // Start with a big gap, then reduce the gap
+    for (int gap = n/2; gap > 0; gap /= 2) {
+        // Do a gapped insertion sort for this gap size
+        for (int i = gap; i < n; i++) {
+            // Add arr[i] to the elements that have been gap sorted
+            int temp = arr[i];
+            int j;
+            
+            // Shift earlier gap-sorted elements up until the correct location for arr[i] is found
+            for (j = i; j >= gap && arr[j - gap] > temp; j -= gap) {
+                arr[j] = arr[j - gap];
+            }
+            
+            // Put temp (the original arr[i]) in its correct location
+            arr[j] = temp;
+        }
+    }
+}
+
+// Example usage
+int main() {
+    vector<int> arr = {64, 34, 25, 12, 22, 11, 90};
+    cout << "Original array: ";
+    for(int num : arr) cout << num << " ";
+    
+    shellSort(arr);
+    
+    cout << "\nSorted array: ";
+    for(int num : arr) cout << num << " ";
+    return 0;
+}
+                                        </code></pre>
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="csharp">
+                                    <div class="code-wrapper">
+                                        <button class="copy-button" data-clipboard-target="#csharp-code">
+                                            <i class="fas fa-copy"></i>
+                                        </button>
+                                        <pre><code class="language-csharp" id="csharp-code">
+public class ShellSort
+{
+    public static void Sort(int[] arr)
+    {
+        int n = arr.Length;
+        
+        // Start with a big gap, then reduce the gap
+        for (int gap = n/2; gap > 0; gap /= 2)
+        {
+            // Do a gapped insertion sort for this gap size
+            for (int i = gap; i < n; i++)
+            {
+                // Add arr[i] to the elements that have been gap sorted
+                int temp = arr[i];
+                int j;
+                
+                // Shift earlier gap-sorted elements up until the correct 
+                // location for arr[i] is found
+                for (j = i; j >= gap && arr[j - gap] > temp; j -= gap)
+                {
+                    arr[j] = arr[j - gap];
+                }
+                
+                // Put temp (the original arr[i]) in its correct location
+                arr[j] = temp;
+            }
+        }
+    }
+    
+    // Example usage
+    public static void Main(string[] args)
+    {
+        int[] arr = { 64, 34, 25, 12, 22, 11, 90 };
+        Console.WriteLine("Original array: " + string.Join(" ", arr));
+        
+        Sort(arr);
+        
+        Console.WriteLine("Sorted array: " + string.Join(" ", arr));
+    }
+}
+                                        </code></pre>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </section>
