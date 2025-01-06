@@ -42,6 +42,13 @@ const algorithms = {
             description: "A non-comparative sorting algorithm that sorts integers by processing each digit position, from least significant to most significant",
             complexity: "O(d * (n + k)) where d is the number of digits and k is the range of each digit",
             link: "sorting/radixsort.html"
+        },
+        {
+            name: "Bucket Sort",
+            category: "sorting",
+            description: "A distribution-based sorting algorithm that distributes elements into buckets and then sorts these buckets individually",
+            complexity: "O(n + k) average case, O(n²) worst case",
+            link: "sorting/bucketsort.html"
         }
     ],
     searching: [
