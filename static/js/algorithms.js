@@ -125,6 +125,13 @@ const algorithms = {
             description: "Finds the longest subsequence present in two sequences using dynamic programming",
             complexity: "Time: O(mn), Space: O(mn)",
             link: "dynamic/lcs.html"
+        },
+        {
+            name: "0/1 Knapsack",
+            category: "dynamic",
+            description: "Solves the problem of selecting items with given weights and values to maximize value while keeping total weight under a limit",
+            complexity: "Time: O(nW), Space: O(nW)",
+            link: "dynamic/knapsack.html"
         }
     ],
     greedy: [
