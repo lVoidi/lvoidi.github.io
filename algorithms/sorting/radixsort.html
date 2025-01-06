@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Radix Sort - lVoidi Portal</title>
+    
+    <!-- CSS imports -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../static/css/style.css" rel="stylesheet">
+    <link href="../../static/css/algorithms.css" rel="stylesheet">
+    <link href="../../static/css/algorithm-page.css" rel="stylesheet">
+    <link href="../../static/css/prism.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+
+    <!-- Icon -->
+    <link rel="icon" href="../../static/img/icon.png" type="image/x-icon">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="../../index.html">lVoidi</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="../index.html">Algorithms</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../../singularity/index.html">Technological Singularity</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../../void/index.html">The Pit of Endless Void</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container py-5">
+        <div class="row">
+            <!-- Sidebar -->
+            <div class="col-md-3">
+                <div class="algorithm-info-card">
+                    <h3>Quick Info</h3>
+                    <div class="info-item">
+                        <span class="info-label">Category:</span>
+                        <span class="info-value">Sorting</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Time Complexity:</span>
+                        <span class="info-value">O(d * (n + k))</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Space Complexity:</span>
+                        <span class="info-value">O(n + k)</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Stable:</span>
+                        <span class="info-value">Yes</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">In-Place:</span>
+                        <span class="info-value">No</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Content -->
+            <div class="col-md-9">
+                <article class="algorithm-content">
+                    <h1>Radix Sort</h1>
+                    <div class="algorithm-metadata">
+                        <span class="category-tag">Sorting</span>
+                        <span class="difficulty-tag">Medium</span>
+                    </div>
+
+                    <section class="algorithm-section">
+                        <h2>Description</h2>
+                        <p>Radix Sort is a non-comparative integer sorting algorithm that sorts data by processing each digit position, starting from the least significant digit to the most significant digit. It uses counting sort as a subroutine to sort elements based on their digits at different positions.</p>
+                    </section>
+
+                    <section class="algorithm-section history-box">
+                        <h2>History</h2>
+                        <div class="history-content">
+                            <img src="../../static/img/radix-sort.jpg" alt="Radix Sort History" class="history-image">
+                            <p>
+                                Radix Sort's origins can be traced back to the early days of mechanical data processing. It was first used with punch card sorting machines in the 1880s by Herman Hollerith. The method was particularly important during the early computer era when sorting large volumes of punch card data was a common task.
+                                
+                                The algorithm gained prominence in computer science during the 1950s and 1960s with the advent of digital computers. It was particularly useful for sorting fixed-length records with multiple sort keys, such as dates or social security numbers.
+                                
+                                The term "radix" refers to the base of the number system being used (typically base 10 for decimal numbers or base 2 for binary numbers). The algorithm's efficiency in sorting integers and fixed-length strings has made it a fundamental part of many large-scale sorting applications.
+                            </p>
+                        </div>
+                    </section>
+
+                    <section class="algorithm-section">
+                        <h2>How It Works</h2>
+                        <ol>
+                            <li><strong>Digit Processing:</strong>
+                                <ul>
+                                    <li>Start with least significant digit (ones place)</li>
+                                    <li>Move towards most significant digit</li>
+                                    <li>Use counting sort for each digit position</li>
+                                </ul>
+                            </li>
+                            <li><strong>For Each Digit:</strong>
+                                <ul>
+                                    <li>Create 10 buckets (0-9)</li>
+                                    <li>Distribute numbers to buckets based on current digit</li>
+                                    <li>Collect numbers from buckets in order</li>
+                                </ul>
+                            </li>
+                            <li><strong>Completion:</strong>
+                                <ul>
+                                    <li>Repeat until all digit positions are processed</li>
+                                    <li>Array will be fully sorted</li>
+                                </ul>
+                            </li>
+                        </ol>
+                    </section>
+
+                    <section class="algorithm-section">
+                        <h2>Visualization</h2>
+                        <div class="visualization-container">
+                            <div class="visualization-controls">
+                                <button class="btn btn-primary" id="startVisualization">
+                                    <i class="fas fa-play"></i> Start
+                                </button>
+                                <button class="btn btn-secondary" id="resetVisualization">
+                                    <i class="fas fa-redo"></i> Reset
+                                </button>
+                                <div class="speed-control">
+                                    <label>Speed:</label>
+                                    <input type="range" id="speedControl" min="1" max="5" value="3">
+                                </div>
+                            </div>
+                            <div class="visualization-area">
+                                <svg id="radixSortVisualization" width="100%" height="400"></svg>
+                            </div>
+                            <div class="visualization-steps">
+                                <p id="currentStep">Click Start to begin visualization</p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="algorithm-section">
+                        <h2>Implementation</h2>
+                        <div class="implementation-tabs">
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" data-bs-toggle="tab" href="#python">Python</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-bs-toggle="tab" href="#cpp">C++</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-bs-toggle="tab" href="#csharp">C#</a>
+                                </li>
+                            </ul>
+                            <div class="tab-content">
+                                <!-- Python Implementation -->
+                                <div class="tab-pane fade show active" id="python">
+                                    <div class="code-wrapper">
+                                        <button class="copy-button" data-clipboard-target="#python-code">
+                                            <i class="fas fa-copy"></i>
+                                        </button>
+                                        <pre><code class="language-python" id="python-code">
+def counting_sort_by_digit(arr, exp):
+    n = len(arr)
+    output = [0] * n
+    count = [0] * 10
+    
+    # Store count of occurrences in count[]
+    for i in range(n):
+        index = arr[i] // exp
+        count[index % 10] += 1
+    
+    # Change count[i] so that count[i] contains actual
+    # position of this digit in output[]
+    for i in range(1, 10):
+        count[i] += count[i - 1]
+    
+    # Build the output array
+    i = n - 1
+    while i >= 0:
+        index = arr[i] // exp
+        output[count[index % 10] - 1] = arr[i]
+        count[index % 10] -= 1
+        i -= 1
+    
+    # Copy the output array to arr[]
+    for i in range(n):
+        arr[i] = output[i]
+
+def radix_sort(arr):
+    # Find the maximum number to know number of digits
+    max_num = max(arr)
+    
+    # Do counting sort for every digit
+    exp = 1
+    while max_num // exp > 0:
+        counting_sort_by_digit(arr, exp)
+        exp *= 10
+    
+    return arr
+
+# Example usage
+if __name__ == "__main__":
+    arr = [170, 45, 75, 90, 802, 24, 2, 66]
+    print("Original array:", arr)
+    radix_sort(arr)
+    print("Sorted array:", arr)
+                                        </code></pre>
+                                    </div>
+                                </div>
+                                
+                                <!-- C++ Implementation -->
+                                <div class="tab-pane fade" id="cpp">
+                                    <div class="code-wrapper">
+                                        <button class="copy-button" data-clipboard-target="#cpp-code">
+                                            <i class="fas fa-copy"></i>
+                                        </button>
+                                        <pre><code class="language-cpp" id="cpp-code">
+void countingSortByDigit(vector<int>& arr, int exp) {
+    int n = arr.size();
+    vector<int> output(n);
+    vector<int> count(10, 0);
+    
+    // Store count of occurrences in count[]
+    for(int i = 0; i < n; i++)
+        count[(arr[i] / exp) % 10]++;
+    
+    // Change count[i] so that count[i] contains actual
+    // position of this digit in output[]
+    for(int i = 1; i < 10; i++)
+        count[i] += count[i - 1];
+    
+    // Build the output array
+    for(int i = n - 1; i >= 0; i--) {
+        output[count[(arr[i] / exp) % 10] - 1] = arr[i];
+        count[(arr[i] / exp) % 10]--;
+    }
+    
+    // Copy the output array to arr[]
+    for(int i = 0; i < n; i++)
+        arr[i] = output[i];
+}
+
+void radixSort(vector<int>& arr) {
+    // Find the maximum number to know number of digits
+    int max_num = *max_element(arr.begin(), arr.end());
+    
+    // Do counting sort for every digit
+    for(int exp = 1; max_num/exp > 0; exp *= 10)
+        countingSortByDigit(arr, exp);
+}
+
+// Example usage
+int main() {
+    vector<int> arr = {170, 45, 75, 90, 802, 24, 2, 66};
+    cout << "Original array: ";
+    for(int num : arr) cout << num << " ";
+    
+    radixSort(arr);
+    
+    cout << "\nSorted array: ";
+    for(int num : arr) cout << num << " ";
+    return 0;
+}
+                                        </code></pre>
+                                    </div>
+                                </div>
+                                
+                                <!-- C# Implementation -->
+                                <div class="tab-pane fade" id="csharp">
+                                    <div class="code-wrapper">
+                                        <button class="copy-button" data-clipboard-target="#csharp-code">
+                                            <i class="fas fa-copy"></i>
+                                        </button>
+                                        <pre><code class="language-csharp" id="csharp-code">
+public class RadixSort
+{
+    private static void CountingSortByDigit(int[] arr, int exp)
+    {
+        int n = arr.Length;
+        int[] output = new int[n];
+        int[] count = new int[10];
+        
+        // Store count of occurrences in count[]
+        for(int i = 0; i < n; i++)
+            count[(arr[i] / exp) % 10]++;
+        
+        // Change count[i] so that count[i] contains actual
+        // position of this digit in output[]
+        for(int i = 1; i < 10; i++)
+            count[i] += count[i - 1];
+        
+        // Build the output array
+        for(int i = n - 1; i >= 0; i--)
+        {
+            output[count[(arr[i] / exp) % 10] - 1] = arr[i];
+            count[(arr[i] / exp) % 10]--;
+        }
+        
+        // Copy the output array to arr[]
+        for(int i = 0; i < n; i++)
+            arr[i] = output[i];
+    }
+    
+    public static void Sort(int[] arr)
+    {
+        // Find the maximum number to know number of digits
+        int max_num = arr.Max();
+        
+        // Do counting sort for every digit
+        for(int exp = 1; max_num/exp > 0; exp *= 10)
+            CountingSortByDigit(arr, exp);
+    }
+    
+    // Example usage
+    public static void Main(string[] args)
+    {
+        int[] arr = { 170, 45, 75, 90, 802, 24, 2, 66 };
+        Console.WriteLine("Original array: " + string.Join(" ", arr));
+        
+        Sort(arr);
+        
+        Console.WriteLine("Sorted array: " + string.Join(" ", arr));
+    }
+}
+                                        </code></pre>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="algorithm-section">
+                        <h2>Applications</h2>
+                        <ul>
+                            <li>Sorting integers with fixed number of digits</li>
+                            <li>Sorting strings of same length</li>
+                            <li>Processing numerical data in scientific computing</li>
+                            <li>Sorting dates and timestamps</li>
+                            <li>Database indexing and sorting</li>
+                        </ul>
+                    </section>
+
+                    <section class="algorithm-section">
+                        <h2>Advantages and Disadvantages</h2>
+                        <div class="pros-cons">
+                            <div class="pros">
+                                <h3>Advantages</h3>
+                                <ul>
+                                    <li>Linear time complexity for fixed-length integers</li>
+                                    <li>Stable sorting algorithm</li>
+                                    <li>Efficient for integers or strings with fixed-length</li>
+                                    <li>Can be faster than comparison sorts</li>
+                                </ul>
+                            </div>
+                            <div class="cons">
+                                <h3>Disadvantages</h3>
+                                <ul>
+                                    <li>Not in-place sorting</li>
+                                    <li>Requires extra space</li>
+                                    <li>Only works with discrete values</li>
+                                    <li>Performance depends on number of digits</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="algorithm-section">
+                        <h2>Complexity Analysis</h2>
+                        <div class="complexity-analysis">
+                            <table class="complexity-table">
+                                <tr>
+                                    <th>Case</th>
+                                    <th>Time Complexity</th>
+                                    <th>Description</th>
+                                </tr>
+                                <tr>
+                                    <td>Best Case</td>
+                                    <td>Ω(d * (n + k))</td>
+                                    <td>When all numbers have same number of digits (d). Here, k is range of each digit (usually 10)</td>
+                                </tr>
+                                <tr>
+                                    <td>Average Case</td>
+                                    <td>Θ(d * (n + k))</td>
+                                    <td>Same as best case, as number of operations doesn't depend on input arrangement</td>
+                                </tr>
+                                <tr>
+                                    <td>Worst Case</td>
+                                    <td>O(d * (n + k))</td>
+                                    <td>When numbers have maximum possible digits (d)</td>
+                                </tr>
+                                <tr>
+                                    <td>Space Complexity</td>
+                                    <td>O(n + k)</td>
+                                    <td>Requires temporary arrays for counting and output</td>
+                                </tr>
+                            </table>
+
+                            <div class="complexity-notes">
+                                <h3>Notes:</h3>
+                                <ul>
+                                    <li><strong>d</strong> - Number of digits in the largest number</li>
+                                    <li><strong>n</strong> - Number of elements in the array</li>
+                                    <li><strong>k</strong> - Range of values for each digit (typically 10 for decimal)</li>
+                                    <li>Time complexity is linear when d is constant</li>
+                                    <li>Performance depends heavily on number of digits in input numbers</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+                </article>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer mt-auto py-4">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6 text-center text-md-start">
+                    <p class="mb-0">&copy; 2024 lVoidi. All rights reserved.</p>
+                </div>
+                <div class="col-md-6">
+                    <ul class="social-links list-inline mb-0 text-center text-md-end">
+                        <li class="list-inline-item">
+                            <a href="https://github.com/lVoidi" target="_blank" rel="noopener noreferrer" 
+                               class="social-link" aria-label="GitHub">
+                                <i class="fab fa-github"></i>
+                            </a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="https://linkedin.com/in/roarba" target="_blank" rel="noopener noreferrer" 
+                               class="social-link" aria-label="LinkedIn">
+                                <i class="fab fa-linkedin"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.8/clipboard.min.js"></script>
+    <script src="../../static/js/prism.js"></script>
+    <script src="../../static/js/radixsort-visualization.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const clipboard = new ClipboardJS('.copy-button');
+            
+            clipboard.on('success', (e) => {
+                const button = e.trigger;
+                button.innerHTML = '<i class="fas fa-check"></i>';
+                setTimeout(() => {
+                    button.innerHTML = '<i class="fas fa-copy"></i>';
+                }, 2000);
+                e.clearSelection();
+            });
+        });
+    </script>
+</body>
+</html> 
