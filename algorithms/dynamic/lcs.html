@@ -210,17 +210,17 @@ if __name__ == "__main__":
                                             <i class="fas fa-copy"></i>
                                         </button>
                                         <pre><code class="language-cpp" id="cpp-code">
-#include <string>
-#include <vector>
-#include <algorithm>
-#include <iostream>
+#include &lt;string&gt;
+#include &lt;vector&gt;
+#include &lt;algorithm&gt;
+#include &lt;iostream&gt;
 
 std::string lcs(const std::string& X, const std::string& Y) {
     int m = X.length();
     int n = Y.length();
     
     // Create DP table
-    std::vector<std::vector<int>> dp(m + 1, std::vector<int>(n + 1, 0));
+    std::vector&lt;std::vector&lt;int&gt;&gt; dp(m + 1, std::vector&lt;int&gt;(n + 1, 0));
     
     // Fill dp table
     for(int i = 1; i <= m; i++) {
