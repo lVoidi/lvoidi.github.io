@@ -118,6 +118,13 @@ const algorithms = {
             description: "Efficiently calculates Fibonacci numbers using memoization",
             complexity: "O(n)",
             link: "dynamic/fibonacci.html"
+        },
+        {
+            name: "Longest Common Subsequence",
+            category: "dynamic",
+            description: "Finds the longest subsequence present in two sequences using dynamic programming",
+            complexity: "Time: O(mn), Space: O(mn)",
+            link: "dynamic/lcs.html"
         }
     ],
     greedy: [
