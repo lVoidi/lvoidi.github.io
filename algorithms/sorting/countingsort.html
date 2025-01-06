@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Counting Sort - lVoidi Portal</title>
+    
+    <!-- CSS imports -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../static/css/style.css" rel="stylesheet">
+    <link href="../../static/css/algorithms.css" rel="stylesheet">
+    <link href="../../static/css/algorithm-page.css" rel="stylesheet">
+    <link href="../../static/css/prism.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+
+    <!-- Icon -->
+    <link rel="icon" href="../../static/img/icon.png" type="image/x-icon">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="../../index.html">lVoidi</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="../index.html">Algorithms</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../../singularity/index.html">Technological Singularity</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../../void/index.html">The Pit of Endless Void</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container py-5">
+        <div class="row">
+            <!-- Sidebar -->
+            <div class="col-md-3">
+                <div class="algorithm-info-card">
+                    <h3>Quick Info</h3>
+                    <div class="info-item">
+                        <span class="info-label">Category:</span>
+                        <span class="info-value">Sorting</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Time Complexity:</span>
+                        <span class="info-value">O(n + k)</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Space Complexity:</span>
+                        <span class="info-value">O(k)</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Stable:</span>
+                        <span class="info-value">Yes</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">In-Place:</span>
+                        <span class="info-value">No</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Content -->
+            <div class="col-md-9">
+                <article class="algorithm-content">
+                    <h1>Counting Sort</h1>
+                    <div class="algorithm-metadata">
+                        <span class="category-tag">Sorting</span>
+                        <span class="difficulty-tag">Easy</span>
+                    </div>
+
+                    <section class="algorithm-section">
+                        <h2>Description</h2>
+                        <p>Counting Sort is a non-comparison based sorting algorithm that works by counting the number of occurrences of each element in the array. It operates by creating an auxiliary array to store the frequencies of each element, and then using this information to place elements in their correct sorted positions.</p>
+                    </section>
+
+                    <section class="algorithm-section history-box">
+                        <h2>History</h2>
+                        <div class="history-content">
+                            <img src="../../static/img/counting-sort.jpg" alt="Counting Sort Concept" class="history-image">
+                            <p>
+                                Counting Sort emerged in the early days of computer science, during the 1950s, when researchers were exploring non-comparison based sorting methods. Unlike many other sorting algorithms that are named after their inventors, Counting Sort is named after its process of counting elements.
+                                
+                                The algorithm gained prominence as a subroutine in Radix Sort, where it's used to sort numbers digit by digit. Its ability to sort in linear time made it particularly valuable in specific applications where the range of input values is known and reasonably small compared to the number of items to be sorted.
+                                
+                                The algorithm has found widespread use in various applications, from sorting postal codes to computer graphics rendering pipelines where elements need to be sorted by depth (z-index).
+                            </p>
+                        </div>
+                    </section>
+
+                    <section class="algorithm-section">
+                        <h2>How It Works</h2>
+                        <ol>
+                            <li><strong>Count Frequencies:</strong>
+                                <ul>
+                                    <li>Create a count array of size k (range of input)</li>
+                                    <li>Count occurrences of each element</li>
+                                </ul>
+                            </li>
+                            <li><strong>Calculate Cumulative Count:</strong>
+                                <ul>
+                                    <li>Modify count array to store actual positions</li>
+                                    <li>Each element shows final position of elements</li>
+                                </ul>
+                            </li>
+                            <li><strong>Build Output Array:</strong>
+                                <ul>
+                                    <li>Place each element in its correct position</li>
+                                    <li>Decrement count for each placement</li>
+                                </ul>
+                            </li>
+                        </ol>
+                    </section>
+
+                    <section class="algorithm-section">
+                        <h2>Visualization</h2>
+                        <div class="visualization-container">
+                            <div class="visualization-controls">
+                                <button class="btn btn-primary" id="startVisualization">
+                                    <i class="fas fa-play"></i> Start
+                                </button>
+                                <button class="btn btn-secondary" id="resetVisualization">
+                                    <i class="fas fa-redo"></i> Reset
+                                </button>
+                                <div class="speed-control">
+                                    <label>Speed:</label>
+                                    <input type="range" id="speedControl" min="1" max="5" value="3">
+                                </div>
+                            </div>
+                            <div class="visualization-area">
+                                <svg id="countingSortVisualization" width="100%" height="400"></svg>
+                            </div>
+                            <div class="visualization-steps">
+                                <p id="currentStep">Click Start to begin visualization</p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="algorithm-section">
+                        <h2>Implementation</h2>
+                        <div class="implementation-tabs">
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" data-bs-toggle="tab" href="#python">Python</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-bs-toggle="tab" href="#cpp">C++</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-bs-toggle="tab" href="#javascript">JavaScript</a>
+                                </li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane fade show active" id="python">
+                                    <div class="code-wrapper">
+                                        <button class="copy-button" data-clipboard-target="#python-code">
+                                            <i class="fas fa-copy"></i>
+                                        </button>
+                                        <pre><code class="language-python" id="python-code">
+def counting_sort(arr):
+    # Find the range of input array
+    max_val = max(arr)
+    min_val = min(arr)
+    range_val = max_val - min_val + 1
+    
+    # Initialize count array and output array
+    count = [0] * range_val
+    output = [0] * len(arr)
+    
+    # Store count of each element
+    for i in arr:
+        count[i - min_val] += 1
+    
+    # Modify count array to store actual positions
+    for i in range(1, len(count)):
+        count[i] += count[i - 1]
+    
+    # Build output array
+    for i in range(len(arr) - 1, -1, -1):
+        output[count[arr[i] - min_val] - 1] = arr[i]
+        count[arr[i] - min_val] -= 1
+    
+    # Copy output array to input array
+    for i in range(len(arr)):
+        arr[i] = output[i]
+    
+    return arr
+                                        </code></pre>
+                                    </div>
+                                </div>
+                                <!-- Add C++ and JavaScript implementations -->
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="algorithm-section">
+                        <h2>Applications</h2>
+                        <ul>
+                            <li>Sorting integers with known range</li>
+                            <li>Sorting postal codes</li>
+                            <li>Sorting strings (as part of radix sort)</li>
+                            <li>Computer graphics (sorting by z-index)</li>
+                            <li>DNA sequence analysis</li>
+                        </ul>
+                    </section>
+
+                    <section class="algorithm-section">
+                        <h2>Advantages and Disadvantages</h2>
+                        <div class="pros-cons">
+                            <div class="pros">
+                                <h3>Advantages</h3>
+                                <ul>
+                                    <li>Linear time complexity O(n + k)</li>
+                                    <li>Stable sorting algorithm</li>
+                                    <li>Efficient for integers with known range</li>
+                                    <li>Good as a subroutine in radix sort</li>
+                                </ul>
+                            </div>
+                            <div class="cons">
+                                <h3>Disadvantages</h3>
+                                <ul>
+                                    <li>Not in-place sorting</li>
+                                    <li>Requires extra space O(k)</li>
+                                    <li>Only works with discrete values</li>
+                                    <li>Not efficient when range k is much larger than n</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+                </article>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer mt-auto py-4">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6 text-center text-md-start">
+                    <p class="mb-0">&copy; 2024 lVoidi. All rights reserved.</p>
+                </div>
+                <div class="col-md-6">
+                    <ul class="social-links list-inline mb-0 text-center text-md-end">
+                        <li class="list-inline-item">
+                            <a href="https://github.com/lVoidi" target="_blank" rel="noopener noreferrer" 
+                               class="social-link" aria-label="GitHub">
+                                <i class="fab fa-github"></i>
+                            </a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="https://linkedin.com/in/roarba" target="_blank" rel="noopener noreferrer" 
+                               class="social-link" aria-label="LinkedIn">
+                                <i class="fab fa-linkedin"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.8/clipboard.min.js"></script>
+    <script src="../../static/js/prism.js"></script>
+    <script src="../../static/js/countingsort-visualization.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const clipboard = new ClipboardJS('.copy-button');
+            
+            clipboard.on('success', (e) => {
+                const button = e.trigger;
+                button.innerHTML = '<i class="fas fa-check"></i>';
+                setTimeout(() => {
+                    button.innerHTML = '<i class="fas fa-copy"></i>';
+                }, 2000);
+                e.clearSelection();
+            });
+        });
+    </script>
+</body>
+</html> 

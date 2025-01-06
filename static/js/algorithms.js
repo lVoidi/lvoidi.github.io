@@ -28,6 +28,13 @@ const algorithms = {
             description: "An in-place comparison sort that generalizes insertion sort by allowing the exchange of items that are far apart",
             complexity: "O(n log n) to O(n²) depending on gap sequence",
             link: "sorting/shellsort.html"
+        },
+        {
+            name: "Counting Sort",
+            category: "sorting",
+            description: "A non-comparison based sorting algorithm that works by counting the frequency of elements",
+            complexity: "O(n + k) where k is the range of input",
+            link: "sorting/countingsort.html"
         }
     ],
     searching: [
