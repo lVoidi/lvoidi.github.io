@@ -124,6 +124,13 @@ const algorithms = {
             description: "A stream cipher algorithm used worldwide",
             complexity: "O(1) per block",
             link: "cryptographic/chacha20.html"
+        },
+        {
+            name: "SHA",
+            category: "cryptographic",
+            description: "A cryptographic hash function used worldwide",
+            complexity: "O(1) per block",
+            link: "cryptographic/sha.html"
         }
     ],
     machine_learning: [
