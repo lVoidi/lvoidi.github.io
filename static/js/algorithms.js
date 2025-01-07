@@ -132,6 +132,13 @@ const algorithms = {
             description: "Solves the problem of selecting items with given weights and values to maximize value while keeping total weight under a limit",
             complexity: "Time: O(nW), Space: O(nW)",
             link: "dynamic/knapsack.html"
+        },
+        {
+            name: "Edit Distance",
+            category: "dynamic",
+            description: "Calculates the minimum number of operations required to transform one string into another",
+            complexity: "Time: O(mn), Space: O(mn)",
+            link: "dynamic/editdistance.html"
         }
     ],
     greedy: [
