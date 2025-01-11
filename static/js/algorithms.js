@@ -54,8 +54,15 @@ const algorithms = {
             name: "Simple pancake sort",
             category: "sorting",
             description: "Pancake sorting is the mathematical problem of sorting a disordered stack of pancakes in order of size when a spatula can be inserted at any point in the stack and used to flip all pancakes above it",
-            complexity: "O(n^2)",
+            complexity: "O(n²)",
             link: "sorting/pancake.html"
+        },
+        {
+            name: "Insertion Sort",
+            category: "sorting",
+            description: "A simple sorting algorithm that builds the final sorted array one item at a time",
+            complexity: "O(n²)",
+            link: "sorting/insertionsort.html"
         }
     ],
     searching: [
