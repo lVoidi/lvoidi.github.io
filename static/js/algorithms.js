@@ -70,6 +70,13 @@ const algorithms = {
             description: "A simple comparison-based sorting algorithm that divides the input into a sorted and unsorted region, repeatedly selecting the smallest element from the unsorted region",
             complexity: "O(n²)",
             link: "sorting/selectionsort.html"
+        },
+        {
+            name: "Bubble Sort",
+            category: "sorting",
+            description: "A simple sorting algorithm that repeatedly steps through the list, compares adjacent elements and swaps them if they are in the wrong order",
+            complexity: "O(n²)",
+            link: "sorting/bubblesort.html"
         }
     ],
     searching: [
