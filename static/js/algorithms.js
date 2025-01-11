@@ -63,6 +63,13 @@ const algorithms = {
             description: "A simple sorting algorithm that builds the final sorted array one item at a time",
             complexity: "O(n²)",
             link: "sorting/insertionsort.html"
+        },
+        {
+            name: "Selection Sort",
+            category: "sorting",
+            description: "A simple comparison-based sorting algorithm that divides the input into a sorted and unsorted region, repeatedly selecting the smallest element from the unsorted region",
+            complexity: "O(n²)",
+            link: "sorting/selectionsort.html"
         }
     ],
     searching: [
