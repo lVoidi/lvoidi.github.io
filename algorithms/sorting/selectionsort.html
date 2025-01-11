@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Selection Sort - lVoidi Portal</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="../../static/css/style.css" rel="stylesheet" />
+    <link href="../../static/css/algorithms.css" rel="stylesheet" />
+    <link href="../../static/css/algorithm-page.css" rel="stylesheet" />
+    <link href="../../static/css/prism.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"/>
+    <link rel="icon" href="../../static/img/icon.png" type="image/x-icon" />
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+      <div class="container">
+        <a class="navbar-brand" href="../../index.html">lVoidi</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link active" href="../index.html">Algorithms</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="../../singularity/index.html">Technological Singularity</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="../../void/index.html">The Pit of Endless Void</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Algorithm Content -->
+    <main class="container py-5">
+      <div class="row">
+        <!-- Sidebar with Quick Info -->
+        <div class="col-md-3">
+          <div class="algorithm-info-card">
+            <h3>Quick Info</h3>
+            <div class="info-item">
+              <span class="info-label">Category:</span>
+              <span class="info-value">Sorting</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">Time Complexity:</span>
+              <span class="info-value">O(n²)</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">Space Complexity:</span>
+              <span class="info-value">O(1)</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">Stable:</span>
+              <span class="info-value">No</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">In-Place:</span>
+              <span class="info-value">Yes</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="col-md-9">
+          <article class="algorithm-content">
+            <h1>Selection Sort</h1>
+            <div class="algorithm-metadata">
+              <span class="category-tag">Sorting</span>
+              <span class="difficulty-tag">Easy</span>
+            </div>
+
+            <section class="algorithm-section">
+              <h2>Description</h2>
+              <p>
+                Selection Sort is a simple and intuitive sorting algorithm that works by repeatedly finding the minimum element 
+                from the unsorted portion of the array and placing it at the beginning. The algorithm maintains two subarrays: 
+                one that is already sorted and another that is unsorted. In every iteration, the minimum element from the 
+                unsorted subarray is picked and moved to the sorted subarray.
+              </p>
+            </section>
+
+            <section class="algorithm-section">
+              <h2>How It Works</h2>
+              <ol>
+                <li>Initialize the sorted portion as empty and unsorted portion as the entire array</li>
+                <li>Find the minimum element in the unsorted portion</li>
+                <li>Swap the found minimum element with the first element of the unsorted portion</li>
+                <li>Move the boundary between sorted and unsorted portions one element to the right</li>
+                <li>Repeat steps 2-4 until the entire array is sorted</li>
+              </ol>
+            </section>
+
+            <section class="algorithm-section">
+              <h2>Visualization</h2>
+              <div class="visualization-container">
+                <div class="visualization-controls">
+                  <button class="btn btn-primary" id="startVisualization">
+                    <i class="fas fa-play"></i> Start
+                  </button>
+                  <button class="btn btn-secondary" id="resetVisualization">
+                    <i class="fas fa-redo"></i> Reset
+                  </button>
+                  <div class="speed-control">
+                    <label>Speed:</label>
+                    <input type="range" id="speedControl" min="1" max="5" value="3"/>
+                  </div>
+                </div>
+                <div class="visualization-area">
+                  <svg id="selectionSortVisualization" width="100%" height="300"></svg>
+                </div>
+                <div class="visualization-steps">
+                  <p id="currentStep">Click Start to begin visualization</p>
+                </div>
+              </div>
+            </section>
+
+            <section class="algorithm-section">
+              <h2>Implementation</h2>
+              <div class="implementation-tabs">
+                <ul class="nav nav-tabs" role="tablist">
+                  <li class="nav-item">
+                    <a class="nav-link active" data-bs-toggle="tab" href="#python">Python</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" data-bs-toggle="tab" href="#cpp">C++</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" data-bs-toggle="tab" href="#csharp">C#</a>
+                  </li>
+                </ul>
+                <div class="tab-content">
+                  <div class="tab-pane fade show active" id="python">
+                    <div class="code-wrapper">
+                      <button class="copy-button" data-clipboard-target="#python-code">
+                        <i class="fas fa-copy"></i>
+                      </button>
+                      <pre><code class="language-python" id="python-code">
+def selection_sort(arr):
+    n = len(arr)
+    
+    # Traverse through all array elements
+    for i in range(n):
+        # Find the minimum element in remaining unsorted array
+        min_idx = i
+        for j in range(i + 1, n):
+            if arr[j] < arr[min_idx]:
+                min_idx = j
+                
+        # Swap the found minimum element with the first element
+        arr[i], arr[min_idx] = arr[min_idx], arr[i]
+    
+    return arr
+
+# Usage example
+if __name__ == "__main__":
+    arr = [64, 34, 25, 12, 22, 11, 90]
+    print("Original array:", arr)
+    selection_sort(arr)
+    print("Sorted array:", arr)
+                      </code></pre>
+                    </div>
+                  </div>
+
+                  <div class="tab-pane fade" id="cpp">
+                    <div class="code-wrapper">
+                      <button class="copy-button" data-clipboard-target="#cpp-code">
+                        <i class="fas fa-copy"></i>
+                      </button>
+                      <pre><code class="language-cpp" id="cpp-code">
+#include &lt;iostream&gt;
+#include &lt;vector&gt;
+
+class SelectionSort {
+public:
+    static void sort(std::vector&lt;int&gt;& arr) {
+        int n = arr.size();
+        
+        // One by one move boundary of unsorted subarray
+        for (int i = 0; i < n - 1; i++) {
+            // Find the minimum element in unsorted array
+            int min_idx = i;
+            for (int j = i + 1; j < n; j++) {
+                if (arr[j] < arr[min_idx]) {
+                    min_idx = j;
+                }
+            }
+            
+            // Swap the found minimum element with the first element
+            if (min_idx != i) {
+                std::swap(arr[min_idx], arr[i]);
+            }
+        }
+    }
+};
+
+// Usage example
+int main() {
+    std::vector&lt;int&gt; arr = {64, 34, 25, 12, 22, 11, 90};
+    
+    std::cout << "Original array: ";
+    for (int num : arr) std::cout << num << " ";
+    std::cout << std::endl;
+    
+    SelectionSort::sort(arr);
+    
+    std::cout << "Sorted array: ";
+    for (int num : arr) std::cout << num << " ";
+    std::cout << std::endl;
+    
+    return 0;
+}
+                      </code></pre>
+                    </div>
+                  </div>
+
+                  <div class="tab-pane fade" id="csharp">
+                    <div class="code-wrapper">
+                      <button class="copy-button" data-clipboard-target="#csharp-code">
+                        <i class="fas fa-copy"></i>
+                      </button>
+                      <pre><code class="language-csharp" id="csharp-code">
+public class SelectionSort
+{
+    public static void Sort(int[] arr)
+    {
+        int n = arr.Length;
+        
+        // One by one move boundary of unsorted subarray
+        for (int i = 0; i < n - 1; i++)
+        {
+            // Find the minimum element in unsorted array
+            int min_idx = i;
+            for (int j = i + 1; j < n; j++)
+            {
+                if (arr[j] < arr[min_idx])
+                {
+                    min_idx = j;
+                }
+            }
+            
+            // Swap the found minimum element with the first element
+            if (min_idx != i)
+            {
+                (arr[min_idx], arr[i]) = (arr[i], arr[min_idx]);
+            }
+        }
+    }
+    
+    // Usage example
+    public static void Main(string[] args)
+    {
+        int[] arr = { 64, 34, 25, 12, 22, 11, 90 };
+        
+        Console.WriteLine("Original array: " + string.Join(" ", arr));
+        Sort(arr);
+        Console.WriteLine("Sorted array: " + string.Join(" ", arr));
+    }
+}
+                      </code></pre>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <section class="algorithm-section">
+              <h2>Complexity Analysis</h2>
+              <table class="complexity-table">
+                <tr>
+                  <th>Case</th>
+                  <th>Time Complexity</th>
+                </tr>
+                <tr>
+                  <td>Best</td>
+                  <td>O(n²)</td>
+                </tr>
+                <tr>
+                  <td>Average</td>
+                  <td>O(n²)</td>
+                </tr>
+                <tr>
+                  <td>Worst</td>
+                  <td>O(n²)</td>
+                </tr>
+              </table>
+            </section>
+
+            <section class="algorithm-section">
+              <h2>Advantages and Disadvantages</h2>
+              <div class="pros-cons">
+                <div class="pros">
+                  <h3>Advantages</h3>
+                  <ul>
+                    <li>Simple and easy to understand</li>
+                    <li>Performs well on small arrays</li>
+                    <li>In-place algorithm - requires no extra space</li>
+                    <li>Minimal number of swaps (O(n) swaps)</li>
+                  </ul>
+                </div>
+                <div class="cons">
+                  <h3>Disadvantages</h3>
+                  <ul>
+                    <li>O(n²) complexity makes it inefficient for large lists</li>
+                    <li>Not stable - does not preserve the relative order of equal elements</li>
+                    <li>Does not adapt to the data in any way</li>
+                  </ul>
+                </div>
+              </div>
+            </section>
+          </article>
+        </div>
+      </div>
+    </main>
+
+    <footer class="footer mt-auto py-4">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-md-6 text-center text-md-start">
+            <p class="mb-0">&copy; 2024 lVoidi. All rights reserved.</p>
+          </div>
+          <div class="col-md-6">
+            <ul class="social-links list-inline mb-0 text-center text-md-end">
+              <li class="list-inline-item">
+                <a href="https://github.com/lVoidi" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="GitHub">
+                  <i class="fab fa-github"></i>
+                </a>
+              </li>
+              <li class="list-inline-item">
+                <a href="https://linkedin.com/in/roarba" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="LinkedIn">
+                  <i class="fab fa-linkedin"></i>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../../static/js/prism.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.8/clipboard.min.js"></script>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script>
+      const clipboard = new ClipboardJS(".copy-button");
+      clipboard.on("success", function (e) {
+        const button = e.trigger;
+        button.innerHTML = '<i class="fas fa-check"></i>';
+        setTimeout(() => {
+          button.innerHTML = '<i class="fas fa-copy"></i>';
+        }, 2000);
+      });
+    </script>
+    <script src="../../static/js/selection-sort-visualization.js"></script>
+  </body>
+</html> 
