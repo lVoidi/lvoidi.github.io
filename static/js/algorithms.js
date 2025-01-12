@@ -176,6 +176,13 @@ const algorithms = {
             description: "Finds the minimum spanning tree in a weighted graph",
             complexity: "O(E log E)",
             link: "greedy/kruskal.html"
+        },
+        {
+            name: "Huffman Coding",
+            category: "greedy",
+            description: "Huffman coding is a popular algorithm used for lossless data compression",
+            complexity: "O(n log n)",
+            link: "greedy/huffman.html"
         }
     ],
     backtracking: [
