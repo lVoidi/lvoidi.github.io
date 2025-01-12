@@ -1077,4 +1077,111 @@ pre[class*="language-"] {
     width: 100%;
     height: 100%;
     overflow: visible;
+}
+
+/* Huffman Tree Visualization Styles */
+.node {
+    fill: #2c3e50;
+    stroke: #fff;
+    stroke-width: 2px;
+    transition: fill 0.3s ease;
+}
+
+.node:hover {
+    fill: #3498db;
+    cursor: pointer;
+}
+
+.node-label {
+    fill: white;
+    font-size: 12px;
+    font-family: monospace;
+    pointer-events: none;
+}
+
+.edge-label {
+    fill: #e74c3c;
+    font-size: 14px;
+    font-weight: bold;
+    font-family: monospace;
+}
+
+/* Frequency Table Styles */
+#frequencyTable {
+    background: #2c3e50;
+    color: white;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+#frequencyTable th {
+    background: #34495e;
+    padding: 12px;
+    text-align: center;
+}
+
+#frequencyTable td {
+    padding: 8px 12px;
+    text-align: center;
+    border-top: 1px solid #34495e;
+}
+
+/* Input Controls */
+#textInput {
+    background: #2c3e50;
+    color: white;
+    border: 1px solid #34495e;
+    padding: 8px 12px;
+}
+
+#textInput:focus {
+    outline: none;
+    border-color: #3498db;
+    box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+}
+
+/* Visualization Area Adjustments */
+.visualization-area {
+    background: #1a1a1a;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+/* Tree Link Styles */
+.link {
+    stroke: #666;
+    stroke-width: 2px;
+}
+
+/* Animation Styles */
+.node, .link, .node-label, .edge-label {
+    transition: all 0.5s ease;
+}
+
+/* Status Message Styles */
+#currentStep {
+    background: #2c3e50;
+    color: white;
+    padding: 12px;
+    border-radius: 8px;
+    margin-top: 20px;
+    text-align: center;
+    font-family: monospace;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .visualization-container {
+        flex-direction: column;
+    }
+    
+    #frequencyTable {
+        margin-bottom: 20px;
+    }
+    
+    .visualization-area {
+        height: 400px;
+    }
 } 
