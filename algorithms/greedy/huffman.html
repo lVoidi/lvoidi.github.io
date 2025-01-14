@@ -609,6 +609,80 @@ public class Program
                             </div>
                         </div>
                     </section>
+
+                    <section class="algorithm-section">
+                        <h2>Complexity Analysis</h2>
+                        <div class="complexity-analysis">
+                            <div class="time-complexity">
+                                <h3>Time Complexity</h3>
+                                <p>
+                                    The time complexity of Huffman coding is O(n log n), where n is the number of unique characters in the input text. This can be broken down into:
+                                </p>
+                                <ul>
+                                    <li>
+                                        <strong>Building Frequency Table:</strong> O(n)
+                                        <ul>
+                                            <li>Single pass through input text</li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <strong>Building Huffman Tree:</strong> O(n log n)
+                                        <ul>
+                                            <li>Priority queue operations: O(log n)</li>
+                                            <li>n-1 merge operations: O(n)</li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <strong>Generating Codes:</strong> O(n)
+                                        <ul>
+                                            <li>Traversing tree once for each character</li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <strong>Encoding:</strong> O(m)
+                                        <ul>
+                                            <li>m = length of input text</li>
+                                            <li>Single pass through text</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                            
+                            <div class="space-complexity">
+                                <h3>Space Complexity</h3>
+                                <p>
+                                    The space complexity is O(n), where n is the number of unique characters:
+                                </p>
+                                <ul>
+                                    <li>
+                                        <strong>Frequency Table:</strong> O(n)
+                                        <ul>
+                                            <li>Stores frequency for each unique character</li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <strong>Huffman Tree:</strong> O(n)
+                                        <ul>
+                                            <li>Tree nodes for each character</li>
+                                            <li>Internal nodes for merging</li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <strong>Code Table:</strong> O(n)
+                                        <ul>
+                                            <li>Stores binary codes for each character</li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <strong>Output String:</strong> O(m)
+                                        <ul>
+                                            <li>m = length of encoded/decoded text</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
                 </article>
             </div>
         </div>
