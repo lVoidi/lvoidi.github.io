@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tarjan's Algorithm - lVoidi Portal</title>
+    
+    <!-- CSS imports -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="../../static/css/style.css" rel="stylesheet">
+    <link href="../../static/css/algorithms.css" rel="stylesheet">
+    <link href="../../static/css/algorithm-page.css" rel="stylesheet">
+    <link href="../../static/css/prism.css" rel="stylesheet">
+    <link rel="icon" href="../../static/img/icon.png" type="image/x-icon">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="../../index.html">lVoidi</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="../index.html">Algorithms</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../../singularity/index.html">Technological Singularity</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../../void/index.html">The Pit of Endless Void</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container py-5">
+        <div class="row">
+            <!-- Sidebar -->
+            <div class="col-md-3">
+                <div class="algorithm-info-card">
+                    <h3>Quick Info</h3>
+                    <div class="info-item">
+                        <span class="info-label">Category:</span>
+                        <span class="info-value">Graph</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Time Complexity:</span>
+                        <span class="info-value">O(V + E)</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Space Complexity:</span>
+                        <span class="info-value">O(V)</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Input Type:</span>
+                        <span class="info-value">Directed Graph</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Content -->
+            <div class="col-md-9">
+                <article class="algorithm-content">
+                    <h1>Tarjan's Algorithm</h1>
+                    <div class="algorithm-metadata">
+                        <span class="category-tag">Graph</span>
+                        <span class="category-tag">Strongly Connected Components</span>
+                        <span class="difficulty-tag">Hard</span>
+                    </div>
+
+                    <section class="algorithm-section">
+                        <h2>Description</h2>
+                        <p>
+                            Tarjan's algorithm is a graph theory algorithm for finding strongly connected components 
+                            of a directed graph. It runs in linear time and uses a single depth-first search, making 
+                            it more efficient than Kosaraju's algorithm in practice. The algorithm is based on finding 
+                            the lowest reachable vertex ID in each connected component.
+                        </p>
+                    </section>
+
+                    <section class="algorithm-section history-box">
+                        <h2>History</h2>
+                        <div class="history-content">
+                            <img src="../../static/img/tarjan.jpg" alt="Robert Tarjan" class="history-image">
+                            <p>
+                                The algorithm was developed by Robert Tarjan in 1972. At the time, Tarjan was a graduate 
+                                student at Stanford University. This algorithm was one of his many contributions to computer 
+                                science, for which he later won the Turing Award in 1986. The algorithm showcases an elegant 
+                                use of depth-first search and demonstrates how complex graph problems can be solved efficiently 
+                                with the right approach.
+                            </p>
+                        </div>
+                    </section>
+
+                    <section class="algorithm-section">
+                        <h2>How It Works</h2>
+                        <p>
+                            Tarjan's algorithm uses a <a href="../searching/dfs.html">depth-first search (DFS)</a> approach with additional tracking of vertices:
+                        </p>
+                        <ol>
+                            <li>
+                                <strong>Discovery Time and Low-Link Values:</strong>
+                                <ul>
+                                    <li>Each vertex is assigned a discovery time when first visited</li>
+                                    <li>A low-link value tracks the lowest discovery time reachable</li>
+                                </ul>
+                            </li>
+                            <li>
+                                <strong>Stack Management:</strong>
+                                <ul>
+                                    <li>Vertices are pushed onto a stack as they're visited</li>
+                                    <li>A vertex remains on the stack until its entire SCC is found</li>
+                                </ul>
+                            </li>
+                            <li>
+                                <strong>Component Identification:</strong>
+                                <ul>
+                                    <li>When a vertex's low-link equals its discovery time, it's a root</li>
+                                    <li>Pop vertices from stack until root is reached to form an SCC</li>
+                                </ul>
+                            </li>
+                        </ol>
+                    </section>
+
+                    <section class="algorithm-section">
+                        <h2>Visualization</h2>
+                        <div class="visualization-container">
+                            <div class="visualization-controls">
+                                <button class="btn btn-primary" id="startVisualization">
+                                    <i class="fas fa-play"></i> Start
+                                </button>
+                                <button class="btn btn-secondary" id="resetVisualization">
+                                    <i class="fas fa-redo"></i> Reset
+                                </button>
+                                <div class="speed-control">
+                                    <label>Speed:</label>
+                                    <input type="range" id="speedControl" min="1" max="5" value="3">
+                                </div>
+                            </div>
+                            <div class="visualization-area">
+                                <svg id="tarjanVisualization"></svg>
+                            </div>
+                            <div class="visualization-status">
+                                <div class="status-box">
+                                    <h4>Current Step</h4>
+                                    <p id="currentStep">Click Start to begin</p>
+                                </div>
+                                <div class="status-box">
+                                    <h4>Stack</h4>
+                                    <p id="stackStatus">Empty</p>
+                                </div>
+                                <div class="status-box">
+                                    <h4>Components Found</h4>
+                                    <p id="componentsFound">0</p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="algorithm-section">
+                        <h2>Implementation</h2>
+                        <div class="implementation-tabs">
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" data-bs-toggle="tab" href="#python">Python</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-bs-toggle="tab" href="#cpp">C++</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-bs-toggle="tab" href="#csharp">C#</a>
+                                </li>
+                            </ul>
+                            <div class="tab-content">
+                                <!-- Python Implementation -->
+                                <div class="tab-pane fade show active" id="python">
+                                    <div class="code-wrapper">
+                                        <button class="copy-button" data-clipboard-target="#pythonCode">
+                                            <i class="fas fa-copy"></i>
+                                        </button>
+                                        <pre><code class="language-python" id="pythonCode">
+from collections import defaultdict
+
+class Graph:
+    def __init__(self, vertices):
+        self.V = vertices
+        self.graph = defaultdict(list)
+        self.time = 0
+        
+    def add_edge(self, u, v):
+        self.graph[u].append(v)
+    
+    def tarjan_util(self, u, low, disc, stackMember, st, sccs):
+        disc[u] = self.time
+        low[u] = self.time
+        self.time += 1
+        stackMember[u] = True
+        st.append(u)
+        
+        # Go through all vertices adjacent to this
+        for v in self.graph[u]:
+            # If v is not visited yet, then recur for it
+            if disc[v] == -1:
+                self.tarjan_util(v, low, disc, stackMember, st, sccs)
+                # Check if the subtree rooted with v has a connection to
+                # one of the ancestors of u
+                low[u] = min(low[u], low[v])
+            elif stackMember[v] == True:
+                # Update low value of 'u' only if 'v' is still in stack
+                low[u] = min(low[u], disc[v])
+        
+        # head node found, pop the stack and create an SCC
+        w = -1  # To store stack extracted vertices
+        if low[u] == disc[u]:
+            scc = []
+            while w != u:
+                w = st.pop()
+                scc.append(w)
+                stackMember[w] = False
+            sccs.append(scc)
+    
+    def tarjan(self):
+        # Mark all the vertices as not visited
+        # and Initialize parent and visited arrays
+        disc = [-1] * self.V
+        low = [-1] * self.V
+        stackMember = [False] * self.V
+        st = []
+        sccs = []
+        
+        # Call the recursive helper function
+        # to find articulation points
+        # in DFS tree rooted with vertex 'i'
+        for i in range(self.V):
+            if disc[i] == -1:
+                self.tarjan_util(i, low, disc, stackMember, st, sccs)
+                
+        return sccs
+
+# Example usage
+if __name__ == "__main__":
+    g = Graph(5)
+    g.add_edge(1, 0)
+    g.add_edge(0, 2)
+    g.add_edge(2, 1)
+    g.add_edge(0, 3)
+    g.add_edge(3, 4)
+    
+    print("Strongly Connected Components:")
+    sccs = g.tarjan()
+    for i, scc in enumerate(sccs):
+        print(f"Component {i + 1}: {scc}")
+                                        </code></pre>
+                                    </div>
+                                </div>
+                                
+                                <!-- C++ Implementation -->
+                                <div class="tab-pane fade" id="cpp">
+                                    <div class="code-wrapper">
+                                        <button class="copy-button" data-clipboard-target="#cppCode">
+                                            <i class="fas fa-copy"></i>
+                                        </button>
+                                        <pre><code class="language-cpp" id="cppCode">
+#include &lt;iostream&gt;
+#include &lt;vector&gt;
+#include &lt;stack&gt;
+using namespace std;
+
+class Graph {
+    int V;
+    vector&lt;vector&lt;int&gt;&gt; adj;
+    int time;
+    
+    void tarjanUtil(int u, vector&lt;int&gt;& disc, vector&lt;int&gt;& low,
+                    stack&lt;int&gt;& st, vector&lt;bool&gt;& stackMember,
+                    vector&lt;vector&lt;int&gt;&gt;& sccs) {
+        disc[u] = low[u] = ++time;
+        st.push(u);
+        stackMember[u] = true;
+        
+        // Go through all vertices adjacent to this
+        for(int v : adj[u]) {
+            // If v is not visited yet, then recur for it
+            if(disc[v] == -1) {
+                tarjanUtil(v, disc, low, st, stackMember, sccs);
+                low[u] = min(low[u], low[v]);
+            }
+            // Update low value of u only if v is still in stack
+            else if(stackMember[v])
+                low[u] = min(low[u], disc[v]);
+        }
+        
+        // head node found, pop the stack and create an SCC
+        if(low[u] == disc[u]) {
+            vector&lt;int&gt; scc;
+            int w = 0;
+            while(w != u) {
+                w = st.top();
+                st.pop();
+                scc.push_back(w);
+                stackMember[w] = false;
+            }
+            sccs.push_back(scc);
+        }
+    }
+    
+public:
+    Graph(int vertices) : V(vertices), time(0) {
+        adj.resize(V);
+    }
+    
+    void addEdge(int v, int w) {
+        adj[v].push_back(w);
+    }
+    
+    vector&lt;vector&lt;int&gt;&gt; tarjan() {
+        vector&lt;int&gt; disc(V, -1);
+        vector&lt;int&gt; low(V, -1);
+        vector&lt;bool&gt; stackMember(V, false);
+        stack&lt;int&gt; st;
+        vector&lt;vector&lt;int&gt;&gt; sccs;
+        
+        for(int i = 0; i &lt; V; i++)
+            if(disc[i] == -1)
+                tarjanUtil(i, disc, low, st, stackMember, sccs);
+                
+        return sccs;
+    }
+};
+
+int main() {
+    Graph g(5);
+    g.addEdge(1, 0);
+    g.addEdge(0, 2);
+    g.addEdge(2, 1);
+    g.addEdge(0, 3);
+    g.addEdge(3, 4);
+    
+    cout &lt;&lt; "Strongly Connected Components:\n";
+    auto sccs = g.tarjan();
+    for(int i = 0; i &lt; sccs.size(); i++) {
+        cout &lt;&lt; "Component " &lt;&lt; i+1 &lt;&lt; ": ";
+        for(int v : sccs[i])
+            cout &lt;&lt; v &lt;&lt; " ";
+        cout &lt;&lt; endl;
+    }
+    
+    return 0;
+}
+                                        </code></pre>
+                                    </div>
+                                </div>
+
+                                <!-- C# Implementation -->
+                                <div class="tab-pane fade" id="csharp">
+                                    <div class="code-wrapper">
+                                        <button class="copy-button" data-clipboard-target="#csharpCode">
+                                            <i class="fas fa-copy"></i>
+                                        </button>
+                                        <pre><code class="language-csharp" id="csharpCode">
+public class Graph
+{
+    private int V;
+    private List&lt;List&lt;int&gt;&gt; adj;
+    private int time;
+    
+    public Graph(int vertices)
+    {
+        V = vertices;
+        time = 0;
+        adj = new List&lt;List&lt;int&gt;&gt;();
+        for (int i = 0; i &lt; V; i++)
+        {
+            adj.Add(new List&lt;int&gt;());
+        }
+    }
+    
+    public void AddEdge(int v, int w)
+    {
+        adj[v].Add(w);
+    }
+    
+    private void TarjanUtil(int u, int[] disc, int[] low, Stack&lt;int&gt; st,
+                          bool[] stackMember, List&lt;List&lt;int&gt;&gt; sccs)
+    {
+        disc[u] = low[u] = ++time;
+        st.Push(u);
+        stackMember[u] = true;
+        
+        foreach (int v in adj[u])
+        {
+            if (disc[v] == -1)
+            {
+                TarjanUtil(v, disc, low, st, stackMember, sccs);
+                low[u] = Math.Min(low[u], low[v]);
+            }
+            else if (stackMember[v])
+            {
+                low[u] = Math.Min(low[u], disc[v]);
+            }
+        }
+        
+        if (low[u] == disc[u])
+        {
+            List&lt;int&gt; scc = new List&lt;int&gt;();
+            int w;
+            do
+            {
+                w = st.Pop();
+                stackMember[w] = false;
+                scc.Add(w);
+            } while (w != u);
+            
+            sccs.Add(scc);
+        }
+    }
+    
+    public List&lt;List&lt;int&gt;&gt; Tarjan()
+    {
+        int[] disc = new int[V];
+        int[] low = new int[V];
+        bool[] stackMember = new bool[V];
+        Stack&lt;int&gt; st = new Stack&lt;int&gt;();
+        List&lt;List&lt;int&gt;&gt; sccs = new List&lt;List&lt;int&gt;&gt;();
+        
+        for (int i = 0; i &lt; V; i++)
+        {
+            disc[i] = -1;
+            low[i] = -1;
+        }
+        
+        for (int i = 0; i &lt; V; i++)
+        {
+            if (disc[i] == -1)
+            {
+                TarjanUtil(i, disc, low, st, stackMember, sccs);
+            }
+        }
+        
+        return sccs;
+    }
+}
+
+public class Program
+{
+    public static void Main()
+    {
+        Graph g = new Graph(5);
+        g.AddEdge(1, 0);
+        g.AddEdge(0, 2);
+        g.AddEdge(2, 1);
+        g.AddEdge(0, 3);
+        g.AddEdge(3, 4);
+        
+        Console.WriteLine("Strongly Connected Components:");
+        var sccs = g.Tarjan();
+        for (int i = 0; i &lt; sccs.Count; i++)
+        {
+            Console.Write($"Component {i + 1}: ");
+            Console.WriteLine(string.Join(" ", sccs[i]));
+        }
+    }
+}
+                                        </code></pre>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <section class="algorithm-section">
+                        <h2>Complexity Analysis</h2>
+                        <div class="complexity-analysis">
+                            <div class="time-complexity">
+                                <h3>Time Complexity</h3>
+                                <p>
+                                    The time complexity of Tarjan's algorithm is O(V + E), where V is the number of vertices 
+                                    and E is the number of edges in the graph. This can be broken down into:
+                                </p>
+                                <ul>
+                                    <li>
+                                        <strong>DFS:</strong> O(V + E)
+                                        <ul>
+                                            <li>Each vertex is visited exactly once: O(V)</li>
+                                            <li>Each edge is traversed exactly once: O(E)</li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <strong>Stack Operations:</strong> O(V)
+                                        <ul>
+                                            <li>Each vertex is pushed and popped exactly once</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                            
+                            <div class="space-complexity">
+                                <h3>Space Complexity</h3>
+                                <p>
+                                    The space complexity is O(V), which includes:
+                                </p>
+                                <ul>
+                                    <li>
+                                        <strong>Arrays disc[] and low[]:</strong> O(V)
+                                        <ul>
+                                            <li>Store discovery times and low-link values for each vertex</li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <strong>Stack:</strong> O(V)
+                                        <ul>
+                                            <li>Stores vertices during processing</li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <strong>Array stackMember[]:</strong> O(V)
+                                        <ul>
+                                            <li>Tracks which vertices are in the stack</li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <strong>Output Storage:</strong> O(V)
+                                        <ul>
+                                            <li>For storing the strongly connected components</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="algorithm-section">
+                        <h2>Advantages and Disadvantages</h2>
+                        <div class="pros-cons">
+                            <div class="pros">
+                                <h3>Advantages</h3>
+                                <ul>
+                                    <li>Linear time complexity O(V + E)</li>
+                                    <li>Requires only one graph traversal</li>
+                                    <li>More space-efficient than Kosaraju's algorithm</li>
+                                    <li>No need to construct the transpose graph</li>
+                                </ul>
+                            </div>
+                            <div class="cons">
+                                <h3>Disadvantages</h3>
+                                <ul>
+                                    <li>More complex implementation</li>
+                                    <li>Harder to understand conceptually</li>
+                                    <li>Requires maintaining more state during traversal</li>
+                                    <li>Less intuitive than other SCC algorithms</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+                </article>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer mt-auto py-4">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6 text-center text-md-start">
+                    <p class="mb-0">&copy; 2024 lVoidi. All rights reserved.</p>
+                </div>
+                <div class="col-md-6">
+                    <ul class="social-links list-inline mb-0 text-center text-md-end">
+                        <li class="list-inline-item">
+                            <a href="https://github.com/lVoidi" target="_blank" rel="noopener noreferrer" 
+                               class="social-link" aria-label="GitHub">
+                                <i class="fab fa-github"></i>
+                            </a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="https://linkedin.com/in/roarba" target="_blank" rel="noopener noreferrer" 
+                               class="social-link" aria-label="LinkedIn">
+                                <i class="fab fa-linkedin"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.8/clipboard.min.js"></script>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="../../static/js/prism.js"></script>
+    <script src="../../static/js/tarjan-visualization.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const clipboard = new ClipboardJS('.copy-button');
+            
+            clipboard.on('success', (e) => {
+                const button = e.trigger;
+                button.innerHTML = '<i class="fas fa-check"></i>';
+                setTimeout(() => {
+                    button.innerHTML = '<i class="fas fa-copy"></i>';
+                }, 2000);
+                e.clearSelection();
+            });
+        });
+    </script>
+</body>
+</html> 
