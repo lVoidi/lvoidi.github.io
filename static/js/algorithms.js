@@ -144,6 +144,13 @@ const algorithms = {
             description: "Finds the minimum spanning tree in a weighted graph",
             complexity: "O(E log E)",
             link: "graph/kahn.html"
+        },
+        {
+            name: "Kosaraju's Algorithm",
+            category: "graph",
+            description: "Finds the minimum spanning tree in a weighted graph",
+            complexity: "O(E log E)",
+            link: "graph/kosaraju.html"
         }
     ],
     dynamic: [
