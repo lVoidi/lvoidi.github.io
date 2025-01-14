@@ -437,6 +437,62 @@ public class Program
                     </section>
 
                     <section class="algorithm-section">
+                        <h2>Complexity Analysis</h2>
+                        <div class="complexity-analysis">
+                            <div class="time-complexity">
+                                <h3>Time Complexity</h3>
+                                <p>
+                                    The time complexity of Kahn's algorithm is O(V + E), where V is the number of vertices 
+                                    and E is the number of edges in the graph. This can be broken down into:
+                                </p>
+                                <ul>
+                                    <li>
+                                        <strong>Calculating in-degrees:</strong> O(V + E)
+                                        <ul>
+                                            <li>Iterating through all vertices: O(V)</li>
+                                            <li>Processing each edge once: O(E)</li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <strong>Processing vertices:</strong> O(V + E)
+                                        <ul>
+                                            <li>Each vertex enters queue once: O(V)</li>
+                                            <li>Each edge is processed once: O(E)</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                            
+                            <div class="space-complexity">
+                                <h3>Space Complexity</h3>
+                                <p>
+                                    The space complexity is O(V), which includes:
+                                </p>
+                                <ul>
+                                    <li>
+                                        <strong>In-degree array:</strong> O(V)
+                                        <ul>
+                                            <li>Stores in-degree count for each vertex</li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <strong>Queue:</strong> O(V)
+                                        <ul>
+                                            <li>Can contain at most V vertices</li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <strong>Result array:</strong> O(V)
+                                        <ul>
+                                            <li>Stores the topological ordering</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="algorithm-section">
                         <h2>Advantages and Disadvantages</h2>
                         <div class="pros-cons">
                             <div class="pros">
