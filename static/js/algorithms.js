@@ -158,6 +158,13 @@ const algorithms = {
             description: "Finds the minimum spanning tree in a weighted graph",
             complexity: "O(E log E)",
             link: "graph/tarjan.html"
+        },
+        {
+            name: "Ford-Fulkerson Algorithm",
+            category: "graph",
+            description: "Finds the maximum flow in a flow network",
+            complexity: "O(E * f)",
+            link: "graph/ford-fulkerson.html"
         }
     ],
     dynamic: [
