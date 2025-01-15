@@ -18,27 +18,7 @@
 </head>
 <body>
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
-        <div class="container">
-            <a class="navbar-brand" href="../../index.html">lVoidi</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link active" href="../index.html">Algorithms</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="../../singularity/index.html">Technological Singularity</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="../../void/index.html">The Pit of Endless Void</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+    <div id="navbar-placeholder"></div>
 
     <main class="container py-5">
         <div class="row">
@@ -349,10 +329,72 @@ public class KnapsackSolver {
                             </div>
                         </div>
                     </section>
+                    <section class="algorithm-section">
+                        <h2>Complexity Analysis</h2>
+                        <div class="complexity-analysis">
+                            <table class="complexity-table">
+                                <tr>
+                                    <th>Metric</th>
+                                    <th>Complexity</th>
+                                    <th>Notes</th>
+                                </tr>
+                                <tr>
+                                    <td>Time Complexity</td>
+                                    <td>O(nW)</td>
+                                    <td>n items, W capacity</td>
+                                </tr>
+                                <tr>
+                                    <td>Space Complexity</td>
+                                    <td>O(nW)</td>
+                                    <td>DP table size</td>
+                                </tr>
+                            </table>
+
+                            <div class="complexity-notes">
+                                <h3>Notes:</h3>
+                                <ul>
+                                    <li><strong>n</strong> - Number of items</li>
+                                    <li><strong>W</strong> - Knapsack capacity</li>
+                                    <li>Space can be optimized to O(W) using 1D array</li>
+                                    <li>Time complexity is pseudo-polynomial</li>
+                                    <li>NP-hard problem in its decision version</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="algorithm-section">
+                        <h2>Advantages and Disadvantages</h2>
+                        <div class="pros-cons">
+                            <div class="pros">
+                                <h3>Advantages</h3>
+                                <ul>
+                                    <li>Finds optimal solution guaranteed</li>
+                                    <li>Can handle arbitrary values and weights</li>
+                                    <li>Easy to modify for variations</li>
+                                    <li>Solution is deterministic</li>
+                                    <li>Can be optimized for space</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="cons">
+                                <h3>Disadvantages</h3>
+                                <ul>
+                                    <li>Pseudo-polynomial time complexity</li>
+                                    <li>High memory usage for large capacities</li>
+                                    <li>Not suitable for fractional items</li>
+                                    <li>Impractical for very large instances</li>
+                                    <li>No approximation guarantee if simplified</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
                 </article>
             </div>
         </div>
     </main>
+
+    <div id="footer-placeholder"></div>
 
     <!-- JavaScript imports -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -362,5 +404,6 @@ public class KnapsackSolver {
     <script src="../../static/js/algorithms.js"></script>
     <script src="../../static/js/algorithm-page.js"></script>
     <script src="../../static/js/prism.js"></script>
+    <script src="../../static/js/templates.js"></script>
 </body>
 </html>
