@@ -220,6 +220,13 @@ const algorithms = {
             description: "Places N chess queens on an N×N chessboard so that no queens threaten each other",
             complexity: "O(N!)",
             link: "backtracking/n-queens.html"
+        },
+        {
+            name: "Sudoku Solver",
+            category: "backtracking",
+            description: "Solves a 9x9 Sudoku puzzle ensuring each row, column, and 3x3 box contains digits 1-9 without repetition",
+            complexity: "O(9^(n*n))",
+            link: "backtracking/sudoku.html"
         }
     ],
     cryptographic: [
