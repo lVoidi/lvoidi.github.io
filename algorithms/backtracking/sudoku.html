@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sudoku Solver - Algorithm Visualizer</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="../../static/css/style.css" rel="stylesheet">
+    <link href="../../static/css/algorithms.css" rel="stylesheet">
+    <link href="../../static/css/algorithm-page.css" rel="stylesheet">
+    <link href="../../static/css/prism.css" rel="stylesheet">
+
+    <!-- Icon -->
+    <link rel="icon" href="../../static/img/icon.png" type="image/x-icon">
+</head>
+<body>
+    <div id="navbar-placeholder"></div>
+
+    <main class="container my-4">
+        <div class="row">
+            <!-- Algorithm Info Card -->
+            <div class="col-md-3">
+                <div class="algorithm-info-card">
+                    <h3>Quick Info</h3>
+                    <div class="info-item">
+                        <span class="info-label">Category:</span>
+                        <span class="info-value">Backtracking</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Time Complexity:</span>
+                        <span class="info-value">O(9^(n*n))</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Space Complexity:</span>
+                        <span class="info-value">O(n*n)</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Input Type:</span>
+                        <span class="info-value">9x9 Sudoku Board</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Content -->
+            <div class="col-lg-9">
+                <div class="algorithm-content">
+                    <h1>Sudoku Solver</h1>
+                    
+                    <div class="algorithm-metadata">
+                        <span class="category-tag">Backtracking</span>
+                        <span class="difficulty-tag">Medium</span>
+                    </div>
+
+                    <section class="algorithm-section">
+                        <h2>Description</h2>
+                        <p>
+                            The Sudoku Solver algorithm uses backtracking to solve a 9x9 Sudoku puzzle. The goal is to fill the grid with numbers from 1 to 9, ensuring that each number appears exactly once in each row, column, and 3x3 sub-grid.
+                        </p>
+                    </section>
+
+                    <section class="algorithm-section">
+                        <h2>How It Works</h2>
+                        <ol>
+                            <li>Start with an incomplete Sudoku grid</li>
+                            <li>Find an empty cell (represented by 0)</li>
+                            <li>Try placing numbers 1-9 in the empty cell</li>
+                            <li>For each number, check if it's valid in the current position:
+                                <ul>
+                                    <li>Check if the number exists in the current row</li>
+                                    <li>Check if the number exists in the current column</li>
+                                    <li>Check if the number exists in the current 3x3 box</li>
+                                </ul>
+                            </li>
+                            <li>If the number is valid, place it and recursively try to solve the rest of the puzzle</li>
+                            <li>If the recursive call fails, backtrack by removing the number and try the next one</li>
+                            <li>If no number works, return false to trigger backtracking</li>
+                            <li>If all cells are filled, the puzzle is solved</li>
+                        </ol>
+                    </section>
+
+                    <section class="algorithm-section">
+                        <h2>Visualization</h2>
+                        <div class="visualization-container">
+                            <div class="visualization-controls">
+                                <button id="startVisualization" class="btn btn-primary">Start</button>
+                                <button id="resetVisualization" class="btn btn-secondary">Reset</button>
+                                <button id="loadExample" class="btn btn-info">Load Example</button>
+                                <div class="speed-control">
+                                    <label>Speed:</label>
+                                    <input type="range" id="speedControl" min="1" max="10" value="5">
+                                </div>
+                            </div>
+                            <div id="sudokuBoard"></div>
+                            <div id="currentStep" class="visualization-steps">
+                                Enter numbers and click Start to solve
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="algorithm-section">
+                        <h2>Implementation</h2>
+                        <div class="implementation-tabs">
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" data-bs-toggle="tab" href="#python">Python</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-bs-toggle="tab" href="#cpp">C++</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-bs-toggle="tab" href="#csharp">C#</a>
+                                </li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane fade show active" id="python">
+                                    <pre><code class="language-python">
+def is_valid(board, row, col, num):
+    # Check row
+    for x in range(9):
+        if board[row][x] == num:
+            return False
+    
+    # Check column
+    for x in range(9):
+        if board[x][col] == num:
+            return False
+    
+    # Check 3x3 box
+    start_row = row - row % 3
+    start_col = col - col % 3
+    for i in range(3):
+        for j in range(3):
+            if board[i + start_row][j + start_col] == num:
+                return False
+    
+    return True
+
+def solve_sudoku(board):
+    empty = find_empty(board)
+    if not empty:
+        return True
+    
+    row, col = empty
+    
+    for num in range(1, 10):
+        if is_valid(board, row, col, num):
+            board[row][col] = num
+            
+            if solve_sudoku(board):
+                return True
+            
+            board[row][col] = 0
+    
+    return False
+
+def find_empty(board):
+    for i in range(9):
+        for j in range(9):
+            if board[i][j] == 0:
+                return (i, j)
+    return None
+                                    </code></pre>
+                                </div>
+                                <div class="tab-pane fade" id="cpp">
+                                    <pre><code class="language-cpp">
+class SudokuSolver {
+private:
+    bool isValid(vector&lt;vector&lt;int&gt;&gt;& board, int row, int col, int num) {
+        // Check row
+        for (int x = 0; x &lt; 9; x++) {
+            if (board[row][x] == num) return false;
+        }
+        
+        // Check column
+        for (int x = 0; x &lt; 9; x++) {
+            if (board[x][col] == num) return false;
+        }
+        
+        // Check 3x3 box
+        int startRow = row - row % 3;
+        int startCol = col - col % 3;
+        for (int i = 0; i &lt; 3; i++) {
+            for (int j = 0; j &lt; 3; j++) {
+                if (board[i + startRow][j + startCol] == num) return false;
+            }
+        }
+        
+        return true;
+    }
+    
+    pair&lt;int, int&gt; findEmpty(vector&lt;vector&lt;int&gt;&gt;& board) {
+        for (int i = 0; i &lt; 9; i++) {
+            for (int j = 0; j &lt; 9; j++) {
+                if (board[i][j] == 0) {
+                    return {i, j};
+                }
+            }
+        }
+        return {-1, -1};
+    }
+    
+public:
+    bool solveSudoku(vector&lt;vector&lt;int&gt;&gt;& board) {
+        auto empty = findEmpty(board);
+        if (empty.first == -1) return true;
+        
+        int row = empty.first;
+        int col = empty.second;
+        
+        for (int num = 1; num <= 9; num++) {
+            if (isValid(board, row, col, num)) {
+                board[row][col] = num;
+                
+                if (solveSudoku(board)) {
+                    return true;
+                }
+                
+                board[row][col] = 0;
+            }
+        }
+        
+        return false;
+    }
+};
+                                    </code></pre>
+                                </div>
+                                <div class="tab-pane fade" id="csharp">
+                                    <pre><code class="language-csharp">
+public class SudokuSolver {
+    private bool IsValid(int[,] board, int row, int col, int num) {
+        // Check row
+        for (int x = 0; x &lt; 9; x++) {
+            if (board[row, x] == num) return false;
+        }
+        
+        // Check column
+        for (int x = 0; x &lt; 9; x++) {
+            if (board[x, col] == num) return false;
+        }
+        
+        // Check 3x3 box
+        int startRow = row - row % 3;
+        int startCol = col - col % 3;
+        for (int i = 0; i &lt; 3; i++) {
+            for (int j = 0; j &lt; 3; j++) {
+                if (board[i + startRow, j + startCol] == num) return false;
+            }
+        }
+        
+        return true;
+    }
+    
+    private (int row, int col) FindEmpty(int[,] board) {
+        for (int i = 0; i &lt; 9; i++) {
+            for (int j = 0; j &lt; 9; j++) {
+                if (board[i, j] == 0) {
+                    return (i, j);
+                }
+            }
+        }
+        return (-1, -1);
+    }
+    
+    public bool SolveSudoku(int[,] board) {
+        var empty = FindEmpty(board);
+        if (empty.row == -1) return true;
+        
+        int row = empty.row;
+        int col = empty.col;
+        
+        for (int num = 1; num <= 9; num++) {
+            if (IsValid(board, row, col, num)) {
+                board[row, col] = num;
+                
+                if (SolveSudoku(board)) {
+                    return true;
+                }
+                
+                board[row, col] = 0;
+            }
+        }
+        
+        return false;
+    }
+}
+                                    </code></pre>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <section class="algorithm-section">
+                        <h2>Complexity Analysis</h2>
+                        <div class="complexity-analysis">
+                            <h3>Time Complexity</h3>
+                            <p>
+                                The time complexity of the Sudoku solver is O(9^(n*n)), where n is the size of the board (typically 9). This is because:
+                            </p>
+                            <ul>
+                                <li>For each empty cell, we try numbers 1-9</li>
+                                <li>There can be up to n*n empty cells</li>
+                                <li>For each attempt, we need to validate the move (O(1))</li>
+                                <li>The algorithm backtracks when invalid solutions are found</li>
+                            </ul>
+
+                            <h3>Space Complexity</h3>
+                            <p>
+                                The space complexity is O(n*n), where n is the board size. This accounts for:
+                            </p>
+                            <ul>
+                                <li>The recursion stack depth (up to n*n calls)</li>
+                                <li>The board representation itself</li>
+                                <li>No additional significant space requirements</li>
+                            </ul>
+                        </div>
+                    </section>
+
+                    <section class="algorithm-section">
+                        <h2>Advantages and Disadvantages</h2>
+                        <div class="pros-cons">
+                            <div class="pros">
+                                <h3>Advantages</h3>
+                                <ul>
+                                    <li>Guaranteed to find a solution if one exists</li>
+                                    <li>Simple to implement and understand</li>
+                                    <li>Memory efficient</li>
+                                    <li>Can solve any valid Sudoku puzzle</li>
+                                    <li>No pre-processing required</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="cons">
+                                <h3>Disadvantages</h3>
+                                <ul>
+                                    <li>Exponential time complexity</li>
+                                    <li>Can be slow for very difficult puzzles</li>
+                                    <li>Not optimal for puzzles with multiple solutions</li>
+                                    <li>Performance depends heavily on initial board state</li>
+                                    <li>May explore many dead ends before finding solution</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div id="footer-placeholder"></div>
+
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.8/clipboard.min.js"></script>
+    <script src="../../static/js/prism.js"></script>
+    <script src="../../static/js/sudoku-visualization.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const clipboard = new ClipboardJS('.copy-button');
+            
+            clipboard.on('success', (e) => {
+                const button = e.trigger;
+                button.innerHTML = '<i class="fas fa-check"></i>';
+                setTimeout(() => {
+                    button.innerHTML = '<i class="fas fa-copy"></i>';
+                }, 2000);
+                e.clearSelection();
+            });
+        });
+    </script>
+    <script src="../../static/js/templates.js"></script>
+</body>
+
+</body>
+</html> 
