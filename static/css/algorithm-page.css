@@ -1187,7 +1187,44 @@ pre[class*="language-"] {
         height: 400px;
     }
 } 
+#sudokuBoard {
+    display: grid;
+    grid-template-columns: repeat(9, 1fr);
+    gap: 1px;
+    background: var(--accent-color);
+    padding: 2px;
+    width: 100%;
+    max-width: 500px;
+    margin: 20px auto;
+    aspect-ratio: 1;
+}
 
+.cell {
+    background: var(--background-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5em;
+    font-family: 'JetBrains Mono', monospace;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 1;
+    padding: 0;
+    margin: 0;
+    line-height: 1;
+    text-align: center;
+}
+
+.cell:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.cell.initial {
+    color: var(--accent-color);
+    font-weight: bold;
+}
 #kahnVisualization {
     width: 100%;
     height: 100%;
