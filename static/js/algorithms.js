@@ -227,6 +227,13 @@ const algorithms = {
             description: "Solves a 9x9 Sudoku puzzle ensuring each row, column, and 3x3 box contains digits 1-9 without repetition",
             complexity: "O(9^(n*n))",
             link: "backtracking/sudoku.html"
+        },
+        {
+            name: "Rat Maze",
+            category: "backtracking",
+            description: "Solves a 9x9 Sudoku puzzle ensuring each row, column, and 3x3 box contains digits 1-9 without repetition",
+            complexity: "O(9^(n*n))",
+            link: "backtracking/rat-maze.html"
         }
     ],
     cryptographic: [
