@@ -195,6 +195,13 @@ const algorithms = {
             description: "Calculates the minimum number of operations required to transform one string into another",
             complexity: "Time: O(mn), Space: O(mn)",
             link: "dynamic/editdistance.html"
+        },
+        {
+            name: "Subset Sum",
+            category: "dynamic",
+            description: "Determines if there exists a subset of elements in an array that sums to a given target value",
+            complexity: "Time: O(n*sum), Space: O(n*sum)",
+            link: "dynamic/subsetsum.html"
         }
     ],
     greedy: [
