@@ -211,4 +211,52 @@ main {
 
 .profile-container:hover .profile-overlay {
     opacity: 1;
+}
+
+.daily-selection {
+    background: rgba(40, 42, 54, 0.5);
+    backdrop-filter: blur(10px);
+}
+
+.daily-card {
+    background: #282a36;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    position: relative;
+    min-height: 250px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+}
+
+.daily-card:hover {
+    transform: translateY(-5px);
+}
+
+.daily-badge {
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #bd93f9;
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 0.9em;
+    font-weight: bold;
+    color: #282a36;
+}
+
+.daily-card h3 {
+    margin-top: 25px;
+    font-size: 1.3em;
+    color: #f8f8f2;
+}
+
+.daily-card p {
+    color: #6272a4;
+    font-size: 0.9em;
+    margin: 10px 0;
 } 
