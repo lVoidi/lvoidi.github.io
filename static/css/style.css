@@ -230,10 +230,31 @@ main {
     justify-content: space-between;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
     transition: transform 0.3s ease;
+    text-align: center;
 }
 
 .daily-card:hover {
     transform: translateY(-5px);
+}
+
+.daily-card h3 {
+    margin-top: 25px;
+    font-size: 1.3em;
+    color: #f8f8f2;
+    text-align: center;
+}
+
+.daily-card p {
+    color: #6272a4;
+    font-size: 0.9em;
+    margin: 10px 0;
+    text-align: center;
+}
+
+.daily-card .btn {
+    margin: 0 auto;
+    display: block;
+    width: fit-content;
 }
 
 .daily-badge {
@@ -247,16 +268,4 @@ main {
     font-size: 0.9em;
     font-weight: bold;
     color: #282a36;
-}
-
-.daily-card h3 {
-    margin-top: 25px;
-    font-size: 1.3em;
-    color: #f8f8f2;
-}
-
-.daily-card p {
-    color: #6272a4;
-    font-size: 0.9em;
-    margin: 10px 0;
 } 
