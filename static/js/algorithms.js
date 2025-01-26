@@ -243,11 +243,18 @@ const algorithms = {
             link: "backtracking/rat-maze.html"
         },
         {
-            name: "Word Break",
+            name: "Word Break Problem",
             category: "backtracking",
             description: "Determines if a string can be segmented into space-separated sequence of dictionary words",
             complexity: "O(2^n)",
             link: "backtracking/word-break.html"
+        },
+        {
+            name: "String Permutations",
+            category: "backtracking",
+            description: "Generates all possible permutations of a given string",
+            complexity: "O(n!)",
+            link: "backtracking/string-permutations.html"
         }
     ],
     cryptographic: [
