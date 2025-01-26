@@ -326,6 +326,13 @@ const algorithms = {
             description: "An efficient algorithm for computing the Discrete Fourier Transform (DFT) of a sequence",
             complexity: "O(n log n)",
             link: "numerical/fft.html"
+        },
+        {
+            name: "Gaussian Elimination",
+            category: "numerical",
+            description: "A method for solving systems of linear equations by converting the augmented matrix to row echelon form",
+            complexity: "O(n³)",
+            link: "numerical/gaussian-elimination.html"
         }
     ],
     randomized: [
