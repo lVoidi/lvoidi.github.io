@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gaussian Elimination - lVoidi Portal</title>
+    
+    <!-- CSS imports -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="../../static/css/style.css" rel="stylesheet">
+    <link href="../../static/css/algorithms.css" rel="stylesheet">
+    <link href="../../static/css/algorithm-page.css" rel="stylesheet">
+    <link href="../../static/css/prism.css" rel="stylesheet">
+
+    <!-- Icon -->
+    <link rel="icon" href="../../static/img/icon.png" type="image/x-icon">
+</head>
+<body>
+    <div id="navbar-placeholder"></div>
+
+    <main class="container my-4">
+        <div class="row">
+            <!-- Algorithm Info Card -->
+            <div class="col-md-3">
+                <div class="algorithm-info-card">
+                    <h3>Quick Info</h3>
+                    <div class="info-item">
+                        <span class="info-label">Category:</span>
+                        <span class="info-value">Numerical Methods</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Time Complexity:</span>
+                        <span class="info-value">O(n³)</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Space Complexity:</span>
+                        <span class="info-value">O(n²)</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Input Type:</span>
+                        <span class="info-value">Matrix</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Content -->
+            <div class="col-lg-9">
+                <div class="algorithm-content">
+                    <h1>Gaussian Elimination</h1>
+                    
+                    <div class="algorithm-metadata">
+                        <span class="category-tag">Numerical Methods</span>
+                        <span class="difficulty-tag">Medium</span>
+                    </div>
+
+                    <section class="algorithm-section">
+                        <h2>Description</h2>
+                        <p>
+                            Gaussian Elimination is a systematic method for solving systems of linear equations by transforming 
+                            the augmented matrix into row echelon form. The method is named after Carl Friedrich Gauss, although 
+                            it was known to Chinese mathematicians as early as 179 AD. It consists of a sequence of operations 
+                            performed on the corresponding matrix of coefficients.
+                        </p>
+                    </section>
+
+                    <section class="algorithm-section">
+                        <h2>How It Works</h2>
+                        <ol>
+                            <li>Forward Elimination Phase:
+                                <ul>
+                                    <li>Start with the augmented matrix [A|b]</li>
+                                    <li>Convert matrix to upper triangular form</li>
+                                    <li>For each pivot element, eliminate all elements below it</li>
+                                    <li>Use row operations to make elements below pivot zero</li>
+                                </ul>
+                            </li>
+                            <li>Back Substitution Phase:
+                                <ul>
+                                    <li>Start from the last equation</li>
+                                    <li>Solve for each variable</li>
+                                    <li>Substitute known values into previous equations</li>
+                                    <li>Continue until all variables are found</li>
+                                </ul>
+                            </li>
+                            <li>Pivoting Strategy:
+                                <ul>
+                                    <li>Select largest possible pivot for numerical stability</li>
+                                    <li>Swap rows if necessary (partial pivoting)</li>
+                                    <li>Check for singular or ill-conditioned matrices</li>
+                                </ul>
+                            </li>
+                            <li>Solution Verification:
+                                <ul>
+                                    <li>Check if solution exists</li>
+                                    <li>Verify solution consistency</li>
+                                    <li>Handle special cases (no solution, infinite solutions)</li>
+                                </ul>
+                            </li>
+                        </ol>
+                    </section>
+
+                    <section class="algorithm-section history-box">
+                        <h2>History</h2>
+                        <div class="history-content">
+                            <img src="../../static/img/gauss.jpg" alt="Gaussian Elimination Illustration" class="history-image">
+                            <p>
+                                The method of systematically eliminating variables from equations dates back to ancient Chinese 
+                                mathematics, appearing in "The Nine Chapters on the Mathematical Art" (179 AD). However, its modern 
+                                form was developed by Carl Friedrich Gauss in the early 19th century. Gauss's work on celestial 
+                                mechanics required solving large systems of equations, leading to his refinement of the elimination 
+                                method. The technique gained prominence in the computer age due to its systematic nature and 
+                                adaptability to digital computation.
+                            </p>
+                        </div>
+                    </section>
+
+                    <section class="algorithm-section">
+                        <h2>Visualization</h2>
+                        <div class="visualization-container">
+                            <div class="visualization-controls">
+                                <button id="startBtn" class="btn btn-primary">Start</button>
+                                <button id="resetBtn" class="btn btn-secondary">Reset</button>
+                                <div class="control-group">
+                                    <label for="matrixSize">Matrix Size:</label>
+                                    <select id="matrixSize" class="form-select">
+                                        <option value="2">2x2</option>
+                                        <option value="3" selected>3x3</option>
+                                        <option value="4">4x4</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <canvas id="visualizer"></canvas>
+                            <div class="visualization-steps">
+                                <p id="currentStep">Click Start to begin visualization</p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="algorithm-section">
+                        <h2>Implementation</h2>
+                        <div class="implementation-tabs">
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" data-bs-toggle="tab" href="#python">Python</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-bs-toggle="tab" href="#cpp">C++</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-bs-toggle="tab" href="#csharp">C#</a>
+                                </li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane fade show active" id="python">
+                                    <div class="code-wrapper">
+                                        <button class="copy-button" data-clipboard-target="#pythonCode">
+                                            <i class="fas fa-copy"></i>
+                                        </button>
+                                        <pre><code class="language-python" id="pythonCode">
+import numpy as np
+
+def gaussian_elimination(A, b):
+    n = len(A)
+    # Augment the matrix A with the vector b
+    Ab = np.concatenate((A, b.reshape(n, 1)), axis=1)
+    
+    # Forward elimination
+    for i in range(n):
+        # Find pivot
+        pivot = abs(Ab[i][i])
+        pivot_row = i
+        for k in range(i + 1, n):
+            if abs(Ab[k][i]) > pivot:
+                pivot = abs(Ab[k][i])
+                pivot_row = k
+        
+        # Swap maximum row with current row
+        if pivot_row != i:
+            Ab[i], Ab[pivot_row] = Ab[pivot_row], Ab[i]
+        
+        # Make all rows below this one 0 in current column
+        for k in range(i + 1, n):
+            factor = Ab[k][i] / Ab[i][i]
+            Ab[k] = Ab[k] - factor * Ab[i]
+    
+    # Back substitution
+    x = np.zeros(n)
+    for i in range(n-1, -1, -1):
+        x[i] = Ab[i][n]
+        for j in range(i+1, n):
+            x[i] = x[i] - Ab[i][j] * x[j]
+        x[i] = x[i] / Ab[i][i]
+    
+    return x
+
+# Example usage
+if __name__ == "__main__":
+    # Define system of equations
+    A = np.array([[2, 1, -1],
+                  [-3, -1, 2],
+                  [-2, 1, 2]])
+    b = np.array([8, -11, -3])
+    
+    solution = gaussian_elimination(A, b)
+    print("Solution:", solution)
+                                        </code></pre>
+                                    </div>
+                                </div>
+                                
+                                <div class="tab-pane fade" id="cpp">
+                                    <div class="code-wrapper">
+                                        <button class="copy-button" data-clipboard-target="#cppCode">
+                                            <i class="fas fa-copy"></i>
+                                        </button>
+                                        <pre><code class="language-cpp" id="cppCode">
+#include &lt;vector&gt;
+#include &lt;cmath&gt;
+using namespace std;
+
+class GaussianElimination {
+private:
+    vector&lt;vector&lt;double&gt;&gt; Ab;
+    int n;
+    
+    void forwardElimination() {
+        for (int i = 0; i < n; i++) {
+            // Find pivot
+            int pivot_row = i;
+            double pivot_value = abs(Ab[i][i]);
+            
+            for (int k = i + 1; k < n; k++) {
+                if (abs(Ab[k][i]) > pivot_value) {
+                    pivot_value = abs(Ab[k][i]);
+                    pivot_row = k;
+                }
+            }
+            
+            // Swap rows if needed
+            if (pivot_row != i) {
+                swap(Ab[i], Ab[pivot_row]);
+            }
+            
+            // Eliminate column
+            for (int k = i + 1; k < n; k++) {
+                double factor = Ab[k][i] / Ab[i][i];
+                for (int j = i; j <= n; j++) {
+                    Ab[k][j] -= factor * Ab[i][j];
+                }
+            }
+        }
+    }
+    
+    vector&lt;double&gt; backSubstitution() {
+        vector&lt;double&gt; x(n);
+        for (int i = n - 1; i >= 0; i--) {
+            x[i] = Ab[i][n];
+            for (int j = i + 1; j < n; j++) {
+                x[i] -= Ab[i][j] * x[j];
+            }
+            x[i] /= Ab[i][i];
+        }
+        return x;
+    }
+    
+public:
+    vector&lt;double&gt; solve(vector&lt;vector&lt;double&gt;&gt; A, vector&lt;double&gt; b) {
+        n = A.size();
+        Ab = vector&lt;vector&lt;double&gt;&gt;(n, vector&lt;double&gt;(n + 1));
+        
+        // Create augmented matrix
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                Ab[i][j] = A[i][j];
+            }
+            Ab[i][n] = b[i];
+        }
+        
+        forwardElimination();
+        return backSubstitution();
+    }
+};
+
+int main() {
+    vector&lt;vector&lt;double&gt;&gt; A = {
+        {2, 1, -1},
+        {-3, -1, 2},
+        {-2, 1, 2}
+    };
+    vector&lt;double&gt; b = {8, -11, -3};
+    
+    GaussianElimination solver;
+    vector&lt;double&gt; solution = solver.solve(A, b);
+    
+    cout << "Solution:" << endl;
+    for (double x : solution) {
+        cout << x << " ";
+    }
+    cout << endl;
+    
+    return 0;
+}
+                                        </code></pre>
+                                    </div>
+                                </div>
+
+                                <div class="tab-pane fade" id="csharp">
+                                    <div class="code-wrapper">
+                                        <button class="copy-button" data-clipboard-target="#csharpCode">
+                                            <i class="fas fa-copy"></i>
+                                        </button>
+                                        <pre><code class="language-csharp" id="csharpCode">
+public class GaussianElimination {
+    private double[,] Ab;
+    private int n;
+    
+    private void ForwardElimination() {
+        for (int i = 0; i &lt; n; i++) {
+            // Find pivot
+            int pivotRow = i;
+            double pivotValue = Math.Abs(Ab[i,i]);
+            
+            for (int k = i + 1; k &lt; n; k++) {
+                if (Math.Abs(Ab[k,i]) > pivotValue) {
+                    pivotValue = Math.Abs(Ab[k,i]);
+                    pivotRow = k;
+                }
+            }
+            
+            // Swap rows if needed
+            if (pivotRow != i) {
+                for (int j = i; j &lt;= n; j++) {
+                    double temp = Ab[i,j];
+                    Ab[i,j] = Ab[pivotRow,j];
+                    Ab[pivotRow,j] = temp;
+                }
+            }
+            
+            // Eliminate column
+            for (int k = i + 1; k &lt; n; k++) {
+                double factor = Ab[k,i] / Ab[i,i];
+                for (int j = i; j &lt;= n; j++) {
+                    Ab[k,j] -= factor * Ab[i,j];
+                }
+            }
+        }
+    }
+    
+    private double[] BackSubstitution() {
+        double[] x = new double[n];
+        for (int i = n - 1; i >= 0; i--) {
+            x[i] = Ab[i,n];
+            for (int j = i + 1; j &lt; n; j++) {
+                x[i] -= Ab[i,j] * x[j];
+            }
+            x[i] /= Ab[i,i];
+        }
+        return x;
+    }
+    
+    public double[] Solve(double[,] A, double[] b) {
+        n = b.Length;
+        Ab = new double[n,n+1];
+        
+        // Create augmented matrix
+        for (int i = 0; i &lt; n; i++) {
+            for (int j = 0; j &lt; n; j++) {
+                Ab[i,j] = A[i,j];
+            }
+            Ab[i,n] = b[i];
+        }
+        
+        ForwardElimination();
+        return BackSubstitution();
+    }
+    
+    public static void Main() {
+        double[,] A = new double[,] {
+            {2, 1, -1},
+            {-3, -1, 2},
+            {-2, 1, 2}
+        };
+        double[] b = new double[] {8, -11, -3};
+        
+        var solver = new GaussianElimination();
+        double[] solution = solver.Solve(A, b);
+        
+        Console.WriteLine("Solution:");
+        foreach (double x in solution) {
+            Console.Write($"{x:F6} ");
+        }
+        Console.WriteLine();
+    }
+}
+                                        </code></pre>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="algorithm-section">
+                        <h2>Complexity Analysis</h2>
+                        <div class="complexity-analysis">
+                            <div class="time-complexity">
+                                <h3>Time Complexity</h3>
+                                <p>
+                                    The time complexity is O(n³), where n is the size of the matrix:
+                                </p>
+                                <ul>
+                                    <li>Forward elimination requires n iterations</li>
+                                    <li>Each iteration processes n-i rows</li>
+                                    <li>Each row operation takes O(n) time</li>
+                                    <li>Back substitution takes O(n²) time</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="space-complexity">
+                                <h3>Space Complexity</h3>
+                                <p>
+                                    The space complexity is O(n²), which includes:
+                                </p>
+                                <ul>
+                                    <li>Storage for the augmented matrix: O(n²)</li>
+                                    <li>Storage for intermediate calculations: O(n)</li>
+                                    <li>Storage for the solution vector: O(n)</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="algorithm-section">
+                        <h2>Advantages and Disadvantages</h2>
+                        <div class="pros-cons">
+                            <div class="pros">
+                                <h3>Advantages</h3>
+                                <ul>
+                                    <li>Simple and intuitive implementation</li>
+                                    <li>Works well for small to medium-sized systems</li>
+                                    <li>Can be modified for better numerical stability</li>
+                                    <li>Basis for many advanced linear algebra methods</li>
+                                </ul>
+                            </div>
+                            <div class="cons">
+                                <h3>Disadvantages</h3>
+                                <ul>
+                                    <li>Not efficient for large sparse matrices</li>
+                                    <li>Susceptible to round-off errors</li>
+                                    <li>May be unstable without proper pivoting</li>
+                                    <li>Requires O(n³) operations</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div id="footer-placeholder"></div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.8/clipboard.min.js"></script>
+    <script src="../../static/js/prism.js"></script>
+    <script src="../../static/js/gaussian-elimination-visualization.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const clipboard = new ClipboardJS('.copy-button');
+            
+            clipboard.on('success', (e) => {
+                const button = e.trigger;
+                button.innerHTML = '<i class="fas fa-check"></i>';
+                setTimeout(() => {
+                    button.innerHTML = '<i class="fas fa-copy"></i>';
+                }, 2000);
+                e.clearSelection();
+            });
+        });
+    </script>
+    <script src="../../static/js/templates.js"></script>
+</body>
+</html> 
