@@ -319,6 +319,13 @@ const algorithms = {
             description: "Root-finding algorithm using function derivatives",
             complexity: "O(log n)",
             link: "numerical/newton.html"
+        },
+        {
+            name: "Fast Fourier Transform",
+            category: "numerical",
+            description: "An efficient algorithm for computing the Discrete Fourier Transform (DFT) of a sequence",
+            complexity: "O(n log n)",
+            link: "numerical/fft.html"
         }
     ],
     randomized: [
