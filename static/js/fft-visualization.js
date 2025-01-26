@@ -40,9 +40,16 @@ function generateSignal() {
     computeFFT();
 }
 
+// Complex number multiplication
+function complexMultiply(a, b) {
+    return new Complex(
+        a.re * b.re - a.im * b.im,
+        a.re * b.im + a.im * b.re
+    );
+}
+
 // Compute FFT
 function computeFFT() {
-    // Implementation of FFT algorithm
     function fft(x) {
         const N = x.length;
         if (N <= 1) return x;
@@ -53,9 +60,21 @@ function computeFFT() {
         const result = new Array(N);
         
         for (let k = 0; k < N/2; k++) {
-            const t = odd[k] * Math.exp(-2 * Math.PI * k * new Complex(0, 1) / N);
-            result[k] = even[k] + t;
-            result[k + N/2] = even[k] - t;
+            // Calculate twiddle factor
+            const theta = -2 * Math.PI * k / N;
+            const t = complexMultiply(
+                odd[k],
+                new Complex(Math.cos(theta), Math.sin(theta))
+            );
+            
+            result[k] = new Complex(
+                even[k].re + t.re,
+                even[k].im + t.im
+            );
+            result[k + N/2] = new Complex(
+                even[k].re - t.re,
+                even[k].im - t.im
+            );
         }
         
         return result;
@@ -84,7 +103,7 @@ function draw() {
     }
     ctx.stroke();
     
-    // Draw FFT magnitude
+    // Draw FFT magnitude spectrum
     ctx.beginPath();
     ctx.strokeStyle = '#4CAF50';
     
@@ -92,21 +111,35 @@ function draw() {
         const magnitude = Math.sqrt(
             fftResult[i].re * fftResult[i].re + 
             fftResult[i].im * fftResult[i].im
-        );
+        ) / (fftResult.length / 2);
         
         const x = (i / (fftResult.length / 2)) * (canvas.width / 2);
-        const y = canvas.height - (magnitude * 20);
+        const y = canvas.height - (magnitude * 200);
         
         if (i === 0) ctx.moveTo(x, y);
         else ctx.lineTo(x, y);
     }
     ctx.stroke();
     
-    // Add labels
+    // Add labels and grid
     ctx.fillStyle = '#fff';
     ctx.font = '14px Arial';
     ctx.fillText('Time Domain Signal', 10, 20);
     ctx.fillText('Frequency Domain (FFT)', 10, canvas.height / 2 + 20);
+    
+    // Draw frequency grid lines
+    ctx.strokeStyle = '#666';
+    ctx.lineWidth = 0.5;
+    for (let i = 0; i < 5; i++) {
+        const x = (i * canvas.width / 10);
+        ctx.beginPath();
+        ctx.moveTo(x, 0);
+        ctx.lineTo(x, canvas.height);
+        ctx.stroke();
+        
+        // Add frequency labels
+        ctx.fillText(`${i * 10}Hz`, x, canvas.height - 10);
+    }
     
     if (isAnimating) {
         updateSignal();
@@ -117,11 +150,15 @@ function draw() {
 // Update signal for animation
 function updateSignal() {
     const phase = Date.now() / 1000;
+    const freq1 = 2 + Math.sin(phase * 0.5);  // Frecuencia base que oscila entre 1 y 3 Hz
+    const freq2 = 5 + Math.sin(phase * 0.3);  // Segunda frecuencia que oscila entre 4 y 6 Hz
+    const freq3 = 10 + Math.sin(phase * 0.2); // Tercera frecuencia que oscila entre 9 y 11 Hz
+    
     for (let i = 0; i < signal.length; i++) {
         const t = i / signal.length;
-        signal[i] = Math.sin(2 * Math.PI * 2 * t + phase) + 
-                    0.5 * Math.sin(2 * Math.PI * 5 * t + phase) +
-                    0.25 * Math.sin(2 * Math.PI * 10 * t + phase);
+        signal[i] = Math.sin(2 * Math.PI * freq1 * t + phase) + 
+                    0.5 * Math.sin(2 * Math.PI * freq2 * t + phase * 0.7) +
+                    0.25 * Math.sin(2 * Math.PI * freq3 * t + phase * 0.5);
     }
     computeFFT();
 }
