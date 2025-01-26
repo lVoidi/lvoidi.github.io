@@ -156,6 +156,39 @@
                         </p>
                     </section>
 
+                    <section class="algorithm-section">
+                        <h2>How It Works</h2>
+                        <ol>
+                            <li>Initialization:
+                                <ul>
+                                    <li>Create an array to store the current permutation</li>
+                                    <li>Create a boolean array to track used characters</li>
+                                </ul>
+                            </li>
+                            <li>Backtracking process:
+                                <ul>
+                                    <li>For each position in the permutation</li>
+                                    <li>Try each unused character from the original string</li>
+                                    <li>Mark the character as used</li>
+                                    <li>Recursively generate permutations for remaining positions</li>
+                                </ul>
+                            </li>
+                            <li>At each recursive step:
+                                <ul>
+                                    <li>If all positions are filled, add the permutation to result</li>
+                                    <li>If not, continue with the next available position</li>
+                                    <li>After recursive call, unmark the character (backtrack)</li>
+                                </ul>
+                            </li>
+                            <li>The process ends when:
+                                <ul>
+                                    <li>All possible combinations have been explored</li>
+                                    <li>All permutations have been generated (n! total)</li>
+                                </ul>
+                            </li>
+                        </ol>
+                    </section>
+
                     <section class="algorithm-section history-box">
                         <h2>History</h2>
                         <div class="history-content">
