@@ -333,6 +333,13 @@ const algorithms = {
             description: "A method for solving systems of linear equations by converting the augmented matrix to row echelon form",
             complexity: "O(n³)",
             link: "numerical/gaussian-elimination.html"
+        },
+        {
+            name: "Bisection Method",
+            category: "numerical",
+            description: "A root-finding algorithm that repeatedly bisects an interval and selects a subinterval containing a root",
+            complexity: "O(log((b-a)/ε))",
+            link: "numerical/bisection.html"
         }
     ],
     randomized: [
