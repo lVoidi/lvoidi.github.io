@@ -340,6 +340,13 @@ const algorithms = {
             description: "A root-finding algorithm that repeatedly bisects an interval and selects a subinterval containing a root",
             complexity: "O(log((b-a)/ε))",
             link: "numerical/bisection.html"
+        },
+        {
+            name: "Secant Method",
+            category: "numerical",
+            description: "A root-finding algorithm that uses a succession of roots of secant lines to better approximate a root of a function",
+            complexity: "O(log n)",
+            link: "numerical/secant.html"
         }
     ],
     randomized: [
