@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secant Method - lVoidi Portal</title>
+    
+    <!-- CSS imports -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="../../static/css/style.css" rel="stylesheet">
+    <link href="../../static/css/algorithms.css" rel="stylesheet">
+    <link href="../../static/css/algorithm-page.css" rel="stylesheet">
+    <link href="../../static/css/prism.css" rel="stylesheet">
+
+    <!-- Icon -->
+    <link rel="icon" href="../../static/img/icon.png" type="image/x-icon">
+</head>
+<body>
+    <div id="navbar-placeholder"></div>
+
+    <main class="container my-4">
+        <div class="row">
+            <!-- Algorithm Info Card -->
+            <div class="col-md-3">
+                <div class="algorithm-info-card">
+                    <h3>Quick Info</h3>
+                    <div class="info-item">
+                        <span class="info-label">Category:</span>
+                        <span class="info-value">Numerical Methods</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Time Complexity:</span>
+                        <span class="info-value">O(log n)</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Space Complexity:</span>
+                        <span class="info-value">O(1)</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Input Type:</span>
+                        <span class="info-value">Continuous Function</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Content -->
+            <div class="col-lg-9">
+                <div class="algorithm-content">
+                    <h1>Secant Method</h1>
+                    
+                    <div class="algorithm-metadata">
+                        <span class="category-tag">Numerical Methods</span>
+                        <span class="difficulty-tag">Medium</span>
+                    </div>
+
+                    <section class="algorithm-section">
+                        <h2>Description</h2>
+                        <p>
+                            The Secant Method is a root-finding algorithm that uses a succession of roots of secant lines to better 
+                            approximate a root of a function. It is similar to Newton's Method but does not require the computation 
+                            of derivatives. Instead, it uses a finite difference approximation of the derivative using two points.
+                        </p>
+                    </section>
+
+                    <section class="algorithm-section">
+                        <h2>How It Works</h2>
+                        <ol>
+                            <li>Initial Setup:
+                                <ul>
+                                    <li>Choose two initial points x₀ and x₁ near the suspected root</li>
+                                    <li>Calculate f(x₀) and f(x₁)</li>
+                                </ul>
+                            </li>
+                            <li>Secant Line:
+                                <ul>
+                                    <li>Draw a line through points (x₀, f(x₀)) and (x₁, f(x₁))</li>
+                                    <li>Find where this line intersects the x-axis</li>
+                                </ul>
+                            </li>
+                            <li>Next Approximation:
+                                <ul>
+                                    <li>Use the formula: xₙ₊₁ = xₙ - f(xₙ)(xₙ - xₙ₋₁)/(f(xₙ) - f(xₙ₋₁))</li>
+                                    <li>This point becomes the new approximation</li>
+                                </ul>
+                            </li>
+                            <li>Iteration:
+                                <ul>
+                                    <li>Replace x₀ with x₁</li>
+                                    <li>Replace x₁ with the new approximation</li>
+                                    <li>Continue until convergence</li>
+                                </ul>
+                            </li>
+                        </ol>
+                    </section>
+
+                    <section class="algorithm-section history-box">
+                        <h2>History</h2>
+                        <div class="history-content">
+                            <img src="../../static/img/gauss.jpg" alt="Secant Method Illustration" class="history-image">
+                            <p>
+                                The Secant Method has its roots in ancient mathematics, with early versions appearing in the works 
+                                of Persian mathematician Al-Kashi in the 15th century. The modern form was developed in the 17th 
+                                century during the scientific revolution. It emerged as a practical alternative to Newton's Method 
+                                when derivatives were difficult or impossible to compute. The method's name comes from the Latin 
+                                word "secans," meaning cutting, as it uses secant lines to approximate tangent lines.
+                            </p>
+                        </div>
+                    </section>
+
+                    <section class="algorithm-section">
+                        <h2>Visualization</h2>
+                        <div class="visualization-container">
+                            <div class="visualization-controls">
+                                <button id="startBtn" class="btn btn-primary">Start</button>
+                                <button id="resetBtn" class="btn btn-secondary">Reset</button>
+                                <div class="control-group">
+                                    <label for="functionSelect">Function:</label>
+                                    <select id="functionSelect" class="form-select">
+                                        <option value="polynomial">x³ - x - 2</option>
+                                        <option value="trigonometric">sin(x) - 0.5</option>
+                                        <option value="exponential">e^x - 4</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <canvas id="visualizer"></canvas>
+                            <div class="visualization-steps">
+                                <p id="currentStep">Click Start to begin visualization</p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="algorithm-section">
+                        <h2>Implementation</h2>
+                        <div class="implementation-tabs">
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" data-bs-toggle="tab" href="#python">Python</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-bs-toggle="tab" href="#cpp">C++</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-bs-toggle="tab" href="#csharp">C#</a>
+                                </li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane fade show active" id="python">
+                                    <div class="code-wrapper">
+                                        <button class="copy-button" data-clipboard-target="#pythonCode">
+                                            <i class="fas fa-copy"></i>
+                                        </button>
+                                        <pre><code class="language-python" id="pythonCode">
+def secant_method(f, x0, x1, tolerance=1e-6, max_iterations=100):
+    """
+    Find root of f(x) = 0 using the secant method.
+    
+    Args:
+        f: Function to find root of
+        x0, x1: Initial guesses
+        tolerance: Acceptable error
+        max_iterations: Maximum number of iterations
+    
+    Returns:
+        Approximate root of f(x)
+    """
+    fx0 = f(x0)
+    
+    for i in range(max_iterations):
+        fx1 = f(x1)
+        
+        # Check for division by zero
+        if abs(fx1 - fx0) < tolerance:
+            raise ValueError("Division by zero in secant method")
+        
+        # Secant formula
+        x2 = x1 - fx1 * (x1 - x0) / (fx1 - fx0)
+        
+        if abs(x2 - x1) < tolerance:
+            return x2
+            
+        # Update points
+        x0, fx0 = x1, fx1
+        x1 = x2
+    
+    raise ValueError("Method failed to converge")
+
+# Example usage
+if __name__ == "__main__":
+    # Example function: x³ - x - 2
+    def f(x): return x**3 - x - 2
+    
+    # Find root with initial guesses x₀ = 1, x₁ = 2
+    root = secant_method(f, 1, 2)
+    print(f"Root found at x = {root:.6f}")
+    print(f"f({root:.6f}) = {f(root):.6f}")
+                                        </code></pre>
+                                    </div>
+                                </div>
+                                
+                                <div class="tab-pane fade" id="cpp">
+                                    <div class="code-wrapper">
+                                        <button class="copy-button" data-clipboard-target="#cppCode">
+                                            <i class="fas fa-copy"></i>
+                                        </button>
+                                        <pre><code class="language-cpp" id="cppCode">
+#include &lt;iostream&gt;
+#include &lt;cmath&gt;
+#include &lt;stdexcept&gt;
+
+class SecantMethod {
+private:
+    double tolerance;
+    int maxIterations;
+    
+public:
+    SecantMethod(double tol = 1e-6, int maxIter = 100) 
+        : tolerance(tol), maxIterations(maxIter) {}
+    
+    template&lt;typename F&gt;
+    double findRoot(F f, double x0, double x1) {
+        double fx0 = f(x0);
+        
+        for (int i = 0; i < maxIterations; i++) {
+            double fx1 = f(x1);
+            
+            // Check for division by zero
+            if (std::abs(fx1 - fx0) < tolerance) {
+                throw std::runtime_error(
+                    "Division by zero in secant method"
+                );
+            }
+            
+            // Secant formula
+            double x2 = x1 - fx1 * (x1 - x0) / (fx1 - fx0);
+            
+            if (std::abs(x2 - x1) < tolerance)
+                return x2;
+                
+            // Update points
+            x0 = x1;
+            fx0 = fx1;
+            x1 = x2;
+        }
+        
+        throw std::runtime_error("Method failed to converge");
+    }
+};
+
+int main() {
+    // Example function: x³ - x - 2
+    auto f = [](double x) { return x*x*x - x - 2; };
+    
+    SecantMethod solver;
+    try {
+        double root = solver.findRoot(f, 1.0, 2.0);
+        std::cout << "Root found at x = " << root << std::endl;
+        std::cout << "f(" << root << ") = " << f(root) << std::endl;
+    }
+    catch (const std::exception& e) {
+        std::cerr << "Error: " << e.what() << std::endl;
+    }
+    
+    return 0;
+}
+                                        </code></pre>
+                                    </div>
+                                </div>
+
+                                <div class="tab-pane fade" id="csharp">
+                                    <div class="code-wrapper">
+                                        <button class="copy-button" data-clipboard-target="#csharpCode">
+                                            <i class="fas fa-copy"></i>
+                                        </button>
+                                        <pre><code class="language-csharp" id="csharpCode">
+public class SecantMethod {
+    private readonly double tolerance;
+    private readonly int maxIterations;
+    
+    public SecantMethod(double tolerance = 1e-6, int maxIterations = 100) {
+        this.tolerance = tolerance;
+        this.maxIterations = maxIterations;
+    }
+    
+    public double FindRoot(Func&lt;double, double&gt; f, double x0, double x1) {
+        double fx0 = f(x0);
+        
+        for (int i = 0; i < maxIterations; i++) {
+            double fx1 = f(x1);
+            
+            // Check for division by zero
+            if (Math.Abs(fx1 - fx0) < tolerance) {
+                throw new InvalidOperationException(
+                    "Division by zero in secant method"
+                );
+            }
+            
+            // Secant formula
+            double x2 = x1 - fx1 * (x1 - x0) / (fx1 - fx0);
+            
+            if (Math.Abs(x2 - x1) < tolerance)
+                return x2;
+                
+            // Update points
+            x0 = x1;
+            fx0 = fx1;
+            x1 = x2;
+        }
+        
+        throw new InvalidOperationException("Method failed to converge");
+    }
+    
+    public static void Main() {
+        // Example function: x³ - x - 2
+        double f(double x) => x * x * x - x - 2;
+        
+        var solver = new SecantMethod();
+        try {
+            double root = solver.FindRoot(f, 1.0, 2.0);
+            Console.WriteLine($"Root found at x = {root:F6}");
+            Console.WriteLine($"f({root:F6}) = {f(root):F6}");
+        }
+        catch (Exception e) {
+            Console.WriteLine($"Error: {e.Message}");
+        }
+    }
+}
+                                        </code></pre>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="algorithm-section">
+                        <h2>Complexity Analysis</h2>
+                        <div class="complexity-analysis">
+                            <div class="time-complexity">
+                                <h3>Time Complexity</h3>
+                                <p>
+                                    The time complexity is O(log n), where:
+                                </p>
+                                <ul>
+                                    <li>n is the desired precision (1/ε)</li>
+                                    <li>Convergence rate is superlinear (≈ 1.618)</li>
+                                    <li>Faster than bisection method</li>
+                                    <li>Slower than Newton's method</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="space-complexity">
+                                <h3>Space Complexity</h3>
+                                <p>
+                                    The space complexity is O(1), which includes:
+                                </p>
+                                <ul>
+                                    <li>Storage for two points</li>
+                                    <li>Storage for function values</li>
+                                    <li>No additional data structures needed</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="algorithm-section">
+                        <h2>Advantages and Disadvantages</h2>
+                        <div class="pros-cons">
+                            <div class="pros">
+                                <h3>Advantages</h3>
+                                <ul>
+                                    <li>No derivatives required</li>
+                                    <li>Faster convergence than bisection</li>
+                                    <li>Simple to implement</li>
+                                    <li>Works well for smooth functions</li>
+                                </ul>
+                            </div>
+                            <div class="cons">
+                                <h3>Disadvantages</h3>
+                                <ul>
+                                    <li>May diverge for poor initial guesses</li>
+                                    <li>Slower than Newton's method</li>
+                                    <li>No guaranteed convergence</li>
+                                    <li>Sensitive to choice of initial points</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div id="footer-placeholder"></div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.8/clipboard.min.js"></script>
+    <script src="../../static/js/prism.js"></script>
+    <script src="../../static/js/secant-visualization.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const clipboard = new ClipboardJS('.copy-button');
+            
+            clipboard.on('success', (e) => {
+                const button = e.trigger;
+                button.innerHTML = '<i class="fas fa-check"></i>';
+                setTimeout(() => {
+                    button.innerHTML = '<i class="fas fa-copy"></i>';
+                }, 2000);
+                e.clearSelection();
+            });
+        });
+    </script>
+    <script src="../../static/js/templates.js"></script>
+</body>
+</html> 
