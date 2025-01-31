@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rabin-Karp Algorithm - lVoidi Portal</title>
+    
+    <!-- CSS imports -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="../../static/css/style.css" rel="stylesheet">
+    <link href="../../static/css/algorithms.css" rel="stylesheet">
+    <link href="../../static/css/algorithm-page.css" rel="stylesheet">
+    <link href="../../static/css/prism.css" rel="stylesheet">
+
+    <!-- Icon -->
+    <link rel="icon" href="../../static/img/icon.png" type="image/x-icon">
+</head>
+<body>
+    <div id="navbar-placeholder"></div>
+
+    <main class="container my-4">
+        <div class="row">
+            <!-- Algorithm Info Card -->
+            <div class="col-md-3">
+                <div class="algorithm-info-card">
+                    <h3>Quick Info</h3>
+                    <div class="info-item">
+                        <span class="info-label">Category:</span>
+                        <span class="info-value">String Algorithms</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Time Complexity:</span>
+                        <span class="info-value">Average: O(n + m), Worst: O(nm)</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Space Complexity:</span>
+                        <span class="info-value">O(1)</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Input Type:</span>
+                        <span class="info-value">String</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Content -->
+            <div class="col-lg-9">
+                <div class="algorithm-content">
+                    <h1>Rabin-Karp Algorithm</h1>
+                    
+                    <div class="algorithm-metadata">
+                        <span class="category-tag">String Algorithms</span>
+                        <span class="difficulty-tag">Medium</span>
+                    </div>
+
+                    <section class="algorithm-section">
+                        <h2>Description</h2>
+                        <p>
+                            The Rabin-Karp algorithm is a string-searching algorithm that uses hashing to find an exact match 
+                            of a pattern string in a text. It uses a rolling hash to efficiently calculate hash values for 
+                            subsequent substrings of the text. The algorithm was created by Richard M. Karp and Michael O. Rabin 
+                            in 1987.
+                        </p>
+                    </section>
+
+                    <section class="algorithm-section">
+                        <h2>How It Works</h2>
+                        <ol>
+                            <li>Hash Calculation:
+                                <ul>
+                                    <li>Calculate hash value of the pattern</li>
+                                    <li>Calculate hash value of first window of text</li>
+                                    <li>Use a rolling hash function for efficiency</li>
+                                </ul>
+                            </li>
+                            <li>Window Sliding:
+                                <ul>
+                                    <li>Slide window one character at a time</li>
+                                    <li>Update hash value using rolling hash property</li>
+                                    <li>Compare new hash with pattern hash</li>
+                                </ul>
+                            </li>
+                            <li>Hash Matching:
+                                <ul>
+                                    <li>If hash values match, check characters</li>
+                                    <li>Handle hash collisions with direct comparison</li>
+                                    <li>Continue until all matches are found</li>
+                                </ul>
+                            </li>
+                            <li>Rolling Hash:
+                                <ul>
+                                    <li>Remove leading digit: hash = hash - val(txt[i-1]) * d^(m-1)</li>
+                                    <li>Shift left: hash = hash * d</li>
+                                    <li>Add trailing digit: hash = hash + val(txt[i+m-1])</li>
+                                </ul>
+                            </li>
+                        </ol>
+                    </section>
+
+                    <section class="algorithm-section history-box">
+                        <h2>History</h2>
+                        <div class="history-content">
+                            <img src="../../static/img/karp.jpg" alt="Rabin-Karp Illustration" class="history-image">
+                            <p>
+                                The Rabin-Karp algorithm was developed by Richard M. Karp and Michael O. Rabin in 1987. It 
+                                combines two key ideas: rolling hash functions and string matching. The algorithm was a significant 
+                                improvement over naive string matching for specific use cases, particularly in detecting plagiarism 
+                                by finding duplicate content in large texts. The use of rolling hash functions made it possible to 
+                                update hash values efficiently, leading to its widespread adoption in document similarity detection 
+                                and bioinformatics applications.
+                            </p>
+                        </div>
+                    </section>
+
+                    <section class="algorithm-section">
+                        <h2>Visualization</h2>
+                        <div class="visualization-container">
+                            <div class="visualization-controls">
+                                <button id="startBtn" class="btn btn-primary">Start</button>
+                                <button id="resetBtn" class="btn btn-secondary">Reset</button>
+                                <div class="control-group">
+                                    <label for="textInput">Text:</label>
+                                    <input type="text" id="textInput" class="form-control" value="AABAACAADAABAAABAA">
+                                </div>
+                                <div class="control-group">
+                                    <label for="patternInput">Pattern:</label>
+                                    <input type="text" id="patternInput" class="form-control" value="AABA">
+                                </div>
+                            </div>
+                            <canvas id="visualizer"></canvas>
+                            <div class="visualization-steps">
+                                <p id="currentStep">Click Start to begin visualization</p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="algorithm-section">
+                        <h2>Implementation</h2>
+                        <div class="implementation-tabs">
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" data-bs-toggle="tab" href="#python">Python</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-bs-toggle="tab" href="#cpp">C++</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-bs-toggle="tab" href="#csharp">C#</a>
+                                </li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane fade show active" id="python">
+                                    <div class="code-wrapper">
+                                        <button class="copy-button" data-clipboard-target="#pythonCode">
+                                            <i class="fas fa-copy"></i>
+                                        </button>
+                                        <pre><code class="language-python" id="pythonCode">
+def rabin_karp(text, pattern):
+    """
+    Find all occurrences of pattern in text using Rabin-Karp algorithm.
+    
+    Args:
+        text: String to search in
+        pattern: String to search for
+    
+    Returns:
+        List of starting indices where pattern is found
+    """
+    if not pattern or not text:
+        return []
+    
+    # Constants for hash calculation
+    prime = 101
+    base = 256
+    
+    n, m = len(text), len(pattern)
+    if m > n:
+        return []
+    
+    # Calculate pattern hash
+    pattern_hash = 0
+    window_hash = 0
+    base_power = 1
+    
+    # Calculate initial hash values
+    for i in range(m):
+        pattern_hash = (pattern_hash * base + ord(pattern[i])) % prime
+        window_hash = (window_hash * base + ord(text[i])) % prime
+        if i < m - 1:
+            base_power = (base_power * base) % prime
+    
+    matches = []
+    
+    # Check first window
+    if pattern_hash == window_hash and text[:m] == pattern:
+        matches.append(0)
+    
+    # Slide window
+    for i in range(n - m):
+        # Remove leading digit
+        window_hash = window_hash - (ord(text[i]) * base_power) % prime
+        if window_hash < 0:
+            window_hash += prime
+            
+        # Add trailing digit
+        window_hash = (window_hash * base + ord(text[i + m])) % prime
+        
+        # Check window
+        start = i + 1
+        if pattern_hash == window_hash and text[start:start + m] == pattern:
+            matches.append(start)
+    
+    return matches
+
+# Example usage
+if __name__ == "__main__":
+    text = "AABAACAADAABAAABAA"
+    pattern = "AABA"
+    
+    matches = rabin_karp(text, pattern)
+    print(f"Pattern found at positions: {matches}")
+                                        </code></pre>
+                                    </div>
+                                </div>
+                                
+                                <div class="tab-pane fade" id="cpp">
+                                    <div class="code-wrapper">
+                                        <button class="copy-button" data-clipboard-target="#cppCode">
+                                            <i class="fas fa-copy"></i>
+                                        </button>
+                                        <pre><code class="language-cpp" id="cppCode">
+#include &lt;iostream&gt;
+#include &lt;vector&gt;
+#include &lt;string&gt;
+
+class RabinKarp {
+private:
+    const int prime = 101;
+    const int base = 256;
+    
+public:
+    std::vector&lt;int&gt; search(const std::string& text, const std::string& pattern) {
+        std::vector&lt;int&gt; matches;
+        
+        if (pattern.empty() || text.empty())
+            return matches;
+            
+        int n = text.length();
+        int m = pattern.length();
+        
+        if (m > n)
+            return matches;
+            
+        // Calculate pattern hash
+        int pattern_hash = 0;
+        int window_hash = 0;
+        int base_power = 1;
+        
+        // Calculate initial hash values
+        for (int i = 0; i < m; i++) {
+            pattern_hash = (pattern_hash * base + pattern[i]) % prime;
+            window_hash = (window_hash * base + text[i]) % prime;
+            if (i < m - 1)
+                base_power = (base_power * base) % prime;
+        }
+        
+        // Check first window
+        if (pattern_hash == window_hash && 
+            text.substr(0, m) == pattern) {
+            matches.push_back(0);
+        }
+        
+        // Slide window
+        for (int i = 0; i < n - m; i++) {
+            // Remove leading digit
+            window_hash = window_hash - 
+                         (text[i] * base_power) % prime;
+            if (window_hash < 0)
+                window_hash += prime;
+                
+            // Add trailing digit
+            window_hash = (window_hash * base + text[i + m]) % prime;
+            
+            // Check window
+            int start = i + 1;
+            if (pattern_hash == window_hash && 
+                text.substr(start, m) == pattern) {
+                matches.push_back(start);
+            }
+        }
+        
+        return matches;
+    }
+};
+
+int main() {
+    std::string text = "AABAACAADAABAAABAA";
+    std::string pattern = "AABA";
+    
+    RabinKarp rk;
+    auto matches = rk.search(text, pattern);
+    
+    std::cout << "Pattern found at positions:";
+    for (int pos : matches)
+        std::cout << " " << pos;
+    std::cout << std::endl;
+    
+    return 0;
+}
+                                        </code></pre>
+                                    </div>
+                                </div>
+
+                                <div class="tab-pane fade" id="csharp">
+                                    <div class="code-wrapper">
+                                        <button class="copy-button" data-clipboard-target="#csharpCode">
+                                            <i class="fas fa-copy"></i>
+                                        </button>
+                                        <pre><code class="language-csharp" id="csharpCode">
+public class RabinKarp {
+    private const int prime = 101;
+    private const int base = 256;
+    
+    public List&lt;int&gt; Search(string text, string pattern) {
+        var matches = new List&lt;int&gt;();
+        
+        if (string.IsNullOrEmpty(pattern) || 
+            string.IsNullOrEmpty(text))
+            return matches;
+            
+        int n = text.Length;
+        int m = pattern.Length;
+        
+        if (m > n)
+            return matches;
+            
+        // Calculate pattern hash
+        int patternHash = 0;
+        int windowHash = 0;
+        int basePower = 1;
+        
+        // Calculate initial hash values
+        for (int i = 0; i < m; i++) {
+            patternHash = (patternHash * base + pattern[i]) % prime;
+            windowHash = (windowHash * base + text[i]) % prime;
+            if (i < m - 1)
+                basePower = (basePower * base) % prime;
+        }
+        
+        // Check first window
+        if (patternHash == windowHash && 
+            text.Substring(0, m) == pattern) {
+            matches.Add(0);
+        }
+        
+        // Slide window
+        for (int i = 0; i < n - m; i++) {
+            // Remove leading digit
+            windowHash = windowHash - 
+                        (text[i] * basePower) % prime;
+            if (windowHash < 0)
+                windowHash += prime;
+                
+            // Add trailing digit
+            windowHash = (windowHash * base + text[i + m]) % prime;
+            
+            // Check window
+            int start = i + 1;
+            if (patternHash == windowHash && 
+                text.Substring(start, m) == pattern) {
+                matches.Add(start);
+            }
+        }
+        
+        return matches;
+    }
+    
+    public static void Main() {
+        string text = "AABAACAADAABAAABAA";
+        string pattern = "AABA";
+        
+        var rk = new RabinKarp();
+        var matches = rk.Search(text, pattern);
+        
+        Console.Write("Pattern found at positions:");
+        foreach (int pos in matches)
+            Console.Write($" {pos}");
+        Console.WriteLine();
+    }
+}
+                                        </code></pre>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="algorithm-section">
+                        <h2>Complexity Analysis</h2>
+                        <div class="complexity-analysis">
+                            <div class="time-complexity">
+                                <h3>Time Complexity</h3>
+                                <p>
+                                    The time complexity varies:
+                                </p>
+                                <ul>
+                                    <li>Average case: O(n + m)</li>
+                                    <li>Worst case: O(nm) when many hash collisions</li>
+                                    <li>n is text length, m is pattern length</li>
+                                    <li>Hash calculation is O(1) with rolling hash</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="space-complexity">
+                                <h3>Space Complexity</h3>
+                                <p>
+                                    The space complexity is O(1), which includes:
+                                </p>
+                                <ul>
+                                    <li>Storage for hash values</li>
+                                    <li>Rolling hash variables</li>
+                                    <li>No additional data structures needed</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="algorithm-section">
+                        <h2>Advantages and Disadvantages</h2>
+                        <div class="pros-cons">
+                            <div class="pros">
+                                <h3>Advantages</h3>
+                                <ul>
+                                    <li>Efficient average case performance</li>
+                                    <li>Good for multiple pattern search</li>
+                                    <li>Rolling hash makes updates O(1)</li>
+                                    <li>Suitable for plagiarism detection</li>
+                                </ul>
+                            </div>
+                            <div class="cons">
+                                <h3>Disadvantages</h3>
+                                <ul>
+                                    <li>Poor worst-case performance</li>
+                                    <li>Hash collisions require extra checks</li>
+                                    <li>Complex hash function needed</li>
+                                    <li>Not suitable for very short patterns</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div id="footer-placeholder"></div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.8/clipboard.min.js"></script>
+    <script src="../../static/js/prism.js"></script>
+    <script src="../../static/js/rabin-karp-visualization.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const clipboard = new ClipboardJS('.copy-button');
+            
+            clipboard.on('success', (e) => {
+                const button = e.trigger;
+                button.innerHTML = '<i class="fas fa-check"></i>';
+                setTimeout(() => {
+                    button.innerHTML = '<i class="fas fa-copy"></i>';
+                }, 2000);
+                e.clearSelection();
+            });
+        });
+    </script>
+    <script src="../../static/js/templates.js"></script>
+</body>
+</html> 
