@@ -310,6 +310,13 @@ const algorithms = {
             description: "Markov chain for efficient string searching",
             complexity: "O(n + m)",
             link: "string/markov.html"
+        },
+        {
+            name: "Rabin-Karp Algorithm",
+            category: "string",
+            description: "A string searching algorithm that uses hashing to find an exact match of a pattern string in a text",
+            complexity: "Average: O(n + m), Worst: O(nm)",
+            link: "string/rabin-karp.html"
         }
     ],
     numerical: [
