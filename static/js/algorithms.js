@@ -354,6 +354,13 @@ const algorithms = {
             description: "A root-finding algorithm that uses a succession of roots of secant lines to better approximate a root of a function",
             complexity: "O(log n)",
             link: "numerical/secant.html"
+        },
+        {
+            name: "Gauss-Seidel Method",
+            category: "numerical",
+            description: "An iterative method for solving systems of linear equations by improving an initial guess through successive substitutions",
+            complexity: "O(kn²) where k is iterations",
+            link: "numerical/gauss-seidel.html"
         }
     ],
     randomized: [
