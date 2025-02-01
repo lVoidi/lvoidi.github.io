@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gauss-Seidel Method - lVoidi Portal</title>
+    
+    <!-- CSS imports -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="../../static/css/style.css" rel="stylesheet">
+    <link href="../../static/css/algorithms.css" rel="stylesheet">
+    <link href="../../static/css/algorithm-page.css" rel="stylesheet">
+    <link href="../../static/css/prism.css" rel="stylesheet">
+
+    <!-- Icon -->
+    <link rel="icon" href="../../static/img/icon.png" type="image/x-icon">
+</head>
+<body>
+    <div id="navbar-placeholder"></div>
+
+    <main class="container my-4">
+        <div class="row">
+            <!-- Algorithm Info Card -->
+            <div class="col-md-3">
+                <div class="algorithm-info-card">
+                    <h3>Quick Info</h3>
+                    <div class="info-item">
+                        <span class="info-label">Category:</span>
+                        <span class="info-value">Numerical Methods</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Time Complexity:</span>
+                        <span class="info-value">O(kn²) where k is iterations</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Space Complexity:</span>
+                        <span class="info-value">O(n²)</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Input Type:</span>
+                        <span class="info-value">Matrix</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Content -->
+            <div class="col-lg-9">
+                <div class="algorithm-content">
+                    <h1>Gauss-Seidel Method</h1>
+                    
+                    <div class="algorithm-metadata">
+                        <span class="category-tag">Numerical Methods</span>
+                        <span class="difficulty-tag">Medium</span>
+                    </div>
+
+                    <section class="algorithm-section">
+                        <h2>Description</h2>
+                        <p>
+                            The Gauss-Seidel method is an iterative method for solving systems of linear equations. 
+                            It is an improvement over the Jacobi method that uses the most recently calculated values 
+                            in the same iteration. The method is especially efficient for diagonally dominant matrices 
+                            and is widely used in engineering and physics applications.
+                        </p>
+                    </section>
+
+                    <section class="algorithm-section">
+                        <h2>How It Works</h2>
+                        <ol>
+                            <li>Preparation:
+                                <ul>
+                                    <li>Ensure matrix is diagonally dominant</li>
+                                    <li>Choose initial solution x⁽⁰⁾</li>
+                                    <li>Set convergence criterion ε</li>
+                                </ul>
+                            </li>
+                            <li>Iteration:
+                                <ul>
+                                    <li>For each equation i in the system</li>
+                                    <li>Use updated values of x₁, x₂, ..., xᵢ₋₁</li>
+                                    <li>Use previous values of xᵢ₊₁, ..., xₙ</li>
+                                    <li>Calculate new xᵢ</li>
+                                </ul>
+                            </li>
+                            <li>Update Formula:
+                                <ul>
+                                    <li>xᵢ = (bᵢ - Σⱼ≠ᵢ aᵢⱼxⱼ) / aᵢᵢ</li>
+                                    <li>Where aᵢⱼ are matrix elements</li>
+                                    <li>bᵢ are constant vector elements</li>
+                                </ul>
+                            </li>
+                            <li>Convergence:
+                                <ul>
+                                    <li>Check if ||x⁽ᵏ⁺¹⁾ - x⁽ᵏ⁾|| < ε</li>
+                                    <li>Continue until convergence</li>
+                                    <li>Or until maximum iterations reached</li>
+                                </ul>
+                            </li>
+                        </ol>
+                    </section>
+
+                    <section class="algorithm-section history-box">
+                        <h2>History</h2>
+                        <div class="history-content">
+                            <img src="../../static/img/gauss.jpg" alt="Gauss-Seidel Method Illustration" class="history-image">
+                            <p>
+                                The Gauss-Seidel method was developed by German mathematicians Carl Friedrich Gauss 
+                                and Philipp Ludwig von Seidel. Although Gauss described the basic method, it was Seidel 
+                                who formally published it in 1874. The method emerged as an improvement over the Jacobi 
+                                method, taking advantage of the most recently calculated values to accelerate convergence. 
+                                Its efficiency and simplicity made it one of the most popular iterative methods for solving 
+                                systems of linear equations.
+                            </p>
+                        </div>
+                    </section>
+
+                    <section class="algorithm-section">
+                        <h2>Visualization</h2>
+                        <div class="visualization-container">
+                            <div class="visualization-controls">
+                                <button id="startBtn" class="btn btn-primary">Start</button>
+                                <button id="resetBtn" class="btn btn-secondary">Reset</button>
+                                <div class="control-group">
+                                    <label for="matrixSize">Matrix Size:</label>
+                                    <select id="matrixSize" class="form-select">
+                                        <option value="2">2x2</option>
+                                        <option value="3" selected>3x3</option>
+                                        <option value="4">4x4</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <canvas id="visualizer"></canvas>
+                            <div class="visualization-steps">
+                                <p id="currentStep">Click Start to begin visualization</p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="algorithm-section">
+                        <h2>Implementation</h2>
+                        <div class="implementation-tabs">
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" data-bs-toggle="tab" href="#python">Python</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-bs-toggle="tab" href="#cpp">C++</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-bs-toggle="tab" href="#csharp">C#</a>
+                                </li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane fade show active" id="python">
+                                    <div class="code-wrapper">
+                                        <button class="copy-button" data-clipboard-target="#pythonCode">
+                                            <i class="fas fa-copy"></i>
+                                        </button>
+                                        <pre><code class="language-python" id="pythonCode">
+import numpy as np
+
+def gauss_seidel(A, b, x0=None, tolerance=1e-6, max_iterations=100):
+    """
+    Solve Ax = b using Gauss-Seidel method.
+    
+    Args:
+        A: Coefficient matrix
+        b: Constants vector
+        x0: Initial guess (default: zeros)
+        tolerance: Error tolerance
+        max_iterations: Maximum number of iterations
+    
+    Returns:
+        Solution vector x
+    """
+    n = len(A)
+    if x0 is None:
+        x0 = np.zeros(n)
+    
+    x = x0.copy()
+    
+    for iteration in range(max_iterations):
+        x_old = x.copy()
+        
+        for i in range(n):
+            sum1 = sum(A[i][j] * x[j] for j in range(i))
+            sum2 = sum(A[i][j] * x_old[j] for j in range(i + 1, n))
+            x[i] = (b[i] - sum1 - sum2) / A[i][i]
+        
+        if np.allclose(x, x_old, rtol=tolerance):
+            print(f"Converged in {iteration + 1} iterations")
+            return x
+    
+    print("Warning: Maximum iterations reached")
+    return x
+
+# Example usage
+if __name__ == "__main__":
+    # Example system:
+    # 4x₁ - x₂ = 1
+    # -x₁ + 4x₂ = 2
+    A = np.array([[4, -1],
+                  [-1, 4]])
+    b = np.array([1, 2])
+    
+    solution = gauss_seidel(A, b)
+    print("Solution:", solution)
+    print("Verification:", np.allclose(A @ solution, b))
+                                        </code></pre>
+                                    </div>
+                                </div>
+                                
+                                <div class="tab-pane fade" id="cpp">
+                                    <div class="code-wrapper">
+                                        <button class="copy-button" data-clipboard-target="#cppCode">
+                                            <i class="fas fa-copy"></i>
+                                        </button>
+                                        <pre><code class="language-cpp" id="cppCode">
+#include &lt;vector&gt;
+#include &lt;cmath&gt;
+#include &lt;iostream&gt;
+
+class GaussSeidel {
+private:
+    double tolerance;
+    int maxIterations;
+    
+public:
+    GaussSeidel(double tol = 1e-6, int maxIter = 100) 
+        : tolerance(tol), maxIterations(maxIter) {}
+    
+    std::vector&lt;double&gt; solve(
+        const std::vector&lt;std::vector&lt;double&gt;&gt;& A,
+        const std::vector&lt;double&gt;& b
+    ) {
+        int n = A.size();
+        std::vector&lt;double&gt; x(n, 0.0);  // Initial guess
+        
+        for (int iter = 0; iter < maxIterations; iter++) {
+            std::vector&lt;double&gt; x_old = x;
+            
+            for (int i = 0; i < n; i++) {
+                double sum1 = 0.0, sum2 = 0.0;
+                
+                // Sum for j < i (using new values)
+                for (int j = 0; j < i; j++) {
+                    sum1 += A[i][j] * x[j];
+                }
+                
+                // Sum for j > i (using old values)
+                for (int j = i + 1; j < n; j++) {
+                    sum2 += A[i][j] * x_old[j];
+                }
+                
+                x[i] = (b[i] - sum1 - sum2) / A[i][i];
+            }
+            
+            // Check convergence
+            double error = 0.0;
+            for (int i = 0; i < n; i++) {
+                error = std::max(error, 
+                    std::abs(x[i] - x_old[i]));
+            }
+            
+            if (error < tolerance) {
+                std::cout << "Converged in " 
+                          << iter + 1 << " iterations\n";
+                return x;
+            }
+        }
+        
+        std::cout << "Warning: Maximum iterations reached\n";
+        return x;
+    }
+};
+
+int main() {
+    // Example system:
+    // 4x₁ - x₂ = 1
+    // -x₁ + 4x₂ = 2
+    std::vector&lt;std::vector&lt;double&gt;&gt; A = {
+        {4, -1},
+        {-1, 4}
+    };
+    std::vector&lt;double&gt; b = {1, 2};
+    
+    GaussSeidel solver;
+    auto solution = solver.solve(A, b);
+    
+    std::cout << "Solution:\n";
+    for (double x : solution) {
+        std::cout << x << " ";
+    }
+    std::cout << std::endl;
+    
+    return 0;
+}
+                                        </code></pre>
+                                    </div>
+                                </div>
+
+                                <div class="tab-pane fade" id="csharp">
+                                    <div class="code-wrapper">
+                                        <button class="copy-button" data-clipboard-target="#csharpCode">
+                                            <i class="fas fa-copy"></i>
+                                        </button>
+                                        <pre><code class="language-csharp" id="csharpCode">
+public class GaussSeidel {
+    private readonly double tolerance;
+    private readonly int maxIterations;
+    
+    public GaussSeidel(double tolerance = 1e-6, int maxIterations = 100) {
+        this.tolerance = tolerance;
+        this.maxIterations = maxIterations;
+    }
+    
+    public double[] Solve(double[,] A, double[] b) {
+        int n = b.Length;
+        double[] x = new double[n];  // Initial guess: zeros
+        
+        for (int iter = 0; iter < maxIterations; iter++) {
+            double[] x_old = (double[])x.Clone();
+            
+            for (int i = 0; i < n; i++) {
+                double sum1 = 0.0, sum2 = 0.0;
+                
+                // Sum for j < i (using new values)
+                for (int j = 0; j < i; j++) {
+                    sum1 += A[i,j] * x[j];
+                }
+                
+                // Sum for j > i (using old values)
+                for (int j = i + 1; j < n; j++) {
+                    sum2 += A[i,j] * x_old[j];
+                }
+                
+                x[i] = (b[i] - sum1 - sum2) / A[i,i];
+            }
+            
+            // Check convergence
+            double error = 0.0;
+            for (int i = 0; i < n; i++) {
+                error = Math.Max(error, 
+                    Math.Abs(x[i] - x_old[i]));
+            }
+            
+            if (error < tolerance) {
+                Console.WriteLine($"Converged in {iter + 1} iterations");
+                return x;
+            }
+        }
+        
+        Console.WriteLine("Warning: Maximum iterations reached");
+        return x;
+    }
+    
+    public static void Main() {
+        // Example system:
+        // 4x₁ - x₂ = 1
+        // -x₁ + 4x₂ = 2
+        double[,] A = new double[,] {
+            {4, -1},
+            {-1, 4}
+        };
+        double[] b = new double[] {1, 2};
+        
+        var solver = new GaussSeidel();
+        double[] solution = solver.Solve(A, b);
+        
+        Console.WriteLine("Solution:");
+        foreach (double x in solution) {
+            Console.Write($"{x:F6} ");
+        }
+        Console.WriteLine();
+    }
+}
+                                        </code></pre>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="algorithm-section">
+                        <h2>Complexity Analysis</h2>
+                        <div class="complexity-analysis">
+                            <div class="time-complexity">
+                                <h3>Time Complexity</h3>
+                                <p>
+                                    The time complexity is O(kn²), where:
+                                </p>
+                                <ul>
+                                    <li>k is the number of iterations</li>
+                                    <li>n is the size of the matrix</li>
+                                    <li>Each iteration requires O(n²) operations</li>
+                                    <li>k depends on tolerance and convergence</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="space-complexity">
+                                <h3>Space Complexity</h3>
+                                <p>
+                                    The space complexity is O(n²), which includes:
+                                </p>
+                                <ul>
+                                    <li>Matrix storage: O(n²)</li>
+                                    <li>Solution vector: O(n)</li>
+                                    <li>Temporary vector for convergence: O(n)</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="algorithm-section">
+                        <h2>Advantages and Disadvantages</h2>
+                        <div class="pros-cons">
+                            <div class="pros">
+                                <h3>Advantages</h3>
+                                <ul>
+                                    <li>Faster convergence than Jacobi</li>
+                                    <li>Requires less memory than direct methods</li>
+                                    <li>Ideal for sparse matrices</li>
+                                    <li>Easy to implement</li>
+                                </ul>
+                            </div>
+                            <div class="cons">
+                                <h3>Disadvantages</h3>
+                                <ul>
+                                    <li>Convergence not guaranteed</li>
+                                    <li>Requires diagonal dominance</li>
+                                    <li>Speed depends on initial values</li>
+                                    <li>Not parallelizable like Jacobi</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div id="footer-placeholder"></div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.8/clipboard.min.js"></script>
+    <script src="../../static/js/prism.js"></script>
+    <script src="../../static/js/gauss-seidel-visualization.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const clipboard = new ClipboardJS('.copy-button');
+            
+            clipboard.on('success', (e) => {
+                const button = e.trigger;
+                button.innerHTML = '<i class="fas fa-check"></i>';
+                setTimeout(() => {
+                    button.innerHTML = '<i class="fas fa-copy"></i>';
+                }, 2000);
+                e.clearSelection();
+            });
+        });
+    </script>
+    <script src="../../static/js/templates.js"></script>
+</body>
+</html> 
