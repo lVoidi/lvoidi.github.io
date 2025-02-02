@@ -1,7 +1,7 @@
 // Define available tags
 const AVAILABLE_TAGS = {
-    'non-tech': {
-        label: 'Non-tech',
+    "tutorial": {
+        label: 'Tutorial',
         color: 'rgba(147, 51, 234, 0.2)',
         textColor: '#c084fc'
     },
@@ -23,6 +23,16 @@ const VOID_POSTS = [
         title: "LeetCode #7: Reverse Integer",
         description: "Reversing an integer, huh? Easy.",
         image: "../static/img/void/leetcode.png",  
+        tags: ["leetcode"],
+        readTime: 5,
+        date: "2025-01-02",
+        author: "Rodrigo Arce"
+    },
+    {
+        id: "gpg",
+        title: "Using PGP keys to make your files yours",
+        description: "In this article, i teach you how to make a PGP key and use it to sign your git commits.",
+        image: "../static/img/void/mayuri.jpeg",  
         tags: ["leetcode"],
         readTime: 5,
         date: "2025-01-02",
