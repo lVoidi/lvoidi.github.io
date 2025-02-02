@@ -33,7 +33,7 @@ const VOID_POSTS = [
         title: "Using PGP keys to make your files yours",
         description: "In this article, i teach you how to make a PGP key and use it to sign your git commits.",
         image: "../static/img/void/mayuri.jpeg",  
-        tags: ["leetcode"],
+        tags: ["tutorial", "yapping"],
         readTime: 5,
         date: "2025-01-02",
         author: "Rodrigo Arce"
