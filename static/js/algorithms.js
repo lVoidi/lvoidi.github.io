@@ -361,6 +361,13 @@ const algorithms = {
             description: "An iterative method for solving systems of linear equations by improving an initial guess through successive substitutions",
             complexity: "O(kn²) where k is iterations",
             link: "numerical/gauss-seidel.html"
+        },
+        {
+            name: "Gaussian Quadrature",
+            category: "numerical",
+            description: "A numerical integration method that approximates definite integrals using optimal abscissas and weights",
+            complexity: "O(n) where n is number of points",
+            link: "numerical/gaussian-quadrature.html"
         }
     ],
     randomized: [
