@@ -368,6 +368,13 @@ const algorithms = {
             description: "A numerical integration method that approximates definite integrals using optimal abscissas and weights",
             complexity: "O(n) where n is number of points",
             link: "numerical/gaussian-quadrature.html"
+        },
+        {
+            name: "Gauss-Legendre Algorithm",
+            category: "numerical",
+            description: "A high-precision method for computing π using arithmetic-geometric mean and Legendre's relation",
+            complexity: "O(M(n) log n) where M(n) is multiplication complexity",
+            link: "numerical/gauss-legendre.html"
         }
     ],
     randomized: [
