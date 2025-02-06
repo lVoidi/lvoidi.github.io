@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gauss-Newton Algorithm - lVoidi Portal</title>
+    
+    <!-- CSS imports -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="../../static/css/style.css" rel="stylesheet">
+    <link href="../../static/css/algorithms.css" rel="stylesheet">
+    <link href="../../static/css/algorithm-page.css" rel="stylesheet">
+    <link href="../../static/css/prism.css" rel="stylesheet">
+
+    <!-- Icon -->
+    <link rel="icon" href="../../static/img/icon.png" type="image/x-icon">
+</head>
+<body>
+    <div id="navbar-placeholder"></div>
+
+    <main class="container my-4">
+        <div class="row">
+            <!-- Algorithm Info Card -->
+            <div class="col-md-3">
+                <div class="algorithm-info-card">
+                    <h3>Quick Info</h3>
+                    <div class="info-item">
+                        <span class="info-label">Category:</span>
+                        <span class="info-value">Numerical Methods</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Time Complexity:</span>
+                        <span class="info-value">O(mn²) per iteration</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Space Complexity:</span>
+                        <span class="info-value">O(mn)</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Input Type:</span>
+                        <span class="info-value">Data Points</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Content -->
+            <div class="col-lg-9">
+                <div class="algorithm-content">
+                    <h1>Gauss-Newton Algorithm</h1>
+                    
+                    <div class="algorithm-metadata">
+                        <span class="category-tag">Numerical Methods</span>
+                        <span class="difficulty-tag">Hard</span>
+                    </div>
+
+                    <section class="algorithm-section">
+                        <h2>Description</h2>
+                        <p>
+                            The Gauss-Newton algorithm is a method used to solve non-linear least squares problems. It's particularly 
+                            useful for fitting a parameterized function to a set of measured data points by minimizing the sum of 
+                            the squares of the errors between the data and the function. The algorithm combines Gauss's method of least 
+                            squares with Newton's method for finding roots of equations.
+                        </p>
+                    </section>
+
+                    <section class="algorithm-section">
+                        <h2>How It Works</h2>
+                        <ol>
+                            <li>Problem Setup:
+                                <ul>
+                                    <li>Given m data points (xᵢ, yᵢ)</li>
+                                    <li>Model function f(x; β) with n parameters β</li>
+                                    <li>Residuals rᵢ = yᵢ - f(xᵢ; β)</li>
+                                </ul>
+                            </li>
+                            <li>Jacobian Matrix:
+                                <ul>
+                                    <li>Compute J = ∂r/∂β (m×n matrix)</li>
+                                    <li>Each element Jᵢⱼ = -∂f(xᵢ; β)/∂βⱼ</li>
+                                </ul>
+                            </li>
+                            <li>Normal Equations:
+                                <ul>
+                                    <li>Form JᵀJ δ = -Jᵀr</li>
+                                    <li>Solve for update δ</li>
+                                </ul>
+                            </li>
+                            <li>Parameter Update:
+                                <ul>
+                                    <li>β ← β + δ</li>
+                                    <li>Repeat until convergence</li>
+                                </ul>
+                            </li>
+                        </ol>
+                    </section>
+
+                    <section class="algorithm-section history-box">
+                        <h2>History</h2>
+                        <div class="history-content">
+                            <img src="../../static/img/gauss.jpg" alt="Gauss-Newton Algorithm Illustration" class="history-image">
+                            <p>
+                                The Gauss-Newton algorithm combines two fundamental mathematical approaches: Gauss's method of least 
+                                squares (1795) and Newton's method for finding roots (1669). Carl Friedrich Gauss developed the method 
+                                of least squares while studying astronomical data, and this was later combined with Newton's iterative 
+                                approach to create a powerful tool for non-linear optimization. The algorithm was formally described 
+                                in the early 20th century and has since become a cornerstone of numerical optimization and data fitting.
+                            </p>
+                        </div>
+                    </section>
+
+                    <section class="algorithm-section">
+                        <h2>Visualization</h2>
+                        <div class="visualization-container">
+                            <div class="visualization-controls">
+                                <div class="control-group">
+                                    <button id="startBtn" class="btn btn-primary btn-lg">
+                                        <i class="fas fa-play"></i> Start
+                                    </button>
+                                    <button id="resetBtn" class="btn btn-secondary btn-lg">
+                                        <i class="fas fa-undo"></i> Reset
+                                    </button>
+                                </div>
+                                <div class="control-group">
+                                    <label for="modelSelect" class="form-label">Model Function:</label>
+                                    <select id="modelSelect" class="form-select form-select-lg">
+                                        <option value="polynomial">a·x² + b</option>
+                                        <option value="sinusoidal">a·sin(b·x)</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="visualization-wrapper">
+                                <canvas id="visualizer"></canvas>
+                                <div class="visualization-info">
+                                    <div id="currentStep" class="current-step">
+                                        Select model function and click Start
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <style>
+                            .visualization-container {
+                                background: #282a36;
+                                border-radius: 10px;
+                                padding: 20px;
+                                margin: 20px 0;
+                            }
+                            
+                            .visualization-controls {
+                                display: flex;
+                                justify-content: space-between;
+                                align-items: center;
+                                margin-bottom: 20px;
+                                padding: 15px;
+                                background: #1e1e2e;
+                                border-radius: 8px;
+                            }
+                            
+                            .control-group {
+                                display: flex;
+                                align-items: center;
+                                gap: 15px;
+                            }
+                            
+                            .form-label {
+                                color: #f8f8f2;
+                                margin: 0;
+                                font-size: 1.1em;
+                            }
+                            
+                            .form-select-lg {
+                                background-color: #44475a;
+                                color: #f8f8f2;
+                                border: 1px solid #6272a4;
+                                min-width: 200px;
+                            }
+                            
+                            .form-select-lg:focus {
+                                border-color: #bd93f9;
+                                box-shadow: 0 0 0 0.25rem rgba(189, 147, 249, 0.25);
+                            }
+                            
+                            .visualization-wrapper {
+                                background: #1e1e2e;
+                                border-radius: 8px;
+                                padding: 20px;
+                                margin-top: 20px;
+                            }
+                            
+                            #visualizer {
+                                width: 100%;
+                                height: auto;
+                                margin-bottom: 20px;
+                            }
+                            
+                            .visualization-info {
+                                text-align: center;
+                                padding: 15px;
+                                background: #282a36;
+                                border-radius: 8px;
+                                margin-top: 20px;
+                            }
+                            
+                            .current-step {
+                                color: #f8f8f2;
+                                font-family: "Segoe UI", Arial, sans-serif;
+                                font-size: 1.2em;
+                                line-height: 1.6;
+                            }
+                            
+                            .btn-lg {
+                                padding: 0.8rem 1.5rem;
+                                font-size: 1.1em;
+                            }
+                            
+                            .btn-primary {
+                                background-color: #50fa7b;
+                                border-color: #50fa7b;
+                                color: #282a36;
+                            }
+                            
+                            .btn-primary:hover {
+                                background-color: #69ff94;
+                                border-color: #69ff94;
+                                color: #282a36;
+                            }
+                            
+                            .btn-secondary {
+                                background-color: #6272a4;
+                                border-color: #6272a4;
+                            }
+                            
+                            .btn-secondary:hover {
+                                background-color: #7b88b8;
+                                border-color: #7b88b8;
+                            }
+                        </style>
+                    </section>
+
+                    <section class="algorithm-section">
+                        <h2>Implementation</h2>
+                        <div class="implementation-tabs">
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" data-bs-toggle="tab" href="#python">Python</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-bs-toggle="tab" href="#cpp">C++</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-bs-toggle="tab" href="#csharp">C#</a>
+                                </li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane fade show active" id="python">
+                                    <div class="code-wrapper">
+                                        <button class="copy-button" data-clipboard-target="#pythonCode">
+                                            <i class="fas fa-copy"></i>
+                                        </button>
+                                        <pre><code class="language-python" id="pythonCode">
+import numpy as np
+from typing import Callable, Tuple
+
+def gauss_newton(
+    f: Callable[[np.ndarray, np.ndarray], np.ndarray],
+    jacobian: Callable[[np.ndarray, np.ndarray], np.ndarray],
+    x: np.ndarray,
+    y: np.ndarray,
+    beta0: np.ndarray,
+    tolerance: float = 1e-6,
+    max_iterations: int = 100
+) -> Tuple[np.ndarray, int]:
+    """
+    Solve non-linear least squares using Gauss-Newton algorithm.
+    
+    Args:
+        f: Model function f(x, β)
+        jacobian: Jacobian of f with respect to β
+        x: Independent variable data
+        y: Dependent variable data
+        beta0: Initial parameter guess
+        tolerance: Convergence tolerance
+        max_iterations: Maximum number of iterations
+    
+    Returns:
+        Tuple of (optimal parameters, number of iterations)
+    """
+    beta = beta0.copy()
+    
+    for iteration in range(max_iterations):
+        # Compute residuals
+        r = y - f(x, beta)
+        
+        # Compute Jacobian
+        J = jacobian(x, beta)
+        
+        # Solve normal equations
+        JtJ = J.T @ J
+        Jtr = J.T @ r
+        
+        # Compute update
+        try:
+            delta = np.linalg.solve(JtJ, Jtr)
+        except np.linalg.LinAlgError:
+            print("Warning: Singular matrix")
+            break
+        
+        # Update parameters
+        beta += delta
+        
+        # Check convergence
+        if np.max(np.abs(delta)) < tolerance:
+            return beta, iteration + 1
+    
+    return beta, max_iterations
+
+# Example usage
+if __name__ == "__main__":
+    # Example: Fit y = a*exp(-b*x)
+    def model(x, beta):
+        return beta[0] * np.exp(-beta[1] * x)
+    
+    def model_jacobian(x, beta):
+        J = np.zeros((len(x), 2))
+        J[:, 0] = np.exp(-beta[1] * x)
+        J[:, 1] = -beta[0] * x * np.exp(-beta[1] * x)
+        return J
+    
+    # Generate sample data
+    x_data = np.linspace(0, 5, 50)
+    true_beta = np.array([2.0, 0.5])
+    y_true = model(x_data, true_beta)
+    y_data = y_true + np.random.normal(0, 0.1, len(x_data))
+    
+    # Fit model
+    beta0 = np.array([1.0, 1.0])
+    beta_fit, iterations = gauss_newton(
+        model, model_jacobian, x_data, y_data, beta0
+    )
+    
+    print(f"True parameters: {true_beta}")
+    print(f"Fitted parameters: {beta_fit}")
+    print(f"Iterations: {iterations}")
+                                        </code></pre>
+                                    </div>
+                                </div>
+                                
+                                <div class="tab-pane fade" id="cpp">
+                                    <div class="code-wrapper">
+                                        <button class="copy-button" data-clipboard-target="#cppCode">
+                                            <i class="fas fa-copy"></i>
+                                        </button>
+                                        <pre><code class="language-cpp" id="cppCode">
+#include &lt;iostream&gt;
+#include &lt;vector&gt;
+#include &lt;functional&gt;
+#include &lt;cmath&gt;
+
+class GaussNewton {
+private:
+    double tolerance;
+    int maxIterations;
+    
+    // Solve 2x2 linear system using Cramer's rule
+    std::vector&lt;double&gt; solveLinearSystem(
+        const std::vector&lt;std::vector&lt;double&gt;&gt;& A,
+        const std::vector&lt;double&gt;& b
+    ) {
+        double det = A[0][0] * A[1][1] - A[0][1] * A[1][0];
+        return {
+            (b[0] * A[1][1] - b[1] * A[0][1]) / det,
+            (A[0][0] * b[1] - A[1][0] * b[0]) / det
+        };
+    }
+    
+public:
+    GaussNewton(double tol = 1e-6, int maxIter = 100) 
+        : tolerance(tol), maxIterations(maxIter) {}
+    
+    template&lt;typename F, typename J&gt;
+    std::vector&lt;double&gt; fit(
+        F model,
+        J jacobian,
+        const std::vector&lt;double&gt;& x,
+        const std::vector&lt;double&gt;& y,
+        std::vector&lt;double&gt; beta0
+    ) {
+        std::vector&lt;double&gt; beta = beta0;
+        int m = x.size();
+        
+        for (int iter = 0; iter < maxIterations; iter++) {
+            // Compute residuals and Jacobian
+            std::vector&lt;double&gt; r(m);
+            std::vector&lt;std::vector&lt;double&gt;&gt; J(m, std::vector&lt;double&gt;(2));
+            
+            for (int i = 0; i < m; i++) {
+                r[i] = y[i] - model(x[i], beta);
+                auto Ji = jacobian(x[i], beta);
+                J[i][0] = Ji[0];
+                J[i][1] = Ji[1];
+            }
+            
+            // Compute J^T * J and J^T * r
+            std::vector&lt;std::vector&lt;double&gt;&gt; JtJ(2, std::vector&lt;double&gt;(2));
+            std::vector&lt;double&gt; Jtr(2);
+            
+            for (int i = 0; i < 2; i++) {
+                for (int j = 0; j < 2; j++) {
+                    double sum = 0;
+                    for (int k = 0; k < m; k++) {
+                        sum += J[k][i] * J[k][j];
+                    }
+                    JtJ[i][j] = sum;
+                }
+                
+                double sum = 0;
+                for (int k = 0; k < m; k++) {
+                    sum += J[k][i] * r[k];
+                }
+                Jtr[i] = sum;
+            }
+            
+            // Solve normal equations
+            auto delta = solveLinearSystem(JtJ, Jtr);
+            
+            // Update parameters
+            beta[0] += delta[0];
+            beta[1] += delta[1];
+            
+            // Check convergence
+            if (std::abs(delta[0]) < tolerance && 
+                std::abs(delta[1]) < tolerance) {
+                break;
+            }
+        }
+        
+        return beta;
+    }
+};
+
+int main() {
+    // Example: Fit y = a*exp(-b*x)
+    auto model = [](double x, const std::vector&lt;double&gt;& beta) {
+        return beta[0] * std::exp(-beta[1] * x);
+    };
+    
+    auto jacobian = [](double x, const std::vector&lt;double&gt;& beta) {
+        return std::vector&lt;double&gt;{
+            std::exp(-beta[1] * x),
+            -beta[0] * x * std::exp(-beta[1] * x)
+        };
+    };
+    
+    // Generate sample data
+    std::vector&lt;double&gt; x, y;
+    double true_a = 2.0, true_b = 0.5;
+    
+    for (int i = 0; i < 50; i++) {
+        double xi = i * 0.1;
+        x.push_back(xi);
+        y.push_back(
+            true_a * std::exp(-true_b * xi) + 
+            (std::rand() % 100 - 50) / 500.0
+        );
+    }
+    
+    // Fit model
+    GaussNewton gn;
+    auto beta = gn.fit(model, jacobian, x, y, {1.0, 1.0});
+    
+    std::cout << "True parameters: a = " << true_a 
+              << ", b = " << true_b << std::endl;
+    std::cout << "Fitted parameters: a = " << beta[0] 
+              << ", b = " << beta[1] << std::endl;
+    
+    return 0;
+}
+                                        </code></pre>
+                                    </div>
+                                </div>
+
+                                <div class="tab-pane fade" id="csharp">
+                                    <div class="code-wrapper">
+                                        <button class="copy-button" data-clipboard-target="#csharpCode">
+                                            <i class="fas fa-copy"></i>
+                                        </button>
+                                        <pre><code class="language-csharp" id="csharpCode">
+public class GaussNewton {
+    private readonly double tolerance;
+    private readonly int maxIterations;
+    
+    public GaussNewton(double tolerance = 1e-6, int maxIterations = 100) {
+        this.tolerance = tolerance;
+        this.maxIterations = maxIterations;
+    }
+    
+    private double[] SolveLinearSystem(double[,] A, double[] b) {
+        double det = A[0,0] * A[1,1] - A[0,1] * A[1,0];
+        return new[] {
+            (b[0] * A[1,1] - b[1] * A[0,1]) / det,
+            (A[0,0] * b[1] - A[1,0] * b[0]) / det
+        };
+    }
+    
+    public double[] Fit(
+        Func&lt;double, double[], double&gt; model,
+        Func&lt;double, double[], double[]&gt; jacobian,
+        double[] x,
+        double[] y,
+        double[] beta0
+    ) {
+        var beta = (double[])beta0.Clone();
+        int m = x.Length;
+        
+        for (int iter = 0; iter < maxIterations; iter++) {
+            // Compute residuals and Jacobian
+            var r = new double[m];
+            var J = new double[m,2];
+            
+            for (int i = 0; i < m; i++) {
+                r[i] = y[i] - model(x[i], beta);
+                var Ji = jacobian(x[i], beta);
+                J[i,0] = Ji[0];
+                J[i,1] = Ji[1];
+            }
+            
+            // Compute J^T * J and J^T * r
+            var JtJ = new double[2,2];
+            var Jtr = new double[2];
+            
+            for (int i = 0; i < 2; i++) {
+                for (int j = 0; j < 2; j++) {
+                    double sum = 0;
+                    for (int k = 0; k < m; k++) {
+                        sum += J[k,i] * J[k,j];
+                    }
+                    JtJ[i,j] = sum;
+                }
+                
+                double sum = 0;
+                for (int k = 0; k < m; k++) {
+                    sum += J[k,i] * r[k];
+                }
+                Jtr[i] = sum;
+            }
+            
+            // Solve normal equations
+            var delta = SolveLinearSystem(JtJ, Jtr);
+            
+            // Update parameters
+            beta[0] += delta[0];
+            beta[1] += delta[1];
+            
+            // Check convergence
+            if (Math.Abs(delta[0]) < tolerance && 
+                Math.Abs(delta[1]) < tolerance) {
+                break;
+            }
+        }
+        
+        return beta;
+    }
+    
+    public static void Main() {
+        // Example: Fit y = a*exp(-b*x)
+        double Model(double x, double[] beta) =>
+            beta[0] * Math.Exp(-beta[1] * x);
+        
+        double[] Jacobian(double x, double[] beta) => new[] {
+            Math.Exp(-beta[1] * x),
+            -beta[0] * x * Math.Exp(-beta[1] * x)
+        };
+        
+        // Generate sample data
+        var random = new Random();
+        var x = new double[50];
+        var y = new double[50];
+        double trueA = 2.0, trueB = 0.5;
+        
+        for (int i = 0; i < 50; i++) {
+            x[i] = i * 0.1;
+            y[i] = trueA * Math.Exp(-trueB * x[i]) + 
+                   (random.NextDouble() - 0.5) * 0.2;
+        }
+        
+        // Fit model
+        var gn = new GaussNewton();
+        var beta = gn.Fit(Model, Jacobian, x, y, new[] {1.0, 1.0});
+        
+        Console.WriteLine($"True parameters: a = {trueA}, b = {trueB}");
+        Console.WriteLine($"Fitted parameters: a = {beta[0]:F4}, b = {beta[1]:F4}");
+    }
+}
+                                        </code></pre>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="algorithm-section">
+                        <h2>Complexity Analysis</h2>
+                        <div class="complexity-analysis">
+                            <div class="time-complexity">
+                                <h3>Time Complexity</h3>
+                                <p>
+                                    The time complexity per iteration is O(mn²), where:
+                                </p>
+                                <ul>
+                                    <li>m is the number of data points</li>
+                                    <li>n is the number of parameters</li>
+                                    <li>Computing Jacobian: O(mn)</li>
+                                    <li>Forming normal equations: O(mn²)</li>
+                                    <li>Solving linear system: O(n³)</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="space-complexity">
+                                <h3>Space Complexity</h3>
+                                <p>
+                                    The space complexity is O(mn), which includes:
+                                </p>
+                                <ul>
+                                    <li>Storage for Jacobian matrix: O(mn)</li>
+                                    <li>Storage for normal equations: O(n²)</li>
+                                    <li>Storage for residuals: O(m)</li>
+                                    <li>Storage for parameters: O(n)</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="algorithm-section">
+                        <h2>Advantages and Disadvantages</h2>
+                        <div class="pros-cons">
+                            <div class="pros">
+                                <h3>Advantages</h3>
+                                <ul>
+                                    <li>Fast convergence near solution</li>
+                                    <li>No second derivatives needed</li>
+                                    <li>Works well for well-behaved problems</li>
+                                    <li>Efficient for least squares problems</li>
+                                </ul>
+                            </div>
+                            <div class="cons">
+                                <h3>Disadvantages</h3>
+                                <ul>
+                                    <li>May not converge for poor initial guess</li>
+                                    <li>Sensitive to outliers</li>
+                                    <li>Requires Jacobian computation</li>
+                                    <li>Not suitable for all optimization problems</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div id="footer-placeholder"></div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.8/clipboard.min.js"></script>
+    <script src="../../static/js/prism.js"></script>
+    <script src="../../static/js/gauss-newton-visualization.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const clipboard = new ClipboardJS('.copy-button');
+            
+            clipboard.on('success', (e) => {
+                const button = e.trigger;
+                button.innerHTML = '<i class="fas fa-check"></i>';
+                setTimeout(() => {
+                    button.innerHTML = '<i class="fas fa-copy"></i>';
+                }, 2000);
+                e.clearSelection();
+            });
+        });
+    </script>
+    <script src="../../static/js/templates.js"></script>
+</body>
+</html> 
