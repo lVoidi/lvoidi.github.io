@@ -35,7 +35,17 @@ const VOID_POSTS = [
         image: "../static/img/void/mayuri.jpeg",  
         tags: ["tutorial", "yapping"],
         readTime: 5,
-        date: "2025-01-02",
+        date: "2025-02-03",
+        author: "Rodrigo Arce"
+    },
+    {
+        id: "learning-programming",
+        title: "Read this if you want to learn programming",
+        description: "A fun guide to learn programming",
+        image: "../static/img/void/learning-programming.jpg",
+        tags: ["tutorial", "yapping"],
+        readTime: 5,
+        date: "2025-02-06",
         author: "Rodrigo Arce"
     }
 ];
