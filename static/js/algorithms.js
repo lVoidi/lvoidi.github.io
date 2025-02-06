@@ -375,6 +375,13 @@ const algorithms = {
             description: "A high-precision method for computing π using arithmetic-geometric mean and Legendre's relation",
             complexity: "O(M(n) log n) where M(n) is multiplication complexity",
             link: "numerical/gauss-legendre.html"
+        },
+        {
+            name: "Gauss-Newton Algorithm",
+            category: "numerical",
+            description: "An iterative method for solving non-linear least squares problems, combining Gauss's method with Newton's method",
+            complexity: "O(mn²) per iteration, where m is number of observations and n is number of parameters",
+            link: "numerical/gauss-newton.html"
         }
     ],
     randomized: [
