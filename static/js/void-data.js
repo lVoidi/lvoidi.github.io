@@ -47,8 +47,19 @@ const VOID_POSTS = [
         readTime: 5,
         date: "2025-02-06",
         author: "Rodrigo Arce"
+    },
+    {
+        id: "mass-disinformation",
+        title: "How mass media is controlling your mind", 
+        description: "Social media and mass media are designed to keep you engaged and consuming content. Here is how they do it.",
+        image: "../static/img/void/disinformation.jpg",
+        tags: ["yapping"],
+        readTime: 5,
+        date: "2025-02-07",
+        author: "Rodrigo Arce"
     }
 ];
+
 
 // Function to generate HTML for tags
 function createTagHTML(tagId) {
