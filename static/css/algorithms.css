@@ -8,7 +8,17 @@
     align-items: center;
     text-align: center;
 }
+.counter {
+    font-size: 0.9em;
+    color: #666;
+    margin-left: 5px;
+}
 
+.total-counter {
+    font-size: 1.1em;
+    color: #333;
+    padding: 5px 0;
+}
 .search-container {
     max-width: 600px;
     margin: 0 auto;
