@@ -411,6 +411,9 @@ function renderAlgorithms(filteredAlgorithms = null) {
             <a href="${algo.link}" class="btn btn-outline-light mt-3">Learn More</a>
         </div>
     `).join('');
+
+    // Actualizar contadores después de renderizar
+    updateCounters();
 }
 
 // Search functionality
@@ -450,5 +453,29 @@ document.querySelectorAll('.category-item input').forEach(checkbox => {
     });
 });
 
-// Initial render
-renderAlgorithms(); 
+function updateCounters() {
+    const categoryCounts = {};
+    let total = 0;
+    
+    // Contar algoritmos por categoría
+    Object.keys(algorithms).forEach(category => {
+        categoryCounts[category] = algorithms[category].length;
+        total += algorithms[category].length;
+    });
+    
+    // Actualizar contadores en el DOM
+    Object.keys(categoryCounts).forEach(category => {
+        const counterElement = document.getElementById(`${category}-counter`);
+        if (counterElement) {
+            counterElement.textContent = `(${categoryCounts[category]})`;
+        }
+    });
+    
+    // Actualizar contador total
+    document.getElementById('totalCounter').textContent = total;
+}
+
+// Agregar la llamada inicial cuando se carga el documento
+document.addEventListener('DOMContentLoaded', function() {
+    renderAlgorithms();
+}); 
