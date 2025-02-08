@@ -14,8 +14,14 @@ const AVAILABLE_TAGS = {
         label: 'Leetcode',
         color: 'rgba(255, 215, 0, 0.2)',
         textColor: '#ffd700'
+    },
+    'crypto': {
+        label: 'Crypto',
+        color: 'rgba(82, 146, 243, 0.19)',
+        textColor: '#00ffff'
     }
 };
+
 
 const VOID_POSTS = [
     {
@@ -56,6 +62,16 @@ const VOID_POSTS = [
         tags: ["yapping"],
         readTime: 5,
         date: "2025-02-07",
+        author: "Rodrigo Arce"
+    },
+    {
+        id: "sui-best-blockchain",
+        title: "Sui is the best blockchain",
+        description: "In this post, i discuss why Sui is the best blockchain in my humble opinion.",
+        image: "../static/img/void/sui.jpg",
+        tags: ["crypto", "yapping"],
+        readTime: 5,
+        date: "2025-02-08",
         author: "Rodrigo Arce"
     }
 ];
