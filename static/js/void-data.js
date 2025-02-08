@@ -30,7 +30,7 @@ const VOID_POSTS = [
         description: "Reversing an integer, huh? Easy.",
         image: "../static/img/void/leetcode.png",  
         tags: ["leetcode"],
-        readTime: 5,
+        readTime: 4,
         date: "2025-01-02",
         author: "Rodrigo Arce"
     },
@@ -50,7 +50,7 @@ const VOID_POSTS = [
         description: "A fun guide to learn programming",
         image: "../static/img/void/learning-programming.jpg",
         tags: ["tutorial", "yapping"],
-        readTime: 5,
+        readTime: 10,
         date: "2025-02-06",
         author: "Rodrigo Arce"
     },
@@ -60,7 +60,7 @@ const VOID_POSTS = [
         description: "Social media and mass media are designed to keep you engaged and consuming content. Here is how they do it.",
         image: "../static/img/void/disinformation.jpg",
         tags: ["yapping"],
-        readTime: 5,
+        readTime: 15,
         date: "2025-02-07",
         author: "Rodrigo Arce"
     },
@@ -70,7 +70,7 @@ const VOID_POSTS = [
         description: "In this post, i discuss why Sui is the best blockchain in my humble opinion.",
         image: "../static/img/void/sui.jpg",
         tags: ["crypto", "yapping"],
-        readTime: 5,
+        readTime: 4,
         date: "2025-02-08",
         author: "Rodrigo Arce"
     }
