@@ -10,11 +10,18 @@ const AVAILABLE_TAGS = {
         color: 'rgba(236, 72, 153, 0.2)',
         textColor: '#f472b6'
     },
+    'politics': {
+        label: 'Politics',
+        color: 'rgba(0, 255, 42, 0.2)',
+        textColor: '#00ff2a'
+    },
+
     'leetcode': {
         label: 'Leetcode',
         color: 'rgba(255, 215, 0, 0.2)',
         textColor: '#ffd700'
     },
+
     'crypto': {
         label: 'Crypto',
         color: 'rgba(82, 146, 243, 0.19)',
@@ -59,10 +66,11 @@ const VOID_POSTS = [
         title: "How mass media is controlling your mind", 
         description: "Social media and mass media are designed to keep you engaged and consuming content. Here is how they do it.",
         image: "../static/img/void/disinformation.jpg",
-        tags: ["yapping"],
+        tags: ["yapping", "politics"],
         readTime: 15,
         date: "2025-02-07",
         author: "Rodrigo Arce"
+
     },
     {
         id: "sui-best-blockchain",
