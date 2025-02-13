@@ -26,6 +26,11 @@ const AVAILABLE_TAGS = {
         label: 'Crypto',
         color: 'rgba(82, 146, 243, 0.19)',
         textColor: '#00ffff'
+    },
+    'ai': {
+        label: 'AI',
+        color: 'rgba(255, 0, 0, 0.2)',
+        textColor: '#ff0000'
     }
 };
 
@@ -80,6 +85,16 @@ const VOID_POSTS = [
         tags: ["crypto", "yapping"],
         readTime: 4,
         date: "2025-02-08",
+        author: "Rodrigo Arce"
+    },
+    {
+        id: "tensorzero",
+        title: "Tensorzero: an interesting project",
+        description: "TensorZero creates a feedback loop for optimizing LLM applications — turning production data into smarter, faster, and cheaper models.",
+        image: "../static/img/void/tensorzero.png",
+        tags: ["ai"],
+        readTime: 5,
+        date: "2025-02-09",
         author: "Rodrigo Arce"
     }
 ];
