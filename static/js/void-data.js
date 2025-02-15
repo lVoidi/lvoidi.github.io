@@ -94,7 +94,7 @@ const VOID_POSTS = [
         image: "../static/img/void/tensorzero.png",
         tags: ["ai"],
         readTime: 5,
-        date: "2025-02-09",
+        date: "2025-02-14",
         author: "Rodrigo Arce"
     }
 ];
