@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matemáticas Discretas - Portal lVoidi</title>
+    
+    <!-- CSS imports -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="../../static/css/style.css" rel="stylesheet">
+    <link href="../../static/css/books.css" rel="stylesheet">
+    <!-- MathJax for mathematical equations -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <!-- Icon -->
+    <link rel="icon" href="../../static/img/icon.png" type="image/x-icon">
+</head>
+<body>
+    <div id="navbar-placeholder"></div>
+
+    <div class="container-fluid">
+        <button id="sidebarToggle" class="sidebar-toggle d-md-none">
+            <i class="fas fa-bars"></i>
+        </button>
+        <div class="row">
+            <!-- Navegación Lateral -->
+            <nav class="col-md-3 col-lg-2 d-md-block bg-dark sidebar collapse">
+                <div class="position-sticky pt-3">
+                    <ul class="nav flex-column">
+                        <li class="nav-item chapter-title">
+                            <a class="nav-link active" href="#introduction">
+                                Introducción a las Matemáticas Discretas
+                            </a>
+                        </li>
+                        <li class="nav-item chapter-title">
+                            <a class="nav-link" href="#chapter1">
+                                Capítulo 1: Lógica y Demostraciones
+                            </a>
+                            <ul class="nav flex-column sub-nav">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#propositional-logic">1.1 Lógica Proposicional</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#predicates">1.2 Predicados y Cuantificadores</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <!-- Add more chapters as needed -->
+                    </ul>
+                </div>
+            </nav>
+
+            <!-- Contenido Principal -->
+            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+                <div class="book-content">
+                    <section id="introduction" class="mb-5">
+                        <h1>Introducción a las Matemáticas Discretas</h1>
+                        <div class="metadata mb-4">
+                            <span><i class="fas fa-clock"></i> Última actualización: Febrero 2024</span>
+                        </div>
+                        <p>
+                            Mi propósito en escribir este libro es crear una guía clara y entretenida para entender la 
+                            matemática discreta. Este libro va dirigido a personas interesadas en aprender cómo funcionan 
+                            las computadoras y los circuitos digitales, no solo desde un punto de vista teórico, sino también 
+                            con ejemplos de uso real.
+                        </p>
+                        <p>
+                            He escuchado muchas personas que dicen que no saben por qué aprenden matemáticas discretas en cursos 
+                            de universidad si "nunca terminan aplicándolo en la vida real". Realmente es una queja recurrente que 
+                            se puede observar especialmente en gente joven. Muchas personas piensan que las universidades deberían 
+                            enseñar a como programar en tal lenguaje y ya está. La realidad es diferente para ingenierías y ciencias 
+                            exactas como Ciencias de la Computación o, mi área, Ingeniería en Computadores. 
+                        </p>
+                        <p>
+                            Si usted es una persona que piensa de una manera tan mediocre, este libro no es para usted. Puede que la 
+                            carrera tampoco sea para usted, porque si lo que busca es aprender a programar y luego empezar a ganar 
+                            dinero, entonces usted no es apto para una ingeniería o una ciencia exacta, sino para un simple técnico.
+                        </p>
+                        <p>
+                            Esto lo digo porque estas personas piensan que materias como matemáticas o física están dentro del plan 
+                            de estudios de sus carreras con tal de "rellenar", pero esto no es así. Estos campos tienen incontables 
+                            aplicaciones no solo en la ingeniería, sino en la vida cotidiana.
+                        </p>
+                        <p>
+                            El problema es que muchas personas no tienen la noción de lo que son las matemáticas realmente. Las personas,
+                            normalmente, piensan que este campo simplemente trata de calcular un par de cosas, aplicar un par de pasos 
+                            robóticos, una fórmula, un teorema y ya está. Claramente esto no es así. Las matemáticas son el lenguaje 
+                            universal del pensamiento. 
+                        </p>
+                        <h2>¿Qué son las matemáticas?</h2>
+                        <p>
+                            Edward R. Scheinerman describe que las matemáticas pueden ser divididas en dos mundos: el mundo 
+                            continuo y el mundo discreto. Él hace una analogía con relojes de manecillas y relojes digitales. 
+                            El reloj de manecillas corresponde a las matemáticas continuas, el movimiento de las manecillas 
+                            siembre es suave y siempre hay "infinitos tiempos" entre cada tick. En cambio, en el reloj digital,
+                            esto no es así. Entonces, para resumirlo un poco más, las matemáticas continuas exploran el mundo "infinito". 
+                            Por otro lado, las matemáticas discretas se asemejan más a un reloj digital. En este tipo de relojes, el tiempo 
+                            entre cada salto es finito.
+                        </p>
+                        <p>
+                            Las matemáticas continuas son el campo que estudia objetos que varían de forma suave y continua, como 
+                            funciones, curvas, superficies y otros objetos geométricos. Este campo incluye el cálculo diferencial e 
+                            integral, ecuaciones diferenciales, geometría diferencial y análisis matemático. Los números reales son 
+                            el fundamento de las matemáticas continuas, ya que permiten representar cantidades que varían de manera 
+                            continua.
+                        </p>
+                        <p>
+                            Por otro lado, las matemáticas discretas estudian estructuras y objetos que son separados y distintos. 
+                            Esto incluye el estudio de conjuntos finitos o numerables, grafos, árboles, relaciones, funciones discretas, 
+                            y estructuras algebraicas como grupos y anillos finitos. Los números enteros y sus subconjuntos son la base 
+                            de las matemáticas discretas. Este campo es fundamental en ciencias de la computación e ingeniería en 
+                            computadores porque las computadoras son máquinas discretas que operan con valores discretos (bits).
+                        </p>
+                        <p>
+                            La distinción entre matemáticas continuas y discretas no es siempre clara. Hay muchas áreas donde ambos 
+                            campos se intersectan y complementan. Por ejemplo, en el procesamiento de señales digitales, se toman 
+                            señales continuas y se discretizan para su procesamiento digital. En la teoría de números, que es 
+                            inherentemente discreta, a menudo se utilizan técnicas del análisis continuo para resolver problemas.
+                        </p>
+                        
+                    </section>
+
+                    <section id="chapter1" class="mb-5">
+                        <h2>Capítulo 1: Lógica y Demostraciones</h2>
+                        
+                        <article id="propositional-logic" class="mb-4">
+                            <h3>1.1 Lógica Proposicional</h3>
+                            <p>La lógica proposicional es el estudio de las proposiciones, enunciados que son verdaderos o falsos...</p>
+                            
+                            <!-- Example of a theorem box -->
+                            <div class="theorem-box">
+                                <h4>Teorema 1.1</h4>
+                                <p>Para cualquier proposición p y q:</p>
+                                <p>\[ (p \land q) \equiv \neg(\neg p \lor \neg q) \]</p>
+                            </div>
+
+                            <!-- Example of an example box -->
+                            <div class="example-box">
+                                <h4>Ejemplo 1.1</h4>
+                                <p>Consideremos la siguiente proposición...</p>
+                            </div>
+                        </article>
+
+                        <article id="predicates" class="mb-4">
+                            <h3>1.2 Predicados y Cuantificadores</h3>
+                            <p>Un predicado es un enunciado que contiene variables...</p>
+                        </article>
+                    </section>
+                    <section id="references" class="mb-5">
+                        <h2>Referencias</h2>
+                        <p>
+                            <ul>
+                                <li>[1] E.R. Scheinerman, '"Mathematics : a discrete introduction,", ed. 3rd ed., student ed, 2013.</li>
+                            </ul>
+                        </p>
+                    </section>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- Scroll to top button -->
+    <button id="scrollToTop" class="scroll-to-top" aria-label="Desplazarse hacia arriba">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <div id="footer-placeholder"></div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../../static/js/templates.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const sidebarToggle = document.getElementById('sidebarToggle');
+            const sidebar = document.querySelector('.sidebar');
+            
+            // Create overlay element
+            const overlay = document.createElement('div');
+            overlay.className = 'sidebar-overlay';
+            document.body.appendChild(overlay);
+
+            // Toggle sidebar
+            sidebarToggle.addEventListener('click', () => {
+                sidebar.classList.toggle('show');
+                overlay.classList.toggle('show');
+            });
+
+            // Close sidebar when clicking overlay
+            overlay.addEventListener('click', () => {
+                sidebar.classList.remove('show');
+                overlay.classList.remove('show');
+            });
+
+            // Close sidebar when clicking a link
+            const sidebarLinks = document.querySelectorAll('.sidebar .nav-link');
+            sidebarLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    sidebar.classList.remove('show');
+                    overlay.classList.remove('show');
+                });
+            });
+
+            // Handle swipe to close sidebar
+            let touchStartX = 0;
+            let touchEndX = 0;
+
+            sidebar.addEventListener('touchstart', e => {
+                touchStartX = e.changedTouches[0].screenX;
+            }, false);
+
+            sidebar.addEventListener('touchend', e => {
+                touchEndX = e.changedTouches[0].screenX;
+                if (touchStartX > touchEndX + 50) { // Swipe left
+                    sidebar.classList.remove('show');
+                    overlay.classList.remove('show');
+                }
+            }, false);
+        });
+
+        // Enhanced scroll to top functionality
+        const scrollToTopBtn = document.getElementById('scrollToTop');
+        
+        // Throttle scroll event for better performance
+        let isScrolling = false;
+        window.addEventListener('scroll', () => {
+            if (!isScrolling) {
+                window.requestAnimationFrame(() => {
+                    if (window.pageYOffset > 300) {
+                        scrollToTopBtn.classList.add('visible');
+                    } else {
+                        scrollToTopBtn.classList.remove('visible');
+                    }
+                    isScrolling = false;
+                });
+                isScrolling = true;
+            }
+        });
+        
+        scrollToTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Handle touch events for better mobile experience
+        scrollToTopBtn.addEventListener('touchend', (e) => {
+            e.preventDefault();
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    </script>
+</body>
+</html>
