@@ -294,6 +294,13 @@ const algorithms = {
             description: "Predicts a dependent variable value based on independent variables",
             complexity: "Training: O(n³), Prediction: O(n)",
             link: "machine-learning/linear-regression.html"
+        },
+        {
+            name: "Support Vector Machine (SVM)",
+            category: "machine_learning",
+            description: "A supervised learning algorithm that finds an optimal hyperplane to separate data points into different classes while maximizing the margin",
+            complexity: "O(n²) to O(n³) depending on implementation, where n is the number of training samples",
+            link: "machine-learning/svm.html"
         }
     ],
     string: [
