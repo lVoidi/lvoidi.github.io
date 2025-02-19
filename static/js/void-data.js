@@ -31,6 +31,11 @@ const AVAILABLE_TAGS = {
         label: 'AI',
         color: 'rgba(255, 0, 0, 0.2)',
         textColor: '#ff0000'
+    },
+    'science': {
+        label: 'Science',
+        color: 'rgba(0, 0, 255, 0.2)',
+        textColor: '#0000ff'
     }
 };
 
