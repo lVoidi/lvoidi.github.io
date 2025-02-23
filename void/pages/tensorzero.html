@@ -380,6 +380,19 @@ impl&lt;T&gt; ExpectPretty&lt;T&gt; for Option&lt;T&gt; {
 }
                     </code></pre>
                 </div>
+
+                <p>
+                    This code represents the main entry point of the TensorZero gateway.
+                    It starts by setting up essential components like logging and metrics tracking.
+                    The program accepts a configuration file path as input, which can be specified using the `--config-file` flag.
+                    After loading the configuration, it initializes the application state and sets up various HTTP endpoints for 
+                    handling different types of requests, including inference, batch processing, feedback collection, and health checks.
+                    The server listens on a configurable address (defaulting to 0.0.0.0:3000) and includes graceful shutdown handling for 
+                    various signals (Ctrl+C, SIGTERM, SIGHUP). The code also implements a custom error handling trait called `ExpectPretty`
+                    that provides user-friendly error messages during the initialization phase. This implementation showcases Rust's strong
+                    error handling capabilities while maintaining clean and maintainable code.
+                </p>
+                </div>
             </div>
         </article>
     </main>
