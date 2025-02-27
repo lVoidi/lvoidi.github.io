@@ -31,7 +31,7 @@
 }
 
 .card-text {
-    color: var(--text-muted);
+    color: #c0c0c0;
     line-height: 1.6;
 }
 
@@ -63,7 +63,7 @@
 }
 
 .read-time {
-    color: var(--text-muted);
+    color: #c0c0c0;
     font-size: 0.875rem;
     display: flex;
     align-items: center;
@@ -137,7 +137,7 @@
 /* Date styling */
 .post-date {
     font-size: 0.875rem;
-    color: var(--text-muted);
+    color: #c0c0c0;
     margin-bottom: 1rem;
     display: block;
 }

@@ -23,7 +23,7 @@
 }
 
 .card-text {
-    color: var(--text-muted);
+    color: #c0c0c0;
 }
 
 /* Tags styling */
@@ -31,6 +31,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    color: #aca7a7;
 }
 
 .tag {
@@ -58,6 +59,10 @@
 .read-time {
     color: var(--text-muted);
     font-size: 0.875rem;
+}
+
+.post-date {
+    color: #aca7a7;
 }
 
 .read-time i {
