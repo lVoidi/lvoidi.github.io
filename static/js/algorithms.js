@@ -206,6 +206,20 @@ const algorithms = {
     ],
     greedy: [
         {
+            name: "Activity Selection Problem",
+            category: "greedy",
+            description: "Selects the maximum number of non-overlapping activities that can be performed by a single person",
+            complexity: "O(n log n)",
+            link: "greedy/activity-selection.html"
+        },
+        {
+            name: "Job Sequencing with Deadlines",
+            category: "greedy",
+            description: "Maximizes profit by scheduling jobs before their deadlines, with each job taking one unit of time",
+            complexity: "O(n² log n)",
+            link: "greedy/job-sequencing.html"
+        },
+        {
             name: "Kruskal's Algorithm",
             category: "greedy",
             description: "Finds the minimum spanning tree in a weighted graph",
