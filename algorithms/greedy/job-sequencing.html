@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Sequencing with Deadlines - lVoidi Portal</title>
+    
+    <!-- CSS imports -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="../../static/css/style.css" rel="stylesheet">
+    <link href="../../static/css/algorithms.css" rel="stylesheet">
+    <link href="../../static/css/algorithm-page.css" rel="stylesheet">
+    <link href="../../static/css/prism.css" rel="stylesheet">
+
+    <!-- Icon -->
+    <link rel="icon" href="../../static/img/icon.png" type="image/x-icon">
+</head>
+<body>
+    <div id="navbar-placeholder"></div>
+    
+    <main class="container py-5">
+        <div class="row">
+            <!-- Sidebar -->
+            <div class="col-md-3">
+                <div class="algorithm-info-card">
+                    <h3>Quick Info</h3>
+                    <div class="info-item">
+                        <span class="info-label">Category:</span>
+                        <span class="info-value">Greedy</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Time Complexity:</span>
+                        <span class="info-value">O(n² log n)</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Space Complexity:</span>
+                        <span class="info-value">O(n)</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Input Type:</span>
+                        <span class="info-value">Jobs with profits and deadlines</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Content -->
+            <div class="col-md-9">
+                <article class="algorithm-content">
+                    <h1>Job Sequencing with Deadlines</h1>
+                    <div class="algorithm-metadata">
+                        <span class="category-tag">Greedy</span>
+                        <span class="difficulty-tag">Medium</span>
+                    </div>
+
+                    <section class="algorithm-section">
+                        <h2>Description</h2>
+                        <p>The Job Sequencing with Deadlines problem is a classic greedy algorithm problem where we have a set of jobs, each with a deadline and associated profit. The goal is to schedule the jobs to maximize the total profit, given that each job takes one unit of time and can only be performed before its deadline.</p>
+                        <p>Each job can be scheduled in only one time slot, and only one job can be scheduled at any given time. If a job is scheduled after its deadline, the profit cannot be earned.</p>
+                    </section>
+
+                    <section class="algorithm-section">
+                        <h2>How It Works</h2>
+                        <ol>
+                            <li>Sort all jobs in decreasing order of profit</li>
+                            <li>Initialize a result sequence with empty slots equal to the maximum deadline</li>
+                            <li>For each job in the sorted order:
+                                <ul>
+                                    <li>Find the latest available time slot before the job's deadline</li>
+                                    <li>If such a slot exists, schedule the job in that slot</li>
+                                </ul>
+                            </li>
+                            <li>Return the sequence of scheduled jobs</li>
+                        </ol>
+                        <p>The greedy choice is to always consider the job with the highest profit first and schedule it as late as possible before its deadline. This ensures that we maximize profit while keeping earlier slots available for other jobs.</p>
+                    </section>
+
+                    <section class="algorithm-section">
+                        <h2>Visualization</h2>
+                        <div class="visualization-container">
+                            <div class="visualization-controls">
+                                <div class="input-group mb-3">
+                                    <button class="btn btn-primary" id="generateJobs">
+                                        <i class="fas fa-random"></i> Generate Random Jobs
+                                    </button>
+                                    <button class="btn btn-primary" id="startVisualization">
+                                        <i class="fas fa-play"></i> Start
+                                    </button>
+                                    <button class="btn btn-secondary" id="resetVisualization">
+                                        <i class="fas fa-redo"></i> Reset
+                                    </button>
+                                </div>
+                                <div class="speed-control">
+                                    <label>Speed:</label>
+                                    <input type="range" id="speedControl" min="1" max="5" value="3">
+                                </div>
+                            </div>
+                            <div id="jobSequencingVisualization" class="visualization-area">
+                                <!-- SVG will be inserted here -->
+                            </div>
+                            <div class="visualization-steps">
+                                <p id="currentStep">Generate random jobs and click Start to begin visualization</p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="algorithm-section">
+                        <h2>Complexity Analysis</h2>
+                        <div class="complexity-analysis">
+                            <h3>Time Complexity</h3>
+                            <ul>
+                                <li>
+                                    <strong>Sorting:</strong> O(n log n)
+                                    <ul>
+                                        <li>Sorting jobs by profit</li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <strong>Scheduling:</strong> O(n²)
+                                    <ul>
+                                        <li>For each job, we may need to search for an available slot</li>
+                                        <li>In the worst case, we check all slots for each job</li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <strong>Overall:</strong> O(n² log n)
+                                    <ul>
+                                        <li>Dominated by the scheduling step</li>
+                                    </ul>
+                                </li>
+                            </ul>
+
+                            <h3>Space Complexity</h3>
+                            <ul>
+                                <li>
+                                    <strong>Storage:</strong> O(n)
+                                    <ul>
+                                        <li>Space to store the result sequence</li>
+                                        <li>Space for sorting (implementation dependent)</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </section>
+
+                    <section class="algorithm-section">
+                        <h2>Advantages and Disadvantages</h2>
+                        <div class="pros-cons">
+                            <div class="pros">
+                                <h3>Advantages</h3>
+                                <ul>
+                                    <li>Maximizes profit for scheduling problems</li>
+                                    <li>Simple implementation</li>
+                                    <li>Works well for problems with clear profit metrics</li>
+                                    <li>Can be extended to handle variable job durations</li>
+                                </ul>
+                            </div>
+                            <div class="cons">
+                                <h3>Disadvantages</h3>
+                                <ul>
+                                    <li>Not optimal for all scheduling scenarios</li>
+                                    <li>Quadratic time complexity in worst case</li>
+                                    <li>Cannot handle jobs with dependencies</li>
+                                    <li>Assumes unit time for each job</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="algorithm-section">
+                        <h2>Implementation</h2>
+                        <div class="implementation-container">
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" data-bs-toggle="tab" href="#python">Python</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-bs-toggle="tab" href="#cpp">C++</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-bs-toggle="tab" href="#csharp">C#</a>
+                                </li>
+                            </ul>
+                            
+                            <div class="tab-content">
+                                <!-- Python Implementation -->
+                                <div class="tab-pane fade show active" id="python">
+                                    <div class="code-wrapper">
+                                        <button class="copy-button" data-clipboard-target="#python-code">
+                                            <i class="fas fa-copy"></i>
+                                        </button>
+                                        <pre><code class="language-python" id="python-code">
+def job_sequencing(jobs):
+    """
+    Finds the sequence of jobs that maximizes profit.
+    
+    Parameters:
+        jobs: list of tuples - Each tuple contains (job_id, deadline, profit)
+    
+    Returns:
+        list of job_ids - Sequence of scheduled jobs
+        int - Total profit
+    """
+    # Sort jobs in decreasing order of profit
+    sorted_jobs = sorted(jobs, key=lambda x: x[2], reverse=True)
+    
+    # Find the maximum deadline
+    max_deadline = max(job[1] for job in jobs)
+    
+    # Initialize result sequence with -1 (no job scheduled)
+    result = [-1] * max_deadline
+    slot_occupied = [False] * max_deadline
+    
+    # Total profit
+    total_profit = 0
+    
+    # Schedule jobs
+    for job in sorted_jobs:
+        job_id, deadline, profit = job
+        
+        # Find a free time slot before the deadline
+        for slot in range(min(max_deadline, deadline) - 1, -1, -1):
+            if not slot_occupied[slot]:
+                result[slot] = job_id
+                slot_occupied[slot] = True
+                total_profit += profit
+                break
+    
+    # Filter out unscheduled slots
+    scheduled_jobs = [job_id for job_id in result if job_id != -1]
+    
+    return scheduled_jobs, total_profit
+
+# Example usage
+if __name__ == "__main__":
+    # Jobs as (job_id, deadline, profit)
+    jobs = [
+        (1, 4, 20),   # Job 1 with deadline 4 and profit 20
+        (2, 1, 10),   # Job 2 with deadline 1 and profit 10
+        (3, 1, 40),   # Job 3 with deadline 1 and profit 40
+        (4, 1, 30),   # Job 4 with deadline 1 and profit 30
+        (5, 3, 30)    # Job 5 with deadline 3 and profit 30
+    ]
+    
+    scheduled_jobs, total_profit = job_sequencing(jobs)
+    
+    print("Scheduled jobs:", scheduled_jobs)
+    print("Total profit:", total_profit)
+    
+    # Expected output:
+    # Scheduled jobs: [3, 5, 1]
+    # Total profit: 90
+</code></pre>
+                                    </div>
+                                </div>
+
+                                <!-- C++ Implementation -->
+                                <div class="tab-pane fade" id="cpp">
+                                    <div class="code-wrapper">
+                                        <button class="copy-button" data-clipboard-target="#cpp-code">
+                                            <i class="fas fa-copy"></i>
+                                        </button>
+                                        <pre><code class="language-cpp" id="cpp-code">
+#include &lt;iostream&gt;
+#include &lt;vector&gt;
+#include &lt;algorithm&gt;
+#include &lt;tuple&gt;
+
+class JobSequencing {
+public:
+    // Function to find the maximum profit sequence of jobs
+    std::pair&lt;std::vector&lt;int&gt;, int&gt; scheduleJobs(const std::vector&lt;std::tuple&lt;int, int, int&gt;&gt;& jobs) {
+        int n = jobs.size();
+        
+        // Sort jobs in decreasing order of profit
+        std::vector&lt;std::tuple&lt;int, int, int&gt;&gt; sortedJobs = jobs;
+        std::sort(sortedJobs.begin(), sortedJobs.end(), 
+                 [](const auto& a, const auto& b) {
+                     return std::get&lt;2&gt;(a) > std::get&lt;2&gt;(b);
+                 });
+        
+        // Find the maximum deadline
+        int maxDeadline = 0;
+        for (const auto& job : jobs) {
+            maxDeadline = std::max(maxDeadline, std::get&lt;1&gt;(job));
+        }
+        
+        // Initialize result sequence with -1 (no job scheduled)
+        std::vector&lt;int&gt; result(maxDeadline, -1);
+        std::vector&lt;bool&gt; slotOccupied(maxDeadline, false);
+        
+        // Total profit
+        int totalProfit = 0;
+        
+        // Schedule jobs
+        for (const auto& job : sortedJobs) {
+            int jobId = std::get&lt;0&gt;(job);
+            int deadline = std::get&lt;1&gt;(job);
+            int profit = std::get&lt;2&gt;(job);
+            
+            // Find a free time slot before the deadline
+            for (int slot = std::min(maxDeadline, deadline) - 1; slot >= 0; slot--) {
+                if (!slotOccupied[slot]) {
+                    result[slot] = jobId;
+                    slotOccupied[slot] = true;
+                    totalProfit += profit;
+                    break;
+                }
+            }
+        }
+        
+        // Filter out unscheduled slots
+        std::vector&lt;int&gt; scheduledJobs;
+        for (int jobId : result) {
+            if (jobId != -1) {
+                scheduledJobs.push_back(jobId);
+            }
+        }
+        
+        return {scheduledJobs, totalProfit};
+    }
+};
+
+int main() {
+    // Jobs as (job_id, deadline, profit)
+    std::vector&lt;std::tuple&lt;int, int, int&gt;&gt; jobs = {
+        {1, 4, 20},   // Job 1 with deadline 4 and profit 20
+        {2, 1, 10},   // Job 2 with deadline 1 and profit 10
+        {3, 1, 40},   // Job 3 with deadline 1 and profit 40
+        {4, 1, 30},   // Job 4 with deadline 1 and profit 30
+        {5, 3, 30}    // Job 5 with deadline 3 and profit 30
+    };
+    
+    JobSequencing scheduler;
+    auto [scheduledJobs, totalProfit] = scheduler.scheduleJobs(jobs);
+    
+    std::cout << "Scheduled jobs: ";
+    for (int jobId : scheduledJobs) {
+        std::cout << jobId << " ";
+    }
+    std::cout << std::endl;
+    
+    std::cout << "Total profit: " << totalProfit << std::endl;
+    
+    return 0;
+}
+</code></pre>
+                                    </div>
+                                </div>
+
+                                <!-- C# Implementation -->
+                                <div class="tab-pane fade" id="csharp">
+                                    <div class="code-wrapper">
+                                        <button class="copy-button" data-clipboard-target="#csharp-code">
+                                            <i class="fas fa-copy"></i>
+                                        </button>
+                                        <pre><code class="language-csharp" id="csharp-code">
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+public class JobSequencing
+{
+    public (List&lt;int&gt; scheduledJobs, int totalProfit) ScheduleJobs(List&lt;(int jobId, int deadline, int profit)&gt; jobs)
+    {
+        // Sort jobs in decreasing order of profit
+        var sortedJobs = jobs.OrderByDescending(job => job.profit).ToList();
+        
+        // Find the maximum deadline
+        int maxDeadline = jobs.Max(job => job.deadline);
+        
+        // Initialize result sequence with -1 (no job scheduled)
+        int[] result = new int[maxDeadline];
+        for (int i = 0; i < maxDeadline; i++)
+        {
+            result[i] = -1;
+        }
+        
+        bool[] slotOccupied = new bool[maxDeadline];
+        
+        // Total profit
+        int totalProfit = 0;
+        
+        // Schedule jobs
+        foreach (var job in sortedJobs)
+        {
+            // Find a free time slot before the deadline
+            for (int slot = Math.Min(maxDeadline, job.deadline) - 1; slot >= 0; slot--)
+            {
+                if (!slotOccupied[slot])
+                {
+                    result[slot] = job.jobId;
+                    slotOccupied[slot] = true;
+                    totalProfit += job.profit;
+                    break;
+                }
+            }
+        }
+        
+        // Filter out unscheduled slots
+        List&lt;int&gt; scheduledJobs = result.Where(jobId => jobId != -1).ToList();
+        
+        return (scheduledJobs, totalProfit);
+    }
+    
+    public static void Main()
+    {
+        // Jobs as (job_id, deadline, profit)
+        var jobs = new List&lt;(int jobId, int deadline, int profit)&gt;
+        {
+            (1, 4, 20),   // Job 1 with deadline 4 and profit 20
+            (2, 1, 10),   // Job 2 with deadline 1 and profit 10
+            (3, 1, 40),   // Job 3 with deadline 1 and profit 40
+            (4, 1, 30),   // Job 4 with deadline 1 and profit 30
+            (5, 3, 30)    // Job 5 with deadline 3 and profit 30
+        };
+        
+        var scheduler = new JobSequencing();
+        var (scheduledJobs, totalProfit) = scheduler.ScheduleJobs(jobs);
+        
+        Console.WriteLine("Scheduled jobs: " + string.Join(" ", scheduledJobs));
+        Console.WriteLine("Total profit: " + totalProfit);
+    }
+}
+</code></pre>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </article>
+            </div>
+        </div>
+    </main>
+
+    <div id="footer-placeholder"></div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.8/clipboard.min.js"></script>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="../../static/js/prism.js"></script>
+    <script src="../../static/js/job-sequencing-visualization.js"></script>
+    <script src="../../static/js/templates.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const clipboard = new ClipboardJS('.copy-button');
+            
+            clipboard.on('success', (e) => {
+                const button = e.trigger;
+                button.innerHTML = '<i class="fas fa-check"></i>';
+                setTimeout(() => {
+                    button.innerHTML = '<i class="fas fa-copy"></i>';
+                }, 2000);
+                e.clearSelection();
+            });
+        });
+    </script>
+</body>
+</html> 
