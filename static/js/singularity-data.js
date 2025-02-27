@@ -41,7 +41,18 @@ const SINGULARITY_POSTS = [
         readTime: 15,
         date: "2025-01-03",
         author: "Rodrigo Arce",
-        category: "Misc"
+        category: "Quantum"
+    },
+    {
+        id: "microsoft-majorana",
+        title: "Roadmap to fault tolerant quantum computation using topological qubit arrays",
+        description: "Mindblowing paper by Microsoft Quantum that explains the Majorana qubits and their potencial for quantum computation",
+        image: "../static/img/singularity/majorana.png",
+        tags: ["Quantum", "Computation", "Microsoft"],
+        readTime: 15,
+        date: "2025-01-04",
+        author: "Rodrigo Arce",
+        category: "Quantum"
     }
 ];
 
