@@ -412,6 +412,13 @@ const algorithms = {
             description: "Estimates the value of π using random point sampling",
             complexity: "O(n)",
             link: "randomized/monte-carlo-pi.html"
+        },
+        {
+            name: "Karger's Min Cut Algorithm",
+            category: "randomized",
+            description: "A randomized algorithm to find minimum cuts in a graph",
+            complexity: "O(V²E)",
+            link: "randomized/kargers-min-cut.html"
         }
     ]
 };
