@@ -10,6 +10,45 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="../static/css/style.css" rel="stylesheet">
     <link href="../static/css/void.css" rel="stylesheet">
+    
+    <!-- Estilos responsivos adicionales -->
+    <style>
+        /* Estilos responsivos adicionales */
+        @media (max-width: 576px) {
+            .filters .btn-group {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 0.5rem;
+                width: 100%;
+            }
+            
+            .filters .btn {
+                flex: 1 1 auto;
+                min-width: 80px;
+                margin: 0;
+                padding: 0.35rem 0.5rem;
+                font-size: 0.85rem;
+            }
+            
+            .search-container {
+                padding: 0 1rem;
+            }
+            
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            .lead {
+                font-size: 1rem;
+            }
+            
+            .tag {
+                font-size: 0.8rem;
+                padding: 0.2rem 0.5rem;
+            }
+        }
+    </style>
 
     <!-- Icon -->
     <link rel="icon" href="../static/img/icon.png" type="image/x-icon">
@@ -17,13 +56,13 @@
 <body>
     <div id="navbar-placeholder"></div>
 
-    <main class="container py-5">
-        <header class="text-center mb-5">
+    <main class="container py-4">
+        <header class="text-center mb-4">
             <h1>The Pit of Endless Void</h1>
             <p class="lead">Personal thoughts, experiences, and random musings about tech and life</p>
         </header>
 
-        <div class="search-container mb-4">
+        <div class="search-container mb-3">
             <div class="input-group">
                 <span class="input-group-text">
                     <i class="fas fa-search"></i>
@@ -32,15 +71,15 @@
             </div>
         </div>
 
-        <div class="filters mb-4">
-            <div class="btn-group" role="group">
+        <div class="filters mb-3">
+            <div class="btn-group flex-wrap" role="group">
                 <button type="button" class="btn btn-outline-primary active" data-filter="all">All</button>
                 <button type="button" class="btn btn-outline-primary" data-filter="non-tech">Non-tech</button>
                 <button type="button" class="btn btn-outline-primary" data-filter="yapping">Yapping</button>
             </div>
         </div>
 
-        <div class="row g-4" id="posts">
+        <div class="row g-3" id="posts">
             <!-- Posts will be dynamically inserted here -->
         </div>
     </main>

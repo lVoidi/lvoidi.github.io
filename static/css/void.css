@@ -38,9 +38,9 @@
 /* Tags styling */
 .tags {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 1rem;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    color: #c0c0c0;
 }
 
 .tag {
@@ -50,6 +50,8 @@
     font-weight: 500;
     text-transform: uppercase;
     letter-spacing: 0.5px;
+    white-space: nowrap;
+    display: inline-block;
 }
 
 .tag-non-tech {
@@ -68,6 +70,7 @@
     display: flex;
     align-items: center;
     gap: 0.25rem;
+    white-space: nowrap;
 }
 
 /* Search bar styling */
@@ -143,12 +146,39 @@
 }
 
 /* Responsive adjustments */
+@media (max-width: 992px) {
+    .card-img-top {
+        height: 180px;
+    }
+    
+    .filters .btn {
+        padding: 0.4rem 0.8rem;
+    }
+}
+
 @media (max-width: 768px) {
     .card-img-top {
         height: 160px;
     }
     
+    .card-title {
+        font-size: 1.1rem;
+    }
+    
+    .card-text {
+        font-size: 0.9rem;
+    }
+    
     .filters .btn-group {
         width: 100%;
+    }
+    
+    .tag {
+        padding: 0.2rem 0.5rem;
+        font-size: 0.8rem;
+    }
+    
+    .read-time, .post-date {
+        font-size: 0.8rem;
     }
 } 

@@ -94,12 +94,22 @@ const VOID_POSTS = [
     },
     {
         id: "tensorzero",
-        title: "Tensorzero: an interesting project",
+        title: "TensorZero: an interesting project",
         description: "TensorZero creates a feedback loop for optimizing LLM applications — turning production data into smarter, faster, and cheaper models.",
         image: "../static/img/void/tensorzero.png",
         tags: ["ai"],
         readTime: 5,
         date: "2025-02-14",
+        author: "Rodrigo Arce"
+    },
+    {
+        id: "microsoft-majorana",
+        title: "Microsoft introduces... A NEW STATE OF MATTER?",
+        description: "Microsoft introduced Majorana 1, is it the future of computing? let's find out.",
+        image: "../static/img/void/microsoft-majorana.jpg",
+        tags: ["yapping", "science"],
+        readTime: 5,
+        date: "2025-02-15",
         author: "Rodrigo Arce"
     }
 ];
@@ -131,10 +141,12 @@ function createPostCardHTML(post) {
             <article class="card h-100">
                 <img src="${post.image}" class="card-img-top" alt="${post.title}">
                 <div class="card-body">
-                    <div class="tags">
-                        ${tagHTML}
-                        <span class="read-time">
-                            <i class="fas fa-clock"></i> ${post.readTime} min read
+                    <div class="d-flex flex-wrap justify-content-between align-items-start mb-2">
+                        <div class="tags d-flex flex-wrap gap-1 mb-1">
+                            ${tagHTML}
+                        </div>
+                        <span class="read-time ms-auto">
+                            <i class="fas fa-clock"></i> ${post.readTime} min
                         </span>
                     </div>
                     <span class="post-date">
