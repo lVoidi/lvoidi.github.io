@@ -59,7 +59,7 @@ const SINGULARITY_POSTS = [
 // Function to generate HTML for a single card
 function createPostCardHTML(post) {
     const tagHTML = post.tags.map(tag => `
-        <span class="tag">${tag}</span>
+        <span class="tag tag-${post.category.toLowerCase()}">${tag}</span>
     `).join('');
 
     const date = new Date(post.date);
@@ -74,10 +74,12 @@ function createPostCardHTML(post) {
             <article class="card h-100">
                 <img src="${post.image}" class="card-img-top" alt="${post.title}">
                 <div class="card-body">
-                    <div class="tags mb-2">
-                        ${tagHTML}
-                        <span class="read-time">
-                            <i class="fas fa-clock"></i> ${post.readTime} min read
+                    <div class="d-flex flex-wrap justify-content-between align-items-center mb-2">
+                        <div class="tags d-flex flex-wrap gap-1 mb-1">
+                            ${tagHTML}
+                        </div>
+                        <span class="read-time ms-auto">
+                            <i class="fas fa-clock"></i> ${post.readTime} min
                         </span>
                     </div>
                     <span class="post-date">

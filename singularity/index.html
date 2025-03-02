@@ -10,6 +10,39 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="../static/css/style.css" rel="stylesheet">
     <link href="../static/css/singularity.css" rel="stylesheet">
+    <!-- Agregamos estilos responsivos adicionales inline -->
+    <style>
+        /* Estilos responsivos adicionales */
+        @media (max-width: 576px) {
+            .filters .btn-group {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 0.5rem;
+                width: 100%;
+            }
+            
+            .filters .btn {
+                flex: 1 1 auto;
+                min-width: 80px;
+                margin: 0;
+                padding: 0.35rem 0.5rem;
+                font-size: 0.85rem;
+            }
+            
+            .search-container {
+                padding: 0 1rem;
+            }
+            
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            .lead {
+                font-size: 1rem;
+            }
+        }
+    </style>
 
     <!-- Icon -->
     <link rel="icon" href="../static/img/icon.png" type="image/x-icon">
@@ -17,13 +50,13 @@
 <body>
     <div id="navbar-placeholder"></div>
 
-    <main class="container py-5">
-        <header class="text-center mb-5">
+    <main class="container py-4">
+        <header class="text-center mb-4">
             <h1>Technological Singularity</h1>
             <p class="lead">Exploring the frontiers of AI, Machine Learning, Blockchain, and beyond</p>
         </header>
 
-        <div class="search-container mb-4">
+        <div class="search-container mb-3">
             <div class="input-group">
                 <span class="input-group-text">
                     <i class="fas fa-search"></i>
@@ -32,8 +65,8 @@
             </div>
         </div>
 
-        <div class="filters mb-4">
-            <div class="btn-group" role="group">
+        <div class="filters mb-3">
+            <div class="btn-group flex-wrap" role="group">
                 <button type="button" class="btn btn-outline-primary active" data-filter="all">All</button>
                 <button type="button" class="btn btn-outline-primary" data-filter="ai">AI</button>
                 <button type="button" class="btn btn-outline-primary" data-filter="blockchain">Blockchain</button>
@@ -42,7 +75,7 @@
             </div>
         </div>
 
-        <div class="row g-4" id="articles">
+        <div class="row g-3" id="articles">
         </div>
     </main>
 
