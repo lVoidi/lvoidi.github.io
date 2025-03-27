@@ -36,6 +36,11 @@ const AVAILABLE_TAGS = {
         label: 'Science',
         color: 'rgba(0, 0, 255, 0.2)',
         textColor: '#0000ff'
+    },
+    'music': {
+        label: 'Music',
+        color: 'rgba(255, 165, 0, 0.2)',
+        textColor: '#ffa500'
     }
 };
 
@@ -110,6 +115,16 @@ const VOID_POSTS = [
         tags: ["yapping", "science"],
         readTime: 5,
         date: "2025-02-15",
+        author: "Rodrigo Arce"
+    },
+    {
+        id: "chatgptimg",
+        title: "ChatGPT and image generation",
+        description: "In this post, i discuss new ChatGPT image generation features.",
+        image: "../static/img/void/chatgptimg.png",
+        tags: ["ai", "yapping"],
+        readTime: 5,
+        date: "2025-03-27",
         author: "Rodrigo Arce"
     }
 ];
