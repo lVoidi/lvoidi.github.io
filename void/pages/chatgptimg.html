@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChatGPT and image generation - lVoidi Portal</title>
+    
+    <!-- CSS imports -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="../../static/css/style.css" rel="stylesheet">
+    <link href="../../static/css/blog-post.css" rel="stylesheet">
+    <link href="../../static/css/prism.css" rel="stylesheet">
+
+    <!-- MathJax -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <!-- Icon -->
+    <link rel="icon" href="../../static/img/icon.png" type="image/x-icon">
+</head>
+<body>
+    <!-- Reading Progress Bar -->
+    <div class="reading-progress-bar" id="readingProgress"></div>
+
+    <!-- Navigation -->
+    <div id="navbar-placeholder"></div>
+
+    <main class="container py-5">
+        <article class="post-content">
+            <header class="post-header text-center mb-5">
+                <h1 class="post-title">ChatGPT and image generation</h1>
+                <div class="post-meta">
+                    <span class="post-date">
+                        <i class="fas fa-calendar-alt"></i> March 27, 2025
+                    </span>
+                    <span class="post-read-time">
+                        <i class="fas fa-clock"></i> 5 min read
+                    </span>
+                    <div class="post-author">
+                        <img src="../../static/img/author.jpg" alt="Rodrigo Arce" class="author-image">
+                        <div class="author-info">
+                            <span class="author-name">Rodrigo Arce</span>
+                            <span class="author-title">Computer Engineer</span>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <div class="post-body">
+                <h1>ChatGPT and image generation</h1>
+                <h2>Introduction</h2>
+                <p>
+                    ChatGPT is well known by everyone as the most famous AI chatbot out there. It has evolved from a simple chatbot 
+                    to an almost general purpose AI. ChatGPT is able to generate text, code, and now images. You could create images 
+                    with ChatGPT before using DALL-E, but it wasn't part of the gpt model itself, it was a separate model. 
+                </p>
+                <p>
+                    Yesterday, OpenAI announced a new feature in ChatGPT. You can now generate images with ChatGPT premium. In this post, 
+                    we will discuss this feature, compare it with DALL-E and talk about the future of image generation with AI and it's ethical 
+                    implications.
+                </p>
+                <h2>DALL-E vs ChatGPT Images</h2>
+                <p>
+                    First of all, DALL-E has been out for a while now and it's not that good of a model. You would often find DALL-E hallucinating 
+                    and generating images with no sense. One of my favorite examples is asking DALL-E to generate an image of a tutorial for 
+                    frying an egg. It is really funny because the steps shown make NO sense. See the image below to see this by yourself:
+                    
+                    <blockquote> 
+                        Prompt: Generate the following image: I want you to make a step by step tutorial on frying an egg. Include text and images. 
+                    </blockquote>
+
+                    <img src="../../static/img/void/dalle.png" alt="DALL-E egg"> <br>
+                    As you can see, this guide is actual garbage and only contributed to global pollution instead of helping the user. However, 
+                    ChatGPT Images does not have this problem. 
+                    <blockquote>
+                        Prompt: Generate the following image: I want you to make a step by step tutorial on frying an egg. Include text and images. 
+                    </blockquote>
+                    <img src="../../static/img/void/chatgptimages-egg.png" alt="ChatGPT Images egg"> <br>
+
+                    This guide is actually helpful and looks way better than the DALL-E one. Like, there is no comparison here.
+                </p>
+                <h2>Weird behaviors</h2>
+                <p>
+                    Since this feature came out, people have been using it to generate all kinds of images. Because of that, people discovered 
+                    really weird behaviors from it. 
+                    <h3>Sexy man vs Sexy woman image generation</h3>
+                    Something really weird is that if you ask ChatGPT to generate an image of a sexy man, it will generate it, but 
+                    if you ask for a sexy woman, it won't. This is really funny because it shows that the model has some kind of 
+                    gender bias, and people started making jokes about it and related it with Sam Altman's sexual orientation. 
+                </p>
+                    <img src="../../static/img/void/sexy-man.png" alt="ChatGPT Images weird">
+                
+                <p>
+                    However, Sam Altman already answered this in twitter. He said that both of them should be allowed and it should be fixed, because 
+                    it's a bug.
+                </p>
+                <h3>Sama's face</h3>
+                <p>
+                    ChatGPT Images can also behave REALLY strange if you do something related to Sam Altman's face.  
+                </p>
+                <img src="../../static/img/void/sama-ghibli.png" alt="Sama's face"> <br>
+                <img src="../../static/img/void/soulmate.png" alt="Sama's face">
+                <h2>Ethical implications of AI generated images</h2>
+                <p>
+                    This has been a really hot topic since the feature came out. I am talking about the first AI generated images. 
+                    At first, it was really easy to differentiate between a real image and an AI generated one. However, now it's not that easy. 
+                    These new models keep getting better and better at things like photorealism and artwork. 
+                </p>
+                <p>
+                    I've seen a lot of people using this to generate deepfake images. Of course this is something that should be taken seriously,
+                    imagine what would happen if someone uses your face or your voice to incriminate you, or use your influence, etc. There are 
+                    thousands of ways this could go WRONG.
+                </p>
+                <p>
+                    Artists HATE artificial intelligence. Most of twitter artists, specially graphic designers, painters, etc, are really 
+                    against any use of AI in art in general. I am gonna say what I believe and what could happen in the future.
+                </p>
+                <h3>The obvious: AI is NOT replacing artists</h3>
+                <p>
+                    From all the jobs i could think of that could be replaced by AI, any art is obviously not one of them. One thing that amazes me 
+                    is analyzing what the humans are thinking. We like Van Gogh's paintings because he had his unique style. We like Pink Floyd's 
+                    music because it was Pink Floyd, not because certain instruments were played at certain time. Anyone can do that, but the feeling 
+                    is what makes the difference. 
+                </p>
+                <p>
+                    Even if AI can generate their own art and music, there will still be a place for human artists. The human touch is what makes 
+                    the difference.
+                </p>
+
+            </div>
+        </article>
+    </main>
+
+    <div id="footer-placeholder"></div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.8/clipboard.min.js"></script>
+    <script src="../../static/js/prism.js"></script>
+    <script src="../../static/js/templates.js"></script>
+    <script>
+        // Reading progress bar
+        window.addEventListener('scroll', () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.querySelector('.reading-progress-bar').style.width = scrolled + '%';
+        });
+    </script>
+</body>
+</html>
