@@ -1,7 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>String Permutations - Algorithm Visualizer</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>String Permutations: Backtracking Algorithm Implementation | lVoidi Portal</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Learn how to generate all possible permutations of a string using backtracking algorithm. Interactive visualization and implementations in Python, C++, and C#." />
+    <meta name="keywords" content="string permutations, backtracking algorithm, algorithm visualization, programming problems, string manipulation, combinatorics, algorithm implementation" />
+    <meta name="author" content="Rodrigo Arce" />
+    
+    <!-- Open Graph / Social Media Tags -->
+    <meta property="og:title" content="String Permutations: Interactive Backtracking Algorithm Tutorial" />
+    <meta property="og:description" content="Master string permutations with interactive visualization and multiple programming language implementations. Perfect for learning backtracking techniques." />
+    <meta property="og:image" content="https://lvoidi.github.io/static/img/algorithms/string-permutations.jpg" />
+    <meta property="og:url" content="https://lvoidi.github.io/algorithms/backtracking/string-permutations.html" />
+    <meta property="og:type" content="article" />
+    
+    <!-- Article Specific Meta Tags -->
+    <meta property="article:published_time" content="2025-02-19" />
+    <meta property="article:author" content="https://github.com/lVoidi" />
+    <meta property="article:section" content="Algorithms" />
+    <meta property="article:tag" content="Backtracking" />
+    <meta property="article:tag" content="String Manipulation" />
+    <meta property="article:tag" content="Combinatorics" />
+    <meta property="article:tag" content="Algorithm Visualization" />
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://lvoidi.github.io/algorithms/backtracking/string-permutations.html" />
+
+    <!-- Schema.org markup for Google -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "TechArticle",
+      "headline": "String Permutations: Interactive Backtracking Algorithm Implementation",
+      "image": "https://lvoidi.github.io/static/img/algorithms/string-permutations.jpg",
+      "datePublished": "2025-02-19",
+      "dateModified": "2025-02-19",
+      "author": {
+        "@type": "Person",
+        "name": "Rodrigo Arce",
+        "url": "https://github.com/lVoidi"
+      },
+      "publisher": {
+        "@type": "Person",
+        "name": "Rodrigo Arce",
+        "url": "https://lvoidi.github.io"
+      },
+      "description": "Comprehensive guide to implementing string permutations using backtracking algorithm, including interactive visualization and implementations in multiple programming languages.",
+      "articleBody": "The String Permutations problem involves generating all possible arrangements of characters in a given string using backtracking...",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://lvoidi.github.io/algorithms/backtracking/string-permutations.html"
+      },
+      "about": {
+        "@type": "SoftwareSourceCode",
+        "programmingLanguage": ["Python", "C++", "C#"],
+        "abstract": "Implementation of string permutations using backtracking approach",
+        "codeSampleType": "full"
+      },
+      "teaches": {
+        "@type": "Text",
+        "name": "Backtracking Algorithms",
+        "description": "Learn how to implement and visualize backtracking algorithms through string permutations"
+      },
+      "educationalLevel": "Intermediate",
+      "timeRequired": "PT30M",
+      "interactivityType": "mixed"
+    }
+    </script>
+    
     <!-- CSS imports -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
@@ -9,6 +78,10 @@
     <link href="../../static/css/algorithms.css" rel="stylesheet">
     <link href="../../static/css/algorithm-page.css" rel="stylesheet">
     <link href="../../static/css/prism.css" rel="stylesheet">
+
+    <!-- MathJax -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
     <!-- Icon -->
     <link rel="icon" href="../../static/img/icon.png" type="image/x-icon">
@@ -111,124 +184,92 @@
 <body>
     <div id="navbar-placeholder"></div>
 
-    <main class="container my-4">
+    <main class="container py-5">
         <div class="row">
-            <!-- Algorithm Info Card -->
+            <!-- Sidebar -->
             <div class="col-md-3">
-                <div class="algorithm-info-card">
-                    <h3>Quick Info</h3>
-                    <div class="info-item">
-                        <span class="info-label">Category:</span>
-                        <span class="info-value">Backtracking</span>
-                    </div>
-                    <div class="info-item">
-                        <span class="info-label">Time Complexity:</span>
-                        <span class="info-value">O(n!)</span>
-                    </div>
-                    <div class="info-item">
-                        <span class="info-label">Space Complexity:</span>
-                        <span class="info-value">O(n)</span>
-                    </div>
-                    <div class="info-item">
-                        <span class="info-label">Input Type:</span>
-                        <span class="info-value">String</span>
+                <div class="algorithm-info card">
+                    <div class="card-body">
+                        <h5 class="card-title">Algorithm Info</h5>
+                        <ul class="list-unstyled">
+                            <li><strong>Category:</strong> Backtracking</li>
+                            <li><strong>Time Complexity:</strong> O(n!)</li>
+                            <li><strong>Space Complexity:</strong> O(n)</li>
+                            <li><strong>Input Type:</strong> String</li>
+                        </ul>
                     </div>
                 </div>
             </div>
 
             <!-- Main Content -->
-            <div class="col-lg-9">
-                <div class="algorithm-content">
-                    <h1>String Permutations</h1>
-                    
-                    <div class="algorithm-metadata">
-                        <span class="category-tag">Backtracking</span>
-                        <span class="difficulty-tag">Medium</span>
-                    </div>
+            <div class="col-md-9">
+                <article class="algorithm-content">
+                    <header class="mb-4">
+                        <h1>String Permutations</h1>
+                        <div class="algorithm-metadata">
+                            <span class="difficulty-badge intermediate">Intermediate</span>
+                            <span class="time-estimate"><i class="fas fa-clock"></i> 30 min</span>
+                        </div>
+                    </header>
 
-                    <section class="algorithm-section">
-                        <h2>Description</h2>
+                    <section id="problem-description">
+                        <h2>Problem Description</h2>
                         <p>
-                            The String Permutations algorithm generates all possible arrangements of characters in a given string. 
-                            For a string of length n, there are n! (n factorial) possible permutations. This algorithm uses 
-                            backtracking to systematically generate all these combinations by building the permutations one 
-                            character at a time.
+                            Given a string, generate all possible permutations of its characters. A permutation is an arrangement 
+                            of objects where order matters. For example, given the string "abc", the algorithm should generate all 
+                            six possible permutations: "abc", "acb", "bac", "bca", "cab", and "cba".
                         </p>
+                        
+                        <div class="example-box">
+                            <h4>Examples:</h4>
+                            <pre><code class="language-text">Input: "abc"
+Output: ["abc", "acb", "bac", "bca", "cab", "cba"]
+
+Input: "12"
+Output: ["12", "21"]
+
+Input: "a"
+Output: ["a"]</code></pre>
+                        </div>
                     </section>
 
-                    <section class="algorithm-section">
-                        <h2>How It Works</h2>
+                    <section id="approach">
+                        <h2>Approach</h2>
+                        <p>
+                            We'll solve this problem using backtracking. The basic idea is to:
+                        </p>
                         <ol>
-                            <li>Initialization:
-                                <ul>
-                                    <li>Create an array to store the current permutation</li>
-                                    <li>Create a boolean array to track used characters</li>
-                                </ul>
-                            </li>
-                            <li>Backtracking process:
-                                <ul>
-                                    <li>For each position in the permutation</li>
-                                    <li>Try each unused character from the original string</li>
-                                    <li>Mark the character as used</li>
-                                    <li>Recursively generate permutations for remaining positions</li>
-                                </ul>
-                            </li>
-                            <li>At each recursive step:
-                                <ul>
-                                    <li>If all positions are filled, add the permutation to result</li>
-                                    <li>If not, continue with the next available position</li>
-                                    <li>After recursive call, unmark the character (backtrack)</li>
-                                </ul>
-                            </li>
-                            <li>The process ends when:
-                                <ul>
-                                    <li>All possible combinations have been explored</li>
-                                    <li>All permutations have been generated (n! total)</li>
-                                </ul>
-                            </li>
+                            <li>Fix a character at the first position and recursively generate permutations for remaining positions</li>
+                            <li>Swap characters to generate different permutations</li>
+                            <li>Use backtracking to restore the original state after exploring each possibility</li>
                         </ol>
-                    </section>
-
-                    <section class="algorithm-section history-box">
-                        <h2>History</h2>
-                        <div class="history-content">
-                            <img src="../../static/img/permutations.jpg" alt="Permutations Illustration" class="history-image">
-                            <p>
-                                The concept of permutations dates back to ancient civilizations. The systematic study of 
-                                permutations began in the 12th century with Indian mathematicians. The modern algorithmic 
-                                approach to generating permutations was developed in the early days of computer science. 
-                                Notable contributions include Steinhaus-Johnson-Trotter algorithm (1960s) and Heap's algorithm (1963). 
-                                The backtracking approach we use today became popular due to its simplicity and adaptability 
-                                to various programming problems.
-                            </p>
+                        
+                        <div class="algorithm-steps">
+                            <h3>Algorithm Steps:</h3>
+                            <ol>
+                                <li>Convert the input string to a character array for easier manipulation</li>
+                                <li>Create a recursive function that takes:
+                                    <ul>
+                                        <li>The character array</li>
+                                        <li>The current position being processed</li>
+                                        <li>A list to store all permutations</li>
+                                    </ul>
+                                </li>
+                                <li>Base case: If current position equals string length, add current permutation to result</li>
+                                <li>For each position from current to end:
+                                    <ul>
+                                        <li>Swap characters at current and i</li>
+                                        <li>Recursively generate permutations for next position</li>
+                                        <li>Backtrack by swapping back the characters</li>
+                                    </ul>
+                                </li>
+                            </ol>
                         </div>
                     </section>
 
-                    <section class="algorithm-section">
-                        <h2>Visualization</h2>
-                        <div class="visualization-container">
-                            <div class="visualization-controls">
-                                <button id="startVisualization" class="btn btn-primary">Start</button>
-                                <button id="resetVisualization" class="btn btn-secondary">Reset</button>
-                                <div class="control-group">
-                                    <label for="inputString">Input String:</label>
-                                    <input type="text" id="inputString" class="form-control" value="ABC" 
-                                           placeholder="Enter string (max 8 characters)">
-                                </div>
-                                <div class="speed-control">
-                                    <label>Speed:</label>
-                                    <input type="range" id="speedControl" min="1" max="10" value="5">
-                                </div>
-                            </div>
-                            <div id="permutationsContainer"></div>
-                            <div id="currentStep" class="visualization-steps">
-                                Enter a string and click Start
-                            </div>
-                        </div>
-                    </section>
-
-                    <section class="algorithm-section">
+                    <section id="implementation">
                         <h2>Implementation</h2>
+                        
                         <div class="implementation-tabs">
                             <ul class="nav nav-tabs" role="tablist">
                                 <li class="nav-item">
@@ -241,226 +282,146 @@
                                     <a class="nav-link" data-bs-toggle="tab" href="#csharp">C#</a>
                                 </li>
                             </ul>
+                            
                             <div class="tab-content">
-                                <div class="tab-pane fade show active" id="python">
-                                    <div class="code-wrapper">
-                                        <button class="copy-button" data-clipboard-target="#pythonCode">
-                                            <i class="fas fa-copy"></i>
-                                        </button>
-                                        <pre><code class="language-python" id="pythonCode">
-def generate_permutations(s: str) -> list[str]:
-    def backtrack(pos: int):
-        if pos == len(s):
-            result.append(''.join(current))
+                                <div id="python" class="tab-pane fade show active">
+                                    <pre><code class="language-python">def generate_permutations(s: str) -> List[str]:
+    def backtrack(chars: List[str], start: int, result: List[str]):
+        if start == len(chars):
+            result.append(''.join(chars))
             return
             
-        for i in range(len(s)):
-            if not used[i]:
-                used[i] = True
-                current[pos] = s[i]
-                backtrack(pos + 1)
-                used[i] = False
+        for i in range(start, len(chars)):
+            # Swap characters
+            chars[start], chars[i] = chars[i], chars[start]
+            
+            # Recursively generate permutations
+            backtrack(chars, start + 1, result)
+            
+            # Backtrack by restoring original state
+            chars[start], chars[i] = chars[i], chars[start]
     
     result = []
-    current = [''] * len(s)
-    used = [False] * len(s)
-    backtrack(0)
-    return result
-
-# Example usage
-if __name__ == "__main__":
-    s = "ABC"
-    permutations = generate_permutations(s)
-    print(f"All permutations of {s}:")
-    for perm in permutations:
-        print(perm)
-                                        </code></pre>
-                                    </div>
+    backtrack(list(s), 0, result)
+    return result</code></pre>
                                 </div>
-                                
-                                <div class="tab-pane fade" id="cpp">
-                                    <div class="code-wrapper">
-                                        <button class="copy-button" data-clipboard-target="#cppCode">
-                                            <i class="fas fa-copy"></i>
-                                        </button>
-                                        <pre><code class="language-cpp" id="cppCode">
-class StringPermutations {
+                                <div id="cpp" class="tab-pane fade">
+                                    <pre><code class="language-cpp">class Solution {
 private:
-    void backtrack(string& s, vector&lt;bool&gt;& used, string& current, 
-                  vector&lt;string&gt;& result, int pos) {
-        if (pos == s.length()) {
-            result.push_back(current);
+    void backtrack(string& s, int start, vector<string>& result) {
+        if (start == s.length()) {
+            result.push_back(s);
             return;
         }
         
-        for (int i = 0; i < s.length(); i++) {
-            if (!used[i]) {
-                used[i] = true;
-                current[pos] = s[i];
-                backtrack(s, used, current, result, pos + 1);
-                used[i] = false;
-            }
+        for (int i = start; i < s.length(); i++) {
+            // Swap characters
+            swap(s[start], s[i]);
+            
+            // Recursively generate permutations
+            backtrack(s, start + 1, result);
+            
+            // Backtrack
+            swap(s[start], s[i]);
         }
     }
     
 public:
-    vector&lt;string&gt; generatePermutations(string s) {
-        vector&lt;string&gt; result;
-        vector&lt;bool&gt; used(s.length(), false);
-        string current(s.length(), ' ');
-        backtrack(s, used, current, result, 0);
+    vector<string> generatePermutations(string s) {
+        vector<string> result;
+        backtrack(s, 0, result);
         return result;
     }
-};
-
-int main() {
-    string s = "ABC";
-    StringPermutations solution;
-    vector&lt;string&gt; permutations = solution.generatePermutations(s);
-    
-    cout << "All permutations of " << s << ":\n";
-    for (const string& perm : permutations) {
-        cout << perm << endl;
-    }
-    
-    return 0;
-}
-                                        </code></pre>
-                                    </div>
+};</code></pre>
                                 </div>
-
-                                <div class="tab-pane fade" id="csharp">
-                                    <div class="code-wrapper">
-                                        <button class="copy-button" data-clipboard-target="#csharpCode">
-                                            <i class="fas fa-copy"></i>
-                                        </button>
-                                        <pre><code class="language-csharp" id="csharpCode">
-public class StringPermutations {
-    private void Backtrack(string s, bool[] used, char[] current, 
-                         List&lt;string&gt; result, int pos) {
-        if (pos == s.Length) {
-            result.Add(new string(current));
+                                <div id="csharp" class="tab-pane fade">
+                                    <pre><code class="language-csharp">public class Solution {
+    private void Backtrack(char[] chars, int start, IList<string> result) {
+        if (start == chars.Length) {
+            result.Add(new string(chars));
             return;
         }
         
-        for (int i = 0; i < s.Length; i++) {
-            if (!used[i]) {
-                used[i] = true;
-                current[pos] = s[i];
-                Backtrack(s, used, current, result, pos + 1);
-                used[i] = false;
-            }
+        for (int i = start; i < chars.Length; i++) {
+            // Swap characters
+            (chars[start], chars[i]) = (chars[i], chars[start]);
+            
+            // Recursively generate permutations
+            Backtrack(chars, start + 1, result);
+            
+            // Backtrack
+            (chars[start], chars[i]) = (chars[i], chars[start]);
         }
     }
     
-    public List&lt;string&gt; GeneratePermutations(string s) {
-        var result = new List&lt;string&gt;();
-        var used = new bool[s.Length];
-        var current = new char[s.Length];
-        Backtrack(s, used, current, result, 0);
+    public IList<string> GeneratePermutations(string s) {
+        var result = new List<string>();
+        Backtrack(s.ToCharArray(), 0, result);
         return result;
     }
-}
-
-public class Program {
-    public static void Main() {
-        string s = "ABC";
-        var solution = new StringPermutations();
-        var permutations = solution.GeneratePermutations(s);
-        
-        Console.WriteLine($"All permutations of {s}:");
-        foreach (var perm in permutations) {
-            Console.WriteLine(perm);
-        }
-    }
-}
-                                        </code></pre>
-                                    </div>
+}</code></pre>
                                 </div>
                             </div>
                         </div>
                     </section>
 
-                    <section class="algorithm-section">
+                    <section id="complexity">
                         <h2>Complexity Analysis</h2>
                         <div class="complexity-analysis">
-                            <div class="time-complexity">
-                                <h3>Time Complexity</h3>
-                                <p>
-                                    The time complexity is O(n!), where n is the length of the string:
-                                </p>
-                                <ul>
-                                    <li>For first position: n choices</li>
-                                    <li>For second position: (n-1) choices</li>
-                                    <li>For third position: (n-2) choices</li>
-                                    <li>And so on...</li>
-                                    <li>Total: n * (n-1) * (n-2) * ... * 1 = n!</li>
-                                </ul>
-                            </div>
-                            
-                            <div class="space-complexity">
-                                <h3>Space Complexity</h3>
-                                <p>
-                                    The space complexity is O(n), which includes:
-                                </p>
-                                <ul>
-                                    <li>Recursion stack space: O(n)</li>
-                                    <li>Used array: O(n)</li>
-                                    <li>Current permutation array: O(n)</li>
-                                    <li>Note: Result storage is O(n * n!), but this is typically not counted</li>
-                                </ul>
-                            </div>
+                            <h3>Time Complexity: O(n!)</h3>
+                            <p>
+                                For a string of length n, there are n! possible permutations. The algorithm needs to generate 
+                                all of them, so the time complexity is O(n!). This is because:
+                            </p>
+                            <ul>
+                                <li>First position has n choices</li>
+                                <li>Second position has (n-1) choices</li>
+                                <li>Third position has (n-2) choices</li>
+                                <li>And so on...</li>
+                            </ul>
+                            <p>Therefore, total operations = n × (n-1) × (n-2) × ... × 1 = n!</p>
+
+                            <h3>Space Complexity: O(n)</h3>
+                            <p>
+                                The space complexity is O(n) where n is the length of the input string. This accounts for:
+                            </p>
+                            <ul>
+                                <li>The recursion stack which can go up to depth n</li>
+                                <li>The character array used to store current permutation</li>
+                            </ul>
+                            <p>Note: The space needed to store all permutations in the result is O(n × n!), but this is typically not counted as part of the algorithm's space complexity.</p>
                         </div>
                     </section>
 
-                    <section class="algorithm-section">
-                        <h2>Advantages and Disadvantages</h2>
-                        <div class="pros-cons">
-                            <div class="pros">
-                                <h3>Advantages</h3>
-                                <ul>
-                                    <li>Simple and intuitive implementation</li>
-                                    <li>Generates all possible permutations</li>
-                                    <li>Works well for small strings</li>
-                                    <li>Can be modified to handle duplicates</li>
-                                </ul>
-                            </div>
-                            <div class="cons">
-                                <h3>Disadvantages</h3>
-                                <ul>
-                                    <li>Factorial time complexity</li>
-                                    <li>Not suitable for long strings</li>
-                                    <li>Memory usage grows with string length</li>
-                                    <li>May be overkill when only some permutations are needed</li>
-                                </ul>
+                    <section id="visualization">
+                        <h2>Algorithm Visualization</h2>
+                        <div class="visualization-container">
+                            <!-- Visualization will be implemented with JavaScript -->
+                            <div id="permutation-visualizer" class="algorithm-visualizer">
+                                <div class="controls">
+                                    <input type="text" id="input-string" placeholder="Enter a string" maxlength="4">
+                                    <button id="start-visualization" class="btn btn-primary">Visualize</button>
+                                    <button id="step-visualization" class="btn btn-secondary">Step</button>
+                                    <button id="reset-visualization" class="btn btn-danger">Reset</button>
+                                </div>
+                                <div id="visualization-area"></div>
                             </div>
                         </div>
                     </section>
-                </div>
+                </article>
             </div>
         </div>
     </main>
+
     <div id="footer-placeholder"></div>
 
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.8/clipboard.min.js"></script>
-    <script src="../../static/js/prism.js"></script>
-    <script src="../../static/js/string-permutations-visualization.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const clipboard = new ClipboardJS('.copy-button');
-            
-            clipboard.on('success', (e) => {
-                const button = e.trigger;
-                button.innerHTML = '<i class="fas fa-check"></i>';
-                setTimeout(() => {
-                    button.innerHTML = '<i class="fas fa-copy"></i>';
-                }, 2000);
-                e.clearSelection();
-            });
-        });
-    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-cpp.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-csharp.min.js"></script>
     <script src="../../static/js/templates.js"></script>
+    <script src="../../static/js/string-permutations.js"></script>
 </body>
 </html> 
