@@ -1,0 +1,13 @@
+User-agent: *
+Allow: /
+Sitemap: https://lvoidi.github.io/sitemap.xml
+
+# Allow crawling of all content
+Allow: /void/
+Allow: /algorithms/
+Allow: /singularity/
+Allow: /static/
+
+# Prevent caching of assets
+Disallow: /static/js/
+Disallow: /static/css/ 
