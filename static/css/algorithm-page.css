@@ -605,54 +605,48 @@ pre[class*="language-"] {
 }
 .chessboard {
     display: grid;
-    grid-template-columns: repeat(8, 1fr);
-    gap: 0;
-    background: #8B4513;
-    padding: 8px;
+    gap: 1px;
     width: 100%;
     max-width: 500px;
-    margin: 20px auto;
-    aspect-ratio: 1;
+    margin: 0 auto;
+    background: #333;
+    padding: 8px;
     border-radius: 4px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
-    font-size: 0;
-    line-height: 0;
-    transition: opacity 0.3s ease;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
 }
 
 .cell {
-    width: 100%;
-    padding-bottom: 100%;
+    aspect-ratio: 1;
     position: relative;
-    margin: 0;
-    font-size: 16px;
-    line-height: normal;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.cell.dark {
-    background: #B58863;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
 .cell.light {
-    background: #F0D9B5;
+    background-color: #f0d9b5;
+}
+
+.cell.dark {
+    background-color: #b58863;
 }
 
 .queen {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 2.5em;
+    font-size: 2em;
+    color: var(--accent-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    animation: queenPlace 0.3s ease;
+}
+
+.cell.dark .queen {
+    color: #fff;
+}
+
+.cell.light .queen {
     color: #000;
-    text-shadow: 1px 1px 1px rgba(255,255,255,0.5),
-                -1px -1px 1px rgba(0,0,0,0.3);
-    pointer-events: none;
-    opacity: 1 !important;
-    display: block;
-    z-index: 1;
 }
 
 .cell .queen {
