@@ -126,6 +126,16 @@ const VOID_POSTS = [
         readTime: 5,
         date: "2025-03-27",
         author: "Rodrigo Arce"
+    },
+    {
+        id: "brave-browser",
+        title: "Brave Browser and why you should make the switch",
+        description: "In this post, i discuss why you should make the switch to Brave Browser.",
+        image: "../static/img/void/brave-browser.png",
+        tags: ["yapping", "ai"],
+        readTime: 5,
+        date: "2025-03-28",
+        author: "Rodrigo Arce"
     }
 ];
 
