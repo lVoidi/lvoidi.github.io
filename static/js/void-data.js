@@ -132,7 +132,7 @@ const VOID_POSTS = [
         title: "Brave Browser and why you should make the switch",
         description: "In this post, i discuss why you should make the switch to Brave Browser.",
         image: "../static/img/void/brave-browser.png",
-        tags: ["yapping", "ai"],
+        tags: ["yapping"],
         readTime: 5,
         date: "2025-03-28",
         author: "Rodrigo Arce"
