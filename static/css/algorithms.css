@@ -89,4 +89,20 @@
 .algorithm-card:hover {
     border-color: var(--accent-color);
     transform: translateY(-5px);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .search-container {
+        flex-direction: column;
+        width: 90%;
+    }
+    
+    .search-input, .random-btn {
+        width: 100%;
+    }
+    
+    .random-btn {
+        margin-top: 0.5rem;
+    }
 } 
