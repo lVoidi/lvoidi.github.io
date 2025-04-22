@@ -11,9 +11,23 @@ function init() {
     canvas = document.getElementById('visualizer');
     ctx = canvas.getContext('2d');
     
-    // Set canvas size
-    canvas.width = 800;
-    canvas.height = 400;
+    // Make canvas responsive
+    function resizeCanvas() {
+        const container = canvas.parentElement;
+        canvas.width = container.clientWidth;
+        canvas.height = Math.min(400, Math.max(250, window.innerHeight * 0.4));
+        
+        // Redraw if we have data
+        if (steps.length > 0) {
+            draw();
+        }
+    }
+    
+    // Initial canvas sizing
+    resizeCanvas();
+    
+    // Update canvas on window resize
+    window.addEventListener('resize', resizeCanvas);
     
     // Add event listeners
     document.getElementById('startBtn').addEventListener('click', toggleAnimation);
@@ -105,7 +119,15 @@ function draw() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     
     const currentMatrix = steps[currentStep];
-    const cellSize = 60;
+    
+    // Check if we're on a mobile device
+    const isMobile = window.innerWidth < 768;
+    
+    // Adjust cell size based on canvas size and matrix size
+    const size = currentMatrix.length;
+    const maxCellSize = isMobile ? 50 : 60;
+    const cellSize = Math.min(maxCellSize, Math.min(canvas.width / (size + 1), canvas.height / size));
+    
     const startX = (canvas.width - cellSize * (currentMatrix[0].length)) / 2;
     const startY = (canvas.height - cellSize * currentMatrix.length) / 2;
     
@@ -119,9 +141,10 @@ function draw() {
             ctx.fillStyle = '#282a36';
             ctx.fillRect(x, y, cellSize - 2, cellSize - 2);
             
-            // Draw value
+            // Draw value with adjusted font size
             ctx.fillStyle = '#f8f8f2';
-            ctx.font = '20px Arial';
+            const fontSize = isMobile ? 14 : 20;
+            ctx.font = `${fontSize}px Arial`;
             ctx.textAlign = 'center';
             ctx.textBaseline = 'middle';
             ctx.fillText(currentMatrix[i][j].toFixed(2), x + cellSize/2, y + cellSize/2);
@@ -129,6 +152,7 @@ function draw() {
             // Draw separator line for augmented matrix
             if (j === currentMatrix[i].length - 2) {
                 ctx.strokeStyle = '#bd93f9';
+                ctx.lineWidth = isMobile ? 1 : 2;
                 ctx.beginPath();
                 ctx.moveTo(x + cellSize, startY);
                 ctx.lineTo(x + cellSize, startY + currentMatrix.length * cellSize);
