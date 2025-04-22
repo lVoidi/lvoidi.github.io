@@ -1,9 +1,20 @@
 // Configuración del canvas
 const canvas = document.getElementById('visualizer');
 const ctx = canvas.getContext('2d');
-const width = canvas.width = 600;
-const height = canvas.height = 400;
+let width, height;
 const padding = 40;
+
+// Función para ajustar el tamaño del canvas
+function resizeCanvas() {
+    const container = canvas.parentElement;
+    const containerWidth = container.clientWidth;
+    width = canvas.width = Math.min(600, containerWidth - 20); // -20 para padding
+    height = canvas.height = Math.min(400, width * 0.66); // Mantener proporción
+    draw(); // Redibujar cuando cambie el tamaño
+}
+
+// Escuchar cambios de tamaño de ventana
+window.addEventListener('resize', resizeCanvas);
 
 // Variables globales
 let data = [];
@@ -31,6 +42,9 @@ function init() {
     labels = [];
     svm = null;
     isTraining = false;
+    
+    // Ajustar tamaño del canvas
+    resizeCanvas();
     
     // Limpiar canvas
     ctx.fillStyle = colors.background;

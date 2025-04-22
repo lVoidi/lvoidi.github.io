@@ -225,19 +225,29 @@ style.textContent = `
         align-items: center;
         margin: 10px 0;
         gap: 10px;
+        width: 100%;
+        overflow-x: auto;
+        padding-bottom: 10px;
     }
 
     .row-label {
-        width: 80px;
+        min-width: 80px;
         color: var(--text-color);
+        flex-shrink: 0;
     }
 
     .char-container {
         display: flex;
         gap: 2px;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        padding-bottom: 5px;
+        scrollbar-width: thin;
+        -webkit-overflow-scrolling: touch;
     }
 
     .char-box {
+        min-width: 40px;
         width: 40px;
         height: 40px;
         border: 1px solid rgba(255, 255, 255, 0.2);
@@ -248,6 +258,7 @@ style.textContent = `
         color: var(--text-color);
         font-family: monospace;
         transition: all 0.3s ease;
+        flex-shrink: 0;
     }
 
     .char-box.current {
@@ -265,6 +276,25 @@ style.textContent = `
 
     .char-box.highlight {
         background: rgba(255, 193, 7, 0.3);
+    }
+
+    /* Custom scrollbar styles */
+    .char-container::-webkit-scrollbar {
+        height: 6px;
+    }
+
+    .char-container::-webkit-scrollbar-track {
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 3px;
+    }
+
+    .char-container::-webkit-scrollbar-thumb {
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 3px;
+    }
+
+    .char-container::-webkit-scrollbar-thumb:hover {
+        background: rgba(255, 255, 255, 0.3);
     }
 `;
 
