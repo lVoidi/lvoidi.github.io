@@ -74,6 +74,91 @@
       "programmingLanguage": ["Python", "JavaScript", "C++", "C#"]
     }
     </script>
+    
+    <style>
+        /* Responsive styles for History box */
+        .history-box {
+            background-color: #2d2d3a;
+            color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            border-left: 5px solid #6a5acd;
+        }
+        
+        .history-content {
+            display: flex;
+            flex-direction: row;
+            align-items: flex-start;
+            gap: 20px;
+        }
+        
+        .history-image {
+            width: 150px;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+        
+        .history-box h2 {
+            color: #6a5acd;
+            margin-bottom: 15px;
+        }
+        
+        .history-text {
+            flex: 1;
+            line-height: 1.6;
+        }
+        
+        /* Mobile responsive styles */
+        @media (max-width: 768px) {
+            .history-content {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .history-image {
+                width: 120px;
+                margin-bottom: 15px;
+            }
+            
+            .history-box {
+                padding: 15px;
+            }
+            
+            .visualization-container {
+                padding: 10px;
+                overflow-x: hidden;
+            }
+            
+            .visualization-controls {
+                flex-direction: column;
+                gap: 10px;
+                align-items: stretch;
+            }
+            
+            .control-group {
+                flex-direction: column;
+                width: 100%;
+            }
+            
+            .control-group label {
+                margin-bottom: 5px;
+            }
+            
+            canvas {
+                max-width: 100%;
+                height: auto;
+            }
+            
+            /* Better button spacing for mobile */
+            #startBtn, #resetBtn {
+                width: 48%;
+                margin-bottom: 10px;
+            }
+        }
+    </style>
 </head>
 <body>
     <div id="navbar-placeholder"></div>
@@ -156,23 +241,27 @@
                     <section class="algorithm-section history-box">
                         <h2>History</h2>
                         <div class="history-content">
-                            <img src="../../static/img/gauss.jpg" alt="Secant Method Illustration" class="history-image">
-                            <p>
-                                The Secant Method has its roots in ancient mathematics, with early versions appearing in the works 
-                                of Persian mathematician Al-Kashi in the 15th century. The modern form was developed in the 17th 
-                                century during the scientific revolution. It emerged as a practical alternative to Newton's Method 
-                                when derivatives were difficult or impossible to compute. The method's name comes from the Latin 
-                                word "secans," meaning cutting, as it uses secant lines to approximate tangent lines.
-                            </p>
+                            <img src="../../static/img/gauss.jpg" alt="Carl Friedrich Gauss" class="history-image">
+                            <div class="history-text">
+                                <p>
+                                    The Secant Method has its roots in ancient mathematics, with early versions appearing in the works 
+                                    of Persian mathematician Al-Kashi in the 15th century. The modern form was developed in the 17th 
+                                    century during the scientific revolution. It emerged as a practical alternative to Newton's Method 
+                                    when derivatives were difficult or impossible to compute. The method's name comes from the Latin 
+                                    word "secans," meaning cutting, as it uses secant lines to approximate tangent lines.
+                                </p>
+                            </div>
                         </div>
                     </section>
 
                     <section class="algorithm-section">
                         <h2>Visualization</h2>
                         <div class="visualization-container">
-                            <div class="visualization-controls">
-                                <button id="startBtn" class="btn btn-primary">Start</button>
-                                <button id="resetBtn" class="btn btn-secondary">Reset</button>
+                            <div class="visualization-controls d-flex flex-wrap gap-2 mb-3">
+                                <div class="d-flex gap-2">
+                                    <button id="startBtn" class="btn btn-primary">Start</button>
+                                    <button id="resetBtn" class="btn btn-secondary">Reset</button>
+                                </div>
                                 <div class="control-group">
                                     <label for="functionSelect">Function:</label>
                                     <select id="functionSelect" class="form-select">
@@ -182,7 +271,9 @@
                                     </select>
                                 </div>
                             </div>
-                            <canvas id="visualizer"></canvas>
+                            <div class="canvas-container">
+                                <canvas id="visualizer"></canvas>
+                            </div>
                             <div class="visualization-steps">
                                 <p id="currentStep">Click Start to begin visualization</p>
                             </div>

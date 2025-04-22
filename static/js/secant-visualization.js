@@ -12,9 +12,23 @@ function init() {
     canvas = document.getElementById('visualizer');
     ctx = canvas.getContext('2d');
     
-    // Set canvas size
-    canvas.width = 800;
-    canvas.height = 400;
+    // Make canvas responsive
+    function resizeCanvas() {
+        const container = canvas.parentElement;
+        canvas.width = container.clientWidth;
+        canvas.height = Math.min(400, Math.max(250, window.innerHeight * 0.4));
+        
+        // Redraw if we have data
+        if (steps.length > 0) {
+            draw();
+        }
+    }
+    
+    // Initial canvas sizing
+    resizeCanvas();
+    
+    // Update canvas on window resize
+    window.addEventListener('resize', resizeCanvas);
     
     // Add event listeners
     document.getElementById('startBtn').addEventListener('click', toggleAnimation);
@@ -83,15 +97,18 @@ function generateSteps() {
 function draw() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     
+    // Check if we're on a mobile device
+    const isMobile = window.innerWidth < 768;
+    
     // Draw coordinate system
-    drawCoordinateSystem();
+    drawCoordinateSystem(isMobile);
     
     // Draw function
     drawFunction();
     
     // Draw current secant line and points
     const currentState = steps[currentStep];
-    drawSecantLine(currentState);
+    drawSecantLine(currentState, isMobile);
     
     // Update step counter
     document.getElementById('currentStep').textContent = 
@@ -99,7 +116,7 @@ function draw() {
 }
 
 // Draw coordinate system
-function drawCoordinateSystem() {
+function drawCoordinateSystem(isMobile) {
     ctx.strokeStyle = '#666';
     ctx.lineWidth = 1;
     
@@ -111,19 +128,29 @@ function drawCoordinateSystem() {
     ctx.lineTo(canvas.width/2, canvas.height);
     ctx.stroke();
     
-    // Draw grid
+    // Draw grid with appropriate scaling for mobile
     ctx.strokeStyle = '#333';
     ctx.lineWidth = 0.5;
-    for (let x = -10; x <= 10; x++) {
+    
+    // Adjust grid spacing for mobile
+    const spacing = isMobile ? 2 : 1;
+    const axisLabelSize = isMobile ? 8 : 10;
+    const maxGrid = isMobile ? 4 : 10;
+    
+    for (let x = -maxGrid; x <= maxGrid; x += spacing) {
         let screenX = mapX(x);
         ctx.beginPath();
         ctx.moveTo(screenX, 0);
         ctx.lineTo(screenX, canvas.height);
         ctx.stroke();
         
-        // Add x-axis labels
-        ctx.fillStyle = '#fff';
-        ctx.fillText(x, screenX - 10, canvas.height/2 + 20);
+        // Add x-axis labels more sparsely on mobile
+        if (x % (isMobile ? 2 : 1) === 0) {
+            ctx.fillStyle = '#fff';
+            ctx.font = `${axisLabelSize}px Arial`;
+            ctx.textAlign = 'center';
+            ctx.fillText(x, screenX, canvas.height/2 + 15);
+        }
     }
 }
 
@@ -148,11 +175,15 @@ function drawFunction() {
 }
 
 // Draw secant line and points
-function drawSecantLine(state) {
+function drawSecantLine(state, isMobile) {
+    // Adjust point size for mobile
+    const pointRadius = isMobile ? 3 : 5;
+    const dashLength = isMobile ? 3 : 5;
+    
     // Draw secant line
     if (state.secantX0 !== undefined) {
         ctx.strokeStyle = '#4CAF50';
-        ctx.lineWidth = 2;
+        ctx.lineWidth = isMobile ? 1 : 2;
         ctx.beginPath();
         ctx.moveTo(mapX(state.secantX0), mapY(f(state.secantX0)));
         ctx.lineTo(mapX(state.secantX1), mapY(f(state.secantX1)));
@@ -164,18 +195,18 @@ function drawSecantLine(state) {
     
     // Previous point
     ctx.beginPath();
-    ctx.arc(mapX(state.x0), mapY(state.fx0), 5, 0, 2 * Math.PI);
+    ctx.arc(mapX(state.x0), mapY(state.fx0), pointRadius, 0, 2 * Math.PI);
     ctx.fill();
     
     // Current point
     ctx.fillStyle = '#9c27b0';
     ctx.beginPath();
-    ctx.arc(mapX(state.x1), mapY(state.fx1), 5, 0, 2 * Math.PI);
+    ctx.arc(mapX(state.x1), mapY(state.fx1), pointRadius, 0, 2 * Math.PI);
     ctx.fill();
     
     // Draw vertical line to x-axis for current point
     ctx.strokeStyle = '#9c27b0';
-    ctx.setLineDash([5, 5]);
+    ctx.setLineDash([dashLength, dashLength]);
     ctx.beginPath();
     ctx.moveTo(mapX(state.x1), mapY(state.fx1));
     ctx.lineTo(mapX(state.x1), mapY(0));
@@ -185,17 +216,22 @@ function drawSecantLine(state) {
 
 // Map x from math coordinates to screen coordinates
 function mapX(x) {
-    return (x + 10) * canvas.width/20;
+    // Get scale from window size (smaller on mobile)
+    const scale = window.innerWidth < 768 ? 4 : 10;
+    return (x + scale) * canvas.width/(2*scale);
 }
 
 // Map y from math coordinates to screen coordinates
 function mapY(y) {
-    return canvas.height/2 - y * canvas.height/10;
+    // Get scale from window size (smaller on mobile)
+    const scale = window.innerWidth < 768 ? 4 : 10;
+    return canvas.height/2 - y * canvas.height/(2*scale);
 }
 
 // Unmap x from screen coordinates to math coordinates
 function unmapX(screenX) {
-    return screenX * 20/canvas.width - 10;
+    const scale = window.innerWidth < 768 ? 4 : 10;
+    return screenX * (2*scale)/canvas.width - scale;
 }
 
 // Animation control
