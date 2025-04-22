@@ -74,6 +74,126 @@
       "programmingLanguage": ["Python", "C++", "C#"]
     }
     </script>
+
+    <style>
+        /* History box styles */
+        .history-box {
+            background-color: #1e1e2e;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .history-content {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .history-image {
+            max-width: 200px;
+            border-radius: 8px;
+        }
+
+        /* Visualization container styles */
+        .visualization-container {
+            background-color: #1e1e2e;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 20px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .visualization-controls {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .control-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .control-group label {
+            color: #fff;
+            font-size: 14px;
+        }
+
+        .control-group input {
+            width: 100%;
+            padding: 8px 12px;
+            border-radius: 4px;
+            background-color: #282a36;
+            border: 1px solid #44475a;
+            color: #fff;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 10px;
+        }
+
+        .button-group button {
+            flex: 1;
+        }
+
+        #visualizer {
+            width: 100% !important;
+            height: 300px !important;
+            margin: 15px 0;
+            background-color: #282a36;
+            border-radius: 8px;
+        }
+
+        .visualization-steps {
+            margin-top: 15px;
+            text-align: center;
+        }
+
+        #currentStep {
+            color: #fff;
+            font-size: 14px;
+            margin: 0;
+            padding: 10px;
+            background-color: #282a36;
+            border-radius: 4px;
+        }
+
+        /* Responsive styles */
+        @media (min-width: 768px) {
+            .history-content {
+                flex-direction: row;
+                align-items: flex-start;
+            }
+
+            .history-image {
+                margin-right: 20px;
+            }
+
+            .visualization-controls {
+                flex-direction: row;
+                align-items: center;
+                flex-wrap: wrap;
+            }
+
+            .control-group {
+                flex: 1;
+                min-width: 200px;
+            }
+
+            .button-group {
+                flex: 0 0 auto;
+            }
+
+            #visualizer {
+                height: 400px !important;
+            }
+        }
+    </style>
 </head>
 <body>
     <div id="navbar-placeholder"></div>
@@ -176,8 +296,10 @@
                         <h2>Visualization</h2>
                         <div class="visualization-container">
                             <div class="visualization-controls">
-                                <button id="startBtn" class="btn btn-primary">Start</button>
-                                <button id="resetBtn" class="btn btn-secondary">Reset</button>
+                                <div class="button-group">
+                                    <button id="startBtn" class="btn btn-primary">Start</button>
+                                    <button id="resetBtn" class="btn btn-secondary">Reset</button>
+                                </div>
                                 <div class="control-group">
                                     <label for="textInput">Text:</label>
                                     <input type="text" id="textInput" class="form-control" value="AABAACAADAABAAABAA">

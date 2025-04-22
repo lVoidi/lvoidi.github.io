@@ -12,9 +12,9 @@ function init() {
     canvas = document.getElementById('visualizer');
     ctx = canvas.getContext('2d');
     
-    // Set canvas size
-    canvas.width = 800;
-    canvas.height = 400;
+    // Set canvas size based on container
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas);
     
     // Add event listeners
     document.getElementById('startBtn').addEventListener('click', toggleAnimation);
@@ -30,6 +30,29 @@ function init() {
     
     // Initial setup
     reset();
+}
+
+// Resize canvas and redraw
+function resizeCanvas() {
+    const container = canvas.parentElement;
+    const containerWidth = container.clientWidth;
+    const containerHeight = container.clientHeight;
+    
+    // Set minimum dimensions to ensure visibility
+    canvas.width = Math.max(containerWidth, 400);
+    canvas.height = Math.max(containerHeight, 400);
+    
+    if (steps.length > 0) {
+        draw();
+    }
+}
+
+// Calculate cell size based on canvas size and text length
+function getCellSize() {
+    const maxWidth = canvas.width - 120; // More padding for better visibility
+    const maxHeight = canvas.height / 3; // More vertical space
+    const cellSize = Math.min(maxWidth / text.length, maxHeight, 50); // Increased max cell size
+    return Math.max(cellSize, 30); // Ensure minimum cell size
 }
 
 // Calculate hash value
@@ -111,56 +134,56 @@ function draw() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     
     const currentState = steps[currentStep];
-    const cellSize = 40;
-    const startX = 50;
-    const startY = 100;
+    const cellSize = getCellSize();
+    const startX = (canvas.width - text.length * cellSize) / 2; // Center horizontally
+    const startY = canvas.height / 2 - cellSize * 2; // Position higher for better spacing
     
-    // Draw text
+    // Draw hash values with larger font
+    ctx.fillStyle = '#fff';
+    ctx.font = '18px Arial';
+    ctx.textAlign = 'left';
+    if (!currentState.error) {
+        ctx.fillText(`Window Hash: ${currentState.windowHash}`, startX, startY - 40);
+        ctx.fillText(`Pattern Hash: ${currentState.patternHash}`, startX, startY - 10);
+    } else {
+        ctx.fillText(currentState.error, startX, startY - 40);
+    }
+    
+    // Draw text with larger cells
     for (let i = 0; i < text.length; i++) {
         const x = startX + i * cellSize;
         const y = startY;
         
-        // Draw cell background
+        // Draw cell background with spacing
         ctx.fillStyle = i >= currentState.windowStart && i < currentState.windowEnd
             ? (currentState.match ? '#4CAF50' : '#f44336')
             : '#282a36';
-        ctx.fillRect(x, y, cellSize - 2, cellSize - 2);
+        ctx.fillRect(x, y, cellSize - 4, cellSize - 4);
         
-        // Draw character
+        // Draw character with larger font
         ctx.fillStyle = '#f8f8f2';
-        ctx.font = '20px monospace';
+        ctx.font = `${Math.min(cellSize * 0.7, 24)}px monospace`;
         ctx.textAlign = 'center';
         ctx.textBaseline = 'middle';
         ctx.fillText(text[i], x + cellSize/2, y + cellSize/2);
     }
     
-    // Draw pattern
-    const patternY = startY + cellSize * 2;
+    // Draw pattern with more vertical spacing
+    const patternY = startY + cellSize * 1.5;
     for (let i = 0; i < pattern.length; i++) {
         const x = startX + (currentState.windowStart + i) * cellSize;
         const y = patternY;
         
-        // Draw cell background
+        // Draw cell background with spacing
         ctx.fillStyle = currentState.match ? '#4CAF50' : '#282a36';
-        ctx.fillRect(x, y, cellSize - 2, cellSize - 2);
+        ctx.fillRect(x, y, cellSize - 4, cellSize - 4);
         
         // Draw character
         ctx.fillStyle = '#f8f8f2';
         ctx.fillText(pattern[i], x + cellSize/2, y + cellSize/2);
     }
     
-    // Draw hash values
-    ctx.fillStyle = '#fff';
-    ctx.font = '16px Arial';
-    ctx.textAlign = 'left';
-    if (!currentState.error) {
-        ctx.fillText(`Window Hash: ${currentState.windowHash}`, startX, startY - 30);
-        ctx.fillText(`Pattern Hash: ${currentState.patternHash}`, startX, patternY - 30);
-    } else {
-        ctx.fillText(currentState.error, startX, startY - 30);
-    }
-    
-    // Update step counter
+    // Update step counter with larger font
     document.getElementById('currentStep').textContent = 
         `Step ${currentStep + 1} of ${steps.length}`;
 }
