@@ -10,9 +10,23 @@ function init() {
     canvas = document.getElementById('visualizer');
     ctx = canvas.getContext('2d');
     
-    // Set canvas size
-    canvas.width = 800;
-    canvas.height = 400;
+    // Make canvas responsive
+    function resizeCanvas() {
+        const container = canvas.parentElement;
+        canvas.width = container.clientWidth;
+        canvas.height = Math.min(400, Math.max(250, window.innerHeight * 0.4));
+        
+        // Redraw if we have data
+        if (signal.length > 0) {
+            draw();
+        }
+    }
+    
+    // Initial canvas sizing
+    resizeCanvas();
+    
+    // Update canvas on window resize
+    window.addEventListener('resize', resizeCanvas);
     
     // Generate initial signal
     generateSignal();
@@ -89,14 +103,17 @@ function computeFFT() {
 function draw() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     
+    // Check if we're on a mobile device
+    const isMobile = window.innerWidth < 768;
+    
     // Draw original signal
     ctx.beginPath();
     ctx.strokeStyle = '#2196F3';
-    ctx.lineWidth = 2;
+    ctx.lineWidth = isMobile ? 1.5 : 2;
     
     for (let i = 0; i < signal.length; i++) {
         const x = (i / signal.length) * (canvas.width / 2);
-        const y = (canvas.height / 4) - signal[i] * 50;
+        const y = (canvas.height / 4) - signal[i] * (isMobile ? 30 : 50);
         
         if (i === 0) ctx.moveTo(x, y);
         else ctx.lineTo(x, y);
@@ -114,7 +131,7 @@ function draw() {
         ) / (fftResult.length / 2);
         
         const x = (i / (fftResult.length / 2)) * (canvas.width / 2);
-        const y = canvas.height - (magnitude * 200);
+        const y = canvas.height - (magnitude * (isMobile ? 120 : 200));
         
         if (i === 0) ctx.moveTo(x, y);
         else ctx.lineTo(x, y);
@@ -123,22 +140,26 @@ function draw() {
     
     // Add labels and grid
     ctx.fillStyle = '#fff';
-    ctx.font = '14px Arial';
+    const fontSize = isMobile ? 12 : 14;
+    ctx.font = `${fontSize}px Arial`;
     ctx.fillText('Time Domain Signal', 10, 20);
     ctx.fillText('Frequency Domain (FFT)', 10, canvas.height / 2 + 20);
     
     // Draw frequency grid lines
     ctx.strokeStyle = '#666';
     ctx.lineWidth = 0.5;
-    for (let i = 0; i < 5; i++) {
-        const x = (i * canvas.width / 10);
+    const gridSpacing = isMobile ? 8 : 5;
+    for (let i = 0; i < gridSpacing; i++) {
+        const x = (i * canvas.width / (gridSpacing * 2));
         ctx.beginPath();
         ctx.moveTo(x, 0);
         ctx.lineTo(x, canvas.height);
         ctx.stroke();
         
-        // Add frequency labels
-        ctx.fillText(`${i * 10}Hz`, x, canvas.height - 10);
+        // Add frequency labels more sparsely on mobile
+        if (!isMobile || i % 2 === 0) {
+            ctx.fillText(`${Math.round(i * 20/gridSpacing)}Hz`, x, canvas.height - 10);
+        }
     }
     
     if (isAnimating) {
