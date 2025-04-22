@@ -86,6 +86,69 @@
         #statusMessage {
             transition: color 0.3s ease;
         }
+        
+        /* Mobile responsive styles */
+        @media (max-width: 768px) {
+            .visualization-controls .input-group {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .visualization-controls .btn {
+                width: 100%;
+                margin-bottom: 5px;
+            }
+            
+            .visualization-stats {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 10px;
+                font-size: 14px;
+            }
+            
+            .stat-item {
+                margin-bottom: 5px;
+            }
+            
+            .visualization-area {
+                max-height: 350px;
+                overflow: hidden;
+            }
+            
+            /* Tab panels for code */
+            .tab-pane pre {
+                font-size: 12px;
+                max-height: 300px;
+                overflow: auto;
+            }
+            
+            /* Algorithm info card */
+            .algorithm-info-card {
+                margin-bottom: 20px;
+            }
+        }
+        
+        /* General visualization container improvements */
+        .visualization-area {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 8px;
+            overflow: hidden;
+            margin: 15px 0;
+        }
+        
+        .visualization-stats {
+            background: rgba(0, 0, 0, 0.2);
+            padding: 10px;
+            border-radius: 8px;
+            margin-top: 10px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        
+        .stat-item {
+            padding: 5px 10px;
+        }
     </style>
 </head>
 <body>
@@ -160,9 +223,9 @@
                         <h2>Visualization</h2>
                         <div class="visualization-container">
                             <div class="visualization-controls">
-                                <div class="input-group mb-3">
+                                <div class="d-flex flex-wrap gap-2 mb-3">
                                     <button class="btn btn-primary" id="generateGraphBtn">
-                                        <i class="fas fa-project-diagram"></i> Generate Random Graph
+                                        <i class="fas fa-project-diagram"></i> Generate Graph
                                     </button>
                                     <button class="btn btn-success" id="startBtn">
                                         <i class="fas fa-play"></i> Run Algorithm

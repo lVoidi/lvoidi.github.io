@@ -4,10 +4,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const canvas = document.getElementById('kargerCanvas');
     const ctx = canvas.getContext('2d');
     
-    // Set canvas dimensions
-    canvas.width = 600;
-    canvas.height = 400;
-    
     // Graph state
     let graph = {};
     let originalGraph = {};
@@ -17,6 +13,25 @@ document.addEventListener('DOMContentLoaded', function() {
     let animationSpeed = 3;
     let animationRunning = false;
     let animationQueue = [];
+    
+    // Make canvas responsive
+    function resizeCanvas() {
+        const container = canvas.parentElement;
+        canvas.width = container.clientWidth;
+        canvas.height = Math.min(400, Math.max(300, window.innerHeight * 0.5));
+        
+        // Redraw graph if it exists
+        if (Object.keys(graph).length > 0) {
+            repositionVertices();
+            drawGraph();
+        }
+    }
+    
+    // Set canvas dimensions initially
+    resizeCanvas();
+    
+    // Add window resize listener
+    window.addEventListener('resize', resizeCanvas);
     
     // Stats elements
     const verticesCountElement = document.getElementById('verticesCount');
@@ -39,6 +54,27 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize
     generateRandomGraph();
     
+    // Function to reposition vertices based on current canvas size
+    function repositionVertices() {
+        const numVertices = Object.keys(vertexPositions).length;
+        if (numVertices === 0) return;
+        
+        const centerX = canvas.width / 2;
+        const centerY = canvas.height / 2;
+        // Use a smaller radius on mobile
+        const radius = Math.min(canvas.width, canvas.height) * (canvas.width < 500 ? 0.25 : 0.35);
+        
+        let i = 0;
+        for (let v in vertexPositions) {
+            const angle = (i / numVertices) * 2 * Math.PI;
+            vertexPositions[v] = {
+                x: centerX + radius * Math.cos(angle),
+                y: centerY + radius * Math.sin(angle)
+            };
+            i++;
+        }
+    }
+    
     // Function to show status message
     function showStatus(message, isError = false) {
         statusMessageElement.textContent = message;
@@ -55,8 +91,9 @@ document.addEventListener('DOMContentLoaded', function() {
         resetVisualization();
         showStatus("Generating random graph...");
         
-        // Generate a random number of vertices (5-10)
-        const numVertices = Math.floor(Math.random() * 6) + 5;
+        // Generate a random number of vertices (5-8 for mobile, 5-10 for desktop)
+        const isMobile = canvas.width < 500;
+        const numVertices = Math.floor(Math.random() * (isMobile ? 4 : 6)) + 5;
         
         // Create vertices
         graph = {};
@@ -68,17 +105,15 @@ document.addEventListener('DOMContentLoaded', function() {
             graph[i] = [];
             vertexLabels[i] = i.toString();
             
-            // Random position within the canvas
-            const angle = (i / numVertices) * 2 * Math.PI;
-            const radius = Math.min(canvas.width, canvas.height) * 0.35;
-            vertexPositions[i] = {
-                x: canvas.width / 2 + radius * Math.cos(angle),
-                y: canvas.height / 2 + radius * Math.sin(angle)
-            };
+            // Positions will be set by repositionVertices
+            vertexPositions[i] = { x: 0, y: 0 };
             
             // Random color
             vertexColors[i] = getRandomColor();
         }
+        
+        // Position vertices in a circle
+        repositionVertices();
         
         // Create edges (with 40-60% probability between any two vertices)
         const edgeProbability = 0.5;
@@ -581,7 +616,8 @@ document.addEventListener('DOMContentLoaded', function() {
         
         const x = vertexPositions[v].x;
         const y = vertexPositions[v].y;
-        const radius = 20;
+        // Adjust radius based on screen size
+        const radius = canvas.width < 500 ? 15 : 20;
         
         // Draw the circle
         ctx.beginPath();
@@ -596,10 +632,21 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Draw the label
         ctx.fillStyle = '#FFFFFF';
-        ctx.font = '12px Arial';
+        // Smaller font on mobile
+        ctx.font = canvas.width < 500 ? '10px Arial' : '12px Arial';
         ctx.textAlign = 'center';
         ctx.textBaseline = 'middle';
-        ctx.fillText(vertexLabels[v] || v, x, y);
+        
+        // Handle long labels on mobile
+        let label = vertexLabels[v] || v;
+        if (canvas.width < 500 && label.length > 3) {
+            const parts = label.split(',');
+            if (parts.length > 2) {
+                label = parts[0] + ',...';
+            }
+        }
+        
+        ctx.fillText(label, x, y);
     }
     
     // Function to generate a random color
