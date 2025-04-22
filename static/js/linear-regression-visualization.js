@@ -8,14 +8,27 @@ class LinearRegressionVisualizer {
         this.isTraining = false;
 
         // DOM elements
+        this.canvas = document.getElementById('regressionPlot');
         this.generateBtn = document.getElementById('generateData');
         this.fitBtn = document.getElementById('fitLine');
         this.resetBtn = document.getElementById('reset');
         this.learningRateInput = document.getElementById('learningRate');
         this.currentStepText = document.getElementById('currentStep');
         
+        // Deshabilitar el botón de fit inicialmente
+        this.fitBtn.disabled = true;
+
         this.setupEventListeners();
         this.initializeChart();
+
+        // Manejar redimensionamiento
+        window.addEventListener('resize', this.handleResize.bind(this));
+    }
+
+    handleResize() {
+        if (this.chart) {
+            this.chart.resize();
+        }
     }
 
     setupEventListeners() {
@@ -29,25 +42,28 @@ class LinearRegressionVisualizer {
     }
 
     initializeChart() {
-        const ctx = document.getElementById('regressionPlot').getContext('2d');
+        const ctx = this.canvas.getContext('2d');
         this.chart = new Chart(ctx, {
             type: 'scatter',
             data: {
                 datasets: [{
                     label: 'Data Points',
                     data: [],
-                    backgroundColor: 'rgba(54, 162, 235, 0.5)',
+                    backgroundColor: 'rgba(80, 250, 123, 0.5)', // Verde Dracula
                 }, {
                     label: 'Regression Line',
                     data: [],
                     type: 'line',
-                    borderColor: 'rgba(255, 99, 132, 1)',
+                    borderColor: 'rgba(189, 147, 249, 1)', // Púrpura Dracula
                     pointRadius: 0,
                 }]
             },
             options: {
                 responsive: true,
-                animation: false,
+                maintainAspectRatio: false,
+                animation: {
+                    duration: 0 // Desactivar animaciones para mejor rendimiento
+                },
                 scales: {
                     x: {
                         type: 'linear',
@@ -56,7 +72,7 @@ class LinearRegressionVisualizer {
                             color: 'rgba(255, 255, 255, 0.1)'
                         },
                         ticks: {
-                            color: '#fff'
+                            color: '#f8f8f2' // Color texto Dracula
                         }
                     },
                     y: {
@@ -64,14 +80,17 @@ class LinearRegressionVisualizer {
                             color: 'rgba(255, 255, 255, 0.1)'
                         },
                         ticks: {
-                            color: '#fff'
+                            color: '#f8f8f2' // Color texto Dracula
                         }
                     }
                 },
                 plugins: {
                     legend: {
                         labels: {
-                            color: '#fff'
+                            color: '#f8f8f2', // Color texto Dracula
+                            font: {
+                                size: 14
+                            }
                         }
                     }
                 }

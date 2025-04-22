@@ -80,6 +80,92 @@
 
     <!-- Icon -->
     <link rel="icon" href="../../static/img/icon.png" type="image/x-icon">
+
+    <style>
+        /* Estilos responsivos para la visualización */
+        .visualization-container {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 15px;
+        }
+
+        .visualization-controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .input-group {
+            flex: 1;
+            min-width: 200px;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .input-group .btn {
+            flex: 1;
+            min-width: 120px;
+            white-space: nowrap;
+        }
+
+        .speed-control {
+            width: 100%;
+            padding: 10px 0;
+        }
+
+        .speed-control label {
+            display: block;
+            margin-bottom: 5px;
+            color: var(--text-color);
+        }
+
+        .visualization-area {
+            background: var(--background-color);
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 20px;
+            position: relative;
+            width: 100%;
+            height: 0;
+            padding-bottom: 60%; /* Mantener proporción 5:3 */
+        }
+
+        #regressionPlot {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100% !important;
+            height: 100% !important;
+        }
+
+        .visualization-steps {
+            text-align: center;
+            margin-top: 15px;
+            color: var(--text-color);
+        }
+
+        @media (max-width: 480px) {
+            .visualization-controls {
+                flex-direction: column;
+            }
+
+            .input-group {
+                width: 100%;
+            }
+
+            .btn {
+                width: 100%;
+                margin: 5px 0;
+            }
+
+            .speed-control {
+                padding: 15px 0;
+            }
+        }
+    </style>
 </head>
 <body>
     <div id="navbar-placeholder"></div>
@@ -186,7 +272,7 @@
                         <h2>Visualization</h2>
                         <div class="visualization-container">
                             <div class="visualization-controls">
-                                <div class="input-group mb-3">
+                                <div class="input-group">
                                     <button class="btn btn-primary" id="generateData">
                                         <i class="fas fa-random"></i> Generate Data
                                     </button>
@@ -199,7 +285,7 @@
                                 </div>
                                 <div class="speed-control">
                                     <label>Learning Rate:</label>
-                                    <input type="range" id="learningRate" min="1" max="100" value="30">
+                                    <input type="range" id="learningRate" class="form-range" min="1" max="100" value="30">
                                 </div>
                             </div>
                             <div class="visualization-area">
