@@ -12,9 +12,23 @@ function init() {
     canvas = document.getElementById('visualizer');
     ctx = canvas.getContext('2d');
     
-    // Set canvas size
-    canvas.width = 800;
-    canvas.height = 400;
+    // Make canvas responsive
+    function resizeCanvas() {
+        const container = canvas.parentElement;
+        canvas.width = container.clientWidth;
+        canvas.height = Math.min(400, Math.max(250, window.innerHeight * 0.4));
+        
+        // Redraw if we have data
+        if (steps.length > 0) {
+            draw();
+        }
+    }
+    
+    // Initial canvas sizing
+    resizeCanvas();
+    
+    // Update canvas on window resize
+    window.addEventListener('resize', resizeCanvas);
     
     // Add event listeners
     document.getElementById('startBtn').addEventListener('click', toggleAnimation);
@@ -125,9 +139,18 @@ function calculateError(solution) {
 function draw() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     
+    const isMobile = window.innerWidth < 768;
     const currentState = steps[currentStep];
-    const cellSize = 60;
-    const startX = 50;
+    
+    // Adjust cell size based on canvas width and matrix size
+    const cellSize = Math.min(
+        60,
+        Math.floor(canvas.width / (matrix.length + 3)),
+        Math.floor(canvas.height / (matrix.length + 3))
+    );
+    
+    // Center the matrix horizontally
+    const startX = Math.max(10, (canvas.width - (matrix.length + 2) * cellSize) / 2);
     const startY = 50;
     
     // Draw matrix
@@ -142,10 +165,14 @@ function draw() {
             
             // Draw value
             ctx.fillStyle = '#f8f8f2';
-            ctx.font = '20px Arial';
+            // Adjust font size for readability
+            ctx.font = `${isMobile ? cellSize / 3 : cellSize / 2}px Arial`;
             ctx.textAlign = 'center';
             ctx.textBaseline = 'middle';
-            ctx.fillText(matrix[i][j].toFixed(2), x + cellSize/2, y + cellSize/2);
+            
+            // For smaller screens, round to fewer decimals
+            const valueText = isMobile ? matrix[i][j].toFixed(0) : matrix[i][j].toFixed(2);
+            ctx.fillText(valueText, x + cellSize/2, y + cellSize/2);
             
             // Draw separator line for augmented matrix
             if (j === matrix.length - 1) {
@@ -159,22 +186,45 @@ function draw() {
     }
     
     // Draw current solution
-    const solutionX = startX + (matrix.length + 2) * cellSize;
-    ctx.fillStyle = '#fff';
-    ctx.font = '24px Arial';
-    ctx.textAlign = 'left';
-    ctx.fillText('x = ', solutionX - 40, startY + cellSize);
-    
-    for (let i = 0; i < currentState.solution.length; i++) {
-        const y = startY + i * cellSize;
-        ctx.fillStyle = currentState.activeRow === i ? '#4CAF50' : '#f8f8f2';
-        ctx.fillText(currentState.solution[i].toFixed(4), solutionX, y + cellSize/2);
+    // On mobile, position solution vector below the matrix instead of to the right
+    if (isMobile && matrix.length > 2) {
+        const vectorY = startY + (matrix.length + 1) * cellSize;
+        const vectorX = startX + cellSize;
+        
+        ctx.fillStyle = '#fff';
+        ctx.font = `${cellSize / 2}px Arial`;
+        ctx.textAlign = 'left';
+        ctx.fillText('x = ', vectorX - cellSize/2, vectorY);
+        
+        for (let i = 0; i < currentState.solution.length; i++) {
+            const x = vectorX + i * cellSize * 1.5;
+            ctx.fillStyle = currentState.activeRow === i ? '#4CAF50' : '#f8f8f2';
+            ctx.fillText(currentState.solution[i].toFixed(2), x, vectorY);
+        }
+        
+        // Draw error below solution vector
+        ctx.fillStyle = '#fff';
+        ctx.font = `${cellSize / 2.5}px Arial`;
+        ctx.fillText(`Error: ${currentState.error.toFixed(6)}`, vectorX, vectorY + cellSize);
+    } else {
+        // Standard desktop layout
+        const solutionX = startX + (matrix.length + 1.5) * cellSize;
+        ctx.fillStyle = '#fff';
+        ctx.font = `${cellSize / 2}px Arial`;
+        ctx.textAlign = 'left';
+        ctx.fillText('x = ', solutionX - cellSize/2, startY + cellSize);
+        
+        for (let i = 0; i < currentState.solution.length; i++) {
+            const y = startY + i * cellSize;
+            ctx.fillStyle = currentState.activeRow === i ? '#4CAF50' : '#f8f8f2';
+            ctx.fillText(currentState.solution[i].toFixed(2), solutionX, y + cellSize/2);
+        }
+        
+        // Draw error
+        ctx.fillStyle = '#fff';
+        ctx.font = `${cellSize / 2.5}px Arial`;
+        ctx.fillText(`Error: ${currentState.error.toFixed(6)}`, startX, startY + (matrix.length + 1) * cellSize);
     }
-    
-    // Draw error
-    ctx.fillStyle = '#fff';
-    ctx.font = '16px Arial';
-    ctx.fillText(`Error: ${currentState.error.toFixed(6)}`, startX, startY + (matrix.length + 1) * cellSize);
     
     // Update step counter
     document.getElementById('currentStep').textContent = 
