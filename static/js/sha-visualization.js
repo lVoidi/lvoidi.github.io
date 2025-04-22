@@ -14,6 +14,29 @@ class SHAVisualizer {
         
         this.initializeControls();
         this.createVisualization();
+
+        // Manejar redimensionamiento
+        window.addEventListener('resize', () => this.handleResize());
+    }
+
+    handleResize() {
+        const isMobile = window.innerWidth <= 480;
+        const isVerySmall = window.innerWidth <= 360;
+        const stateWords = this.hashState.querySelectorAll('.state-word');
+        
+        stateWords.forEach(word => {
+            const fullHash = word.dataset.fullHash;
+            if (isVerySmall) {
+                // En pantallas muy pequeñas, mostrar solo los primeros 4 caracteres
+                word.textContent = fullHash.substring(0, 4) + '...';
+            } else if (isMobile) {
+                // En móviles, mostrar los primeros 6 caracteres
+                word.textContent = fullHash.substring(0, 6) + '..';
+            } else {
+                // En pantallas normales, mostrar el hash completo
+                word.textContent = fullHash;
+            }
+        });
     }
 
     initializeControls() {
@@ -34,17 +57,24 @@ class SHAVisualizer {
             <div class="block-container"></div>
         `;
 
-        // Create hash state display
+        // Create hash state display with abbreviated values for mobile
         this.hashState.innerHTML = `
             <h3>Hash State</h3>
             <div class="state-container">
-                ${this.hashValues.map((value, i) => `
-                    <div class="state-word" id="state-${i}">
-                        ${value.toString(16).padStart(8, '0')}
-                    </div>
-                `).join('')}
+                ${this.hashValues.map((value, i) => {
+                    const fullHash = value.toString(16).padStart(8, '0');
+                    return `
+                        <div class="state-word" id="state-${i}" 
+                             title="Full hash: ${fullHash}"
+                             data-full-hash="${fullHash}">
+                            ${fullHash}
+                        </div>
+                    `;
+                }).join('')}
             </div>
         `;
+
+        this.handleResize();
     }
 
     async start() {
@@ -89,17 +119,24 @@ class SHAVisualizer {
         for (let i = 0; i < blocks.length; i++) {
             this.currentStep.textContent = `Step 2: Processing Block ${i + 1}`;
             
-            // Highlight current block
             blocks[i].style.backgroundColor = '#2196F3';
             
-            // Simulate compression function
             for (let j = 0; j < 8; j++) {
                 stateWords[j].style.backgroundColor = '#FFC107';
                 await this.sleep(this.animationSpeed / 2);
                 
-                // Update hash value
                 this.hashValues[j] = Math.floor(Math.random() * 0xFFFFFFFF);
-                stateWords[j].textContent = this.hashValues[j].toString(16).padStart(8, '0');
+                const newHash = this.hashValues[j].toString(16).padStart(8, '0');
+                stateWords[j].dataset.fullHash = newHash;
+                
+                // Actualizar el texto según el tamaño de la pantalla
+                if (window.innerWidth <= 360) {
+                    stateWords[j].textContent = newHash.substring(0, 4) + '...';
+                } else if (window.innerWidth <= 480) {
+                    stateWords[j].textContent = newHash.substring(0, 6) + '..';
+                } else {
+                    stateWords[j].textContent = newHash;
+                }
                 
                 await this.sleep(this.animationSpeed / 2);
                 stateWords[j].style.backgroundColor = '';

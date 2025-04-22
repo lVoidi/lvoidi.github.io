@@ -80,6 +80,192 @@
 
     <!-- Icon -->
     <link rel="icon" href="../../static/img/icon.png" type="image/x-icon">
+
+    <style>
+        /* Estilos responsivos para history box */
+        .history-box {
+            margin: 20px 0;
+            padding: 20px;
+            border-radius: 8px;
+            background: var(--background-color);
+        }
+
+        .history-content {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .history-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin: 0 auto;
+        }
+
+        @media (min-width: 768px) {
+            .history-content {
+                flex-direction: row;
+                align-items: flex-start;
+            }
+
+            .history-image {
+                max-width: 300px;
+            }
+        }
+
+        /* Estilos para la visualización */
+        .visualization-container {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 15px;
+        }
+
+        .visualization-controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .control-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .control-group .btn {
+            flex: 1;
+            min-width: 100px;
+            white-space: nowrap;
+        }
+
+        .speed-control {
+            width: 100%;
+            padding: 10px 0;
+        }
+
+        .speed-control label {
+            display: block;
+            margin-bottom: 5px;
+            color: var(--text-color);
+        }
+
+        /* Estilos para la tabla de complejidad */
+        .complexity-table {
+            width: 100%;
+            margin: 20px 0;
+            border-collapse: collapse;
+            overflow-x: auto;
+            display: block;
+        }
+
+        .complexity-table th,
+        .complexity-table td {
+            padding: 12px;
+            text-align: left;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            white-space: nowrap;
+        }
+
+        .complexity-table th {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Estilos para la visualización SHA */
+        .visualization-area {
+            background: var(--background-color);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            overflow-x: auto;
+        }
+
+        .message-blocks,
+        .hash-state {
+            margin-bottom: 20px;
+        }
+
+        .block-container,
+        .state-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .message-block {
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            min-width: 100px;
+            text-align: center;
+            transition: background-color 0.3s;
+        }
+
+        .state-word {
+            padding: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            font-family: monospace;
+            font-size: 0.85em;
+            transition: background-color 0.3s;
+            word-break: break-all;
+            min-width: 80px;
+            text-align: center;
+        }
+
+        @media (max-width: 480px) {
+            .visualization-controls {
+                flex-direction: column;
+            }
+
+            .control-group {
+                width: 100%;
+            }
+
+            .message-block {
+                width: 100%;
+                padding: 10px;
+                font-size: 0.9em;
+            }
+
+            .state-word {
+                padding: 6px;
+                font-size: 0.75em;
+                min-width: 70px;
+            }
+
+            .complexity-table {
+                font-size: 0.9em;
+            }
+
+            .complexity-table th,
+            .complexity-table td {
+                padding: 8px;
+            }
+
+            .visualization-area {
+                padding: 10px;
+            }
+
+            .block-container,
+            .state-container {
+                gap: 5px;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .state-word {
+                font-size: 0.7em;
+                min-width: 60px;
+                padding: 4px;
+            }
+        }
+    </style>
 </head>
 <body>
     <!-- Navigation -->
@@ -187,15 +373,15 @@
                                         <i class="fas fa-redo"></i> Reset
                                     </button>
                                     <button class="btn btn-info" id="generateInput">
-                                        <i class="fas fa-random"></i> Generate Input
+                                        <i class="fas fa-random"></i> Generate
                                     </button>
                                 </div>
                                 <div class="speed-control">
                                     <label>Speed:</label>
-                                    <input type="range" id="speedControl" min="1" max="5" value="3">
+                                    <input type="range" id="speedControl" class="form-range" min="1" max="5" value="3">
                                 </div>
                             </div>
-                            <div id="shaVisualization" class="visualization-area">
+                            <div class="visualization-area">
                                 <div class="message-blocks"></div>
                                 <div class="hash-state"></div>
                             </div>
