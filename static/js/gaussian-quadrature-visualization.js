@@ -12,9 +12,25 @@ function init() {
     canvas = document.getElementById('visualizer');
     ctx = canvas.getContext('2d');
     
-    // Set canvas size
-    canvas.width = 800;
-    canvas.height = 400;
+    // Make canvas responsive
+    function resizeCanvas() {
+        const container = canvas.parentElement;
+        // Set canvas size based on container width
+        canvas.width = container.clientWidth;
+        // Set reasonable height for different devices
+        canvas.height = Math.min(400, Math.max(250, window.innerHeight * 0.4));
+        
+        // Redraw if we have data
+        if (steps.length > 0) {
+            draw();
+        }
+    }
+    
+    // Initial canvas sizing
+    resizeCanvas();
+    
+    // Update canvas on window resize
+    window.addEventListener('resize', resizeCanvas);
     
     // Add event listeners
     document.getElementById('startBtn').addEventListener('click', toggleAnimation);
@@ -123,6 +139,9 @@ function draw() {
 
 // Draw coordinate system
 function drawCoordinateSystem() {
+    // Check if canvas is really small
+    const isMobile = canvas.width < 500;
+    
     ctx.strokeStyle = '#666';
     ctx.lineWidth = 1;
     
@@ -137,7 +156,13 @@ function drawCoordinateSystem() {
     // Draw grid
     ctx.strokeStyle = '#333';
     ctx.lineWidth = 0.5;
-    for (let x = -10; x <= 10; x++) {
+    
+    // Adjust grid spacing for mobile
+    const spacing = isMobile ? 2 : 1;
+    const axisLabelSize = isMobile ? 8 : 10;
+    const maxGrid = isMobile ? 5 : 10;
+    
+    for (let x = -maxGrid; x <= maxGrid; x += spacing) {
         let screenX = mapX(x);
         ctx.beginPath();
         ctx.moveTo(screenX, 0);
@@ -145,8 +170,12 @@ function drawCoordinateSystem() {
         ctx.stroke();
         
         // Add x-axis labels
-        ctx.fillStyle = '#fff';
-        ctx.fillText(x, screenX - 10, canvas.height/2 + 20);
+        if (x % (isMobile ? 2 : 1) === 0) {
+            ctx.fillStyle = '#fff';
+            ctx.font = `${axisLabelSize}px Arial`;
+            ctx.textAlign = 'center';
+            ctx.fillText(x, screenX, canvas.height/2 + 15);
+        }
     }
 }
 
@@ -172,6 +201,9 @@ function drawFunction() {
 
 // Draw quadrature points and weights
 function drawQuadraturePoints(state) {
+    // Adjust point size for mobile
+    const pointRadius = canvas.width < 500 ? 3 : 5;
+    
     for (let i = 0; i < state.points.length; i++) {
         const x = state.points[i];
         const y = f(x);
@@ -180,17 +212,19 @@ function drawQuadraturePoints(state) {
         // Draw point
         ctx.fillStyle = i === state.currentPoint ? '#4CAF50' : '#f44336';
         ctx.beginPath();
-        ctx.arc(mapX(x), mapY(y), 5, 0, 2 * Math.PI);
+        ctx.arc(mapX(x), mapY(y), pointRadius, 0, 2 * Math.PI);
         ctx.fill();
         
         // Draw weight as rectangle height
         if (i === state.currentPoint) {
             ctx.fillStyle = '#4CAF5088';
-            const rectHeight = Math.abs(w) * 50;
+            // Adjust rectangle height for smaller screens
+            const rectHeight = Math.abs(w) * (canvas.width < 500 ? 30 : 50);
+            const rectWidth = canvas.width < 500 ? 10 : 20;
             ctx.fillRect(
-                mapX(x) - 10,
+                mapX(x) - rectWidth/2,
                 mapY(y),
-                20,
+                rectWidth,
                 y > 0 ? -rectHeight : rectHeight
             );
         }
@@ -199,17 +233,22 @@ function drawQuadraturePoints(state) {
 
 // Map x from math coordinates to screen coordinates
 function mapX(x) {
-    return (x + 10) * canvas.width/20;
+    // Get scale from window size (smaller on mobile)
+    const scale = canvas.width < 500 ? 5 : 10;
+    return (x + scale) * canvas.width/(2*scale);
 }
 
 // Map y from math coordinates to screen coordinates
 function mapY(y) {
-    return canvas.height/2 - y * canvas.height/10;
+    // Get scale from window size (smaller on mobile)
+    const scale = canvas.width < 500 ? 5 : 10;
+    return canvas.height/2 - y * canvas.height/(2*scale);
 }
 
 // Unmap x from screen coordinates to math coordinates
 function unmapX(screenX) {
-    return screenX * 20/canvas.width - 10;
+    const scale = canvas.width < 500 ? 5 : 10;
+    return screenX * (2*scale)/canvas.width - scale;
 }
 
 // Animation control
