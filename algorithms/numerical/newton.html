@@ -38,6 +38,112 @@
     <!-- Icon -->
     <link rel="icon" href="../../static/img/icon.png" type="image/x-icon">
     
+    <style>
+        /* Responsive styles for visualization */
+        .visualization-container {
+            background-color: #1e1e2e;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 20px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .visualization-controls {
+            margin-bottom: 20px;
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .input-controls {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 10px;
+        }
+
+        .button-group button {
+            flex: 1;
+        }
+
+        .speed-control {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 15px;
+            padding: 5px 0;
+        }
+
+        .speed-control label {
+            color: #fff;
+            white-space: nowrap;
+            min-width: 60px;
+        }
+
+        .speed-control input {
+            flex: 1;
+        }
+
+        .visualization-area {
+            position: relative;
+            width: 100%;
+            height: 400px;
+            margin: 20px 0;
+            background-color: #282a36;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        canvas {
+            width: 100% !important;
+            height: 100% !important;
+        }
+
+        #functionInput, #initialGuess {
+            width: 100%;
+            padding: 8px 12px;
+            border-radius: 4px;
+        }
+
+        /* Mobile responsive styles */
+        @media (max-width: 768px) {
+            .visualization-container {
+                padding: 15px;
+            }
+
+            .visualization-area {
+                height: 300px;
+            }
+
+            #currentStep {
+                font-size: 14px;
+                padding: 10px;
+                text-align: center;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .input-controls {
+                flex-direction: row;
+            }
+
+            .input-controls > * {
+                flex: 1;
+            }
+
+            .button-group {
+                flex: 0.7;
+            }
+        }
+    </style>
+
     <!-- Schema.org structured data -->
     <script type="application/ld+json">
     {
@@ -132,26 +238,30 @@
                         <h2>Visualization</h2>
                         <div class="visualization-container">
                             <div class="visualization-controls">
-                                <div class="input-group mb-3">
-                                    <input type="text" id="functionInput" class="form-control" placeholder="Enter function (e.g., x^2 - 4)">
-                                    <input type="number" id="initialGuess" class="form-control" placeholder="Initial guess">
-                                    <button class="btn btn-primary" id="startBtn">
-                                        <i class="fas fa-play"></i> Start
-                                    </button>
-                                    <button class="btn btn-secondary" id="resetBtn">
-                                        <i class="fas fa-redo"></i> Reset
-                                    </button>
-                                </div>
-                                <div class="speed-control">
-                                    <label>Speed:</label>
-                                    <input type="range" id="speedControl" min="1" max="5" value="3">
+                                <div class="input-group">
+                                    <div class="input-controls">
+                                        <input type="text" id="functionInput" class="form-control" placeholder="Enter function (e.g., x^2 - 4)">
+                                        <input type="number" id="initialGuess" class="form-control" placeholder="Initial guess">
+                                        <div class="button-group">
+                                            <button class="btn btn-primary" id="startBtn">
+                                                <i class="fas fa-play"></i> Start
+                                            </button>
+                                            <button class="btn btn-secondary" id="resetBtn">
+                                                <i class="fas fa-redo"></i> Reset
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="speed-control">
+                                        <label>Speed:</label>
+                                        <input type="range" id="speedControl" class="form-range" min="1" max="5" value="3">
+                                    </div>
                                 </div>
                             </div>
                             <div class="visualization-area">
                                 <canvas id="newtonCanvas"></canvas>
                             </div>
                             <div class="visualization-steps">
-                                <p id="currentStep">Enter a function and initial guess to begin</p>
+                                <p id="currentStep" class="text-center">Enter a function and initial guess to begin</p>
                             </div>
                         </div>
                     </section>

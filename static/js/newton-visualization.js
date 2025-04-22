@@ -16,6 +16,14 @@ class NewtonVisualizer {
         
         this.setupEventListeners();
         this.initializeChart();
+        
+        // Make visualization responsive
+        window.addEventListener('resize', () => {
+            if (this.chart) {
+                this.chart.resize();
+                this.updateChartStyles();
+            }
+        });
     }
 
     setupEventListeners() {
@@ -26,57 +34,102 @@ class NewtonVisualizer {
         });
     }
 
+    updateChartStyles() {
+        const isMobile = window.innerWidth < 768;
+        if (this.chart) {
+            // Update font sizes
+            this.chart.options.scales.x.ticks.font = {
+                size: isMobile ? 10 : 12
+            };
+            this.chart.options.scales.y.ticks.font = {
+                size: isMobile ? 10 : 12
+            };
+            
+            // Update point sizes
+            this.chart.data.datasets[2].pointRadius = isMobile ? 3 : 5;
+            this.chart.data.datasets[2].pointHoverRadius = isMobile ? 5 : 7;
+            
+            // Update line widths
+            this.chart.data.datasets[0].borderWidth = isMobile ? 1.5 : 2;
+            this.chart.data.datasets[1].borderWidth = isMobile ? 1.5 : 2;
+            
+            // Update padding
+            this.chart.options.layout.padding = isMobile ? 10 : 20;
+            
+            this.chart.update();
+        }
+    }
+
     initializeChart() {
+        const isMobile = window.innerWidth < 768;
+        
         this.chart = new Chart(this.canvas, {
             type: 'line',
             data: {
                 datasets: [{
                     label: 'Function',
                     borderColor: 'rgba(54, 162, 235, 1)',
-                    borderWidth: 2,
+                    borderWidth: isMobile ? 1.5 : 2,
                     fill: false,
                     data: []
                 }, {
                     label: 'Tangent Line',
                     borderColor: 'rgba(255, 99, 132, 1)',
-                    borderWidth: 2,
+                    borderWidth: isMobile ? 1.5 : 2,
                     fill: false,
                     data: []
                 }, {
                     label: 'Points',
                     backgroundColor: 'rgba(75, 192, 192, 1)',
-                    pointRadius: 5,
-                    pointHoverRadius: 7,
+                    pointRadius: isMobile ? 3 : 5,
+                    pointHoverRadius: isMobile ? 5 : 7,
                     showLine: false,
                     data: []
                 }]
             },
             options: {
                 responsive: true,
+                maintainAspectRatio: false,
                 animation: false,
+                layout: {
+                    padding: isMobile ? 10 : 20
+                },
                 scales: {
                     x: {
                         type: 'linear',
                         grid: {
-                            color: 'rgba(255, 255, 255, 0.1)'
+                            color: 'rgba(255, 255, 255, 0.1)',
+                            drawBorder: false
                         },
                         ticks: {
-                            color: '#fff'
+                            color: '#fff',
+                            font: {
+                                size: isMobile ? 10 : 12
+                            },
+                            maxRotation: 0
                         }
                     },
                     y: {
                         grid: {
-                            color: 'rgba(255, 255, 255, 0.1)'
+                            color: 'rgba(255, 255, 255, 0.1)',
+                            drawBorder: false
                         },
                         ticks: {
-                            color: '#fff'
+                            color: '#fff',
+                            font: {
+                                size: isMobile ? 10 : 12
+                            }
                         }
                     }
                 },
                 plugins: {
                     legend: {
                         labels: {
-                            color: '#fff'
+                            color: '#fff',
+                            font: {
+                                size: isMobile ? 10 : 12
+                            },
+                            boxWidth: isMobile ? 12 : 16
                         }
                     }
                 }
@@ -106,7 +159,9 @@ class NewtonVisualizer {
 
     generateFunctionPoints(expression, xMin, xMax, points = 200) {
         const data = [];
-        const step = (xMax - xMin) / points;
+        const isMobile = window.innerWidth < 768;
+        const numPoints = isMobile ? 100 : 200; // Fewer points on mobile for better performance
+        const step = (xMax - xMin) / numPoints;
         
         for (let x = xMin; x <= xMax; x += step) {
             try {
@@ -123,10 +178,13 @@ class NewtonVisualizer {
     }
 
     generateTangentLine(x0, y0, slope, width = 2) {
-        const x1 = x0 - width;
-        const x2 = x0 + width;
-        const y1 = y0 - slope * width;
-        const y2 = y0 + slope * width;
+        const isMobile = window.innerWidth < 768;
+        const lineWidth = isMobile ? 1.5 : width;
+        
+        const x1 = x0 - lineWidth;
+        const x2 = x0 + lineWidth;
+        const y1 = y0 - slope * lineWidth;
+        const y2 = y0 + slope * lineWidth;
         
         return [{x: x1, y: y1}, {x: x2, y: y2}];
     }
@@ -147,7 +205,8 @@ class NewtonVisualizer {
         
         try {
             // Generate function points
-            const xRange = 10;
+            const isMobile = window.innerWidth < 768;
+            const xRange = isMobile ? 6 : 10; // Smaller range on mobile
             const functionPoints = this.generateFunctionPoints(expression, x0 - xRange, x0 + xRange);
             this.chart.data.datasets[0].data = functionPoints;
             
