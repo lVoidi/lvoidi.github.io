@@ -119,28 +119,76 @@ body {
     background: rgba(20, 20, 20, 0.95);
     backdrop-filter: blur(10px);
     border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 2rem 0;
+}
+
+.footer h6 {
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 1.2rem;
+    color: #fff;
+    font-weight: 600;
+    text-align: center;
+}
+
+.footer p {
+    color: rgba(255, 255, 255, 0.8) !important;
+    line-height: 1.6;
+}
+
+.footer .small {
+    font-size: 0.85rem;
+}
+
+.footer .text-monospace {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85rem;
+    background: rgba(110, 68, 255, 0.1);
+    padding: 0.75rem;
+    border-radius: 4px;
+    border: 1px solid rgba(110, 68, 255, 0.2);
+    color: #fff;
+    word-break: break-all;
+    text-align: center;
+    margin: 0.5rem auto;
+    max-width: 100%;
+}
+
+.social-links-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .social-links {
     padding: 0;
     margin: 0;
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
 }
 
 .social-link {
-    color: var(--text-muted);
+    color: #6e44ff;
     font-size: 1.5rem;
-    transition: color 0.2s ease, transform 0.2s ease;
+    transition: all 0.2s ease;
     display: inline-block;
     padding: 0.5rem;
+    opacity: 0.8;
 }
 
 .social-link:hover {
-    color: var(--text-color);
+    color: white;
     transform: translateY(-2px);
+    opacity: 1;
 }
 
-.social-link i {
-    vertical-align: middle;
+.footer .row > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 main {
@@ -268,4 +316,86 @@ main {
     font-size: 0.9em;
     font-weight: bold;
     color: #282a36;
+}
+
+/* Donations Section Styles */
+.donations-section {
+  background: linear-gradient(45deg, #1a1a1a, #2d2d2d);
+}
+
+.donation-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.donation-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.donation-card .card-body {
+  padding: 2rem;
+}
+
+.donation-card i {
+  color: #6e44ff;
+  margin-bottom: 1.5rem;
+  font-size: 2.5rem;
+  opacity: 0.9;
+}
+
+.donation-card .input-group {
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.donation-card .input-group input {
+  background-color: #000;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #fff;
+}
+
+.donation-card .input-group input:focus {
+  background-color: #000;
+  color: #fff;
+  box-shadow: none;
+  border-color: #6e44ff;
+}
+
+.donation-card .btn-outline-secondary {
+  border-color: #6e44ff;
+  color: #6e44ff;
+  background-color: rgba(110, 68, 255, 0.1);
+}
+
+.donation-card .btn-outline-secondary:hover {
+  background-color: #6e44ff;
+  color: white;
+}
+
+.donation-card .btn-outline-secondary:hover i {
+  color: white;
+}
+
+.donation-card .btn-primary {
+  background-color: rgba(110, 68, 255, 0.2);
+  border-color: #6e44ff;
+  padding: 0.75rem 1.5rem;
+  font-weight: 600;
+  color: #6e44ff;
+  text-shadow: none;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.donation-card .btn-primary:hover {
+  background-color: #6e44ff;
+  border-color: #6e44ff;
+  color: white;
+  box-shadow: 0 4px 8px rgba(110, 68, 255, 0.3);
+}
+
+.donation-card .btn-primary:hover i {
+  color: white;
 } 
