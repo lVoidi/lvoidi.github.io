@@ -24,7 +24,7 @@
         <priority>0.8</priority>
     </url>
 
-    <!-- Blog Posts -->
+    <!-- Void Pages -->
     <url>
         <loc>https://lvoidi.github.io/void/pages/microsoft-majorana.html</loc>
         <changefreq>monthly</changefreq>
@@ -62,6 +62,346 @@
     </url>
     <url>
         <loc>https://lvoidi.github.io/void/pages/learning-programming.html</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://lvoidi.github.io/void/pages/brave-browser.html</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
+    <!-- Singularity Pages -->
+    <url>
+        <loc>https://lvoidi.github.io/singularity/pages/quantum-teleportation.html</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://lvoidi.github.io/singularity/pages/microsoft-majorana.html</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://lvoidi.github.io/singularity/pages/bitcoin-whitepaper.html</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://lvoidi.github.io/singularity/pages/sui-whitepaper.html</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://lvoidi.github.io/singularity/pages/attention-is-all-you-need.html</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
+    <!-- Algorithm Pages -->
+    <!-- Backtracking -->
+    <url>
+        <loc>https://lvoidi.github.io/algorithms/backtracking/word-break.html</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://lvoidi.github.io/algorithms/backtracking/string-permutations.html</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://lvoidi.github.io/algorithms/backtracking/n-queens.html</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://lvoidi.github.io/algorithms/backtracking/rat-maze.html</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://lvoidi.github.io/algorithms/backtracking/sudoku.html</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
+    <!-- Dynamic Programming -->
+    <url>
+        <loc>https://lvoidi.github.io/algorithms/dynamic/lcs.html</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://lvoidi.github.io/algorithms/dynamic/knapsack.html</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://lvoidi.github.io/algorithms/dynamic/subsetsum.html</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://lvoidi.github.io/algorithms/dynamic/editdistance.html</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://lvoidi.github.io/algorithms/dynamic/fibonacci.html</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
+    <!-- Graph Algorithms -->
+    <url>
+        <loc>https://lvoidi.github.io/algorithms/graph/ford-fulkerson.html</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://lvoidi.github.io/algorithms/graph/prim.html</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://lvoidi.github.io/algorithms/graph/astar.html</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://lvoidi.github.io/algorithms/graph/bellman-ford.html</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://lvoidi.github.io/algorithms/graph/floyd-warshall.html</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://lvoidi.github.io/algorithms/graph/dijkstra.html</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://lvoidi.github.io/algorithms/graph/kahn.html</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://lvoidi.github.io/algorithms/graph/tarjan.html</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://lvoidi.github.io/algorithms/graph/kosaraju.html</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
+    <!-- Sorting Algorithms -->
+    <url>
+        <loc>https://lvoidi.github.io/algorithms/sorting/bucketsort.html</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://lvoidi.github.io/algorithms/sorting/shellsort.html</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://lvoidi.github.io/algorithms/sorting/heapsort.html</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://lvoidi.github.io/algorithms/sorting/selectionsort.html</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://lvoidi.github.io/algorithms/sorting/bubblesort.html</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://lvoidi.github.io/algorithms/sorting/mergesort.html</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://lvoidi.github.io/algorithms/sorting/countingsort.html</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://lvoidi.github.io/algorithms/sorting/pancake.html</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://lvoidi.github.io/algorithms/sorting/radixsort.html</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://lvoidi.github.io/algorithms/sorting/insertionsort.html</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://lvoidi.github.io/algorithms/sorting/quicksort.html</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
+    <!-- Searching Algorithms -->
+    <url>
+        <loc>https://lvoidi.github.io/algorithms/searching/binary-search.html</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://lvoidi.github.io/algorithms/searching/dfs.html</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://lvoidi.github.io/algorithms/searching/bfs.html</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
+    <!-- String Algorithms -->
+    <url>
+        <loc>https://lvoidi.github.io/algorithms/string/rabin-karp.html</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://lvoidi.github.io/algorithms/string/markov.html</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://lvoidi.github.io/algorithms/string/kmp.html</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
+    <!-- Numerical Algorithms -->
+    <url>
+        <loc>https://lvoidi.github.io/algorithms/numerical/newton.html</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://lvoidi.github.io/algorithms/numerical/fft.html</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://lvoidi.github.io/algorithms/numerical/bisection.html</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://lvoidi.github.io/algorithms/numerical/gaussian-elimination.html</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://lvoidi.github.io/algorithms/numerical/secant.html</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://lvoidi.github.io/algorithms/numerical/gauss-seidel.html</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://lvoidi.github.io/algorithms/numerical/gaussian-quadrature.html</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://lvoidi.github.io/algorithms/numerical/gauss-newton.html</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://lvoidi.github.io/algorithms/numerical/gauss-legendre.html</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
+    <!-- Cryptographic Algorithms -->
+    <url>
+        <loc>https://lvoidi.github.io/algorithms/cryptographic/aes.html</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://lvoidi.github.io/algorithms/cryptographic/chacha20.html</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://lvoidi.github.io/algorithms/cryptographic/sha.html</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://lvoidi.github.io/algorithms/cryptographic/rsa.html</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
+    <!-- Machine Learning Algorithms -->
+    <url>
+        <loc>https://lvoidi.github.io/algorithms/machine-learning/linear-regression.html</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://lvoidi.github.io/algorithms/machine-learning/svm.html</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
+    <!-- Randomized Algorithms -->
+    <url>
+        <loc>https://lvoidi.github.io/algorithms/randomized/kargers-min-cut.html</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://lvoidi.github.io/algorithms/randomized/monte-carlo-pi.html</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
+    <!-- Greedy Algorithms -->
+    <url>
+        <loc>https://lvoidi.github.io/algorithms/greedy/kruskal.html</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://lvoidi.github.io/algorithms/greedy/huffman.html</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://lvoidi.github.io/algorithms/greedy/activity-selection.html</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://lvoidi.github.io/algorithms/greedy/job-sequencing.html</loc>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
