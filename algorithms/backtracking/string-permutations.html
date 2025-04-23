@@ -87,71 +87,132 @@
     <link rel="icon" href="../../static/img/icon.png" type="image/x-icon">
 
     <style>
-        .current-permutation {
-            display: flex;
-            gap: 10px;
-            justify-content: center;
-            margin: 20px 0;
-            padding: 20px;
-            background: #282a36;
-            border-radius: 8px;
+        /* Reusing styles from other pages for consistency */
+        .visualization-container {
+            width: 100%;
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 15px;
         }
 
+        .visualization-controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 20px;
+            align-items: center; /* Align items vertically */
+        }
+
+        .control-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            flex-grow: 1; /* Allow control group to grow */
+        }
+
+        .control-group .btn,
+        .control-group input[type=\"text\"] {
+             flex: 1; /* Allow buttons/input to take space */
+             min-width: 100px; /* Minimum width */
+             padding: 0.375rem 0.75rem;
+        }
+
+        .control-group input[type=\"text\"] {
+            background-color: var(--input-background);
+            color: var(--text-color);
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius);
+        }
+
+        .speed-control {
+            display: flex; /* Use flex for label and range */
+            align-items: center;
+            gap: 10px;
+            min-width: 150px; /* Ensure speed control has enough space */
+            flex-basis: 200px; /* Suggest a base width */
+        }
+
+        .speed-control label {
+             margin-bottom: 0; /* Remove bottom margin */
+             color: var(--text-color);
+             white-space: nowrap;
+        }
+
+        .speed-control input[type=\"range\"] {
+            flex-grow: 1; /* Allow range slider to fill space */
+            cursor: pointer;
+        }
+
+        .visualization-area {
+            background: var(--background-color);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            min-height: 250px; /* Ensure enough height */
+        }
+
+        /* Specific styles for String Permutations Visualization */
+        .current-permutation,
         .available-chars {
             display: flex;
-            gap: 10px;
+            gap: 8px; /* Smaller gap */
             justify-content: center;
-            margin: 20px 0;
+            margin: 15px 0;
             padding: 15px;
-            background: #44475a;
+            background: var(--background-color-darker); /* Use consistent background */
             border-radius: 8px;
         }
 
         .char-cell {
-            width: 40px;
-            height: 40px;
+            width: 35px; /* Slightly smaller */
+            height: 35px;
             display: flex;
             align-items: center;
             justify-content: center;
-            background: #44475a;
-            color: #f8f8f2;
+            background: var(--input-background); /* Consistent background */
+            color: var(--text-color);
+            border: 1px solid var(--border-color);
             border-radius: 4px;
-            font-size: 1.2em;
+            font-size: 1em; /* Adjust size */
+            font-weight: bold;
+            font-family: monospace;
             transition: all 0.3s ease;
         }
 
         .char-cell.filled {
             background: #50fa7b;
             color: #282a36;
-            transform: scale(1.1);
-            box-shadow: 0 0 10px rgba(80, 250, 123, 0.3);
+            transform: scale(1.05);
+            border-color: #50fa7b;
         }
 
         .char-cell.used {
-            opacity: 0.5;
-            transform: scale(0.9);
+            opacity: 0.4;
+            background: #6272a4; /* Dim color */
         }
 
         .found-permutations {
             display: flex;
             flex-wrap: wrap;
-            gap: 10px;
+            gap: 8px;
             justify-content: center;
             margin: 20px 0;
-            padding: 20px;
-            background: #282a36;
+            padding: 15px;
+            background: var(--background-color-darker);
             border-radius: 8px;
-            max-height: 200px;
+            max-height: 150px;
             overflow-y: auto;
+            border: 1px solid var(--border-color);
         }
 
         .permutation {
-            padding: 8px 15px;
-            background: #44475a;
-            color: #f8f8f2;
+            padding: 5px 10px;
+            background: var(--input-background);
+            color: var(--text-color);
             border-radius: 4px;
             font-family: monospace;
             animation: fadeIn 0.3s ease;
+            border: 1px solid var(--border-color);
         }
 
         @keyframes fadeIn {
@@ -159,25 +220,39 @@
             to { opacity: 1; transform: scale(1); }
         }
 
-        .history-box {
-            background: rgba(40, 42, 54, 0.5);
-            border-radius: 8px;
-            padding: 20px;
-            margin: 20px 0;
+        /* Responsive styles */
+        @media (max-width: 768px) {
+            .visualization-controls {
+                 flex-direction: column;
+                 align-items: stretch; /* Stretch items to full width */
+            }
+            .control-group {
+                width: 100%;
+            }
+            .speed-control {
+                width: 100%;
+                justify-content: space-between;
+            }
         }
 
-        .history-content {
-            display: flex;
-            gap: 20px;
-            align-items: start;
-        }
-
-        .history-image {
-            width: 200px;
-            height: 200px;
-            object-fit: cover;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        @media (max-width: 480px) {
+            .char-cell {
+                width: 30px;
+                height: 30px;
+                font-size: 0.9em;
+            }
+             .current-permutation,
+             .available-chars,
+             .found-permutations {
+                 padding: 10px;
+                 gap: 5px;
+             }
+             .permutation {
+                 padding: 4px 8px;
+             }
+             .visualization-area {
+                 padding: 10px;
+             }
         }
     </style>
 </head>
@@ -188,17 +263,25 @@
         <div class="row">
             <!-- Sidebar -->
             <div class="col-md-3">
-                <div class="algorithm-info card">
-                    <div class="card-body">
-                        <h5 class="card-title">Algorithm Info</h5>
-                        <ul class="list-unstyled">
-                            <li><strong>Category:</strong> Backtracking</li>
-                            <li><strong>Time Complexity:</strong> O(n!)</li>
-                            <li><strong>Space Complexity:</strong> O(n)</li>
-                            <li><strong>Input Type:</strong> String</li>
-                        </ul>
-                    </div>
-                </div>
+                <div class="algorithm-info-card">
+                     <h3>Algorithm Info</h3>
+                     <div class="info-item">
+                         <span class="info-label">Category:</span>
+                         <span class="info-value">Backtracking</span>
+                     </div>
+                     <div class="info-item">
+                         <span class="info-label">Time Complexity:</span>
+                         <span class="info-value">O(n!)</span>
+                     </div>
+                     <div class="info-item">
+                         <span class="info-label">Space Complexity:</span>
+                         <span class="info-value">O(n)</span>
+                     </div>
+                     <div class="info-item">
+                         <span class="info-label">Input Type:</span>
+                         <span class="info-value">String</span>
+                     </div>
+                 </div>
             </div>
 
             <!-- Main Content -->
@@ -368,44 +451,55 @@ public:
                     <section id="complexity">
                         <h2>Complexity Analysis</h2>
                         <div class="complexity-analysis">
-                            <h3>Time Complexity: O(n!)</h3>
-                            <p>
-                                For a string of length n, there are n! possible permutations. The algorithm needs to generate 
-                                all of them, so the time complexity is O(n!). This is because:
-                            </p>
-                            <ul>
-                                <li>First position has n choices</li>
-                                <li>Second position has (n-1) choices</li>
-                                <li>Third position has (n-2) choices</li>
-                                <li>And so on...</li>
-                            </ul>
-                            <p>Therefore, total operations = n × (n-1) × (n-2) × ... × 1 = n!</p>
+                             <h3>Time Complexity: O(n!)</h3>
+                             <p>
+                                 For a string of length n, there are n! possible permutations. The algorithm needs to generate 
+                                 all of them, so the time complexity is O(n!). This is because:
+                             </p>
+                             <ul>
+                                 <li>First position has n choices</li>
+                                 <li>Second position has (n-1) choices</li>
+                                 <li>Third position has (n-2) choices</li>
+                                 <li>And so on...</li>
+                             </ul>
+                             <p>Therefore, total operations = n × (n-1) × (n-2) × ... × 1 = n!</p>
 
-                            <h3>Space Complexity: O(n)</h3>
-                            <p>
-                                The space complexity is O(n) where n is the length of the input string. This accounts for:
-                            </p>
-                            <ul>
-                                <li>The recursion stack which can go up to depth n</li>
-                                <li>The character array used to store current permutation</li>
-                            </ul>
-                            <p>Note: The space needed to store all permutations in the result is O(n × n!), but this is typically not counted as part of the algorithm's space complexity.</p>
-                        </div>
+                             <h3>Space Complexity: O(n)</h3>
+                             <p>
+                                 The space complexity is O(n) where n is the length of the input string. This accounts for:
+                             </p>
+                             <ul>
+                                 <li>The recursion stack which can go up to depth n</li>
+                                 <li>The character array used to store current permutation</li>
+                             </ul>
+                             <p>Note: The space needed to store all permutations in the result is O(n × n!), but this is typically not counted as part of the algorithm's space complexity.</p>
+                             <!-- Added scrollable div for table equivalent (though there's no table here, adding for consistency if needed later) -->
+                             <div style="overflow-x: auto;">
+                                 <!-- If a table was here, it would scroll -->
+                             </div>
+                         </div>
                     </section>
 
                     <section id="visualization">
                         <h2>Algorithm Visualization</h2>
                         <div class="visualization-container">
-                            <!-- Visualization will be implemented with JavaScript -->
-                            <div id="permutation-visualizer" class="algorithm-visualizer">
-                                <div class="controls">
-                                    <input type="text" id="input-string" placeholder="Enter a string" maxlength="4">
-                                    <button id="start-visualization" class="btn btn-primary">Visualize</button>
-                                    <button id="step-visualization" class="btn btn-secondary">Step</button>
-                                    <button id="reset-visualization" class="btn btn-danger">Reset</button>
+                            <div class="visualization-controls">
+                                <div class="control-group">
+                                    <input type="text" id="inputString" class="form-control" placeholder="Enter string (max 8 chars)" value="ABC" maxlength="8">
+                                    <button id="startVisualization" class="btn btn-primary"><i class="fas fa-play"></i> Start</button>
+                                    <button id="resetVisualization" class="btn btn-secondary"><i class="fas fa-redo"></i> Reset</button>
                                 </div>
-                                <div id="visualization-area"></div>
+                                <div class="speed-control">
+                                    <label for="speedControl">Speed:</label>
+                                    <input type="range" id="speedControl" min="1" max="10" value="5" class="form-range">
+                                </div>
                             </div>
+                            <div id="permutationsContainer" class="visualization-area">
+                                <!-- Visualization content generated by JS -->
+                            </div>
+                             <div class="visualization-steps">
+                                 <p id="currentStep">Enter a string and click Start</p>
+                             </div>
                         </div>
                     </section>
                 </article>
@@ -422,6 +516,6 @@ public:
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-cpp.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-csharp.min.js"></script>
     <script src="../../static/js/templates.js"></script>
-    <script src="../../static/js/string-permutations.js"></script>
+    <script src="../../static/js/string-permutations-visualization.js"></script>
 </body>
 </html> 
