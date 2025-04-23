@@ -1,6 +1,15 @@
 User-agent: *
 Allow: /
 
+Allow: /void/
+Allow: /algorithms/
+Allow: /singularity/
+Allow: /static/
+
+# Prevent caching of assets
+Disallow: /static/js/
+Disallow: /static/css/ 
+
 # Sitemap location
 Sitemap: https://lvoidi.github.io/sitemap.xml
 
