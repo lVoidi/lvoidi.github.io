@@ -22,7 +22,7 @@ body {
 .hero-section {
     min-height: 80vh;
     background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
-                url('../img/black-hole-1.jpg');
+                url('../img/black-hole-1.webp');
     background-size: cover;
     background-position: center;
     display: flex;
