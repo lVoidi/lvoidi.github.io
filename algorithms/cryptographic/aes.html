@@ -80,6 +80,139 @@
 
     <!-- Icon -->
     <link rel="icon" href="../../static/img/icon.png" type="image/x-icon">
+
+    <style>
+        /* Estilos para history box */
+        .history-box {
+            margin: 20px 0;
+            padding: 20px;
+            border-radius: 8px;
+            background: var(--background-color);
+        }
+
+        .history-content {
+            display: flex;
+            flex-direction: row; /* Default direction */
+            align-items: flex-start;
+            gap: 20px;
+        }
+
+        .history-image {
+            max-width: 200px; /* Adjusted max width */
+            height: auto;
+            border-radius: 8px;
+            flex-shrink: 0; /* Prevent image shrinking */
+        }
+
+        /* Estilos para la visualización */
+        .visualization-container {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 15px;
+        }
+
+        .visualization-controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .control-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .control-group .btn {
+            flex: 1;
+            min-width: 100px;
+            white-space: nowrap;
+        }
+
+        .speed-control {
+            width: 100%;
+            padding: 10px 0;
+        }
+
+        .speed-control label {
+            display: block;
+            margin-bottom: 5px;
+            color: var(--text-color);
+        }
+
+        .visualization-area {
+            background: var(--background-color);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            min-height: 200px; /* Adjusted min height */
+        }
+
+        /* Estilos para la matriz de estado AES */
+        .aes-state-matrix {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 5px; /* Reduced gap */
+            padding: 10px; /* Reduced padding */
+            margin-top: 15px;
+        }
+
+        .matrix-cell {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 8px; /* Adjusted padding */
+            border-radius: 4px;
+            text-align: center;
+            font-family: monospace;
+            font-size: 0.9em; /* Adjusted font size */
+            transition: background-color 0.3s;
+            word-break: break-all; /* Break long words if needed */
+        }
+
+        /* Responsive styles */
+        @media (max-width: 768px) {
+             .history-content {
+                flex-direction: column; /* Stack image and text vertically */
+                align-items: center; /* Center items */
+            }
+            .history-image {
+                max-width: 80%; /* Allow image to be larger on smaller screens */
+                margin-bottom: 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .visualization-controls {
+                flex-direction: column;
+            }
+            .control-group {
+                width: 100%;
+            }
+             .aes-state-matrix {
+                gap: 3px;
+             }
+            .matrix-cell {
+                padding: 5px;
+                font-size: 0.75em;
+            }
+            .visualization-area {
+                padding: 10px;
+            }
+        }
+
+        @media (max-width: 360px) {
+             .aes-state-matrix {
+                 gap: 2px;
+             }
+            .matrix-cell {
+                padding: 3px;
+                font-size: 0.65em;
+            }
+        }
+    </style>
 </head>
 <body>
     <!-- ... navigation ... -->
@@ -396,23 +529,25 @@ public class AESEncryption
 
                     <section class="algorithm-section">
                         <h2>Complexity Analysis</h2>
-                        <table class="complexity-table">
-                            <tr>
-                                <th>Operation</th>
-                                <th>Time Complexity</th>
-                                <th>Space Complexity</th>
-                            </tr>
-                            <tr>
-                                <td>Encryption/Decryption</td>
-                                <td>O(1) per block</td>
-                                <td>O(1)</td>
-                            </tr>
-                            <tr>
-                                <td>Key Expansion</td>
-                                <td>O(1)</td>
-                                <td>O(1)</td>
-                            </tr>
-                        </table>
+                        <div style="overflow-x: auto;">
+                            <table class="complexity-table">
+                                <tr>
+                                    <th>Operation</th>
+                                    <th>Time Complexity</th>
+                                    <th>Space Complexity</th>
+                                </tr>
+                                <tr>
+                                    <td>Encryption/Decryption</td>
+                                    <td>O(1) per block</td>
+                                    <td>O(1)</td>
+                                </tr>
+                                <tr>
+                                    <td>Key Expansion</td>
+                                    <td>O(1)</td>
+                                    <td>O(1)</td>
+                                </tr>
+                            </table>
+                        </div>
                         <p class="mt-3">The complexity is constant because AES operates on fixed-size blocks regardless of input size. For large inputs, the time is linear in the number of blocks.</p>
                     </section>
 
