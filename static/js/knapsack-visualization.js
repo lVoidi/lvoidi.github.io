@@ -14,9 +14,6 @@ class KnapsackVisualizer {
         this.isPlaying = false;
         this.animationSpeed = 1000;
         
-        this.width = this.svg.clientWidth;
-        this.height = this.svg.clientHeight;
-        
         this.setupControls();
         this.initializeVisualization();
     }
@@ -36,6 +33,16 @@ class KnapsackVisualizer {
     initializeVisualization() {
         this.svg.innerHTML = '';
         
+        // Calculate required viewBox dimensions
+        const totalWidth = this.padding * 2 + (this.capacity + 1) * this.cellSize;
+        const itemsHeight = this.cellSize + this.padding * 2; // Approx height for items area
+        const tableHeight = (this.items.length + 1) * this.cellSize + this.padding * 2; // Approx height for DP table
+        const totalHeight = itemsHeight + tableHeight; // Total calculated height
+
+        // Set viewBox
+        this.svg.setAttribute('viewBox', `0 0 ${totalWidth} ${totalHeight}`);
+        this.svg.setAttribute('preserveAspectRatio', 'xMidYMin meet'); // Adjust aspect ratio handling if needed
+
         // Create main groups
         const itemsGroup = document.createElementNS("http://www.w3.org/2000/svg", "g");
         itemsGroup.setAttribute('class', 'items-group');
@@ -115,8 +122,13 @@ class KnapsackVisualizer {
 
     async highlightCell(i, w, className) {
         const cell = document.getElementById(`cell-${i}-${w}`);
-        cell.setAttribute('class', `dp-cell ${className}`);
-        await this.sleep(this.animationSpeed);
+        const text = document.getElementById(`text-${i}-${w}`);
+        if (cell) cell.setAttribute('class', `dp-cell ${className}`);
+        if (text) text.setAttribute('class', `cell-text ${className}`);
+        await this.sleep(this.animationSpeed / 2);
+        if (cell) cell.setAttribute('class', 'dp-cell');
+        if (text) text.setAttribute('class', 'cell-text');
+        await this.sleep(this.animationSpeed / 2);
     }
 
     updateCell(i, w, value) {

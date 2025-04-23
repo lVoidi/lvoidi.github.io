@@ -80,6 +80,118 @@
 
     <!-- Icon -->
     <link rel="icon" href="../../static/img/icon.png" type="image/x-icon">
+
+    <style>
+        /* Basic styles for visualization (assuming JS targets #knapsackVisualization) */
+        .visualization-container { /* Consistency */
+            width: 100%;
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 15px;
+        }
+        .visualization-controls { /* Consistency */
+             display: flex;
+             flex-wrap: wrap;
+             gap: 15px;
+             margin-bottom: 20px;
+             align-items: center;
+        }
+         .control-group { /* Consistency */
+             display: flex;
+             flex-wrap: wrap;
+             gap: 10px;
+             flex-grow: 1;
+        }
+        .speed-control { /* Consistency */
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            min-width: 150px;
+            flex-basis: 200px;
+        }
+         .speed-control label { /* Consistency */
+             margin-bottom: 0;
+             color: var(--text-color);
+             white-space: nowrap;
+        }
+         .speed-control input[type="range"] { /* Consistency */
+             flex-grow: 1;
+             cursor: pointer;
+        }
+         .visualization-area { /* Consistency */
+            background: var(--background-color);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            min-height: 400px; /* Keep original height */
+            display: flex; /* Center SVG if needed */
+            justify-content: center;
+            align-items: center;
+         }
+         .visualization-steps { /* Consistency */
+            text-align: center;
+            margin-top: 10px;
+            color: var(--text-color-muted);
+         }
+
+        /* History Box Styles */
+        .history-box {
+            background: rgba(40, 42, 54, 0.5); /* Existing style from file */
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .history-content {
+            display: flex;
+            gap: 20px;
+            align-items: start;
+        }
+        .history-image {
+             max-width: 200px; /* Limit initial size */
+             height: auto; /* Maintain aspect ratio */
+             object-fit: cover;
+             border-radius: 8px;
+             box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+             flex-shrink: 0;
+        }
+
+        /* Responsive Styles */
+         @media (max-width: 768px) {
+             .history-content {
+                flex-direction: column;
+                align-items: center;
+             }
+             .history-image {
+                 max-width: 80%;
+                 margin-bottom: 15px;
+             }
+             .visualization-controls { /* Responsive controls */
+                 flex-direction: column;
+                 align-items: stretch;
+             }
+             .control-group, .speed-control {
+                 width: 100%;
+             }
+         }
+          @media (max-width: 480px) { /* Mobile specific */
+              .visualization-area {
+                  padding: 10px;
+                  min-height: 300px; /* Adjust height for smaller screens */
+              }
+               /* Attempt to style SVG elements for mobile - effectiveness depends on JS structure */
+               #knapsackVisualization text {
+                   font-size: 0.8em; /* Smaller text in SVG */
+               }
+               #knapsackVisualization rect.dp-cell {
+                   /* Assuming cells have this class from JS */
+                   /* Adjust cell size if needed, though scaling SVG might be better */
+               }
+               #knapsackVisualization .item-box {
+                   /* Assuming item boxes have this class */
+                  transform: scale(0.8); /* Scale down item boxes */
+               }
+          }
+    </style>
 </head>
 <body>
     <!-- Navbar -->
@@ -131,7 +243,7 @@
                     <section class="algorithm-section history-box">
                         <h2>History</h2>
                         <div class="history-content">
-                            <img src="../../static/img/knapsack.jpg" alt="Knapsack Problem Concept" class="history-image">
+                            <img src="../../static/img/algorithms/knapsack.jpg" alt="Knapsack Problem Concept" class="history-image">
                             <p>
                                 The Knapsack problem was first studied in the early 20th century and has since become one of the most researched problems in combinatorial optimization. Its name comes from the problem faced by someone who is constrained by a fixed-size knapsack and must fill it with the most valuable items.
                                 
@@ -180,11 +292,13 @@
                                 </button>
                                 <div class="speed-control">
                                     <label>Speed:</label>
-                                    <input type="range" id="speedControl" min="1" max="5" value="3">
+                                    <input type="range" id="speedControl" min="1" max="5" value="3" class="form-range">
                                 </div>
                             </div>
-                            <div class="visualization-area">
-                                <svg id="knapsackVisualization" width="100%" height="400"></svg>
+                            <div class="visualization-area" style="overflow-x: auto;">
+                                <div id="knapsack-svg-container">
+                                    <svg id="knapsackVisualization" width="100%" height="400"></svg>
+                                </div>
                             </div>
                             <div class="visualization-steps">
                                 <p id="currentStep">Click Start to begin visualization</p>
@@ -470,5 +584,6 @@ public class KnapsackSolver {
     <script src="../../static/js/algorithm-page.js"></script>
     <script src="../../static/js/prism.js"></script>
     <script src="../../static/js/templates.js"></script>
+    <script src="../../static/js/knapsack-visualization.js"></script>
 </body>
 </html>
