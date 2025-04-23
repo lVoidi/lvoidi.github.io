@@ -1,414 +1,379 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-
-  <!-- Main Page -->
-  <url>
-    <loc>https://lvoidi.github.io/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
-  </url>
-
-  <!-- Category Index Pages -->
-  <url>
-    <loc>https://lvoidi.github.io/algorithms/index.html</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://lvoidi.github.io/singularity/index.html</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://lvoidi.github.io/void/index.html</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://lvoidi.github.io/books/index.html</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <!-- Algorithm Pages -->
-  <!-- Backtracking -->
-  <url>
-    <loc>https://lvoidi.github.io/algorithms/backtracking/n-queens.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://lvoidi.github.io/algorithms/backtracking/rat-maze.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://lvoidi.github.io/algorithms/backtracking/string-permutations.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://lvoidi.github.io/algorithms/backtracking/sudoku.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://lvoidi.github.io/algorithms/backtracking/word-break.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <!-- Cryptographic -->
-  <url>
-    <loc>https://lvoidi.github.io/algorithms/cryptographic/aes.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://lvoidi.github.io/algorithms/cryptographic/chacha20.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://lvoidi.github.io/algorithms/cryptographic/rsa.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://lvoidi.github.io/algorithms/cryptographic/sha.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <!-- Dynamic -->
-  <url>
-    <loc>https://lvoidi.github.io/algorithms/dynamic/editdistance.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://lvoidi.github.io/algorithms/dynamic/fibonacci.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://lvoidi.github.io/algorithms/dynamic/knapsack.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://lvoidi.github.io/algorithms/dynamic/lcs.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://lvoidi.github.io/algorithms/dynamic/subsetsum.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <!-- Graph -->
-  <url>
-    <loc>https://lvoidi.github.io/algorithms/graph/astar.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://lvoidi.github.io/algorithms/graph/bellman-ford.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://lvoidi.github.io/algorithms/graph/dijkstra.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://lvoidi.github.io/algorithms/graph/floyd-warshall.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://lvoidi.github.io/algorithms/graph/ford-fulkerson.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://lvoidi.github.io/algorithms/graph/kahn.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://lvoidi.github.io/algorithms/graph/kosaraju.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://lvoidi.github.io/algorithms/graph/prim.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://lvoidi.github.io/algorithms/graph/tarjan.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <!-- Greedy -->
-  <url>
-    <loc>https://lvoidi.github.io/algorithms/greedy/activity-selection.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://lvoidi.github.io/algorithms/greedy/huffman.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://lvoidi.github.io/algorithms/greedy/job-sequencing.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://lvoidi.github.io/algorithms/greedy/kruskal.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <!-- Machine Learning -->
-  <url>
-    <loc>https://lvoidi.github.io/algorithms/machine-learning/linear-regression.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://lvoidi.github.io/algorithms/machine-learning/svm.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <!-- Numerical -->
-  <url>
-    <loc>https://lvoidi.github.io/algorithms/numerical/bisection.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://lvoidi.github.io/algorithms/numerical/fft.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://lvoidi.github.io/algorithms/numerical/gauss-legendre.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://lvoidi.github.io/algorithms/numerical/gauss-newton.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://lvoidi.github.io/algorithms/numerical/gauss-seidel.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://lvoidi.github.io/algorithms/numerical/gaussian-elimination.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://lvoidi.github.io/algorithms/numerical/gaussian-quadrature.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://lvoidi.github.io/algorithms/numerical/newton.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://lvoidi.github.io/algorithms/numerical/secant.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <!-- Randomized -->
-  <url>
-    <loc>https://lvoidi.github.io/algorithms/randomized/kargers-min-cut.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://lvoidi.github.io/algorithms/randomized/monte-carlo-pi.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <!-- Searching -->
-  <url>
-    <loc>https://lvoidi.github.io/algorithms/searching/bfs.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://lvoidi.github.io/algorithms/searching/binary-search.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://lvoidi.github.io/algorithms/searching/dfs.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <!-- Sorting -->
-  <url>
-    <loc>https://lvoidi.github.io/algorithms/sorting/bubblesort.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://lvoidi.github.io/algorithms/sorting/bucketsort.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://lvoidi.github.io/algorithms/sorting/countingsort.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://lvoidi.github.io/algorithms/sorting/heapsort.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://lvoidi.github.io/algorithms/sorting/insertionsort.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://lvoidi.github.io/algorithms/sorting/mergesort.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://lvoidi.github.io/algorithms/sorting/pancake.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://lvoidi.github.io/algorithms/sorting/quicksort.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://lvoidi.github.io/algorithms/sorting/radixsort.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://lvoidi.github.io/algorithms/sorting/selectionsort.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://lvoidi.github.io/algorithms/sorting/shellsort.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <!-- String -->
-  <url>
-    <loc>https://lvoidi.github.io/algorithms/string/kmp.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://lvoidi.github.io/algorithms/string/markov.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://lvoidi.github.io/algorithms/string/rabin-karp.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-
-  <!-- Singularity Pages -->
-  <url>
-    <loc>https://lvoidi.github.io/singularity/pages/attention-is-all-you-need.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://lvoidi.github.io/singularity/pages/bitcoin-whitepaper.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://lvoidi.github.io/singularity/pages/microsoft-majorana.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://lvoidi.github.io/singularity/pages/quantum-teleportation.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://lvoidi.github.io/singularity/pages/sui-whitepaper.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-
-  <!-- Void Pages -->
-  <url>
-    <loc>https://lvoidi.github.io/void/pages/brave-browser.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://lvoidi.github.io/void/pages/chatgptimg.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://lvoidi.github.io/void/pages/gpg.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://lvoidi.github.io/void/pages/learning-programming.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://lvoidi.github.io/void/pages/leetcode-reverse-number.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://lvoidi.github.io/void/pages/mass-disinformation.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://lvoidi.github.io/void/pages/microsoft-majorana.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://lvoidi.github.io/void/pages/sui-best-blockchain.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://lvoidi.github.io/void/pages/tensorzero.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-
-  <!-- Books Pages (Add pages from books/pages if any) -->
-  <!-- Example:
-  <url>
-    <loc>https://lvoidi.github.io/books/pages/some-book.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  -->
-
+﻿<?xml version="1.0" encoding="UTF-8"?>
+		<!--	created with www.mysitemapgenerator.com	-->
+		<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<url>
+	<loc>https://lvoidi.github.io/</loc>
+	<lastmod>2025-04-24T02:38:13+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://lvoidi.github.io/algorithms/index.html</loc>
+	<lastmod>2025-04-24T02:38:13+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://lvoidi.github.io/algorithms/backtracking/n-queens.html</loc>
+	<lastmod>2025-04-24T02:38:13+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://lvoidi.github.io/algorithms/backtracking/rat-maze.html</loc>
+	<lastmod>2025-04-24T02:38:13+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://lvoidi.github.io/algorithms/backtracking/string-permutations.html</loc>
+	<lastmod>2025-04-24T02:38:13+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://lvoidi.github.io/algorithms/backtracking/sudoku.html</loc>
+	<lastmod>2025-04-24T02:38:13+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://lvoidi.github.io/algorithms/backtracking/word-break.html</loc>
+	<lastmod>2025-04-24T02:38:13+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://lvoidi.github.io/algorithms/cryptographic/aes.html</loc>
+	<lastmod>2025-04-24T02:38:13+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://lvoidi.github.io/algorithms/cryptographic/chacha20.html</loc>
+	<lastmod>2025-04-24T02:38:13+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://lvoidi.github.io/algorithms/cryptographic/rsa.html</loc>
+	<lastmod>2025-04-24T02:38:13+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://lvoidi.github.io/algorithms/cryptographic/sha.html</loc>
+	<lastmod>2025-04-24T02:38:13+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://lvoidi.github.io/algorithms/dynamic/editdistance.html</loc>
+	<lastmod>2025-04-24T02:38:13+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://lvoidi.github.io/algorithms/dynamic/fibonacci.html</loc>
+	<lastmod>2025-04-24T02:38:13+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://lvoidi.github.io/algorithms/dynamic/knapsack.html</loc>
+	<lastmod>2025-04-24T02:38:13+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://lvoidi.github.io/algorithms/dynamic/lcs.html</loc>
+	<lastmod>2025-04-24T02:38:13+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://lvoidi.github.io/algorithms/dynamic/subsetsum.html</loc>
+	<lastmod>2025-04-24T02:38:13+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://lvoidi.github.io/algorithms/graph/astar.html</loc>
+	<lastmod>2025-04-24T02:38:13+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://lvoidi.github.io/algorithms/graph/bellman-ford.html</loc>
+	<lastmod>2025-04-24T02:38:13+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://lvoidi.github.io/algorithms/graph/dijkstra.html</loc>
+	<lastmod>2025-04-24T02:38:13+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://lvoidi.github.io/algorithms/graph/floyd-warshall.html</loc>
+	<lastmod>2025-04-24T02:38:13+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://lvoidi.github.io/algorithms/graph/ford-fulkerson.html</loc>
+	<lastmod>2025-04-24T02:38:13+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://lvoidi.github.io/algorithms/graph/kahn.html</loc>
+	<lastmod>2025-04-24T02:38:13+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://lvoidi.github.io/algorithms/graph/kosaraju.html</loc>
+	<lastmod>2025-04-24T02:38:13+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://lvoidi.github.io/algorithms/graph/prim.html</loc>
+	<lastmod>2025-04-24T02:38:13+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://lvoidi.github.io/algorithms/graph/tarjan.html</loc>
+	<lastmod>2025-04-24T02:38:13+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://lvoidi.github.io/algorithms/greedy/activity-selection.html</loc>
+	<lastmod>2025-04-24T02:38:13+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://lvoidi.github.io/algorithms/greedy/huffman.html</loc>
+	<lastmod>2025-04-24T02:38:13+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://lvoidi.github.io/algorithms/greedy/job-sequencing.html</loc>
+	<lastmod>2025-04-24T02:38:13+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://lvoidi.github.io/algorithms/greedy/kruskal.html</loc>
+	<lastmod>2025-04-24T02:38:13+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://lvoidi.github.io/algorithms/machine-learning/linear-regression.html</loc>
+	<lastmod>2025-04-24T02:38:13+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://lvoidi.github.io/algorithms/machine-learning/svm.html</loc>
+	<lastmod>2025-04-24T02:38:13+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://lvoidi.github.io/algorithms/numerical/bisection.html</loc>
+	<lastmod>2025-04-24T02:38:13+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://lvoidi.github.io/algorithms/numerical/fft.html</loc>
+	<lastmod>2025-04-24T02:38:13+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://lvoidi.github.io/algorithms/numerical/gauss-legendre.html</loc>
+	<lastmod>2025-04-24T02:38:13+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://lvoidi.github.io/algorithms/numerical/gauss-newton.html</loc>
+	<lastmod>2025-04-24T02:38:13+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://lvoidi.github.io/algorithms/numerical/gauss-seidel.html</loc>
+	<lastmod>2025-04-24T02:38:13+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://lvoidi.github.io/algorithms/numerical/gaussian-elimination.html</loc>
+	<lastmod>2025-04-24T02:38:13+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://lvoidi.github.io/algorithms/numerical/gaussian-quadrature.html</loc>
+	<lastmod>2025-04-24T02:38:13+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://lvoidi.github.io/algorithms/numerical/newton.html</loc>
+	<lastmod>2025-04-24T02:38:13+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://lvoidi.github.io/algorithms/numerical/secant.html</loc>
+	<lastmod>2025-04-24T02:38:13+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://lvoidi.github.io/algorithms/randomized/kargers-min-cut.html</loc>
+	<lastmod>2025-04-24T02:38:13+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://lvoidi.github.io/algorithms/randomized/monte-carlo-pi.html</loc>
+	<lastmod>2025-04-24T02:38:13+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://lvoidi.github.io/algorithms/searching/bfs.html</loc>
+	<lastmod>2025-04-24T02:38:13+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://lvoidi.github.io/algorithms/searching/binary-search.html</loc>
+	<lastmod>2025-04-24T02:38:13+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://lvoidi.github.io/algorithms/searching/dfs.html</loc>
+	<lastmod>2025-04-24T02:38:13+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://lvoidi.github.io/algorithms/sorting/bubblesort.html</loc>
+	<lastmod>2025-04-24T02:38:13+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://lvoidi.github.io/algorithms/sorting/bucketsort.html</loc>
+	<lastmod>2025-04-24T02:38:13+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://lvoidi.github.io/algorithms/sorting/countingsort.html</loc>
+	<lastmod>2025-04-24T02:38:13+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://lvoidi.github.io/algorithms/sorting/heapsort.html</loc>
+	<lastmod>2025-04-24T02:38:13+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://lvoidi.github.io/algorithms/sorting/insertionsort.html</loc>
+	<lastmod>2025-04-24T02:38:13+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://lvoidi.github.io/algorithms/sorting/mergesort.html</loc>
+	<lastmod>2025-04-24T02:38:13+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://lvoidi.github.io/algorithms/sorting/pancake.html</loc>
+	<lastmod>2025-04-24T02:38:13+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://lvoidi.github.io/algorithms/sorting/quicksort.html</loc>
+	<lastmod>2025-04-24T02:38:13+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://lvoidi.github.io/algorithms/sorting/radixsort.html</loc>
+	<lastmod>2025-04-24T02:38:13+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://lvoidi.github.io/algorithms/sorting/selectionsort.html</loc>
+	<lastmod>2025-04-24T02:38:13+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://lvoidi.github.io/algorithms/sorting/shellsort.html</loc>
+	<lastmod>2025-04-24T02:38:13+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://lvoidi.github.io/algorithms/string/kmp.html</loc>
+	<lastmod>2025-04-24T02:38:13+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://lvoidi.github.io/algorithms/string/markov.html</loc>
+	<lastmod>2025-04-24T02:38:13+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://lvoidi.github.io/algorithms/string/rabin-karp.html</loc>
+	<lastmod>2025-04-24T02:38:13+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://lvoidi.github.io/singularity/</loc>
+	<lastmod>2025-04-24T02:38:15+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://lvoidi.github.io/singularity/pages/microsoft-majorana.html</loc>
+	<lastmod>2025-04-24T02:38:15+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://lvoidi.github.io/singularity/pages/attention-is-all-you-need.html</loc>
+	<lastmod>2025-04-24T02:38:15+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://lvoidi.github.io/singularity/pages/sui-whitepaper.html</loc>
+	<lastmod>2025-04-24T02:38:15+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://lvoidi.github.io/singularity/pages/quantum-teleportation.html</loc>
+	<lastmod>2025-04-24T02:38:15+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://lvoidi.github.io/singularity/pages/bitcoin-whitepaper.html</loc>
+	<lastmod>2025-04-24T02:38:15+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://lvoidi.github.io/void/</loc>
+	<lastmod>2025-04-24T02:38:15+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://lvoidi.github.io/void/pages/brave-browser.html</loc>
+	<lastmod>2025-04-24T02:38:15+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://lvoidi.github.io/void/pages/chatgptimg.html</loc>
+	<lastmod>2025-04-24T02:38:15+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://lvoidi.github.io/void/pages/gpg.html</loc>
+	<lastmod>2025-04-24T02:38:15+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://lvoidi.github.io/void/pages/learning-programming.html</loc>
+	<lastmod>2025-04-24T02:38:15+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://lvoidi.github.io/void/pages/leetcode-reverse-number.html</loc>
+	<lastmod>2025-04-24T02:38:15+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://lvoidi.github.io/void/pages/mass-disinformation.html</loc>
+	<lastmod>2025-04-24T02:38:15+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://lvoidi.github.io/void/pages/microsoft-majorana.html</loc>
+	<lastmod>2025-04-24T02:38:15+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://lvoidi.github.io/void/pages/sui-best-blockchain.html</loc>
+	<lastmod>2025-04-24T02:38:15+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://lvoidi.github.io/void/pages/tensorzero.html</loc>
+	<lastmod>2025-04-24T02:38:15+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
 </urlset>
