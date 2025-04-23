@@ -59,6 +59,11 @@
           In this website, maybe called "roarba portal", or "my personal website", i will present you my ideas, thoughs and reflections about the world we live in, technology, and every 
           aspect related to computers and life. This is NOT a portfolio. 
         </p>
+        <div class="mt-4">
+          <a href="#donations-section" class="btn btn-outline-light btn-lg">
+            <i class="fas fa-heart me-2"></i>Support This Site
+          </a>
+        </div>
       </div>
     </section>
     <!-- About Me Section -->
@@ -97,11 +102,48 @@
           </div>
         </div>
       </div>
+    </section>    
+    <!-- Daily Selection -->
+    <section class="daily-selection py-4">
+      <div class="container">
+        <h2 class="text-center mb-4">Daily Selection</h2>
+        <div class="row">
+          <!-- Algorithm of the Day -->
+          <div class="col-md-4">
+            <div class="daily-card">
+              <div class="daily-badge">Algorithm of the Day</div>
+              <h3 id="dailyAlgorithm">Loading...</h3>
+              <p id="dailyAlgorithmDesc">Loading...</p>
+              <a href="#" id="dailyAlgorithmLink" class="btn btn-outline-light">Learn More</a>
+            </div>
+          </div>
+          
+          <!-- Singularity Article -->
+          <div class="col-md-4">
+            <div class="daily-card">
+              <div class="daily-badge">Singularity Pick</div>
+              <h3 id="dailySingularity">Loading...</h3>
+              <p id="dailySingularityDesc">Loading...</p>
+              <a href="#" id="dailySingularityLink" class="btn btn-outline-light">Read More</a>
+            </div>
+          </div>
+          
+          <!-- Void Article -->
+          <div class="col-md-4">
+            <div class="daily-card">
+              <div class="daily-badge">Void Pick</div>
+              <h3 id="dailyVoid">Loading...</h3>
+              <p id="dailyVoidDesc">Loading...</p>
+              <a href="#" id="dailyVoidLink" class="btn btn-outline-light">Read More</a>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
     <!-- Concepts Section -->
-    <section class="concepts-section py-5 bg-dark">
+    <section class="concepts-section py-5">
       <div class="container">
-        <h2 class="display-4 text-center mb-5">Key Concepts</h2>
+        <h2 class="display-4 text-center mb-5 text-light">Key Concepts</h2>
         <div class="row g-4">
           <!-- Algorithm Concept -->
           <div class="col-md-4">
@@ -143,82 +185,8 @@
         </div>
       </div>
     </section>
-    <!-- Daily Selection -->
-    <section class="daily-selection py-4">
-      <div class="container">
-        <h2 class="text-center mb-4">Daily Selection</h2>
-        <div class="row">
-          <!-- Algorithm of the Day -->
-          <div class="col-md-4">
-            <div class="daily-card">
-              <div class="daily-badge">Algorithm of the Day</div>
-              <h3 id="dailyAlgorithm">Loading...</h3>
-              <p id="dailyAlgorithmDesc">Loading...</p>
-              <a href="#" id="dailyAlgorithmLink" class="btn btn-outline-light">Learn More</a>
-            </div>
-          </div>
-          
-          <!-- Singularity Article -->
-          <div class="col-md-4">
-            <div class="daily-card">
-              <div class="daily-badge">Singularity Pick</div>
-              <h3 id="dailySingularity">Loading...</h3>
-              <p id="dailySingularityDesc">Loading...</p>
-              <a href="#" id="dailySingularityLink" class="btn btn-outline-light">Read More</a>
-            </div>
-          </div>
-          
-          <!-- Void Article -->
-          <div class="col-md-4">
-            <div class="daily-card">
-              <div class="daily-badge">Void Pick</div>
-              <h3 id="dailyVoid">Loading...</h3>
-              <p id="dailyVoidDesc">Loading...</p>
-              <a href="#" id="dailyVoidLink" class="btn btn-outline-light">Read More</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
 
-    <!-- Donations Section -->
-    <section class="donations-section py-5 bg-dark">
-      <div class="container">
-        <h2 class="text-center mb-4 text-light">Support My Work</h2>
-        <div class="row justify-content-center g-4">
-          <!-- SUI Donation -->
-          <div class="col-md-5">
-            <div class="card h-100 donation-card">
-              <div class="card-body text-center">
-                <i class="fas fa-coins fa-3x mb-3"></i>
-                <h3 class="card-title">SUI Wallet</h3>
-                <p class="card-text">Support through SUI cryptocurrency</p>
-                <div class="input-group mb-3">
-                  <input type="text" class="form-control" value="0x685338b495ae581f2180bbbebfe43c8ee8defea2841f2daf0d5ebb307f1c2fc1" readonly id="suiAddress">
-                  <button class="btn btn-outline-secondary" type="button" onclick="copyToClipboard('suiAddress')">
-                    <i class="fas fa-copy"></i>
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-          
-          <!-- PayPal Donation -->
-          <div class="col-md-5">
-            <div class="card h-100 donation-card">
-              <div class="card-body text-center">
-                <i class="fab fa-paypal fa-3x mb-3"></i>
-                <h3 class="card-title">PayPal</h3>
-                <p class="card-text">Support through PayPal</p>
-                <a href="https://paypal.me/roarba" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
-                  <i class="fab fa-paypal me-2"></i>Donate via PayPal
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+
 
     <!-- Main Content -->
     <main class="container py-5">
@@ -307,6 +275,44 @@
       </div>
     </main>
 
+    <!-- Donations Section -->
+    <section class="donations-section py-5 bg-dark" id="donations-section">
+      <div class="container">
+        <h2 class="text-center mb-4 text-light">Support My Work</h2>
+        <div class="row justify-content-center g-4">
+          <!-- SUI Donation -->
+          <div class="col-md-5">
+            <div class="card h-100 donation-card">
+              <div class="card-body text-center">
+                <i class="fas fa-coins fa-3x mb-3"></i>
+                <h3 class="card-title">SUI Wallet</h3>
+                <p class="card-text">Support through SUI cryptocurrency</p>
+                <div class="input-group mb-3">
+                  <input type="text" class="form-control" value="0x685338b495ae581f2180bbbebfe43c8ee8defea2841f2daf0d5ebb307f1c2fc1" readonly id="suiAddress">
+                  <button class="btn btn-outline-secondary" type="button" onclick="copyToClipboard('suiAddress')">
+                    <i class="fas fa-copy"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- PayPal Donation -->
+          <div class="col-md-5">
+            <div class="card h-100 donation-card">
+              <div class="card-body text-center">
+                <i class="fab fa-paypal fa-3x mb-3"></i>
+                <h3 class="card-title">PayPal</h3>
+                <p class="card-text">Support through PayPal</p>
+                <a href="https://paypal.me/roarba" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+                  <i class="fab fa-paypal me-2"></i>Donate via PayPal
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
     <div id="footer-placeholder"></div>
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

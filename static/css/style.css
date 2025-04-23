@@ -196,24 +196,53 @@ main {
 }
 
 .about-section {
-    background-color: rgba(255, 255, 255, 0.05);
+    background: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)),
+                url('../img/bgvid.gif');
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    color: #fff;
+    padding: 4rem 0;
 }
 
-.about-section img {
-    max-width: 300px;
-    margin: 0 auto;
-    display: block;
-    border: 3px solid rgba(255, 255, 255, 0.1);
+.about-section .lead {
+    color: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(5px);
+    padding: 1rem;
+    border-radius: 8px;
+    background: rgba(0, 0, 0, 0.3);
+}
+
+.about-section .display-4 {
+    color: #fff;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.about-section a {
+    color: #6e44ff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.about-section a:hover {
+    color: #fff;
+}
+
+.tech-stack {
+    background: rgba(0, 0, 0, 0.3);
+    padding: 1rem;
+    border-radius: 8px;
+    backdrop-filter: blur(5px);
 }
 
 .tech-stack i {
-    color: #fff;
-    opacity: 0.8;
-    transition: opacity 0.3s ease;
+    color: #6e44ff;
+    transition: all 0.3s ease;
 }
 
 .tech-stack i:hover {
-    opacity: 1;
+    color: #fff;
+    transform: translateY(-2px);
 }
 
 .profile-container {
@@ -262,12 +291,24 @@ main {
 }
 
 .daily-selection {
-    background: rgba(40, 42, 54, 0.5);
-    backdrop-filter: blur(10px);
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3)),
+                url('../img/bgvid2.gif');
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    padding: 4rem 0;
+    color: #fff;
+}
+
+.daily-selection h2 {
+    color: #fff;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    font-weight: 600;
 }
 
 .daily-card {
-    background: #282a36;
+    background: rgba(40, 42, 54, 0.7);
+    backdrop-filter: blur(10px);
     border-radius: 8px;
     padding: 20px;
     margin-bottom: 20px;
@@ -277,12 +318,14 @@ main {
     flex-direction: column;
     justify-content: space-between;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-    transition: transform 0.3s ease;
-    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .daily-card:hover {
     transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(110, 68, 255, 0.3);
+    border-color: #6e44ff;
 }
 
 .daily-card h3 {
@@ -293,16 +336,10 @@ main {
 }
 
 .daily-card p {
-    color: #6272a4;
+    color: rgba(255, 255, 255, 0.8);
     font-size: 0.9em;
     margin: 10px 0;
     text-align: center;
-}
-
-.daily-card .btn {
-    margin: 0 auto;
-    display: block;
-    width: fit-content;
 }
 
 .daily-badge {
@@ -310,12 +347,13 @@ main {
     top: -12px;
     left: 50%;
     transform: translateX(-50%);
-    background: #bd93f9;
+    background: #6e44ff;
     padding: 5px 15px;
     border-radius: 20px;
     font-size: 0.9em;
     font-weight: bold;
-    color: #282a36;
+    color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 /* Donations Section Styles */
@@ -398,4 +436,32 @@ main {
 
 .donation-card .btn-primary:hover i {
   color: white;
+}
+
+.concepts-section {
+  background: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)),
+              url('../img/concepts.webp');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  position: relative;
+  padding: 4rem 0;
+}
+
+.concepts-section .card {
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.concepts-section .card:hover {
+  transform: translateY(-5px);
+  border-color: #6e44ff;
+  box-shadow: 0 5px 15px rgba(110, 68, 255, 0.3);
+}
+
+.concepts-section .card-title {
+  color: #6e44ff;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
 } 
