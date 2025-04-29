@@ -80,6 +80,107 @@
 
     <!-- Icon -->
     <link rel="icon" href="../../static/img/icon.png" type="image/x-icon">
+    
+    <style>
+        /* A* Visualization Styles */
+        .visualization-container {
+            width: 100%;
+            max-width: 700px; /* Limit max width */
+            margin: 20px auto;
+            padding: 15px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            background: var(--code-bg-color); /* Match code block bg */
+            border-radius: 8px;
+        }
+        .visualization-controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 20px;
+            align-items: center;
+        }
+        .control-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            flex-grow: 1;
+        }
+        .speed-control {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            min-width: 150px;
+            flex-basis: 200px;
+        }
+        .speed-control label {
+            margin-bottom: 0;
+            color: var(--text-color);
+            white-space: nowrap;
+        }
+        .speed-control input[type="range"] {
+            flex-grow: 1;
+            cursor: pointer;
+        }
+        .grid-container {
+            width: 100%;
+            padding-top: 100%; /* Aspect ratio 1:1 */
+            position: relative;
+            margin-bottom: 15px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+        }
+        .grid {
+            position: absolute;
+            top: 0; left: 0; bottom: 0; right: 0;
+            display: grid;
+            grid-template-columns: repeat(25, 1fr); /* Match GRID_SIZE in JS */
+            grid-template-rows: repeat(25, 1fr);
+            gap: 1px;
+            background-color: var(--border-color);
+        }
+        .cell {
+            background-color: var(--background-color);
+            cursor: pointer;
+            transition: background-color 0.1s ease;
+        }
+        .cell.start { background-color: #2ecc71; } /* Green */
+        .cell.end { background-color: #e74c3c; } /* Red */
+        .cell.wall { background-color: #34495e; } /* Dark blue/grey */
+        .cell.visited { background-color: #95a5a6; } /* Light grey */
+        .cell.considering { background-color: #f1c40f; } /* Yellow */
+        .cell.path { background-color: #3498db; } /* Blue */
+        
+        .visualization-steps {
+            text-align: center;
+            margin-top: 10px;
+            color: var(--text-color-muted);
+            font-style: italic;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+             .visualization-container { max-width: 95%; padding: 10px; }
+             .visualization-controls {
+                 flex-direction: column;
+                 align-items: stretch;
+             }
+             .control-group {
+                  display: grid;
+                  grid-template-columns: 1fr 1fr;
+             }
+             .speed-control { width: 100%; }
+             /* Grid already scales with container, no cell size change needed */
+         }
+
+        @media (max-width: 480px) {
+            .control-group { grid-template-columns: 1fr; }
+            /* Further reduce container padding if needed */
+            .visualization-container { padding: 5px; }
+            /* Button text size could be reduced if they wrap badly */
+            .btn { font-size: 0.9em; padding: 0.3rem 0.6rem; }
+        }
+    </style>
 </head>
 <body>
     <div id="navbar-placeholder"></div>
