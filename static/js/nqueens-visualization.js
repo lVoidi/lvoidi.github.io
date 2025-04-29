@@ -10,6 +10,16 @@ class NQueensVisualizer {
         this.setupControls();
         this.initializeBoard();
         this.drawBoard();
+        
+        // Handle window resize
+        window.addEventListener('resize', this.handleResize.bind(this));
+    }
+    
+    handleResize() {
+        // Redraw board on window resize to adjust queen sizes
+        if (this.board.length > 0) {
+            this.drawBoard();
+        }
     }
     
     setupControls() {
@@ -33,8 +43,17 @@ class NQueensVisualizer {
     drawBoard() {
         const chessboard = document.getElementById('chessboard');
         chessboard.innerHTML = '';
+        
+        // Set the grid columns based on board size
         chessboard.style.gridTemplateColumns = `repeat(${this.boardSize}, 1fr)`;
         
+        // Calculate appropriate size for cells and queen icons
+        const isMobileView = window.innerWidth < 576;
+        const queenSize = isMobileView ? 
+            Math.max(24, Math.min(36, 400 / this.boardSize)) : 
+            Math.max(28, Math.min(48, 500 / this.boardSize));
+            
+        // Create board cells
         for (let i = 0; i < this.boardSize; i++) {
             for (let j = 0; j < this.boardSize; j++) {
                 const cell = document.createElement('div');
@@ -44,6 +63,13 @@ class NQueensVisualizer {
                     const queen = document.createElement('div');
                     queen.className = 'queen';
                     queen.textContent = '♛';
+                    queen.style.fontSize = `${queenSize}px`;
+                    queen.style.fontWeight = 'bold';
+                    queen.style.color = (i + j) % 2 === 0 ? '#000' : '#222';
+                    queen.style.textShadow = (i + j) % 2 === 0 ? 
+                        '1px 1px 2px rgba(0,0,0,0.3)' : 
+                        '1px 1px 3px rgba(255,255,255,0.5)';
+                    
                     cell.appendChild(queen);
                 }
                 
@@ -123,8 +149,13 @@ class NQueensVisualizer {
         for (let row = 0; row < this.boardSize; row++) {
             if (this.shouldStop) return false;
             
-            document.getElementById('currentStep').textContent = 
+            // Use shorter messages on mobile
+            const isMobileView = window.innerWidth < 576;
+            const message = isMobileView ? 
+                `Queen at (${row}, ${col})` : 
                 `Trying queen at position (${row}, ${col})`;
+                
+            document.getElementById('currentStep').textContent = message;
             
             if (this.isSafe(row, col)) {
                 this.board[row][col] = 1;
