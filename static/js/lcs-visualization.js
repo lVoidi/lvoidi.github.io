@@ -4,13 +4,14 @@ class LCSVisualizer {
         this.sequence1 = "ABCDGH";
         this.sequence2 = "AEDFHR";
         this.dpTable = [];
-        this.cellSize = 50;
-        this.padding = 30;
         this.isPlaying = false;
         this.animationSpeed = 1000;
         
-        this.width = this.svg.clientWidth;
-        this.height = this.svg.clientHeight;
+        // Calculate optimal cell size based on available width
+        const containerWidth = this.svg.parentElement.clientWidth;
+        const totalCells = this.sequence1.length + 2; // +2 for padding
+        this.cellSize = Math.min(50, Math.floor((containerWidth - 60) / totalCells));
+        this.padding = 30;
         
         this.setupControls();
         this.initializeVisualization();
@@ -30,6 +31,14 @@ class LCSVisualizer {
 
     initializeVisualization() {
         this.svg.innerHTML = '';
+        
+        // Calculate required viewBox dimensions
+        const viewBoxWidth = this.padding * 2 + (this.sequence1.length + 1) * this.cellSize;
+        const viewBoxHeight = this.padding * 2 + (this.sequence2.length + 1) * this.cellSize;
+        
+        // Set viewBox
+        this.svg.setAttribute('viewBox', `0 0 ${viewBoxWidth} ${viewBoxHeight}`);
+        this.svg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
         
         // Draw grid
         const gridGroup = document.createElementNS("http://www.w3.org/2000/svg", "g");

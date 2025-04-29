@@ -80,6 +80,91 @@
 
     <!-- Icon -->
     <link rel="icon" href="../../static/img/icon.png" type="image/x-icon">
+
+    <style>
+        /* Visualization styles */
+        .visualization-container {
+            width: 100%;
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 15px;
+        }
+        .visualization-controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 20px;
+            align-items: center;
+        }
+        .control-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            flex-grow: 1;
+        }
+        .speed-control {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            min-width: 150px;
+            flex-basis: 200px;
+        }
+        .speed-control label {
+            margin-bottom: 0;
+            color: var(--text-color);
+            white-space: nowrap;
+        }
+        .speed-control input[type="range"] {
+            flex-grow: 1;
+            cursor: pointer;
+        }
+        .visualization-area {
+            background: var(--background-color);
+            border-radius: 8px;
+            padding: 10px;
+            margin-bottom: 20px;
+            min-height: 400px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+        .visualization-steps {
+            text-align: center;
+            margin-top: 10px;
+            color: var(--text-color-muted);
+        }
+        
+        /* SVG specific styles */
+        #lcsVisualization {
+            max-width: 100%;
+            height: auto;
+        }
+        
+        /* Responsive styles */
+        @media (max-width: 768px) {
+            .visualization-controls {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .control-group, .speed-control {
+                width: 100%;
+            }
+            .visualization-area {
+                padding: 5px;
+                min-height: 350px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .visualization-area {
+                min-height: 300px;
+            }
+            #lcsVisualization text {
+                font-size: 0.8em;
+            }
+        }
+    </style>
 </head>
 <body>
     <!-- Navbar -->
