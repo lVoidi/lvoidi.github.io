@@ -7,6 +7,12 @@ class PrimVisualizer {
         this.animationSpeed = 1000;
         this.mstEdges = [];
         
+        // Set SVG viewBox for better responsiveness
+        const containerWidth = this.svg.parentElement.clientWidth;
+        const containerHeight = 400;
+        this.svg.setAttribute('viewBox', `0 0 ${containerWidth} ${containerHeight}`);
+        this.svg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
+        
         // Initialize controls
         this.initializeControls();
         
@@ -32,9 +38,9 @@ class PrimVisualizer {
         this.edges = [];
         this.mstEdges = [];
 
-        // Generate nodes in a circular layout
-        const width = this.svg.clientWidth;
-        const height = this.svg.clientHeight;
+        // Get dimensions
+        const width = this.svg.clientWidth || 600;
+        const height = 400;
         const radius = Math.min(width, height) * 0.35;
         const centerX = width / 2;
         const centerY = height / 2;
@@ -77,14 +83,26 @@ class PrimVisualizer {
             line.setAttribute('stroke-width', '2');
             this.svg.appendChild(line);
 
-            // Add weight label
+            // Add weight background for better visibility
             const labelX = (from.x + to.x) / 2;
-            const labelY = (from.y + to.y) / 2 - 10;
+            const labelY = (from.y + to.y) / 2 - 5;
+            
+            const labelBg = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+            labelBg.setAttribute('cx', labelX);
+            labelBg.setAttribute('cy', labelY);
+            labelBg.setAttribute('r', '12');
+            labelBg.setAttribute('fill', '#333');
+            labelBg.setAttribute('stroke', '#999');
+            labelBg.setAttribute('stroke-width', '1');
+            this.svg.appendChild(labelBg);
+
+            // Add weight label
             const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
             text.setAttribute('x', labelX);
-            text.setAttribute('y', labelY);
+            text.setAttribute('y', labelY + 4);
             text.setAttribute('text-anchor', 'middle');
             text.setAttribute('fill', '#fff');
+            text.setAttribute('font-weight', 'bold');
             text.textContent = edge.weight;
             this.svg.appendChild(text);
         }
