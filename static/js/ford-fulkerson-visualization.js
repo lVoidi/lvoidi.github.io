@@ -1,9 +1,10 @@
 class FordFulkersonVisualizer {
     constructor(svgId) {
         this.svg = d3.select(`#${svgId}`);
-        this.width = this.svg.node().getBoundingClientRect().width;
+        this.containerWidth = this.svg.node().parentElement.clientWidth;
+        this.width = Math.min(600, this.containerWidth - 20); // Cap width and account for padding
         this.height = 400;
-        this.padding = 50;
+        this.padding = 40;
         this.nodeRadius = 20;
         this.animationSpeed = 1000;
         this.isPlaying = false;
@@ -16,15 +17,20 @@ class FordFulkersonVisualizer {
             .attr("viewBox", `0 0 ${this.width} ${this.height}`)
             .attr("preserveAspectRatio", "xMidYMid meet");
 
-        // Sample flow network
+        // Calculate node positions based on available width
+        const xSpacing = (this.width - 2 * this.padding) / 5;
+        const centerY = this.height / 2;
+        const yOffset = 80;
+
+        // Sample flow network with responsive positions
         this.graph = {
             nodes: [
-                { id: 0, label: "S", x: 100, y: 200 },  // Source
-                { id: 1, label: "A", x: 250, y: 100 },
-                { id: 2, label: "B", x: 250, y: 300 },
-                { id: 3, label: "C", x: 400, y: 100 },
-                { id: 4, label: "D", x: 400, y: 300 },
-                { id: 5, label: "T", x: 550, y: 200 }   // Sink
+                { id: 0, label: "S", x: this.padding + xSpacing * 0, y: centerY },  // Source
+                { id: 1, label: "A", x: this.padding + xSpacing * 1.5, y: centerY - yOffset },
+                { id: 2, label: "B", x: this.padding + xSpacing * 1.5, y: centerY + yOffset },
+                { id: 3, label: "C", x: this.padding + xSpacing * 3.5, y: centerY - yOffset },
+                { id: 4, label: "D", x: this.padding + xSpacing * 3.5, y: centerY + yOffset },
+                { id: 5, label: "T", x: this.padding + xSpacing * 5, y: centerY }   // Sink
             ],
             edges: [
                 { source: 0, target: 1, capacity: 16, flow: 0 },
@@ -79,7 +85,9 @@ class FordFulkersonVisualizer {
             .enter()
             .append("g");
 
+        // Create paths with IDs for edge labels
         this.edgePaths = this.edges.append("path")
+            .attr("id", (d, i) => `edge${i}`)
             .attr("class", "edge")
             .attr("d", d => this.calculateEdgePath(d))
             .attr("stroke", "#999")

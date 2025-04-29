@@ -78,6 +78,98 @@
     <link href="../../static/css/algorithm-page.css" rel="stylesheet">
     <link href="../../static/css/prism.css" rel="stylesheet">
     <link rel="icon" href="../../static/img/icon.png" type="image/x-icon">
+    
+    <style>
+        /* Visualization styles */
+        .visualization-container {
+            width: 100%;
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 15px;
+        }
+        .visualization-controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 20px;
+            align-items: center;
+        }
+        .speed-control {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            min-width: 150px;
+            flex-basis: 200px;
+        }
+        .speed-control label {
+            margin-bottom: 0;
+            color: var(--text-color);
+            white-space: nowrap;
+        }
+        .speed-control input[type="range"] {
+            flex-grow: 1;
+            cursor: pointer;
+        }
+        .visualization-area {
+            background: var(--background-color);
+            border-radius: 8px;
+            padding: 10px;
+            margin-bottom: 20px;
+            min-height: 400px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+        .visualization-status {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 15px;
+        }
+        .status-box {
+            flex: 1;
+            min-width: 150px;
+            background: rgba(30, 30, 45, 0.5);
+            border-radius: 8px;
+            padding: 10px;
+        }
+        .status-box h4 {
+            margin-top: 0;
+            margin-bottom: 8px;
+            font-size: 1rem;
+        }
+        
+        /* Responsive styles */
+        @media (max-width: 768px) {
+            .visualization-controls {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .speed-control {
+                width: 100%;
+            }
+            .visualization-area {
+                padding: 5px;
+                min-height: 350px;
+            }
+            .status-box {
+                padding: 8px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .visualization-area {
+                min-height: 300px;
+            }
+            .visualization-area svg text {
+                font-size: 0.8em;
+            }
+            .status-box {
+                min-width: 100px;
+            }
+        }
+    </style>
 </head>
 <body>
     <!-- Navbar -->
