@@ -111,6 +111,7 @@ class BellmanFordVisualizer {
             
             // Draw edge line
             const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+            line.id = `edge-${edge.from}-${edge.to}`; // Add unique ID
             line.setAttribute('x1', startX);
             line.setAttribute('y1', startY);
             line.setAttribute('x2', endX);
@@ -218,8 +219,12 @@ class BellmanFordVisualizer {
             for (const edge of this.edges) {
                 await this.sleep(this.animationSpeed);
                 
-                // Highlight current edge
-                const line = this.findEdge(edge.from, edge.to);
+                // Highlight current edge using ID
+                const line = document.getElementById(`edge-${edge.from}-${edge.to}`);
+                if (!line) { // Add check in case line is somehow not found
+                    console.warn(`Edge line not found: edge-${edge.from}-${edge.to}`);
+                    continue; 
+                }
                 line.setAttribute('stroke', '#ff9800');
                 line.setAttribute('stroke-width', '3');
 
@@ -235,8 +240,12 @@ class BellmanFordVisualizer {
                 }
 
                 await this.sleep(this.animationSpeed);
-                line.setAttribute('stroke', '#666');
-                line.setAttribute('stroke-width', '2');
+                // Reset edge color using ID
+                const currentLine = document.getElementById(`edge-${edge.from}-${edge.to}`);
+                 if (currentLine) { // Add check here too
+                    currentLine.setAttribute('stroke', '#666');
+                    currentLine.setAttribute('stroke-width', '2');
+                 }
             }
         }
 
@@ -246,9 +255,14 @@ class BellmanFordVisualizer {
             if (this.distances[edge.from] !== Infinity && 
                 this.distances[edge.from] + edge.weight < this.distances[edge.to]) {
                 hasNegativeCycle = true;
-                const line = this.findEdge(edge.from, edge.to);
-                line.setAttribute('stroke', '#ff4444');
-                line.setAttribute('stroke-width', '3');
+                 // Highlight negative cycle edge using ID
+                const line = document.getElementById(`edge-${edge.from}-${edge.to}`);
+                 if (line) { // Add check
+                    line.setAttribute('stroke', '#ff4444');
+                    line.setAttribute('stroke-width', '3');
+                 } else {
+                     console.warn(`Edge line not found for neg cycle: edge-${edge.from}-${edge.to}`);
+                 }
             }
         }
 
@@ -263,25 +277,9 @@ class BellmanFordVisualizer {
 
     updateDistanceLabel(nodeId) {
         const label = this.svg.querySelector(`.distance-${nodeId}`);
-        label.textContent = this.distances[nodeId] === Infinity ? '∞' : this.distances[nodeId];
-    }
-
-    findEdge(from, to) {
-        const lines = this.svg.querySelectorAll('line');
-        for (const line of lines) {
-            const x1 = parseFloat(line.getAttribute('x1'));
-            const y1 = parseFloat(line.getAttribute('y1'));
-            const x2 = parseFloat(line.getAttribute('x2'));
-            const y2 = parseFloat(line.getAttribute('y2'));
-            
-            if ((Math.abs(x1 - this.nodes[from].x) < 1 && Math.abs(y1 - this.nodes[from].y) < 1 &&
-                 Math.abs(x2 - this.nodes[to].x) < 1 && Math.abs(y2 - this.nodes[to].y) < 1) ||
-                (Math.abs(x1 - this.nodes[to].x) < 1 && Math.abs(y1 - this.nodes[to].y) < 1 &&
-                 Math.abs(x2 - this.nodes[from].x) < 1 && Math.abs(y2 - this.nodes[from].y) < 1)) {
-                return line;
-            }
+        if (label) { // Add null check for label
+             label.textContent = this.distances[nodeId] === Infinity ? '∞' : this.distances[nodeId];
         }
-        return null;
     }
 
     reset() {
