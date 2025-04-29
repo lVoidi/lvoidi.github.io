@@ -11,7 +11,7 @@ Disallow: /static/js/
 Disallow: /static/css/ 
 
 # Sitemap location
-Sitemap: https://lvoidi.github.io/sitemap.xml
+Sitemap: https://roarba.com/sitemap.xml
 
 # Crawl delay to prevent server overload
 Crawl-delay: 10

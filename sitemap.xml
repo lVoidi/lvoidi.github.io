@@ -2,377 +2,377 @@
 		<!--	created with www.mysitemapgenerator.com	-->
 		<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
-	<loc>https://lvoidi.github.io/</loc>
+	<loc>https://roarba.com/</loc>
 	<lastmod>2025-04-24T02:38:13+01:00</lastmod>
 	<priority>1.0</priority>
 </url>
 <url>
-	<loc>https://lvoidi.github.io/algorithms/index.html</loc>
+	<loc>https://roarba.com/algorithms/index.html</loc>
 	<lastmod>2025-04-24T02:38:13+01:00</lastmod>
 	<priority>0.8</priority>
 </url>
 <url>
-	<loc>https://lvoidi.github.io/algorithms/backtracking/n-queens.html</loc>
+	<loc>https://roarba.com/algorithms/backtracking/n-queens.html</loc>
 	<lastmod>2025-04-24T02:38:13+01:00</lastmod>
 	<priority>0.6</priority>
 </url>
 <url>
-	<loc>https://lvoidi.github.io/algorithms/backtracking/rat-maze.html</loc>
+	<loc>https://roarba.com/algorithms/backtracking/rat-maze.html</loc>
 	<lastmod>2025-04-24T02:38:13+01:00</lastmod>
 	<priority>0.6</priority>
 </url>
 <url>
-	<loc>https://lvoidi.github.io/algorithms/backtracking/string-permutations.html</loc>
+	<loc>https://roarba.com/algorithms/backtracking/string-permutations.html</loc>
 	<lastmod>2025-04-24T02:38:13+01:00</lastmod>
 	<priority>0.6</priority>
 </url>
 <url>
-	<loc>https://lvoidi.github.io/algorithms/backtracking/sudoku.html</loc>
+	<loc>https://roarba.com/algorithms/backtracking/sudoku.html</loc>
 	<lastmod>2025-04-24T02:38:13+01:00</lastmod>
 	<priority>0.6</priority>
 </url>
 <url>
-	<loc>https://lvoidi.github.io/algorithms/backtracking/word-break.html</loc>
+	<loc>https://roarba.com/algorithms/backtracking/word-break.html</loc>
 	<lastmod>2025-04-24T02:38:13+01:00</lastmod>
 	<priority>0.6</priority>
 </url>
 <url>
-	<loc>https://lvoidi.github.io/algorithms/cryptographic/aes.html</loc>
+	<loc>https://roarba.com/algorithms/cryptographic/aes.html</loc>
 	<lastmod>2025-04-24T02:38:13+01:00</lastmod>
 	<priority>0.6</priority>
 </url>
 <url>
-	<loc>https://lvoidi.github.io/algorithms/cryptographic/chacha20.html</loc>
+	<loc>https://roarba.com/algorithms/cryptographic/chacha20.html</loc>
 	<lastmod>2025-04-24T02:38:13+01:00</lastmod>
 	<priority>0.6</priority>
 </url>
 <url>
-	<loc>https://lvoidi.github.io/algorithms/cryptographic/rsa.html</loc>
+	<loc>https://roarba.com/algorithms/cryptographic/rsa.html</loc>
 	<lastmod>2025-04-24T02:38:13+01:00</lastmod>
 	<priority>0.6</priority>
 </url>
 <url>
-	<loc>https://lvoidi.github.io/algorithms/cryptographic/sha.html</loc>
+	<loc>https://roarba.com/algorithms/cryptographic/sha.html</loc>
 	<lastmod>2025-04-24T02:38:13+01:00</lastmod>
 	<priority>0.6</priority>
 </url>
 <url>
-	<loc>https://lvoidi.github.io/algorithms/dynamic/editdistance.html</loc>
+	<loc>https://roarba.com/algorithms/dynamic/editdistance.html</loc>
 	<lastmod>2025-04-24T02:38:13+01:00</lastmod>
 	<priority>0.6</priority>
 </url>
 <url>
-	<loc>https://lvoidi.github.io/algorithms/dynamic/fibonacci.html</loc>
+	<loc>https://roarba.com/algorithms/dynamic/fibonacci.html</loc>
 	<lastmod>2025-04-24T02:38:13+01:00</lastmod>
 	<priority>0.6</priority>
 </url>
 <url>
-	<loc>https://lvoidi.github.io/algorithms/dynamic/knapsack.html</loc>
+	<loc>https://roarba.com/algorithms/dynamic/knapsack.html</loc>
 	<lastmod>2025-04-24T02:38:13+01:00</lastmod>
 	<priority>0.6</priority>
 </url>
 <url>
-	<loc>https://lvoidi.github.io/algorithms/dynamic/lcs.html</loc>
+	<loc>https://roarba.com/algorithms/dynamic/lcs.html</loc>
 	<lastmod>2025-04-24T02:38:13+01:00</lastmod>
 	<priority>0.6</priority>
 </url>
 <url>
-	<loc>https://lvoidi.github.io/algorithms/dynamic/subsetsum.html</loc>
+	<loc>https://roarba.com/algorithms/dynamic/subsetsum.html</loc>
 	<lastmod>2025-04-24T02:38:13+01:00</lastmod>
 	<priority>0.6</priority>
 </url>
 <url>
-	<loc>https://lvoidi.github.io/algorithms/graph/astar.html</loc>
+	<loc>https://roarba.com/algorithms/graph/astar.html</loc>
 	<lastmod>2025-04-24T02:38:13+01:00</lastmod>
 	<priority>0.6</priority>
 </url>
 <url>
-	<loc>https://lvoidi.github.io/algorithms/graph/bellman-ford.html</loc>
+	<loc>https://roarba.com/algorithms/graph/bellman-ford.html</loc>
 	<lastmod>2025-04-24T02:38:13+01:00</lastmod>
 	<priority>0.6</priority>
 </url>
 <url>
-	<loc>https://lvoidi.github.io/algorithms/graph/dijkstra.html</loc>
+	<loc>https://roarba.com/algorithms/graph/dijkstra.html</loc>
 	<lastmod>2025-04-24T02:38:13+01:00</lastmod>
 	<priority>0.6</priority>
 </url>
 <url>
-	<loc>https://lvoidi.github.io/algorithms/graph/floyd-warshall.html</loc>
+	<loc>https://roarba.com/algorithms/graph/floyd-warshall.html</loc>
 	<lastmod>2025-04-24T02:38:13+01:00</lastmod>
 	<priority>0.6</priority>
 </url>
 <url>
-	<loc>https://lvoidi.github.io/algorithms/graph/ford-fulkerson.html</loc>
+	<loc>https://roarba.com/algorithms/graph/ford-fulkerson.html</loc>
 	<lastmod>2025-04-24T02:38:13+01:00</lastmod>
 	<priority>0.6</priority>
 </url>
 <url>
-	<loc>https://lvoidi.github.io/algorithms/graph/kahn.html</loc>
+	<loc>https://roarba.com/algorithms/graph/kahn.html</loc>
 	<lastmod>2025-04-24T02:38:13+01:00</lastmod>
 	<priority>0.6</priority>
 </url>
 <url>
-	<loc>https://lvoidi.github.io/algorithms/graph/kosaraju.html</loc>
+	<loc>https://roarba.com/algorithms/graph/kosaraju.html</loc>
 	<lastmod>2025-04-24T02:38:13+01:00</lastmod>
 	<priority>0.6</priority>
 </url>
 <url>
-	<loc>https://lvoidi.github.io/algorithms/graph/prim.html</loc>
+	<loc>https://roarba.com/algorithms/graph/prim.html</loc>
 	<lastmod>2025-04-24T02:38:13+01:00</lastmod>
 	<priority>0.6</priority>
 </url>
 <url>
-	<loc>https://lvoidi.github.io/algorithms/graph/tarjan.html</loc>
+	<loc>https://roarba.com/algorithms/graph/tarjan.html</loc>
 	<lastmod>2025-04-24T02:38:13+01:00</lastmod>
 	<priority>0.6</priority>
 </url>
 <url>
-	<loc>https://lvoidi.github.io/algorithms/greedy/activity-selection.html</loc>
+	<loc>https://roarba.com/algorithms/greedy/activity-selection.html</loc>
 	<lastmod>2025-04-24T02:38:13+01:00</lastmod>
 	<priority>0.6</priority>
 </url>
 <url>
-	<loc>https://lvoidi.github.io/algorithms/greedy/huffman.html</loc>
+	<loc>https://roarba.com/algorithms/greedy/huffman.html</loc>
 	<lastmod>2025-04-24T02:38:13+01:00</lastmod>
 	<priority>0.6</priority>
 </url>
 <url>
-	<loc>https://lvoidi.github.io/algorithms/greedy/job-sequencing.html</loc>
+	<loc>https://roarba.com/algorithms/greedy/job-sequencing.html</loc>
 	<lastmod>2025-04-24T02:38:13+01:00</lastmod>
 	<priority>0.6</priority>
 </url>
 <url>
-	<loc>https://lvoidi.github.io/algorithms/greedy/kruskal.html</loc>
+	<loc>https://roarba.com/algorithms/greedy/kruskal.html</loc>
 	<lastmod>2025-04-24T02:38:13+01:00</lastmod>
 	<priority>0.6</priority>
 </url>
 <url>
-	<loc>https://lvoidi.github.io/algorithms/machine-learning/linear-regression.html</loc>
+	<loc>https://roarba.com/algorithms/machine-learning/linear-regression.html</loc>
 	<lastmod>2025-04-24T02:38:13+01:00</lastmod>
 	<priority>0.6</priority>
 </url>
 <url>
-	<loc>https://lvoidi.github.io/algorithms/machine-learning/svm.html</loc>
+	<loc>https://roarba.com/algorithms/machine-learning/svm.html</loc>
 	<lastmod>2025-04-24T02:38:13+01:00</lastmod>
 	<priority>0.6</priority>
 </url>
 <url>
-	<loc>https://lvoidi.github.io/algorithms/numerical/bisection.html</loc>
+	<loc>https://roarba.com/algorithms/numerical/bisection.html</loc>
 	<lastmod>2025-04-24T02:38:13+01:00</lastmod>
 	<priority>0.6</priority>
 </url>
 <url>
-	<loc>https://lvoidi.github.io/algorithms/numerical/fft.html</loc>
+	<loc>https://roarba.com/algorithms/numerical/fft.html</loc>
 	<lastmod>2025-04-24T02:38:13+01:00</lastmod>
 	<priority>0.6</priority>
 </url>
 <url>
-	<loc>https://lvoidi.github.io/algorithms/numerical/gauss-legendre.html</loc>
+	<loc>https://roarba.com/algorithms/numerical/gauss-legendre.html</loc>
 	<lastmod>2025-04-24T02:38:13+01:00</lastmod>
 	<priority>0.6</priority>
 </url>
 <url>
-	<loc>https://lvoidi.github.io/algorithms/numerical/gauss-newton.html</loc>
+	<loc>https://roarba.com/algorithms/numerical/gauss-newton.html</loc>
 	<lastmod>2025-04-24T02:38:13+01:00</lastmod>
 	<priority>0.6</priority>
 </url>
 <url>
-	<loc>https://lvoidi.github.io/algorithms/numerical/gauss-seidel.html</loc>
+	<loc>https://roarba.com/algorithms/numerical/gauss-seidel.html</loc>
 	<lastmod>2025-04-24T02:38:13+01:00</lastmod>
 	<priority>0.6</priority>
 </url>
 <url>
-	<loc>https://lvoidi.github.io/algorithms/numerical/gaussian-elimination.html</loc>
+	<loc>https://roarba.com/algorithms/numerical/gaussian-elimination.html</loc>
 	<lastmod>2025-04-24T02:38:13+01:00</lastmod>
 	<priority>0.6</priority>
 </url>
 <url>
-	<loc>https://lvoidi.github.io/algorithms/numerical/gaussian-quadrature.html</loc>
+	<loc>https://roarba.com/algorithms/numerical/gaussian-quadrature.html</loc>
 	<lastmod>2025-04-24T02:38:13+01:00</lastmod>
 	<priority>0.6</priority>
 </url>
 <url>
-	<loc>https://lvoidi.github.io/algorithms/numerical/newton.html</loc>
+	<loc>https://roarba.com/algorithms/numerical/newton.html</loc>
 	<lastmod>2025-04-24T02:38:13+01:00</lastmod>
 	<priority>0.6</priority>
 </url>
 <url>
-	<loc>https://lvoidi.github.io/algorithms/numerical/secant.html</loc>
+	<loc>https://roarba.com/algorithms/numerical/secant.html</loc>
 	<lastmod>2025-04-24T02:38:13+01:00</lastmod>
 	<priority>0.6</priority>
 </url>
 <url>
-	<loc>https://lvoidi.github.io/algorithms/randomized/kargers-min-cut.html</loc>
+	<loc>https://roarba.com/algorithms/randomized/kargers-min-cut.html</loc>
 	<lastmod>2025-04-24T02:38:13+01:00</lastmod>
 	<priority>0.6</priority>
 </url>
 <url>
-	<loc>https://lvoidi.github.io/algorithms/randomized/monte-carlo-pi.html</loc>
+	<loc>https://roarba.com/algorithms/randomized/monte-carlo-pi.html</loc>
 	<lastmod>2025-04-24T02:38:13+01:00</lastmod>
 	<priority>0.6</priority>
 </url>
 <url>
-	<loc>https://lvoidi.github.io/algorithms/searching/bfs.html</loc>
+	<loc>https://roarba.com/algorithms/searching/bfs.html</loc>
 	<lastmod>2025-04-24T02:38:13+01:00</lastmod>
 	<priority>0.6</priority>
 </url>
 <url>
-	<loc>https://lvoidi.github.io/algorithms/searching/binary-search.html</loc>
+	<loc>https://roarba.com/algorithms/searching/binary-search.html</loc>
 	<lastmod>2025-04-24T02:38:13+01:00</lastmod>
 	<priority>0.6</priority>
 </url>
 <url>
-	<loc>https://lvoidi.github.io/algorithms/searching/dfs.html</loc>
+	<loc>https://roarba.com/algorithms/searching/dfs.html</loc>
 	<lastmod>2025-04-24T02:38:13+01:00</lastmod>
 	<priority>0.6</priority>
 </url>
 <url>
-	<loc>https://lvoidi.github.io/algorithms/sorting/bubblesort.html</loc>
+	<loc>https://roarba.com/algorithms/sorting/bubblesort.html</loc>
 	<lastmod>2025-04-24T02:38:13+01:00</lastmod>
 	<priority>0.6</priority>
 </url>
 <url>
-	<loc>https://lvoidi.github.io/algorithms/sorting/bucketsort.html</loc>
+	<loc>https://roarba.com/algorithms/sorting/bucketsort.html</loc>
 	<lastmod>2025-04-24T02:38:13+01:00</lastmod>
 	<priority>0.6</priority>
 </url>
 <url>
-	<loc>https://lvoidi.github.io/algorithms/sorting/countingsort.html</loc>
+	<loc>https://roarba.com/algorithms/sorting/countingsort.html</loc>
 	<lastmod>2025-04-24T02:38:13+01:00</lastmod>
 	<priority>0.6</priority>
 </url>
 <url>
-	<loc>https://lvoidi.github.io/algorithms/sorting/heapsort.html</loc>
+	<loc>https://roarba.com/algorithms/sorting/heapsort.html</loc>
 	<lastmod>2025-04-24T02:38:13+01:00</lastmod>
 	<priority>0.6</priority>
 </url>
 <url>
-	<loc>https://lvoidi.github.io/algorithms/sorting/insertionsort.html</loc>
+	<loc>https://roarba.com/algorithms/sorting/insertionsort.html</loc>
 	<lastmod>2025-04-24T02:38:13+01:00</lastmod>
 	<priority>0.6</priority>
 </url>
 <url>
-	<loc>https://lvoidi.github.io/algorithms/sorting/mergesort.html</loc>
+	<loc>https://roarba.com/algorithms/sorting/mergesort.html</loc>
 	<lastmod>2025-04-24T02:38:13+01:00</lastmod>
 	<priority>0.6</priority>
 </url>
 <url>
-	<loc>https://lvoidi.github.io/algorithms/sorting/pancake.html</loc>
+	<loc>https://roarba.com/algorithms/sorting/pancake.html</loc>
 	<lastmod>2025-04-24T02:38:13+01:00</lastmod>
 	<priority>0.6</priority>
 </url>
 <url>
-	<loc>https://lvoidi.github.io/algorithms/sorting/quicksort.html</loc>
+	<loc>https://roarba.com/algorithms/sorting/quicksort.html</loc>
 	<lastmod>2025-04-24T02:38:13+01:00</lastmod>
 	<priority>0.6</priority>
 </url>
 <url>
-	<loc>https://lvoidi.github.io/algorithms/sorting/radixsort.html</loc>
+	<loc>https://roarba.com/algorithms/sorting/radixsort.html</loc>
 	<lastmod>2025-04-24T02:38:13+01:00</lastmod>
 	<priority>0.6</priority>
 </url>
 <url>
-	<loc>https://lvoidi.github.io/algorithms/sorting/selectionsort.html</loc>
+	<loc>https://roarba.com/algorithms/sorting/selectionsort.html</loc>
 	<lastmod>2025-04-24T02:38:13+01:00</lastmod>
 	<priority>0.6</priority>
 </url>
 <url>
-	<loc>https://lvoidi.github.io/algorithms/sorting/shellsort.html</loc>
+	<loc>https://roarba.com/algorithms/sorting/shellsort.html</loc>
 	<lastmod>2025-04-24T02:38:13+01:00</lastmod>
 	<priority>0.6</priority>
 </url>
 <url>
-	<loc>https://lvoidi.github.io/algorithms/string/kmp.html</loc>
+	<loc>https://roarba.com/algorithms/string/kmp.html</loc>
 	<lastmod>2025-04-24T02:38:13+01:00</lastmod>
 	<priority>0.6</priority>
 </url>
 <url>
-	<loc>https://lvoidi.github.io/algorithms/string/markov.html</loc>
+	<loc>https://roarba.com/algorithms/string/markov.html</loc>
 	<lastmod>2025-04-24T02:38:13+01:00</lastmod>
 	<priority>0.6</priority>
 </url>
 <url>
-	<loc>https://lvoidi.github.io/algorithms/string/rabin-karp.html</loc>
+	<loc>https://roarba.com/algorithms/string/rabin-karp.html</loc>
 	<lastmod>2025-04-24T02:38:13+01:00</lastmod>
 	<priority>0.6</priority>
 </url>
 <url>
-	<loc>https://lvoidi.github.io/singularity/</loc>
+	<loc>https://roarba.com/singularity/</loc>
 	<lastmod>2025-04-24T02:38:15+01:00</lastmod>
 	<priority>0.8</priority>
 </url>
 <url>
-	<loc>https://lvoidi.github.io/singularity/pages/microsoft-majorana.html</loc>
+	<loc>https://roarba.com/singularity/pages/microsoft-majorana.html</loc>
 	<lastmod>2025-04-24T02:38:15+01:00</lastmod>
 	<priority>0.6</priority>
 </url>
 <url>
-	<loc>https://lvoidi.github.io/singularity/pages/attention-is-all-you-need.html</loc>
+	<loc>https://roarba.com/singularity/pages/attention-is-all-you-need.html</loc>
 	<lastmod>2025-04-24T02:38:15+01:00</lastmod>
 	<priority>0.6</priority>
 </url>
 <url>
-	<loc>https://lvoidi.github.io/singularity/pages/sui-whitepaper.html</loc>
+	<loc>https://roarba.com/singularity/pages/sui-whitepaper.html</loc>
 	<lastmod>2025-04-24T02:38:15+01:00</lastmod>
 	<priority>0.6</priority>
 </url>
 <url>
-	<loc>https://lvoidi.github.io/singularity/pages/quantum-teleportation.html</loc>
+	<loc>https://roarba.com/singularity/pages/quantum-teleportation.html</loc>
 	<lastmod>2025-04-24T02:38:15+01:00</lastmod>
 	<priority>0.6</priority>
 </url>
 <url>
-	<loc>https://lvoidi.github.io/singularity/pages/bitcoin-whitepaper.html</loc>
+	<loc>https://roarba.com/singularity/pages/bitcoin-whitepaper.html</loc>
 	<lastmod>2025-04-24T02:38:15+01:00</lastmod>
 	<priority>0.6</priority>
 </url>
 <url>
-	<loc>https://lvoidi.github.io/void/</loc>
+	<loc>https://roarba.com/void/</loc>
 	<lastmod>2025-04-24T02:38:15+01:00</lastmod>
 	<priority>0.8</priority>
 </url>
 <url>
-	<loc>https://lvoidi.github.io/void/pages/brave-browser.html</loc>
+	<loc>https://roarba.com/void/pages/brave-browser.html</loc>
 	<lastmod>2025-04-24T02:38:15+01:00</lastmod>
 	<priority>0.6</priority>
 </url>
 <url>
-	<loc>https://lvoidi.github.io/void/pages/chatgptimg.html</loc>
+	<loc>https://roarba.com/void/pages/chatgptimg.html</loc>
 	<lastmod>2025-04-24T02:38:15+01:00</lastmod>
 	<priority>0.6</priority>
 </url>
 <url>
-	<loc>https://lvoidi.github.io/void/pages/gpg.html</loc>
+	<loc>https://roarba.com/void/pages/gpg.html</loc>
 	<lastmod>2025-04-24T02:38:15+01:00</lastmod>
 	<priority>0.6</priority>
 </url>
 <url>
-	<loc>https://lvoidi.github.io/void/pages/learning-programming.html</loc>
+	<loc>https://roarba.com/void/pages/learning-programming.html</loc>
 	<lastmod>2025-04-24T02:38:15+01:00</lastmod>
 	<priority>0.6</priority>
 </url>
 <url>
-	<loc>https://lvoidi.github.io/void/pages/leetcode-reverse-number.html</loc>
+	<loc>https://roarba.com/void/pages/leetcode-reverse-number.html</loc>
 	<lastmod>2025-04-24T02:38:15+01:00</lastmod>
 	<priority>0.6</priority>
 </url>
 <url>
-	<loc>https://lvoidi.github.io/void/pages/mass-disinformation.html</loc>
+	<loc>https://roarba.com/void/pages/mass-disinformation.html</loc>
 	<lastmod>2025-04-24T02:38:15+01:00</lastmod>
 	<priority>0.6</priority>
 </url>
 <url>
-	<loc>https://lvoidi.github.io/void/pages/microsoft-majorana.html</loc>
+	<loc>https://roarba.com/void/pages/microsoft-majorana.html</loc>
 	<lastmod>2025-04-24T02:38:15+01:00</lastmod>
 	<priority>0.6</priority>
 </url>
 <url>
-	<loc>https://lvoidi.github.io/void/pages/sui-best-blockchain.html</loc>
+	<loc>https://roarba.com/void/pages/sui-best-blockchain.html</loc>
 	<lastmod>2025-04-24T02:38:15+01:00</lastmod>
 	<priority>0.6</priority>
 </url>
 <url>
-	<loc>https://lvoidi.github.io/void/pages/tensorzero.html</loc>
+	<loc>https://roarba.com/void/pages/tensorzero.html</loc>
 	<lastmod>2025-04-24T02:38:15+01:00</lastmod>
 	<priority>0.6</priority>
 </url>
