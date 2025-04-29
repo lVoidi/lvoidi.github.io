@@ -38,6 +38,121 @@
     <!-- Icon -->
     <link rel="icon" href="../../static/img/icon.png" type="image/x-icon">
     
+    <style>
+        /* DFS Visualization Styles */
+        .visualization-container {
+            width: 100%;
+            max-width: 700px; /* Limit max width */
+            margin: 20px auto;
+            padding: 15px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            background: var(--code-bg-color);
+            border-radius: 8px;
+        }
+        .visualization-controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 20px;
+            align-items: center;
+        }
+        .control-group { /* Added for button spacing */
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            flex-grow: 1; 
+        }
+        .speed-control {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            min-width: 150px;
+            flex-basis: 200px;
+        }
+        .speed-control label {
+            margin-bottom: 0;
+            color: var(--text-color);
+            white-space: nowrap;
+        }
+        .speed-control input[type="range"] {
+            flex-grow: 1;
+            cursor: pointer;
+        }
+        .visualization-area {
+            width: 100%;
+            min-height: 400px; /* Ensure minimum height */
+            background: var(--background-color);
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            margin-bottom: 15px;
+            overflow: hidden; /* Prevent content spill */
+            position: relative; 
+        }
+        #dfsVisualization {
+            display: block; 
+            width: 100%;
+            height: 100%;
+            /* Add viewBox via JS if needed for scaling */
+        }
+        .visualization-steps {
+            text-align: center;
+            margin-top: 10px;
+            color: var(--text-color-muted);
+            font-style: italic;
+        }
+        
+        /* Graph element styles */
+        .graph-edge {
+            stroke: #6c757d; 
+            stroke-width: 2;
+            transition: stroke 0.3s ease;
+        }
+         .graph-edge.visited {
+            stroke: #17a2b8; /* Cyan for visited edge */
+            stroke-width: 3;
+        }
+       .graph-node {
+            fill: var(--secondary-color);
+            stroke: #fff;
+            stroke-width: 2;
+            cursor: pointer;
+            transition: fill 0.3s ease;
+        }
+        .graph-node.visited {
+            fill: #28a745; /* Green for visited node */
+        }
+        .graph-node.current {
+            fill: #ffc107; /* Yellow for current node */
+            stroke-width: 3;
+        }
+        .node-label {
+            fill: #fff;
+            font-size: 12px;
+            text-anchor: middle;
+            pointer-events: none;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+             .visualization-container { max-width: 95%; padding: 10px; }
+             .visualization-controls {
+                 flex-direction: column;
+                 align-items: stretch;
+             }
+             .control-group {
+                  display: grid;
+                  grid-template-columns: 1fr 1fr;
+             }
+             .speed-control { width: 100%; }
+         }
+
+        @media (max-width: 480px) {
+            .control-group { grid-template-columns: 1fr; }
+            .visualization-container { padding: 5px; }
+            .btn { font-size: 0.9em; padding: 0.3rem 0.6rem; }
+        }
+    </style>
+    
     <!-- Schema.org structured data -->
     <script type="application/ld+json">
     {
