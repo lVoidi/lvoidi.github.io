@@ -73,29 +73,77 @@ class BellmanFordVisualizer {
     }
 
     drawGraph() {
+        // Define arrowhead marker first
+        const defs = document.createElementNS('http://www.w3.org/2000/svg', 'defs');
+        const marker = document.createElementNS('http://www.w3.org/2000/svg', 'marker');
+        marker.setAttribute('id', 'arrowhead');
+        marker.setAttribute('markerWidth', '10');
+        marker.setAttribute('markerHeight', '7');
+        marker.setAttribute('refX', '9'); // Adjust refX to position arrowhead correctly
+        marker.setAttribute('refY', '3.5');
+        marker.setAttribute('orient', 'auto');
+        
+        const polygon = document.createElementNS('http://www.w3.org/2000/svg', 'polygon');
+        polygon.setAttribute('points', '0 0, 10 3.5, 0 7');
+        polygon.setAttribute('fill', '#666'); // Arrow color
+        
+        marker.appendChild(polygon);
+        defs.appendChild(marker);
+        this.svg.appendChild(defs);
+
         // Draw edges with weights
         for (const edge of this.edges) {
             const from = this.nodes[edge.from];
             const to = this.nodes[edge.to];
+            const nodeRadius = 20;
+            const arrowSize = 10;
             
-            // Calculate edge path
+            // Calculate angle and points for arrow placement
+            const dx = to.x - from.x;
+            const dy = to.y - from.y;
+            const angle = Math.atan2(dy, dx);
+            
+            // Adjust end point to account for arrowhead and node radius
+            const startX = from.x + nodeRadius * Math.cos(angle);
+            const startY = from.y + nodeRadius * Math.sin(angle);
+            const endX = to.x - (nodeRadius + arrowSize) * Math.cos(angle);
+            const endY = to.y - (nodeRadius + arrowSize) * Math.sin(angle);
+            
+            // Draw edge line
             const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-            line.setAttribute('x1', from.x);
-            line.setAttribute('y1', from.y);
-            line.setAttribute('x2', to.x);
-            line.setAttribute('y2', to.y);
+            line.setAttribute('x1', startX);
+            line.setAttribute('y1', startY);
+            line.setAttribute('x2', endX);
+            line.setAttribute('y2', endY);
             line.setAttribute('stroke', '#666');
             line.setAttribute('stroke-width', '2');
+            line.setAttribute('marker-end', 'url(#arrowhead)'); // Add arrowhead
             this.svg.appendChild(line);
 
-            // Add weight label
+            // Add weight background circle
+            const midX = (startX + endX) / 2;
+            const midY = (startY + endY) / 2;
+            const offsetDist = 15; // Distance to offset the label perpendicular to the edge
+            const labelX = midX + offsetDist * Math.sin(angle); // Offset perpendicular to the line
+            const labelY = midY - offsetDist * Math.cos(angle);
+            
+            const labelBg = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+            labelBg.setAttribute('cx', labelX);
+            labelBg.setAttribute('cy', labelY);
+            labelBg.setAttribute('r', '12'); // Background circle size
+            labelBg.setAttribute('fill', '#333'); // Dark background
+            labelBg.setAttribute('stroke', '#999');
+            labelBg.setAttribute('stroke-width', '1');
+            this.svg.appendChild(labelBg);
+
+            // Add weight label text
             const weightLabel = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-            const midX = (from.x + to.x) / 2;
-            const midY = (from.y + to.y) / 2;
-            weightLabel.setAttribute('x', midX);
-            weightLabel.setAttribute('y', midY);
-            weightLabel.setAttribute('fill', edge.weight < 0 ? '#ff4444' : '#ffffff');
+            weightLabel.setAttribute('x', labelX);
+            weightLabel.setAttribute('y', labelY + 4); // Adjust Y for vertical centering
+            weightLabel.setAttribute('fill', edge.weight < 0 ? '#ff6b6b' : '#90EE90'); // Red for negative, Light Green for positive
             weightLabel.setAttribute('text-anchor', 'middle');
+            weightLabel.setAttribute('font-weight', 'bold');
+            weightLabel.setAttribute('font-size', '12px'); // Slightly smaller font
             weightLabel.textContent = edge.weight;
             this.svg.appendChild(weightLabel);
         }
