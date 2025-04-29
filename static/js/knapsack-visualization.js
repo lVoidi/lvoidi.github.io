@@ -102,16 +102,18 @@ class KnapsackVisualizer {
         
         // Add labels
         const weightLabel = document.createElementNS("http://www.w3.org/2000/svg", "text");
-        weightLabel.setAttribute('x', this.padding);
-        weightLabel.setAttribute('y', this.padding * 2.5);
+        weightLabel.setAttribute('x', this.padding + (this.capacity * this.cellSize) / 2);
+        weightLabel.setAttribute('y', this.padding * 3.5);
         weightLabel.setAttribute('class', 'axis-label');
+        weightLabel.setAttribute('text-anchor', 'middle');
         weightLabel.textContent = 'Weight →';
         
         const itemLabel = document.createElementNS("http://www.w3.org/2000/svg", "text");
-        itemLabel.setAttribute('x', this.padding/2);
-        itemLabel.setAttribute('y', this.padding * 4);
+        itemLabel.setAttribute('x', this.padding * 0.4);
+        itemLabel.setAttribute('y', this.padding + (this.items.length * this.cellSize) / 2 + 120);
         itemLabel.setAttribute('class', 'axis-label');
-        itemLabel.setAttribute('transform', `rotate(-90, ${this.padding/2}, ${this.padding * 4})`);
+        itemLabel.setAttribute('text-anchor', 'middle');
+        itemLabel.setAttribute('transform', `rotate(-90, ${this.padding * 0.4}, ${this.padding + (this.items.length * this.cellSize) / 2 + 120})`);
         itemLabel.textContent = 'Items →';
         
         this.svg.appendChild(itemsGroup);
