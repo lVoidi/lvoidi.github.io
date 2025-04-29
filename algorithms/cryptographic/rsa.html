@@ -80,6 +80,63 @@
 
     <!-- Icon -->
     <link rel="icon" href="../../static/img/icon.png" type="image/x-icon">
+
+    <style>
+        /* Ensure visualization area has enough space */
+        .visualization-area {
+            padding: 20px; /* Add padding */
+            min-height: 350px; /* Increased minimum height */
+            background: var(--background-color);
+            border-radius: 8px;
+            margin-bottom: 20px;
+            overflow-y: auto; /* Add scroll if content overflows */
+        }
+
+        .rsa-steps .step {
+            margin-bottom: 15px; /* Add space between steps */
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 5px;
+        }
+
+        .key-details p, 
+        .encryption-details .step-detail, 
+        .decryption-details .step-detail {
+            margin-bottom: 5px; /* Space out lines */
+            font-family: monospace;
+        }
+
+        .key-details {
+            padding-top: 10px;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .visualization-area {
+                padding: 15px;
+                min-height: 300px; /* Adjust min-height for tablets */
+            }
+            .rsa-steps .step {
+                padding: 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .visualization-area {
+                padding: 10px;
+                min-height: 280px; /* Further adjust min-height for phones */
+            }
+            .rsa-steps .step {
+                padding: 8px;
+                margin-bottom: 10px;
+            }
+            .key-details p, 
+            .encryption-details .step-detail, 
+            .decryption-details .step-detail {
+                font-size: 0.9em; /* Slightly smaller font */
+            }
+        }
+    </style>
 </head>
 <body>
     <div id="navbar-placeholder"></div>
