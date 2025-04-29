@@ -178,6 +178,7 @@
             text-align: center;
             font-family: monospace;
             transition: background-color 0.3s;
+            word-break: break-all;
         }
 
         /* Responsive styles */
@@ -188,6 +189,11 @@
 
             .control-group {
                 width: 100%;
+            }
+
+            .chacha-state-matrix {
+                gap: 5px;
+                padding: 10px;
             }
 
             .matrix-cell {
@@ -201,6 +207,10 @@
         }
 
         @media (max-width: 360px) {
+            .chacha-state-matrix {
+                padding: 5px;
+            }
+
             .matrix-cell {
                 padding: 4px;
                 font-size: 0.65em;
