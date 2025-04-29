@@ -765,36 +765,35 @@ pre[class*="language-"] {
 }
 
 .history-box {
-    background-color: #2d2d3a;
-    color: #ffffff;
-    padding: 20px;
-    border-radius: 8px;
-    margin-top: 20px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-    border-left: 5px solid #6a5acd;
+    margin-bottom: 3rem;
 }
 
 .history-content {
     display: flex;
     align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 1.5rem;
 }
 
 .history-image {
-    margin-right: 20px;
+    flex-shrink: 0;
     width: 150px;
+    max-width: 100%;
     height: auto;
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .history-box h2 {
-    color: #6a5acd;
-    margin-bottom: 15px;
+    color: var(--accent-color);
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
 }
 
 .history-content p {
     line-height: 1.6;
     margin: 0;
+    flex: 1 1 300px;
+    min-width: 250px;
 }
 
 .speed-control {
@@ -940,7 +939,9 @@ pre[class*="language-"] {
 
 .sequence-label {
     fill: var(--text-color);
-    font-size: 14px;
+    font-size: 16px;
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: bold;
 }
 
 .cell-text {
@@ -1051,10 +1052,12 @@ pre[class*="language-"] {
     display: flex;
     gap: 1rem;
     margin-bottom: 1rem;
+    flex-wrap: wrap;
 }
 
 .string-input {
-    flex: 1;
+    flex: 1 1 200px;
+    min-width: 150px;
     padding: 0.5rem;
     border: 1px solid var(--accent-color);
     background: var(--background-color);
@@ -1177,6 +1180,26 @@ pre[class*="language-"] {
         margin-bottom: 20px;
     }
     
+    .string-inputs {
+        gap: 0.5rem;
+    }
+    .string-input {
+        flex-basis: 100%;
+    }
+    .history-content {
+        flex-direction: column;
+        align-items: center;
+    }
+    .history-image {
+        width: 80%;
+        max-width: 250px;
+        margin-right: 0;
+        margin-bottom: 1rem;
+    }
+    .history-content p {
+        text-align: center;
+        min-width: 0;
+    }
     .visualization-area {
         height: 400px;
     }
@@ -1343,36 +1366,35 @@ pre[class*="language-"] {
 }
 
 .history-box {
-    background-color: #2d2d3a;
-    color: #ffffff;
-    padding: 20px;
-    border-radius: 8px;
-    margin-top: 20px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-    border-left: 5px solid #6a5acd;
+    margin-bottom: 3rem;
 }
 
 .history-content {
     display: flex;
     align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 1.5rem;
 }
 
 .history-image {
-    margin-right: 20px;
+    flex-shrink: 0;
     width: 150px;
+    max-width: 100%;
     height: auto;
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .history-box h2 {
-    color: #6a5acd;
-    margin-bottom: 15px;
+    color: var(--accent-color);
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
 }
 
 .history-content p {
     line-height: 1.6;
     margin: 0;
+    flex: 1 1 300px;
+    min-width: 250px;
 }
 
 .speed-control {
@@ -1518,12 +1540,15 @@ pre[class*="language-"] {
 
 .sequence-label {
     fill: var(--text-color);
-    font-size: 14px;
+    font-size: 16px;
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: bold;
 }
 
 .cell-text {
     fill: var(--text-color);
-    font-size: 12px;
+    font-size: 14px;
+    font-family: 'JetBrains Mono', monospace;
     user-select: none;
 }
 
@@ -1629,10 +1654,12 @@ pre[class*="language-"] {
     display: flex;
     gap: 1rem;
     margin-bottom: 1rem;
+    flex-wrap: wrap;
 }
 
 .string-input {
-    flex: 1;
+    flex: 1 1 200px;
+    min-width: 150px;
     padding: 0.5rem;
     border: 1px solid var(--accent-color);
     background: var(--background-color);
@@ -1755,6 +1782,26 @@ pre[class*="language-"] {
         margin-bottom: 20px;
     }
     
+    .string-inputs {
+        gap: 0.5rem;
+    }
+    .string-input {
+        flex-basis: 100%;
+    }
+    .history-content {
+        flex-direction: column;
+        align-items: center;
+    }
+    .history-image {
+        width: 80%;
+        max-width: 250px;
+        margin-right: 0;
+        margin-bottom: 1rem;
+    }
+    .history-content p {
+        text-align: center;
+        min-width: 0;
+    }
     .visualization-area {
         height: 400px;
     }
