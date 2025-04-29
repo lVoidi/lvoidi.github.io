@@ -16,8 +16,8 @@ class JobSequencingVisualizer {
         this.animationSpeed = 1000;
         this.svg = null;
         this.width = 0;
-        this.height = 0;
-        this.margin = { top: 40, right: 30, bottom: 50, left: 50 };
+        this.margin = { top: 40, right: 30, bottom: 100, left: 30 };
+        this.isVerticalLayout = false;
         
         this.colors = {
             background: '#282a36',
@@ -57,7 +57,7 @@ class JobSequencingVisualizer {
         this.svg = d3.select('#jobSequencingVisualization')
             .append('svg')
             .attr('width', this.width)
-            .attr('height', this.height)
+            .style('max-width', '100%')
             .style('background', this.colors.background);
             
         // Generate initial random jobs
@@ -66,13 +66,18 @@ class JobSequencingVisualizer {
     
     updateDimensions() {
         const containerWidth = this.visualizationArea.clientWidth;
-        this.width = containerWidth;
-        this.height = 500;
+        this.width = Math.max(300, containerWidth);
+        this.isVerticalLayout = this.width < 768;
+        
+        // Add/remove class based on layout
+        if (this.isVerticalLayout) {
+            this.visualizationArea.classList.add('vertical-layout');
+        } else {
+            this.visualizationArea.classList.remove('vertical-layout');
+        }
         
         if (this.svg) {
-            this.svg
-                .attr('width', this.width)
-                .attr('height', this.height);
+            this.svg.attr('width', this.width);
         }
     }
     
@@ -98,7 +103,6 @@ class JobSequencingVisualizer {
         }
         
         this.reset();
-        this.drawVisualization();
         this.currentStep.textContent = `Generated ${numJobs} random jobs. Click Start to begin.`;
     }
     
@@ -122,6 +126,8 @@ class JobSequencingVisualizer {
         this.isRunning = false;
         this.startBtn.disabled = false;
         
+        // Update dimensions (which also sets the layout class) before drawing
+        this.updateDimensions();
         this.drawVisualization();
         this.currentStep.textContent = 'Click Start to begin visualization';
     }
@@ -209,47 +215,78 @@ class JobSequencingVisualizer {
         // Clear previous visualization
         this.svg.selectAll('*').remove();
         
+        // Calculate innerWidth based on current width
         const innerWidth = this.width - this.margin.left - this.margin.right;
-        const innerHeight = this.height - this.margin.top - this.margin.bottom;
+
+        // Define heights conceptually, actual SVG height will adapt
+        const defaultRowHeight = 25; // Example base row height
+        const headerHeight = 30;
+        const tableContentHeight = headerHeight + Math.max(10, this.jobs.length) * defaultRowHeight;
+        const slotContentHeight = 150; // Approximate height for slots section
+        const legendContentHeight = 80; // Approximate height for legend
+        const verticalGap = 30; // Fixed gap
+
+        // Calculate required heights based on content and layout
+        let tableHeight, slotHeight, legendY;
+        let totalHeightEstimate;
         
-        // Create main group
         const g = this.svg.append('g')
             .attr('transform', `translate(${this.margin.left}, ${this.margin.top})`);
+
+        if (this.isVerticalLayout) {
+            // Estimate total height needed for vertical layout
+            tableHeight = tableContentHeight;
+            slotHeight = slotContentHeight;
+            legendY = tableHeight + verticalGap + slotHeight + verticalGap; // Position legend below slots
+            totalHeightEstimate = this.margin.top + legendY + legendContentHeight + this.margin.bottom; 
+            
+            const panelWidth = innerWidth;
+            this.drawJobsTable(g, 0, 0, panelWidth, tableHeight);
+            this.drawTimeSlots(g, 0, tableHeight + verticalGap, panelWidth, slotHeight);
+            this.drawLegend(g, 0, legendY, innerWidth); 
+        } else {
+            // Estimate total height needed for horizontal layout
+            tableHeight = tableContentHeight;
+            slotHeight = slotContentHeight;
+            legendY = Math.max(tableHeight, slotHeight) + verticalGap; // Position below taller panel
+            totalHeightEstimate = this.margin.top + legendY + legendContentHeight + this.margin.bottom;
+
+            const panelWidth = innerWidth * 0.48;
+            const horizontalGap = innerWidth * 0.04;
+            this.drawJobsTable(g, 0, 0, panelWidth, tableHeight);
+            this.drawTimeSlots(g, panelWidth + horizontalGap, 0, panelWidth, slotHeight);
+             this.drawLegend(g, 0, legendY, innerWidth);
+        }
         
-        // Draw jobs table
-        this.drawJobsTable(g, innerWidth, innerHeight);
-        
-        // Draw time slots
-        this.drawTimeSlots(g, innerWidth, innerHeight);
-        
-        // Draw legend
-        this.drawLegend();
+        // Set viewBox based on calculated dimensions
+        // This allows internal elements to position correctly while SVG scales
+        this.svg.attr('viewBox', `0 0 ${this.width} ${totalHeightEstimate}`);
+        this.svg.style('height', null); // Let CSS or browser determine final rendered height based on aspect ratio
     }
     
-    drawJobsTable(g, innerWidth, innerHeight) {
-        const tableWidth = innerWidth * 0.45;
-        const tableHeight = innerHeight * 0.6;
+    drawJobsTable(g, x, y, width, height) {
         const headerHeight = 30;
-        const rowHeight = (tableHeight - headerHeight) / Math.max(10, this.jobs.length);
+        const rowHeight = Math.max(15, (height - headerHeight) / Math.max(10, this.jobs.length));
+        const fontSize = Math.max(8, Math.min(12, rowHeight * 0.5));
         
         // Draw table background
         g.append('rect')
-            .attr('x', 0)
-            .attr('y', 0)
-            .attr('width', tableWidth)
-            .attr('height', tableHeight)
+            .attr('x', x)
+            .attr('y', y)
+            .attr('width', width)
+            .attr('height', height)
             .attr('fill', this.colors.background)
             .attr('stroke', this.colors.text)
             .attr('stroke-width', 1);
         
         // Draw table header
         const headers = ['Job ID', 'Deadline', 'Profit', 'Status'];
-        const columnWidth = tableWidth / headers.length;
+        const columnWidth = width / headers.length;
         
         headers.forEach((header, i) => {
             g.append('rect')
-                .attr('x', i * columnWidth)
-                .attr('y', 0)
+                .attr('x', x + i * columnWidth)
+                .attr('y', y)
                 .attr('width', columnWidth)
                 .attr('height', headerHeight)
                 .attr('fill', this.colors.slot)
@@ -257,10 +294,11 @@ class JobSequencingVisualizer {
                 .attr('stroke-width', 1);
                 
             g.append('text')
-                .attr('x', i * columnWidth + columnWidth / 2)
-                .attr('y', headerHeight / 2 + 5)
+                .attr('x', x + i * columnWidth + columnWidth / 2)
+                .attr('y', y + headerHeight / 2 + 5)
                 .attr('text-anchor', 'middle')
                 .attr('fill', this.colors.text)
+                .attr('font-size', `${fontSize + 1}px`)
                 .text(header);
         });
         
@@ -279,9 +317,9 @@ class JobSequencingVisualizer {
             
             // Draw row background
             g.append('rect')
-                .attr('x', 0)
-                .attr('y', headerHeight + i * rowHeight)
-                .attr('width', tableWidth)
+                .attr('x', x)
+                .attr('y', y + headerHeight + i * rowHeight)
+                .attr('width', width)
                 .attr('height', rowHeight)
                 .attr('fill', rowColor)
                 .attr('opacity', 0.3)
@@ -293,55 +331,53 @@ class JobSequencingVisualizer {
             
             cellValues.forEach((value, j) => {
                 g.append('text')
-                    .attr('x', j * columnWidth + columnWidth / 2)
-                    .attr('y', headerHeight + i * rowHeight + rowHeight / 2 + 5)
+                    .attr('x', x + j * columnWidth + columnWidth / 2)
+                    .attr('y', y + headerHeight + i * rowHeight + rowHeight / 2 + 5)
                     .attr('text-anchor', 'middle')
                     .attr('fill', this.colors.text)
+                    .attr('font-size', `${fontSize}px`)
                     .text(value);
             });
         });
     }
     
-    drawTimeSlots(g, innerWidth, innerHeight) {
+    drawTimeSlots(g, x, y, width, height) {
         if (this.timeSlots.length === 0) return;
         
-        const slotWidth = innerWidth * 0.45;
-        const slotHeight = innerHeight * 0.6;
-        const slotX = innerWidth * 0.55;
-        const slotY = 0;
         const headerHeight = 30;
-        
+        const slotBoxHeight = height - headerHeight;
+        const slotBoxWidth = width / this.timeSlots.length;
+        const fontSize = Math.max(8, Math.min(12, slotBoxWidth * 0.15));
+
         // Draw slots container
         g.append('rect')
-            .attr('x', slotX)
-            .attr('y', slotY)
-            .attr('width', slotWidth)
-            .attr('height', slotHeight)
+            .attr('x', x)
+            .attr('y', y)
+            .attr('width', width)
+            .attr('height', height)
             .attr('fill', this.colors.background)
             .attr('stroke', this.colors.text)
             .attr('stroke-width', 1);
         
         // Draw header
         g.append('rect')
-            .attr('x', slotX)
-            .attr('y', slotY)
-            .attr('width', slotWidth)
+            .attr('x', x)
+            .attr('y', y)
+            .attr('width', width)
             .attr('height', headerHeight)
             .attr('fill', this.colors.slot)
             .attr('stroke', this.colors.text)
             .attr('stroke-width', 1);
             
         g.append('text')
-            .attr('x', slotX + slotWidth / 2)
-            .attr('y', slotY + headerHeight / 2 + 5)
+            .attr('x', x + width / 2)
+            .attr('y', y + headerHeight / 2 + 5)
             .attr('text-anchor', 'middle')
             .attr('fill', this.colors.text)
+            .attr('font-size', `${fontSize + 1}px`)
             .text('Time Slots (Deadline)');
         
         // Draw time slots
-        const slotBoxWidth = slotWidth / this.timeSlots.length;
-        const slotBoxHeight = slotHeight - headerHeight;
-        
         this.timeSlots.forEach((slot, i) => {
             // Determine slot color based on status
             let slotColor;
@@ -353,8 +389,8 @@ class JobSequencingVisualizer {
             
             // Draw slot box
             g.append('rect')
-                .attr('x', slotX + i * slotBoxWidth)
-                .attr('y', slotY + headerHeight)
+                .attr('x', x + i * slotBoxWidth)
+                .attr('y', y + headerHeight)
                 .attr('width', slotBoxWidth)
                 .attr('height', slotBoxHeight)
                 .attr('fill', slotColor)
@@ -364,22 +400,22 @@ class JobSequencingVisualizer {
             
             // Draw slot number (deadline)
             g.append('text')
-                .attr('x', slotX + i * slotBoxWidth + slotBoxWidth / 2)
-                .attr('y', slotY + headerHeight + 25)
+                .attr('x', x + i * slotBoxWidth + slotBoxWidth / 2)
+                .attr('y', y + headerHeight + 20)
                 .attr('text-anchor', 'middle')
                 .attr('fill', this.colors.text)
-                .attr('font-size', '12px')
+                .attr('font-size', `${fontSize}px`)
                 .text(`Slot ${i + 1}`);
             
             // Draw assigned job (if any)
             if (slot.jobId !== null) {
                 // Job ID text
                 g.append('text')
-                    .attr('x', slotX + i * slotBoxWidth + slotBoxWidth / 2)
-                    .attr('y', slotY + headerHeight + slotBoxHeight / 2 - 10)
+                    .attr('x', x + i * slotBoxWidth + slotBoxWidth / 2)
+                    .attr('y', y + headerHeight + slotBoxHeight / 2)
                     .attr('text-anchor', 'middle')
                     .attr('fill', this.colors.text)
-                    .attr('font-size', '14px')
+                    .attr('font-size', `${fontSize + 2}px`)
                     .attr('font-weight', 'bold')
                     .text(`Job ${slot.jobId}`);
                 
@@ -387,28 +423,28 @@ class JobSequencingVisualizer {
                 const job = this.jobs.find(j => j.id === slot.jobId);
                 if (job) {
                     g.append('text')
-                        .attr('x', slotX + i * slotBoxWidth + slotBoxWidth / 2)
-                        .attr('y', slotY + headerHeight + slotBoxHeight / 2 + 15)
+                        .attr('x', x + i * slotBoxWidth + slotBoxWidth / 2)
+                        .attr('y', y + headerHeight + slotBoxHeight / 2 + 20)
                         .attr('text-anchor', 'middle')
                         .attr('fill', this.colors.text)
-                        .attr('font-size', '12px')
+                        .attr('font-size', `${fontSize}px`)
                         .text(`Profit: ${job.profit}`);
                 }
             } else {
                 g.append('text')
-                    .attr('x', slotX + i * slotBoxWidth + slotBoxWidth / 2)
-                    .attr('y', slotY + headerHeight + slotBoxHeight / 2)
+                    .attr('x', x + i * slotBoxWidth + slotBoxWidth / 2)
+                    .attr('y', y + headerHeight + slotBoxHeight / 2)
                     .attr('text-anchor', 'middle')
                     .attr('fill', this.colors.text)
-                    .attr('font-size', '12px')
+                    .attr('font-size', `${fontSize}px`)
                     .text('Empty');
             }
         });
     }
     
-    drawLegend() {
-        const legend = this.svg.append('g')
-            .attr('transform', `translate(${this.margin.left}, ${this.height - this.margin.bottom - 120})`);
+    drawLegend(g, x, y, containerWidth) {
+        const legendGroup = g.append('g')
+             .attr('transform', `translate(${x}, ${y})`);
             
         const legendItems = [
             { label: 'Unprocessed Job', color: this.colors.job },
@@ -419,26 +455,31 @@ class JobSequencingVisualizer {
             { label: 'Occupied Slot', color: this.colors.occupied }
         ];
         
-        const itemsPerRow = 3;
-        const itemWidth = Math.min(160, (this.width - this.margin.left - this.margin.right) / itemsPerRow);
-        const itemHeight = 30;
+        const itemsPerRow = this.isVerticalLayout ? 2 : 3;
+        const itemWidth = Math.max(120, containerWidth / itemsPerRow);
+        const itemHeight = 25;
+        const rectSize = 12;
+        const fontSize = Math.max(9, Math.min(12, itemWidth * 0.1));
         
+        const numRows = Math.ceil(legendItems.length / itemsPerRow);
+        const requiredHeight = numRows * itemHeight;
+
         legendItems.forEach((item, i) => {
             const row = Math.floor(i / itemsPerRow);
             const col = i % itemsPerRow;
             
-            legend.append('rect')
+            legendGroup.append('rect')
                 .attr('x', col * itemWidth)
                 .attr('y', row * itemHeight)
-                .attr('width', 15)
-                .attr('height', 15)
+                .attr('width', rectSize)
+                .attr('height', rectSize)
                 .attr('fill', item.color);
                 
-            legend.append('text')
-                .attr('x', col * itemWidth + 20)
-                .attr('y', row * itemHeight + 12)
+            legendGroup.append('text')
+                .attr('x', col * itemWidth + rectSize + 5)
+                .attr('y', row * itemHeight + rectSize * 0.8)
                 .attr('fill', this.colors.text)
-                .attr('font-size', '12px')
+                .attr('font-size', `${fontSize}px`)
                 .text(item.label);
         });
     }
@@ -450,5 +491,8 @@ class JobSequencingVisualizer {
 
 // Initialize the visualizer when the DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
-    new JobSequencingVisualizer();
+    // Check if the container exists before initializing
+    if (document.getElementById("jobSequencingVisualization")) {
+        new JobSequencingVisualizer();
+    }
 }); 
