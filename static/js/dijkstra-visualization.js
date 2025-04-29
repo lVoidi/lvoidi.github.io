@@ -39,6 +39,14 @@ class DijkstraVisualizer {
         this.setupNodeSelection();
     }
     
+    // Helper function to transform screen coordinates to SVG coordinates
+    getSVGPoint(event) {
+        const pt = this.svg.createSVGPoint();
+        pt.x = event.clientX;
+        pt.y = event.clientY;
+        return pt.matrixTransform(this.svg.getScreenCTM().inverse());
+    }
+    
     setupDragAndDrop() {
         this.svg.addEventListener('mousedown', (e) => this.startDragging(e));
         this.svg.addEventListener('mousemove', (e) => this.drag(e));
@@ -47,7 +55,8 @@ class DijkstraVisualizer {
     }
     
     startDragging(e) {
-        const node = this.findClickedNode(e);
+        const svgPoint = this.getSVGPoint(e); // Use transformed point
+        const node = this.findClickedNode(svgPoint.x, svgPoint.y);
         if (node) {
             this.isDragging = true;
             this.selectedNode = node;
@@ -56,12 +65,11 @@ class DijkstraVisualizer {
     
     drag(e) {
         if (this.isDragging && this.selectedNode) {
-            const rect = this.svg.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
+            e.preventDefault(); // Prevent scrolling while dragging
+            const svgPoint = this.getSVGPoint(e); // Use transformed point
             
-            this.nodes[this.selectedNode].x = x;
-            this.nodes[this.selectedNode].y = y;
+            this.nodes[this.selectedNode].x = svgPoint.x;
+            this.nodes[this.selectedNode].y = svgPoint.y;
             
             this.updateGraphPositions();
         }
@@ -72,15 +80,11 @@ class DijkstraVisualizer {
         this.selectedNode = null;
     }
     
-    findClickedNode(e) {
-        const rect = this.svg.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        
+    findClickedNode(x, y) { 
         for (const [id, node] of Object.entries(this.nodes)) {
             const dx = x - node.x;
             const dy = y - node.y;
-            if (dx * dx + dy * dy < 400) { // 20px radius
+            if (dx * dx + dy * dy < 400) { // 20px radius squared
                 return id;
             }
         }
@@ -143,26 +147,41 @@ class DijkstraVisualizer {
     
     setupNodeSelection() {
         this.svg.addEventListener('click', (e) => {
-            if (this.isDragging) return;
+            if (this.isDragging) return; // Don't select if dragging just finished
             
-            const nodeId = this.findClickedNode(e);
+            const svgPoint = this.getSVGPoint(e); // Use transformed point
+            const nodeId = this.findClickedNode(svgPoint.x, svgPoint.y);
             if (!nodeId) return;
+            
+            // Logic to handle clicks AFTER source/target are selected (or during selection)
+            if (this.sourceNode && this.targetNode) {
+                // If both are selected, do nothing on click until reset
+                return; 
+            }
             
             if (!this.sourceNode) {
                 this.sourceNode = nodeId;
                 this.highlightNode(nodeId, 'source-node');
                 document.getElementById('currentStep').textContent = 'Select target node';
-            } else if (!this.targetNode && nodeId !== this.sourceNode) {
-                this.targetNode = nodeId;
-                this.highlightNode(nodeId, 'target-node');
-                document.getElementById('currentStep').textContent = 'Click "Find Path" to start';
-                document.getElementById('startVisualization').disabled = false;
+            } else { // Source node IS set, check for target node
+                 if (!this.targetNode && nodeId !== this.sourceNode) {
+                    this.targetNode = nodeId;
+                    this.highlightNode(nodeId, 'target-node');
+                    document.getElementById('currentStep').textContent = 'Click "Find Path" to start';
+                    document.getElementById('startVisualization').disabled = false;
+                } 
+                 // Implicitly do nothing if clicking source again, or if target already set
             }
         });
     }
     
     initializeVisualization() {
         this.svg.innerHTML = '';
+        
+        // Define SVG viewBox for scaling
+        // Adjusted viewBox slightly for padding around nodes
+        this.svg.setAttribute('viewBox', '50 50 550 300'); 
+        this.svg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
         
         // Create defs for arrow markers
         const defs = document.createElementNS("http://www.w3.org/2000/svg", "defs");
