@@ -136,6 +136,16 @@ const VOID_POSTS = [
         readTime: 5,
         date: "2025-03-28",
         author: "Rodrigo Arce"
+    },
+    {
+        id: "car-dependency",
+        title: "Car dependency and it's implications",
+        description: "Car dependency is a recurring problem in modern society. In this post, i discuss why this is a huge problem.",
+        image: "../static/img/void/car-dependency.png",
+        tags: ["yapping", "politics"],
+        readTime: 5,
+        date: "2025-04-29",
+        author: "Rodrigo Arce"
     }
 ];
 
