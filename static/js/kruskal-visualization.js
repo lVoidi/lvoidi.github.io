@@ -2,12 +2,17 @@ class KruskalVisualizer {
     constructor() {
         this.svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
         this.svg.setAttribute("width", "100%");
-        this.svg.setAttribute("height", "400");
+        this.svg.setAttribute("viewBox", "0 0 500 400");
+        this.svg.style.maxWidth = "100%";
+        this.svg.style.height = "auto";
         
         // Clear any existing content
         const container = document.getElementById("kruskalVisualization");
         container.innerHTML = '';
         container.appendChild(this.svg);
+        
+        this.logicalWidth = 500;
+        this.logicalHeight = 400;
         
         this.nodes = {
             'A': { x: 100, y: 100 },
@@ -42,7 +47,11 @@ class KruskalVisualizer {
         this.currentLayout = 'circle';
         this.isDragging = false;
         this.selectedNode = null;
+        this.dragStartPos = { x: 0, y: 0 };
+        this.nodeStartPos = { x: 0, y: 0 };
+        this.updateDimensions();
         this.setupDragAndDrop();
+        this.applyLayout();
     }
     
     setupEnhancedControls() {
@@ -79,37 +88,68 @@ class KruskalVisualizer {
     
     setupDragAndDrop() {
         this.svg.addEventListener('mousedown', (e) => {
-            const node = e.target.closest('.graph-node');
-            if (node) {
+            const nodeElement = e.target.closest('.graph-node');
+            if (nodeElement && nodeElement.parentElement) {
+                 const nodeGroup = nodeElement.parentElement;
+                 const nodeId = nodeGroup.getAttribute('data-node-id');
+                 if (!nodeId || !this.nodes[nodeId]) return;
+
                 this.isDragging = true;
-                this.selectedNode = node;
+                this.selectedNode = nodeGroup;
                 this.selectedNode.classList.add('dragging');
+
+                const pt = this.svg.createSVGPoint();
+                pt.x = e.clientX;
+                pt.y = e.clientY;
+                const svgP = pt.matrixTransform(this.svg.getScreenCTM().inverse());
+                this.dragStartPos = { x: svgP.x, y: svgP.y };
+                this.nodeStartPos = { x: this.nodes[nodeId].x, y: this.nodes[nodeId].y };
             }
         });
         
         this.svg.addEventListener('mousemove', (e) => {
             if (this.isDragging && this.selectedNode) {
-                const rect = this.svg.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
+                const pt = this.svg.createSVGPoint();
+                pt.x = e.clientX;
+                pt.y = e.clientY;
+                const svgP = pt.matrixTransform(this.svg.getScreenCTM().inverse());
+
+                const dx = svgP.x - this.dragStartPos.x;
+                const dy = svgP.y - this.dragStartPos.y;
+
+                const newX = this.nodeStartPos.x + dx;
+                const newY = this.nodeStartPos.y + dy;
                 
-                this.updateNodePosition(this.selectedNode, x, y);
+                this.updateNodePosition(this.selectedNode, newX, newY);
             }
         });
         
         this.svg.addEventListener('mouseup', () => {
-            if (this.selectedNode) {
+            if (this.isDragging && this.selectedNode) {
                 this.selectedNode.classList.remove('dragging');
+                const nodeId = this.selectedNode.getAttribute('data-node-id');
+                if (nodeId && this.nodes[nodeId]) {
+                     const circle = this.selectedNode.querySelector('circle');
+                     this.nodes[nodeId].x = parseFloat(circle.getAttribute('cx'));
+                     this.nodes[nodeId].y = parseFloat(circle.getAttribute('cy'));
+                }
             }
             this.isDragging = false;
             this.selectedNode = null;
         });
+
+        this.svg.addEventListener('selectstart', (e) => e.preventDefault());
+    }
+    
+    updateDimensions() {
+        this.width = this.logicalWidth;
+        this.height = this.logicalHeight;
     }
     
     circleLayout() {
         const nodeCount = Object.keys(this.nodes).length;
-        const radius = 150;
-        const center = { x: 250, y: 200 };
+        const radius = Math.min(this.width, this.height) * 0.35;
+        const center = { x: this.width / 2, y: this.height / 2 };
         
         Object.entries(this.nodes).forEach(([id, node], index) => {
             const angle = (2 * Math.PI * index) / nodeCount;
@@ -121,18 +161,23 @@ class KruskalVisualizer {
     gridLayout() {
         const nodeCount = Object.keys(this.nodes).length;
         const cols = Math.ceil(Math.sqrt(nodeCount));
-        const spacing = 100;
+        const rows = Math.ceil(nodeCount / cols);
+        const spacingX = this.width / (cols + 1);
+        const spacingY = this.height / (rows + 1);
         
         Object.entries(this.nodes).forEach(([id, node], index) => {
-            node.x = (index % cols) * spacing + 100;
-            node.y = Math.floor(index / cols) * spacing + 100;
+            const col = index % cols;
+            const row = Math.floor(index / cols);
+            node.x = (col + 1) * spacingX;
+            node.y = (row + 1) * spacingY;
         });
     }
     
     randomLayout() {
+        const padding = 50;
         Object.values(this.nodes).forEach(node => {
-            node.x = Math.random() * 400 + 50;
-            node.y = Math.random() * 300 + 50;
+            node.x = Math.random() * (this.width - 2 * padding) + padding;
+            node.y = Math.random() * (this.height - 2 * padding) + padding;
         });
     }
     
@@ -169,6 +214,7 @@ class KruskalVisualizer {
     }
     
     applyLayout() {
+        this.updateDimensions();
         const layout = this.layouts[this.currentLayout];
         if (layout) {
             layout();
@@ -201,8 +247,10 @@ class KruskalVisualizer {
                 edgeElement.setAttribute('y2', this.nodes[edge.to].y);
                 
                 const weight = edgeElement.parentElement.querySelector('.edge-weight');
-                weight.setAttribute('x', (this.nodes[edge.from].x + this.nodes[edge.to].x) / 2);
-                weight.setAttribute('y', (this.nodes[edge.from].y + this.nodes[edge.to].y) / 2 - 10);
+                if (weight) {
+                    weight.setAttribute('x', (this.nodes[edge.from].x + this.nodes[edge.to].x) / 2);
+                    weight.setAttribute('y', (this.nodes[edge.from].y + this.nodes[edge.to].y) / 2 - 10);
+                }
             }
         });
     }
@@ -243,6 +291,7 @@ class KruskalVisualizer {
         Object.entries(this.nodes).forEach(([id, pos]) => {
             const g = document.createElementNS("http://www.w3.org/2000/svg", "g");
             g.setAttribute('data-node-id', id);
+            g.setAttribute('class', 'graph-node-group');
             
             const circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
             circle.setAttribute('cx', pos.x);
@@ -320,12 +369,13 @@ class KruskalVisualizer {
     
     highlightEdge(edge, state) {
         const line = this.svg.querySelector(
-            `line[x1="${this.nodes[edge.from].x}"][y1="${this.nodes[edge.from].y}"]` +
-            `[x2="${this.nodes[edge.to].x}"][y2="${this.nodes[edge.to].y}"]`
+            `line[data-from="${edge.from}"][data-to="${edge.to}"]`
         );
         
-        line.classList.remove('considering', 'included', 'rejected');
-        line.classList.add(state);
+        if (line) {
+            line.classList.remove('considering', 'included', 'rejected');
+            line.classList.add(state);
+        }
     }
     
     reset() {
@@ -339,6 +389,7 @@ class KruskalVisualizer {
         
         // Redraw the initial graph
         this.drawGraph();
+        this.applyLayout();
     }
     
     sleep(ms) {
@@ -348,5 +399,7 @@ class KruskalVisualizer {
 
 // Initialize visualization when the page loads
 document.addEventListener('DOMContentLoaded', () => {
-    new KruskalVisualizer();
+    if (document.getElementById("kruskalVisualization")) {
+        new KruskalVisualizer();
+    }
 }); 
