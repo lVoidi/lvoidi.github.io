@@ -10,6 +10,12 @@ class FloydWarshallVisualizer {
         this.dist = [];
         this.next = [];
         
+        // Set SVG viewBox for better responsiveness
+        const containerWidth = this.svg.parentElement.clientWidth;
+        const containerHeight = 300;
+        this.svg.setAttribute('viewBox', `0 0 ${containerWidth} ${containerHeight}`);
+        this.svg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
+        
         // Initialize controls
         this.initializeControls();
         
@@ -35,9 +41,9 @@ class FloydWarshallVisualizer {
         this.nodes = {};
         this.edges = [];
 
-        // Generate nodes in a circular layout
-        const width = this.svg.clientWidth;
-        const height = this.svg.clientHeight;
+        // Get dimensions
+        const width = this.svg.clientWidth || 600;
+        const height = 300;
         const radius = Math.min(width, height) * 0.35;
         const centerX = width / 2;
         const centerY = height / 2;
@@ -76,6 +82,24 @@ class FloydWarshallVisualizer {
     }
 
     drawGraph() {
+        // Define arrowhead marker first to ensure it's available
+        const defs = document.createElementNS('http://www.w3.org/2000/svg', 'defs');
+        const marker = document.createElementNS('http://www.w3.org/2000/svg', 'marker');
+        marker.setAttribute('id', 'arrowhead');
+        marker.setAttribute('markerWidth', '10');
+        marker.setAttribute('markerHeight', '7');
+        marker.setAttribute('refX', '9');
+        marker.setAttribute('refY', '3.5');
+        marker.setAttribute('orient', 'auto');
+        
+        const polygon = document.createElementNS('http://www.w3.org/2000/svg', 'polygon');
+        polygon.setAttribute('points', '0 0, 10 3.5, 0 7');
+        polygon.setAttribute('fill', '#666');
+        
+        marker.appendChild(polygon);
+        defs.appendChild(marker);
+        this.svg.appendChild(defs);
+
         // Draw edges with weights
         for (const edge of this.edges) {
             const from = this.nodes[edge.from];
@@ -107,35 +131,29 @@ class FloydWarshallVisualizer {
             line.setAttribute('marker-end', 'url(#arrowhead)');
             this.svg.appendChild(line);
 
-            // Add weight label
+            // Add weight background for better visibility
             const labelX = (from.x + to.x) / 2;
-            const labelY = (from.y + to.y) / 2 - 10;
+            const labelY = (from.y + to.y) / 2 - 5;
+            
+            const labelBg = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+            labelBg.setAttribute('cx', labelX);
+            labelBg.setAttribute('cy', labelY);
+            labelBg.setAttribute('r', '12');
+            labelBg.setAttribute('fill', '#333');
+            labelBg.setAttribute('stroke', '#999');
+            labelBg.setAttribute('stroke-width', '1');
+            this.svg.appendChild(labelBg);
+
+            // Add weight label
             const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
             text.setAttribute('x', labelX);
-            text.setAttribute('y', labelY);
+            text.setAttribute('y', labelY + 4);
             text.setAttribute('text-anchor', 'middle');
             text.setAttribute('fill', '#fff');
+            text.setAttribute('font-weight', 'bold');
             text.textContent = edge.weight;
             this.svg.appendChild(text);
         }
-
-        // Define arrowhead marker
-        const defs = document.createElementNS('http://www.w3.org/2000/svg', 'defs');
-        const marker = document.createElementNS('http://www.w3.org/2000/svg', 'marker');
-        marker.setAttribute('id', 'arrowhead');
-        marker.setAttribute('markerWidth', '10');
-        marker.setAttribute('markerHeight', '7');
-        marker.setAttribute('refX', '9');
-        marker.setAttribute('refY', '3.5');
-        marker.setAttribute('orient', 'auto');
-        
-        const polygon = document.createElementNS('http://www.w3.org/2000/svg', 'polygon');
-        polygon.setAttribute('points', '0 0, 10 3.5, 0 7');
-        polygon.setAttribute('fill', '#666');
-        
-        marker.appendChild(polygon);
-        defs.appendChild(marker);
-        this.svg.appendChild(defs);
 
         // Draw nodes
         for (const id in this.nodes) {
@@ -166,10 +184,13 @@ class FloydWarshallVisualizer {
 
         // Create header row
         const headerRow = document.createElement('tr');
-        headerRow.appendChild(document.createElement('th')); // Empty corner cell
+        const cornerCell = document.createElement('th');
+        cornerCell.style.backgroundColor = '#333';
+        headerRow.appendChild(cornerCell); // Empty corner cell
         for (let j = 0; j < this.V; j++) {
             const th = document.createElement('th');
             th.textContent = j;
+            th.style.backgroundColor = '#333';
             headerRow.appendChild(th);
         }
         table.appendChild(headerRow);
@@ -181,6 +202,7 @@ class FloydWarshallVisualizer {
             // Row header
             const th = document.createElement('th');
             th.textContent = i;
+            th.style.backgroundColor = '#333';
             row.appendChild(th);
             
             // Data cells
