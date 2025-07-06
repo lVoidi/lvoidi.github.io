@@ -8,8 +8,12 @@ const GAME_CONFIG = {
     CANVAS_HEIGHT: 600,
     
     // Strawberry System
-    STRAWBERRY_SPAWN_RATE: 0.02, // Probability per frame
-    STRAWBERRY_FALL_SPEED: 2,
+    STRAWBERRY_BASE_SPAWN_RATE: 0.05, // Base probability per frame
+    STRAWBERRY_SPAWN_RATE_INCREASE: 0.005, // Increase per level
+    STRAWBERRY_MAX_SPAWN_RATE: 0.10, // Maximum spawn rate
+    STRAWBERRY_BASE_FALL_SPEED: 6,
+    STRAWBERRY_SPEED_INCREASE: 0.9, // Speed increase per level
+    STRAWBERRY_MAX_FALL_SPEED: 15, // Maximum fall speed
     STRAWBERRY_SIZE: 30,
     STRAWBERRY_XP_MIN: 10,
     STRAWBERRY_XP_MAX: 20,
@@ -24,7 +28,8 @@ const GAME_CONFIG = {
     POWER_GAIN_PER_STRAWBERRY: 15,
     
     // XP and Level System
-    XP_PER_LEVEL: 150,
+    XP_BASE_LEVEL: 150, // Base XP for level 1
+    XP_LEVEL_MULTIPLIER: 20, // Additional XP per level (150 + 20*level)
     LIVES_PER_LEVEL: 1,
     HEAL_PER_LEVEL: 3,
     
@@ -62,7 +67,7 @@ class AudioManager {
     constructor() {
         this.sounds = {};
         this.musicVolume = 0.3;
-        this.sfxVolume = 0.5;
+        this.sfxVolume = 0.9;
         this.isMuted = false;
         this.backgroundMusic = null;
         this.isLoaded = false;
@@ -179,6 +184,8 @@ class GameState {
         this.maxLives = GAME_CONFIG.PLAYER_START_LIVES;
         this.xp = 0;
         this.level = 1;
+        this.xpRequiredForNextLevel = GAME_CONFIG.XP_BASE_LEVEL + GAME_CONFIG.XP_LEVEL_MULTIPLIER;
+        this.totalXPEarned = 0;
         this.score = 0;
         this.streak = 0;
         this.bestStreak = 0;
@@ -217,11 +224,18 @@ class GameState {
 
 // Strawberry Class
 class Strawberry {
-    constructor(x, y) {
+    constructor(x, y, level = 1) {
         this.x = x;
         this.y = y;
         this.size = GAME_CONFIG.STRAWBERRY_SIZE;
-        this.speed = GAME_CONFIG.STRAWBERRY_FALL_SPEED;
+        
+        // Calculate dynamic speed based on level
+        const speedIncrease = (level - 1) * GAME_CONFIG.STRAWBERRY_SPEED_INCREASE;
+        this.speed = Math.min(
+            GAME_CONFIG.STRAWBERRY_BASE_FALL_SPEED + speedIncrease,
+            GAME_CONFIG.STRAWBERRY_MAX_FALL_SPEED
+        );
+        
         this.rotation = 0;
         this.rotationSpeed = (Math.random() - 0.5) * 0.2;
         this.xp = Math.floor(Math.random() * (GAME_CONFIG.STRAWBERRY_XP_MAX - GAME_CONFIG.STRAWBERRY_XP_MIN + 1)) + GAME_CONFIG.STRAWBERRY_XP_MIN;
@@ -513,7 +527,7 @@ class StrawberryFieldsGame {
         
         // Update pause screen stats
         this.ui.pauseLevel.textContent = this.state.level;
-        this.ui.pauseXP.textContent = this.state.xp;
+        this.ui.pauseXP.textContent = `${this.state.xp}/${this.state.xpRequiredForNextLevel}`;
         this.ui.pauseStreak.textContent = this.state.streak;
         
         // Show pause screen
@@ -535,6 +549,31 @@ class StrawberryFieldsGame {
         this.audioManager.stopAllSounds();
         this.updateUI();
         this.updateLives();
+    }
+    
+    // Dynamic difficulty calculation methods
+    getCurrentSpawnRate() {
+        const levelIncrease = (this.state.level - 1) * GAME_CONFIG.STRAWBERRY_SPAWN_RATE_INCREASE;
+        return Math.min(
+            GAME_CONFIG.STRAWBERRY_BASE_SPAWN_RATE + levelIncrease,
+            GAME_CONFIG.STRAWBERRY_MAX_SPAWN_RATE
+        );
+    }
+    
+    getXPRequiredForLevel(level) {
+        return GAME_CONFIG.XP_BASE_LEVEL + (GAME_CONFIG.XP_LEVEL_MULTIPLIER * level);
+    }
+    
+    getXPRequiredForNextLevel() {
+        return this.getXPRequiredForLevel(this.state.level);
+    }
+    
+    getTotalXPRequiredForLevel(level) {
+        let totalXP = 0;
+        for (let i = 1; i <= level; i++) {
+            totalXP += this.getXPRequiredForLevel(i);
+        }
+        return totalXP;
     }
     
     toggleAudio() {
@@ -579,10 +618,11 @@ class StrawberryFieldsGame {
     updateStrawberries() {
         if (!this.state.gameStarted || this.state.gameOver || this.state.paused) return;
         
-        // Spawn new strawberries
-        if (Math.random() < GAME_CONFIG.STRAWBERRY_SPAWN_RATE) {
+        // Spawn new strawberries with dynamic difficulty
+        const currentSpawnRate = this.getCurrentSpawnRate();
+        if (Math.random() < currentSpawnRate) {
             const x = Math.random() * (GAME_CONFIG.CANVAS_WIDTH - GAME_CONFIG.STRAWBERRY_SIZE) + GAME_CONFIG.STRAWBERRY_SIZE / 2;
-            this.state.strawberries.push(new Strawberry(x, -GAME_CONFIG.STRAWBERRY_SIZE));
+            this.state.strawberries.push(new Strawberry(x, -GAME_CONFIG.STRAWBERRY_SIZE, this.state.level));
         }
         
         // Update existing strawberries
@@ -636,6 +676,7 @@ class StrawberryFieldsGame {
         
         // Add XP and update score
         this.state.xp += xp;
+        this.state.totalXPEarned += xp;
         this.state.score += xp;
         this.state.streak++;
         
@@ -653,10 +694,9 @@ class StrawberryFieldsGame {
             this.audioManager.playSound('POWER_UP');
         }
         
-        // Check for level up
-        const newLevel = Math.floor(this.state.xp / GAME_CONFIG.XP_PER_LEVEL) + 1;
-        if (newLevel > this.state.level) {
-            this.levelUp(newLevel);
+        // Check for level up with new formula
+        if (this.state.xp >= this.state.xpRequiredForNextLevel) {
+            this.levelUp();
         }
         
         // Create particles (golden particles if in power mode)
@@ -702,14 +742,19 @@ class StrawberryFieldsGame {
         }
     }
     
-    levelUp(newLevel) {
-        const levelsGained = newLevel - this.state.level;
+    levelUp() {
+        // Subtract XP used for this level
+        this.state.xp -= this.state.xpRequiredForNextLevel;
+        
+        // Increase level
+        this.state.level++;
+        
+        // Calculate new XP requirement for next level (150 + 20*level)
+        this.state.xpRequiredForNextLevel = this.getXPRequiredForLevel(this.state.level);
         
         // Increase max lives and heal
-        this.state.maxLives += levelsGained * GAME_CONFIG.LIVES_PER_LEVEL;
-        this.state.lives = Math.min(this.state.maxLives, this.state.lives + levelsGained * GAME_CONFIG.HEAL_PER_LEVEL);
-        
-        this.state.level = newLevel;
+        this.state.maxLives += GAME_CONFIG.LIVES_PER_LEVEL;
+        this.state.lives = Math.min(this.state.maxLives, this.state.lives + GAME_CONFIG.HEAL_PER_LEVEL);
         
         // Play level up sound
         this.audioManager.playSound('LEVEL_UP');
@@ -719,6 +764,11 @@ class StrawberryFieldsGame {
         setTimeout(() => {
             this.ui.levelDisplay.classList.remove('level-up-effect');
         }, 600);
+        
+        // Check if we can level up again (in case of lots of XP at once)
+        if (this.state.xp >= this.state.xpRequiredForNextLevel) {
+            this.levelUp();
+        }
         
         // Update UI
         this.updateUI();
@@ -764,7 +814,7 @@ class StrawberryFieldsGame {
         
         // Update final stats
         this.ui.finalLevel.textContent = this.state.level;
-        this.ui.finalXP.textContent = this.state.xp;
+        this.ui.finalXP.textContent = this.state.totalXPEarned;
         this.ui.finalStreak.textContent = this.state.bestStreak;
         this.ui.finalScore.textContent = this.state.score;
         
@@ -774,7 +824,7 @@ class StrawberryFieldsGame {
     
     updateUI() {
         this.ui.levelDisplay.textContent = this.state.level;
-        this.ui.xpDisplay.textContent = this.state.xp;
+        this.ui.xpDisplay.textContent = `${this.state.xp}/${this.state.xpRequiredForNextLevel}`;
         this.ui.streakDisplay.textContent = this.state.streak;
         this.ui.scoreDisplay.textContent = this.state.score;
         
