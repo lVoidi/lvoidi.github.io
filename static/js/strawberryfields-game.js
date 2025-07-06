@@ -13,23 +13,23 @@ const GAME_CONFIG = {
     STRAWBERRY_MAX_SPAWN_RATE: 0.10, // Maximum spawn rate
     STRAWBERRY_BASE_FALL_SPEED: 6,
     STRAWBERRY_SPEED_INCREASE: 0.9, // Speed increase per level
-    STRAWBERRY_MAX_FALL_SPEED: 15, // Maximum fall speed
-    STRAWBERRY_SIZE: 30,
+    STRAWBERRY_MAX_FALL_SPEED: 30, // Maximum fall speed
+    STRAWBERRY_SIZE: 33,
     STRAWBERRY_XP_MIN: 10,
     STRAWBERRY_XP_MAX: 20,
     
     // Player System
-    PLAYER_SIZE: 60,
-    PLAYER_START_LIVES: 10,
+    PLAYER_SIZE: 111,
+    PLAYER_START_LIVES: 11,
     
     // Power System (Double XP Mode)
-    POWER_MAX: 100,
-    POWER_DRAIN_RATE: 1.5, // Points per frame during double XP mode
-    POWER_GAIN_PER_STRAWBERRY: 15,
+    POWER_MAX: 71,
+    POWER_DRAIN_RATE: 0.865, // Points per frame during double XP mode
+    POWER_GAIN_PER_STRAWBERRY: 2,
     
     // XP and Level System
-    XP_BASE_LEVEL: 150, // Base XP for level 1
-    XP_LEVEL_MULTIPLIER: 20, // Additional XP per level (150 + 20*level)
+    XP_BASE_LEVEL: 377, // Base XP for level 1
+    XP_LEVEL_MULTIPLIER: 19, // Additional XP per level (150 + 20*level)
     LIVES_PER_LEVEL: 1,
     HEAL_PER_LEVEL: 3,
     
@@ -62,16 +62,57 @@ const SOUNDS = {
     BACKGROUND_MUSIC: '/static/sounds/strawberry-fields-forever.mp3',
 };
 
+// Sprite Manager Class
+class SpriteManager {
+    constructor() {
+        this.sprites = {};
+        this.isLoaded = false;
+        this.loadedCount = 0;
+        this.totalSprites = Object.keys(SPRITES).length;
+        
+        this.loadSprites();
+    }
+    
+    loadSprites() {
+        Object.keys(SPRITES).forEach(key => {
+            const img = new Image();
+            img.onload = () => {
+                this.loadedCount++;
+                if (this.loadedCount === this.totalSprites) {
+                    this.isLoaded = true;
+                }
+            };
+            img.onerror = () => {
+                console.warn(`Failed to load sprite: ${SPRITES[key]}`);
+                this.loadedCount++;
+                if (this.loadedCount === this.totalSprites) {
+                    this.isLoaded = true;
+                }
+            };
+            img.src = SPRITES[key];
+            this.sprites[key] = img;
+        });
+    }
+    
+    getSprite(key) {
+        return this.sprites[key];
+    }
+    
+    isReady() {
+        return this.isLoaded;
+    }
+}
+
 // Audio Manager Class
 class AudioManager {
     constructor() {
         this.sounds = {};
-        this.musicVolume = 0.3;
-        this.sfxVolume = 0.9;
+        this.musicVolume = 0.12;
+        this.sfxVolume = 0.898976;
         this.isMuted = false;
         this.backgroundMusic = null;
         this.isLoaded = false;
-        
+        this.gameOverVolume = 0.32;
         this.loadSounds();
     }
     
@@ -83,17 +124,26 @@ class AudioManager {
         
         // Load sound effects
         Object.keys(SOUNDS).forEach(key => {
-            if (key !== 'BACKGROUND_MUSIC') {
+            if (key !== 'BACKGROUND_MUSIC' && key !== 'GAME_OVER') {
                 this.sounds[key] = new Audio(SOUNDS[key]);
                 this.sounds[key].volume = this.sfxVolume;
+            }
+            if (key === 'GAME_OVER') {
+                this.sounds[key] = new Audio(SOUNDS[key]);
+                this.sounds[key].volume = this.gameOverVolume;
             }
         });
         
         this.isLoaded = true;
     }
     
-    playSound(soundKey) {
+    playSound(soundKey, stopOthers = false) {
         if (!this.isLoaded || this.isMuted) return;
+        
+        // Stop other sound effects if requested (but not background music)
+        if (stopOthers) {
+            this.stopAllSoundEffects();
+        }
         
         const sound = this.sounds[soundKey];
         if (sound) {
@@ -103,6 +153,14 @@ class AudioManager {
                 console.log('Audio play failed:', e);
             });
         }
+    }
+    
+    stopAllSoundEffects() {
+        // Stop all sound effects (but not background music)
+        Object.values(this.sounds).forEach(sound => {
+            sound.pause();
+            sound.currentTime = 0;
+        });
     }
     
     startBackgroundMusic() {
@@ -204,6 +262,7 @@ class GameState {
         this.strawberries = [];
         this.particles = [];
         this.xpPopups = [];
+        this.bigPopups = [];
         
         // Player position
         this.playerX = GAME_CONFIG.CANVAS_WIDTH / 2;
@@ -253,32 +312,44 @@ class Strawberry {
         }
     }
     
-    draw(ctx) {
+    draw(ctx, spriteManager) {
         ctx.save();
         ctx.translate(this.x, this.y);
         ctx.rotate(this.rotation);
         
-        // Draw strawberry (placeholder circle for now)
-        ctx.beginPath();
-        ctx.arc(0, 0, this.size / 2, 0, Math.PI * 2);
-        ctx.fillStyle = '#ff4757';
-        ctx.fill();
-        
-        // Draw strawberry details
-        ctx.beginPath();
-        ctx.arc(0, 0, this.size / 3, 0, Math.PI * 2);
-        ctx.fillStyle = '#ff6b6b';
-        ctx.fill();
-        
-        // Draw seeds
-        ctx.fillStyle = '#2d3436';
-        for (let i = 0; i < 6; i++) {
-            const angle = (i / 6) * Math.PI * 2;
-            const x = Math.cos(angle) * (this.size / 4);
-            const y = Math.sin(angle) * (this.size / 4);
+        // Draw strawberry sprite if available, otherwise fallback to placeholder
+        const strawberrySprite = spriteManager.getSprite('STRAWBERRY');
+        if (strawberrySprite && spriteManager.isReady()) {
+            ctx.drawImage(
+                strawberrySprite,
+                -this.size / 2,
+                -this.size / 2,
+                this.size,
+                this.size
+            );
+        } else {
+            // Fallback placeholder
             ctx.beginPath();
-            ctx.arc(x, y, 2, 0, Math.PI * 2);
+            ctx.arc(0, 0, this.size / 2, 0, Math.PI * 2);
+            ctx.fillStyle = '#ff4757';
             ctx.fill();
+            
+            // Draw strawberry details
+            ctx.beginPath();
+            ctx.arc(0, 0, this.size / 3, 0, Math.PI * 2);
+            ctx.fillStyle = '#ff6b6b';
+            ctx.fill();
+            
+            // Draw seeds
+            ctx.fillStyle = '#2d3436';
+            for (let i = 0; i < 6; i++) {
+                const angle = (i / 6) * Math.PI * 2;
+                const x = Math.cos(angle) * (this.size / 4);
+                const y = Math.sin(angle) * (this.size / 4);
+                ctx.beginPath();
+                ctx.arc(x, y, 2, 0, Math.PI * 2);
+                ctx.fill();
+            }
         }
         
         ctx.restore();
@@ -287,7 +358,7 @@ class Strawberry {
 
 // Particle Class for effects
 class Particle {
-    constructor(x, y, color, size = 3) {
+    constructor(x, y, color, size =14) {
         this.x = x;
         this.y = y;
         this.vx = (Math.random() - 0.5) * 8;
@@ -306,13 +377,29 @@ class Particle {
         this.size *= 0.99;
     }
     
-    draw(ctx) {
+    draw(ctx, spriteManager) {
         ctx.save();
         ctx.globalAlpha = this.life;
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        ctx.fillStyle = this.color;
-        ctx.fill();
+        
+        // Try to use particle sprite, otherwise fallback to circle
+        const particleSprite = spriteManager ? spriteManager.getSprite('PARTICLE') : null;
+        if (particleSprite && spriteManager && spriteManager.isReady()) {
+            ctx.tint = this.color; // This doesn't work directly, so we'll use a workaround
+            ctx.drawImage(
+                particleSprite,
+                this.x - this.size,
+                this.y - this.size,
+                this.size * 2,
+                this.size * 2
+            );
+        } else {
+            // Fallback to circle
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+            ctx.fillStyle = this.color;
+            ctx.fill();
+        }
+        
         ctx.restore();
     }
 }
@@ -338,7 +425,7 @@ class XPPopup {
         ctx.save();
         ctx.globalAlpha = this.life;
         ctx.font = '16px SuperAdorable';
-        ctx.fillStyle = this.isPowerMode ? '#f39c12' : '#00b894';
+        ctx.fillStyle = this.isPowerMode ? '#f39c12' : '#b400b8';
         ctx.textAlign = 'center';
         
         // Add glow effect for power mode
@@ -352,6 +439,121 @@ class XPPopup {
     }
 }
 
+// Big Popup Class for Level Up and Power Mode
+class BigPopup {
+    constructor(x, y, text, color = '#f39c12', duration = 3000) {
+        this.x = x;
+        this.y = y;
+        this.text = text;
+        this.color = color;
+        this.life = 1.0;
+        this.maxLife = 1.0;
+        this.duration = duration; // in milliseconds
+        this.startTime = Date.now();
+        this.scale = 0.1; // Start small for animation
+        this.targetScale = 1.0;
+        this.pulsePhase = 0;
+        this.isVisible = true;
+    }
+    
+    update() {
+        const elapsed = Date.now() - this.startTime;
+        const progress = elapsed / this.duration;
+        
+        // Scale animation (grow in)
+        if (this.scale < this.targetScale) {
+            this.scale += 0.08;
+            if (this.scale > this.targetScale) {
+                this.scale = this.targetScale;
+            }
+        }
+        
+        // Pulse effect
+        this.pulsePhase += 0.15;
+        
+        // Fade out in the last 20% of duration
+        if (progress > 0.8) {
+            this.life = Math.max(0, (1 - progress) * 5); // Fade out
+        }
+        
+        // Hide after duration
+        if (elapsed >= this.duration) {
+            this.isVisible = false;
+            this.life = 0;
+        }
+    }
+    
+    draw(ctx) {
+        if (!this.isVisible) return;
+        
+        ctx.save();
+        ctx.globalAlpha = this.life;
+        ctx.translate(this.x, this.y);
+        
+        // Scale and pulse effect
+        const pulseScale = this.scale + Math.sin(this.pulsePhase) * 0.1;
+        ctx.scale(pulseScale, pulseScale);
+        
+        // Background glow
+        ctx.shadowColor = this.color;
+        ctx.shadowBlur = 30;
+        ctx.fillStyle = this.color;
+        ctx.font = '48px SuperAdorable';
+        ctx.textAlign = 'center';
+        ctx.fillText(this.text, 0, 0);
+        
+        // Main text with outline
+        ctx.shadowBlur = 0;
+        ctx.strokeStyle = '#000000';
+        ctx.lineWidth = 4;
+        ctx.strokeText(this.text, 0, 0);
+        
+        ctx.fillStyle = '#ffffff';
+        ctx.fillText(this.text, 0, 0);
+        
+        // Sparkle effect for extra drama
+        if (this.life > 0.5) {
+            this.drawSparkles(ctx);
+        }
+        
+        ctx.restore();
+    }
+    
+    drawSparkles(ctx) {
+        const sparkleCount = 8;
+        const radius = 80;
+        
+        for (let i = 0; i < sparkleCount; i++) {
+            const angle = (i / sparkleCount) * Math.PI * 2 + this.pulsePhase;
+            const x = Math.cos(angle) * radius;
+            const y = Math.sin(angle) * radius;
+            
+            ctx.save();
+            ctx.translate(x, y);
+            ctx.rotate(this.pulsePhase);
+            
+            ctx.fillStyle = '#ffffff';
+            ctx.shadowColor = this.color;
+            ctx.shadowBlur = 10;
+            
+            // Draw sparkle star
+            ctx.beginPath();
+            ctx.moveTo(0, -8);
+            ctx.lineTo(2, -2);
+            ctx.lineTo(8, 0);
+            ctx.lineTo(2, 2);
+            ctx.lineTo(0, 8);
+            ctx.lineTo(-2, 2);
+            ctx.lineTo(-8, 0);
+            ctx.lineTo(-2, -2);
+            ctx.closePath();
+            ctx.fill();
+            
+            ctx.restore();
+        }
+    }
+}
+
 // Main Game Class
 class StrawberryFieldsGame {
     constructor() {
@@ -359,6 +561,7 @@ class StrawberryFieldsGame {
         this.ctx = this.canvas.getContext('2d');
         this.state = new GameState();
         this.audioManager = new AudioManager();
+        this.spriteManager = new SpriteManager();
         
         // Resize canvas for mobile
         this.resizeCanvas();
@@ -691,7 +894,16 @@ class StrawberryFieldsGame {
         if (this.state.power >= GAME_CONFIG.POWER_MAX && !this.state.powerMode) {
             this.state.powerMode = true;
             this.ui.powerFill.classList.add('power-mode');
-            this.audioManager.playSound('POWER_UP');
+            this.audioManager.playSound('POWER_UP', true); // Stop other sounds first
+            
+            // Create dramatic power mode popup
+            this.state.bigPopups.push(new BigPopup(
+                GAME_CONFIG.CANVAS_WIDTH / 2,
+                GAME_CONFIG.CANVAS_HEIGHT / 2 - 50,
+                'DOUBLE XP MODE!',
+                '#f39c12',
+                3000
+            ));
         }
         
         // Check for level up with new formula
@@ -724,6 +936,16 @@ class StrawberryFieldsGame {
         this.state.lives--;
         this.state.streak = 0;
         
+        // Reset power to 0 for extra punishment! >:3
+        this.state.power = 0;
+        
+        // Deactivate power mode if it was active
+        if (this.state.powerMode) {
+            this.state.powerMode = false;
+            this.state.powerModeTimer = 0;
+            this.ui.powerFill.classList.remove('power-mode');
+        }
+        
         // Play miss sound
         this.audioManager.playSound('MISS');
         
@@ -754,10 +976,28 @@ class StrawberryFieldsGame {
         
         // Increase max lives and heal
         this.state.maxLives += GAME_CONFIG.LIVES_PER_LEVEL;
-        this.state.lives = Math.min(this.state.maxLives, this.state.lives + GAME_CONFIG.HEAL_PER_LEVEL);
+        this.state.lives = this.state.lives + GAME_CONFIG.HEAL_PER_LEVEL;
+        
+        // Sum additional lives every 3 levels and 15 levels :3
+        if (this.state.level % 3 === 0) {
+            this.state.lives = this.state.lives + 1;
+        }
+
+        if (this.state.level % 15 === 0) {
+            this.state.lives = this.state.lives + 3;
+        }
         
         // Play level up sound
-        this.audioManager.playSound('LEVEL_UP');
+        this.audioManager.playSound('LEVEL_UP', true); // Stop other sounds first
+        
+        // Create dramatic level up popup
+        this.state.bigPopups.push(new BigPopup(
+            GAME_CONFIG.CANVAS_WIDTH / 2,
+            GAME_CONFIG.CANVAS_HEIGHT / 2,
+            `LEVEL ${this.state.level}!`,
+            '#00d2d3',
+            3500
+        ));
         
         // Level up effect
         this.ui.levelDisplay.classList.add('level-up-effect');
@@ -797,6 +1037,19 @@ class StrawberryFieldsGame {
             
             if (popup.life <= 0) {
                 this.state.xpPopups.splice(i, 1);
+            }
+        }
+    }
+    
+    updateBigPopups() {
+        if (this.state.paused) return;
+        
+        for (let i = this.state.bigPopups.length - 1; i >= 0; i--) {
+            const popup = this.state.bigPopups[i];
+            popup.update();
+            
+            if (popup.life <= 0 || !popup.isVisible) {
+                this.state.bigPopups.splice(i, 1);
             }
         }
     }
@@ -862,44 +1115,100 @@ class StrawberryFieldsGame {
         this.ctx.save();
         this.ctx.scale(this.scale, this.scale);
         
-        // Draw background
-        this.drawBackground();
-        
-        if (this.state.gameStarted && !this.state.gameOver) {
-            // Draw game elements
-            this.drawStrawberries();
-            this.drawPlayer();
-            this.drawParticles();
-            this.drawXPPopups();
+        // Show loading screen if sprites are not ready
+        if (!this.spriteManager.isReady()) {
+            this.drawLoadingScreen();
+        } else {
+            // Draw background
+            this.drawBackground();
+            
+            if (this.state.gameStarted && !this.state.gameOver) {
+                // Draw game elements
+                this.drawStrawberries();
+                this.drawPlayer();
+                this.drawParticles();
+                this.drawXPPopups();
+                this.drawBigPopups();
+            }
         }
         
         this.ctx.restore();
     }
     
-    drawBackground() {
-        // Sky gradient
-        const gradient = this.ctx.createLinearGradient(0, 0, 0, GAME_CONFIG.CANVAS_HEIGHT);
-        gradient.addColorStop(0, '#74b9ff');
-        gradient.addColorStop(0.5, '#a8daff');
-        gradient.addColorStop(1, '#dceeff');
-        
-        this.ctx.fillStyle = gradient;
+    drawLoadingScreen() {
+        // Draw simple loading screen
+        this.ctx.fillStyle = '#74b9ff';
         this.ctx.fillRect(0, 0, GAME_CONFIG.CANVAS_WIDTH, GAME_CONFIG.CANVAS_HEIGHT);
         
-        // Ground
-        this.ctx.fillStyle = '#00b894';
-        this.ctx.fillRect(0, GAME_CONFIG.CANVAS_HEIGHT - 40, GAME_CONFIG.CANVAS_WIDTH, 40);
+        this.ctx.fillStyle = '#ffffff';
+        this.ctx.font = '24px SuperAdorable';
+        this.ctx.textAlign = 'center';
+        this.ctx.fillText(
+            'Loading sprites...', 
+            GAME_CONFIG.CANVAS_WIDTH / 2, 
+            GAME_CONFIG.CANVAS_HEIGHT / 2
+        );
         
-        // Grass details
-        this.ctx.fillStyle = '#00a085';
-        for (let i = 0; i < GAME_CONFIG.CANVAS_WIDTH; i += 20) {
-            this.ctx.fillRect(i, GAME_CONFIG.CANVAS_HEIGHT - 40, 10, 40);
+        // Loading progress
+        const progress = this.spriteManager.loadedCount / this.spriteManager.totalSprites;
+        const barWidth = 200;
+        const barHeight = 20;
+        const barX = (GAME_CONFIG.CANVAS_WIDTH - barWidth) / 2;
+        const barY = GAME_CONFIG.CANVAS_HEIGHT / 2 + 40;
+        
+        // Progress bar background
+        this.ctx.fillStyle = 'rgba(255, 255, 255, 0.3)';
+        this.ctx.fillRect(barX, barY, barWidth, barHeight);
+        
+        // Progress bar fill
+        this.ctx.fillStyle = '#ff6b6b';
+        this.ctx.fillRect(barX, barY, barWidth * progress, barHeight);
+        
+        // Progress text
+        this.ctx.fillStyle = '#ffffff';
+        this.ctx.font = '16px SuperAdorable';
+        this.ctx.fillText(
+            `${this.spriteManager.loadedCount}/${this.spriteManager.totalSprites}`, 
+            GAME_CONFIG.CANVAS_WIDTH / 2, 
+            barY + barHeight + 25
+        );
+    }
+    
+    drawBackground() {
+        // Draw background sprite if available, otherwise fallback to gradient
+        const backgroundSprite = this.spriteManager.getSprite('BACKGROUND');
+        if (backgroundSprite && this.spriteManager.isReady()) {
+            this.ctx.drawImage(
+                backgroundSprite,
+                0, 0,
+                GAME_CONFIG.CANVAS_WIDTH,
+                GAME_CONFIG.CANVAS_HEIGHT
+            );
+        } else {
+            // Fallback gradient background
+            const gradient = this.ctx.createLinearGradient(0, 0, 0, GAME_CONFIG.CANVAS_HEIGHT);
+            gradient.addColorStop(0, '#74b9ff');
+            gradient.addColorStop(0.5, '#a8daff');
+            gradient.addColorStop(1, '#dceeff');
+            
+            this.ctx.fillStyle = gradient;
+            this.ctx.fillRect(0, 0, GAME_CONFIG.CANVAS_WIDTH, GAME_CONFIG.CANVAS_HEIGHT);
+            
+            // Ground
+            this.ctx.fillStyle = '#00b894';
+            this.ctx.fillRect(0, GAME_CONFIG.CANVAS_HEIGHT - 40, GAME_CONFIG.CANVAS_WIDTH, 40);
+            
+            // Grass details
+            this.ctx.fillStyle = '#00a085';
+            for (let i = 0; i < GAME_CONFIG.CANVAS_WIDTH; i += 20) {
+                this.ctx.fillRect(i, GAME_CONFIG.CANVAS_HEIGHT - 40, 10, 40);
+            }
         }
     }
     
     drawStrawberries() {
         this.state.strawberries.forEach(strawberry => {
-            strawberry.draw(this.ctx);
+            strawberry.draw(this.ctx, this.spriteManager);
         });
     }
     
@@ -907,42 +1216,73 @@ class StrawberryFieldsGame {
         this.ctx.save();
         this.ctx.translate(this.state.playerX, this.state.playerY);
         
-        // Draw basket (placeholder)
         const size = GAME_CONFIG.PLAYER_SIZE;
         
-        // Basket color based on power mode (golden for double XP)
-        const basketColor = this.state.powerMode ? '#f39c12' : '#8b4513';
-        const rimColor = this.state.powerMode ? '#f1c40f' : '#654321';
+        // Choose sprite based on power mode
+        const basketSprite = this.state.powerMode ? 
+            this.spriteManager.getSprite('BASKET_POWER') : 
+            this.spriteManager.getSprite('BASKET_NORMAL');
         
-        // Draw basket body
-        this.ctx.beginPath();
-        this.ctx.arc(0, 0, size / 2, 0, Math.PI);
-        this.ctx.fillStyle = basketColor;
-        this.ctx.fill();
-        
-        // Draw basket rim
-        this.ctx.beginPath();
-        this.ctx.ellipse(0, 0, size / 2, size / 8, 0, 0, Math.PI * 2);
-        this.ctx.fillStyle = rimColor;
-        this.ctx.fill();
-        
-        // Draw basket pattern
-        this.ctx.strokeStyle = rimColor;
-        this.ctx.lineWidth = 2;
-        for (let i = -size / 2; i < size / 2; i += 8) {
+        // Draw basket sprite if available, otherwise fallback to placeholder
+        if (basketSprite && this.spriteManager.isReady()) {
+            this.ctx.drawImage(
+                basketSprite,
+                -size / 2,
+                -size / 2,
+                size,
+                size
+            );
+            
+            // Power mode glow effect
+            if (this.state.powerMode) {
+                this.ctx.shadowColor = '#f39c12';
+                this.ctx.shadowBlur = 20;
+                this.ctx.globalAlpha = 0.3;
+                this.ctx.drawImage(
+                    basketSprite,
+                    -size / 2 - 5,
+                    -size / 2 - 5,
+                    size + 10,
+                    size + 10
+                );
+                this.ctx.globalAlpha = 1;
+                this.ctx.shadowBlur = 0;
+            }
+        } else {
+            // Fallback placeholder basket
+            const basketColor = this.state.powerMode ? '#f39c12' : '#8b4513';
+            const rimColor = this.state.powerMode ? '#f1c40f' : '#654321';
+            
+            // Draw basket body
             this.ctx.beginPath();
-            this.ctx.moveTo(i, -size / 8);
-            this.ctx.lineTo(i, size / 4);
-            this.ctx.stroke();
-        }
-        
-        // Power mode glow (golden for double XP)
-        if (this.state.powerMode) {
-            this.ctx.shadowColor = '#f39c12';
-            this.ctx.shadowBlur = 20;
+            this.ctx.arc(0, 0, size / 2, 0, Math.PI);
+            this.ctx.fillStyle = basketColor;
+            this.ctx.fill();
+            
+            // Draw basket rim
             this.ctx.beginPath();
-            this.ctx.arc(0, 0, size / 2 + 5, 0, Math.PI * 2);
-            this.ctx.stroke();
+            this.ctx.ellipse(0, 0, size / 2, size / 8, 0, 0, Math.PI * 2);
+            this.ctx.fillStyle = rimColor;
+            this.ctx.fill();
+            
+            // Draw basket pattern
+            this.ctx.strokeStyle = rimColor;
+            this.ctx.lineWidth = 2;
+            for (let i = -size / 2; i < size / 2; i += 8) {
+                this.ctx.beginPath();
+                this.ctx.moveTo(i, -size / 8);
+                this.ctx.lineTo(i, size / 4);
+                this.ctx.stroke();
+            }
+            
+            // Power mode glow (golden for double XP)
+            if (this.state.powerMode) {
+                this.ctx.shadowColor = '#f39c12';
+                this.ctx.shadowBlur = 20;
+                this.ctx.beginPath();
+                this.ctx.arc(0, 0, size / 2 + 5, 0, Math.PI * 2);
+                this.ctx.stroke();
+            }
         }
         
         this.ctx.restore();
@@ -950,7 +1290,7 @@ class StrawberryFieldsGame {
     
     drawParticles() {
         this.state.particles.forEach(particle => {
-            particle.draw(this.ctx);
+            particle.draw(this.ctx, this.spriteManager);
         });
     }
     
@@ -960,12 +1300,19 @@ class StrawberryFieldsGame {
         });
     }
     
+    drawBigPopups() {
+        this.state.bigPopups.forEach(popup => {
+            popup.draw(this.ctx);
+        });
+    }
+    
     gameLoop() {
         // Update game state
         this.updatePlayer();
-        this.updateStrawberries();
-        this.updateParticles();
-        this.updateXPPopups();
+                    this.updateStrawberries();
+            this.updateParticles();
+            this.updateXPPopups();
+            this.updateBigPopups();
         
         // Draw everything
         this.draw();

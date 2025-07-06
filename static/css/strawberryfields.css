@@ -16,7 +16,10 @@
 
 body {
     font-family: 'SuperAdorable', cursive;
-    background: linear-gradient(135deg, #ff6b6b, #ff8e8e, #ffa8a8);
+    background-image: url('../img/bg-sff.webp');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     min-height: 100vh;
     overflow-x: hidden;
     color: #2d3436;
@@ -427,6 +430,28 @@ body::before {
 }
 
 .restart-button:active {
+    transform: translateY(0);
+}
+
+.back-button {
+    background: linear-gradient(135deg, #00b894, #00a085);
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 25px;
+    font-family: 'SuperAdorable', cursive;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 6px 20px rgba(0, 184, 148, 0.3);
+}
+
+.back-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 184, 148, 0.4);
+} 
+
+.back-button:active {
     transform: translateY(0);
 }
 
