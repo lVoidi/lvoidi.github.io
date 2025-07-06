@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Living is easy with eyes closed...</title>
+  
+    <link rel="stylesheet" href="../static/css/strawberryfields.css" />
+    <meta name="description" content="Strawberry Fields Forever - A magical minigame inspired by The Beatles. Catch falling strawberries and build your streak!" />
+    <meta name="keywords" content="strawberry fields forever, beatles, minigame, catch strawberries, easter egg, interactive game" />
+    <meta name="author" content="Rodrigo Arce" />
+    
+    <!-- Open Graph / Social Media Tags -->
+    <meta property="og:title" content="Strawberry Fields Forever - Interactive Minigame" />
+    <meta property="og:description" content="Living is easy with eyes closed... Catch falling strawberries in this magical Beatles-inspired minigame!" />
+    <meta property="og:image" content="https://roarba.com/static/img/singularity.jpg" />
+    <meta property="og:url" content="https://roarba.com/easter/strawberryfieldsforever.html" />
+    <meta property="og:type" content="website" />
+    
+</head>
+<body>
+    <div class="game-container">
+        <!-- Game Header -->
+        <div class="game-header">
+            <h1 class="game-title">Strawberry Fields Forever</h1>
+            <p class="game-subtitle">Living is easy with eyes closed...</p>
+        </div>
+
+        <!-- Game UI -->
+        <div class="game-ui">
+            <div class="ui-row">
+                <div class="stat-group">
+                    <div class="stat">
+                        <span class="stat-label">Level</span>
+                        <span class="stat-value" id="levelDisplay">1</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-label">XP</span>
+                        <span class="stat-value" id="xpDisplay">0</span>
+                    </div>
+                </div>
+                <div class="stat-group">
+                    <div class="stat">
+                        <span class="stat-label">Streak</span>
+                        <span class="stat-value" id="streakDisplay">0</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-label">Score</span>
+                        <span class="stat-value" id="scoreDisplay">0</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="ui-row">
+                <div class="lives-container">
+                    <div class="lives-label">Lives</div>
+                    <div class="lives-display">
+                        <span class="heart-emoji">❤️</span>
+                        <span class="lives-count" id="livesCount">10</span>
+                    </div>
+                </div>
+                <div class="power-container">
+                    <div class="power-label">Power</div>
+                    <div class="power-bar">
+                        <div class="power-fill" id="powerFill"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Game Canvas -->
+        <div class="canvas-container">
+            <canvas id="gameCanvas" width="800" height="600"></canvas>
+            <button class="pause-button" id="pauseButton">⏸️</button>
+            <button class="audio-button" id="audioButton">🔊</button>
+        </div>
+
+        <!-- Game Controls Info -->
+                    <div class="controls-info">
+                <p>🎮 Use mouse to move your basket instantly</p>
+                <p>🍓 Catch strawberries to gain XP and build your streak!</p>
+                <p>⚡ Power Mode gives you DOUBLE XP!</p>
+                <p>⏸️ Press SPACE or click pause button to pause</p>
+                <p>🔊 Click audio button to toggle sound on/off</p>
+            </div>
+
+        <!-- Game Over Screen -->
+        <div class="game-over-screen" id="gameOverScreen">
+            <div class="game-over-content">
+                <h2 class="game-over-title">Game Over</h2>
+                <p class="game-over-subtitle">Nothing is real...</p>
+                <div class="final-stats">
+                    <div class="final-stat">
+                        <span class="final-stat-label">Final Level:</span>
+                        <span class="final-stat-value" id="finalLevel">1</span>
+                    </div>
+                    <div class="final-stat">
+                        <span class="final-stat-label">Total XP:</span>
+                        <span class="final-stat-value" id="finalXP">0</span>
+                    </div>
+                    <div class="final-stat">
+                        <span class="final-stat-label">Best Streak:</span>
+                        <span class="final-stat-value" id="finalStreak">0</span>
+                    </div>
+                    <div class="final-stat">
+                        <span class="final-stat-label">Score:</span>
+                        <span class="final-stat-value" id="finalScore">0</span>
+                    </div>
+                </div>
+                <button class="restart-button" id="restartButton">Play Again</button>
+            </div>
+        </div>
+
+        <!-- Pause Screen -->
+        <div class="pause-screen" id="pauseScreen">
+            <div class="pause-content">
+                <h2 class="pause-title">Game Paused</h2>
+                <p class="pause-subtitle">Take a break... strawberries are waiting!</p>
+                <div class="pause-stats">
+                    <div class="pause-stat">
+                        <span class="pause-stat-label">Current Level:</span>
+                        <span class="pause-stat-value" id="pauseLevel">1</span>
+                    </div>
+                    <div class="pause-stat">
+                        <span class="pause-stat-label">Current XP:</span>
+                        <span class="pause-stat-value" id="pauseXP">0</span>
+                    </div>
+                    <div class="pause-stat">
+                        <span class="pause-stat-label">Current Streak:</span>
+                        <span class="pause-stat-value" id="pauseStreak">0</span>
+                    </div>
+                </div>
+                <div class="pause-buttons">
+                    <button class="resume-button" id="resumeButton">Resume</button>
+                    <button class="restart-button" id="restartFromPause">Restart</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Start Screen -->
+        <div class="start-screen" id="startScreen">
+            <div class="start-content">
+                <h2 class="start-title">Strawberry Fields Forever</h2>
+                <p class="start-subtitle">Living is easy with eyes closed...</p>
+                <div class="start-instructions">
+                    <p>🍓 Catch falling strawberries with your basket</p>
+                    <p>⚡ Build streaks to unlock Double XP mode</p>
+                    <p>📈 Gain XP and level up for more lives</p>
+                    <p>🖱️ Mouse follows your basket instantly</p>
+                    <p>🔊 Enjoy the Beatles-inspired soundtrack!</p>
+                    <p>❤️ Don't let strawberries fall!</p>
+                </div>
+                <button class="start-button" id="startButton">Start Game</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="../static/js/strawberryfields-game.js"></script>
+</body>
+</html>
