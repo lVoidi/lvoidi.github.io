@@ -465,29 +465,3 @@ main {
   font-size: 1.5rem;
   margin-bottom: 1rem;
 } 
-
-
-.easter-sff {
-  display: inline-block;
-  text-decoration: none;
-  transition: all 0.5s ease;
-  color: #fc56d2;
-  cursor: help;
-  transform-origin: center;
-  padding: 0 2px;
-}
-
-.easter-sff:hover {
-  transform: scale(1.2);
-  color: #d58cf7;
-  animation: shake 0.3s infinite;
-  padding: 0 66px;
-  margin: 0 -64px;
-}
-@keyframes shake {
-  0% { transform: scale(1.2) rotate(0deg); }
-  25% { transform: scale(1.4) rotate(-2deg); }
-  50% { transform: scale(1.8) rotate(0deg); }
-  75% { transform: scale(2.0) rotate(2deg); }
-  100% { transform: scale(2.5) rotate(0deg); }
-}
