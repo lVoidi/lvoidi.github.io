@@ -50,7 +50,7 @@ const VOID_POSTS = [
         id: "leetcode-reverse-number",
         title: "LeetCode #7: Reverse Integer",
         description: "Reversing an integer, huh? Easy.",
-        image: "../static/img/void/leetcode.png",  
+        image: "../static/img/void/leetcode.png",
         tags: ["leetcode"],
         readTime: 4,
         date: "2025-01-02",
@@ -60,7 +60,7 @@ const VOID_POSTS = [
         id: "gpg",
         title: "Using PGP keys to make your files yours",
         description: "In this article, i teach you how to make a PGP key and use it to sign your git commits.",
-        image: "../static/img/void/mayuri.jpeg",  
+        image: "../static/img/void/mayuri.jpeg",
         tags: ["tutorial", "yapping"],
         readTime: 5,
         date: "2025-02-03",
@@ -78,7 +78,7 @@ const VOID_POSTS = [
     },
     {
         id: "mass-disinformation",
-        title: "How mass media is controlling your mind", 
+        title: "How mass media is controlling your mind",
         description: "Social media and mass media are designed to keep you engaged and consuming content. Here is how they do it.",
         image: "../static/img/void/disinformation.jpg",
         tags: ["yapping", "politics"],
@@ -145,6 +145,16 @@ const VOID_POSTS = [
         tags: ["yapping", "politics"],
         readTime: 5,
         date: "2025-04-29",
+        author: "Rodrigo Arce"
+    },
+    {
+        id: "get-bored",
+        title: "Don't let distractions pollute you. Get bored!",
+        description: "In this article, I explore the importance of boredom and how it can lead to creativity and self-discovery.",
+        image: "../static/img/void/get-bored.jpg",
+        tags: ["yapping"],
+        readTime: 5,
+        date: "2025-08-14",
         author: "Rodrigo Arce"
     }
 ];
