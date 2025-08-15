@@ -1,30 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Discrete Library - Comprehensive Algorithm Collection</title>
-    
+
     <!-- SEO Meta Tags -->
-    <meta name="description" content="Explore a comprehensive collection of programming algorithms including sorting, searching, graph theory, dynamic programming, machine learning, and more. Interactive examples and implementations." />
-    <meta name="keywords" content="algorithms, data structures, sorting algorithms, searching algorithms, graph algorithms, dynamic programming, greedy algorithms, backtracking, cryptography, machine learning, string algorithms, numerical methods, programming" />
+    <meta name="description"
+        content="Explore a comprehensive collection of programming algorithms including sorting, searching, graph theory, dynamic programming, machine learning, and more. Interactive examples and implementations." />
+    <meta name="keywords"
+        content="algorithms, data structures, sorting algorithms, searching algorithms, graph algorithms, dynamic programming, greedy algorithms, backtracking, cryptography, machine learning, string algorithms, numerical methods, programming" />
     <meta name="author" content="Rodrigo Arce" />
-    
+
     <!-- Open Graph / Social Media Tags -->
     <meta property="og:title" content="The Discrete Library - Comprehensive Algorithm Collection" />
-    <meta property="og:description" content="Explore comprehensive collection of programming algorithms with interactive examples and implementations." />
+    <meta property="og:description"
+        content="Explore comprehensive collection of programming algorithms with interactive examples and implementations." />
     <meta property="og:image" content="https://roarba.com/static/img/algorithms.jpg" />
     <meta property="og:url" content="https://roarba.com/algorithms/" />
     <meta property="og:type" content="website" />
-    
+
     <!-- Twitter Card Tags -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="The Discrete Library - Comprehensive Algorithm Collection" />
-    <meta name="twitter:description" content="Explore comprehensive collection of programming algorithms with interactive examples and implementations." />
+    <meta name="twitter:description"
+        content="Explore comprehensive collection of programming algorithms with interactive examples and implementations." />
     <meta name="twitter:image" content="https://roarba.com/static/img/algorithms.jpg" />
-    
+
     <!-- Canonical URL -->
-    <meta rel="canonical" href="https://roarba.com/algorithms/" />
+    <meta rel="canonical" href="https://roarba.com/algorithms/index.html" />
 
     <!-- Schema.org markup for Google -->
     <script type="application/ld+json">
@@ -126,18 +131,19 @@
       "keywords": "sorting algorithms, searching algorithms, graph algorithms, dynamic programming, greedy algorithms, backtracking, cryptography, machine learning, string algorithms, numerical methods"
     }
     </script>
-    
+
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="../static/css/style.css" rel="stylesheet">
     <link href="../static/css/algorithms.css" rel="stylesheet">
-    
+
     <!-- Icon -->
     <link rel="icon" href="../static/img/icon.png" type="image/x-icon">
 
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
+
 <body>
     <div id="navbar-placeholder"></div>
 
@@ -146,10 +152,10 @@
         <div class="container">
             <h1 class="display-4 mb-4">The Discrete Library</h1>
             <p class="lead mb-4">
-              A comprehensive collection of programming algorithms including sorting, searching,
-               graph theory, dynamic programming, and more. This place is perfect if you want to 
-               learn about many algorithms, visualize them with customized parameters and read 
-               diverse implementations in different programming languages.
+                A comprehensive collection of programming algorithms including sorting, searching,
+                graph theory, dynamic programming, and more. This place is perfect if you want to
+                learn about many algorithms, visualize them with customized parameters and read
+                diverse implementations in different programming languages.
             </p>
             <div class="search-container">
                 <input type="text" id="searchBar" class="search-input" placeholder="Search algorithms...">
@@ -220,30 +226,32 @@
             <!-- Algorithms Grid -->
             <div class="col-md-9">
                 <div class="algorithms-grid" id="algorithmsGrid">
-                    
+
                 </div>
             </div>
         </div>
     </main>
-    
+
     <div id="footer-placeholder"></div>
 
     <!-- Bootstrap and Custom JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="../static/js/templates.js"></script>
-    <script src="../static/js/algorithms.js"></script><script>
-      document.addEventListener('DOMContentLoaded', function() {
-        // Cargar navbar
-        const navbarContent = document.getElementById('navbar-template').content.cloneNode(true);
-        document.getElementById('navbar-placeholder').appendChild(navbarContent);
+    <script src="../static/js/algorithms.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Cargar navbar
+            const navbarContent = document.getElementById('navbar-template').content.cloneNode(true);
+            document.getElementById('navbar-placeholder').appendChild(navbarContent);
 
-        // Cargar footer
-        const footerContent = document.getElementById('footer-template').content.cloneNode(true);
-        document.getElementById('footer-placeholder').appendChild(footerContent);
-        
-        // Actualizar año
-        document.getElementById('current-year').textContent = new Date().getFullYear();
-      });
+            // Cargar footer
+            const footerContent = document.getElementById('footer-template').content.cloneNode(true);
+            document.getElementById('footer-placeholder').appendChild(footerContent);
+
+            // Actualizar año
+            document.getElementById('current-year').textContent = new Date().getFullYear();
+        });
     </script>
 </body>
+
 </html>
