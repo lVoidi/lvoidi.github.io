@@ -1,303 +1,295 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Roarba Portal - Technology, Algorithms & The Void</title>
-    
-    <!-- SEO Meta Tags -->
-    <meta name="description" content="Explore algorithms, artificial intelligence, and reflections on technological singularity. A personal portal featuring programming insights, Linux advocacy, and mathematical concepts. The world us is heading towards a technological singularity, but is it really a bad thing?" />
-    <meta name="keywords" content="algorithms, sorting algorithms, algorithm visualization, AI research, artificial intelligence, technological singularity, programming, Linux, computer engineering, TEC Costa Rica" />
-    <meta name="author" content="Rodrigo (roarba)" />
-    
-    <!-- Open Graph / Social Media Meta Tags -->
-    <meta property="og:title" content="Roarba Portal - Technology & Algorithms" />
-    <meta property="og:description" content="Dive into algorithms, AI, and technological singularity. Personal insights on programming, Linux, and computer engineering. The world is heading towards a technological singularity, but is it really a bad thing?" />
-    <meta property="og:image" content="https://roarba.com/static/img/author.jpg" />
-    <meta property="og:url" content="https://roarba.com" />
-    <meta property="og:type" content="website" />
-    
-    <!-- Canonical URL -->
-    <link rel="canonical" href="https://roarba.com" />
 
-    <link rel="preload" fetchpriority="high" as="image" href="static/img/black-hole-1.webp" type="image/webp"> 
-    
-    <!-- Preload Non-blocking CSS -->
-    <link rel="preload" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" as="style">
-    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" as="style">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Roarba Portal - Technology, Algorithms & The Void</title>
 
-    <!-- Bootstrap CSS (Load non-blockingly) -->
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      media="print" 
-      onload="this.media='all'; this.onload=null;"
-    />
+  <!-- SEO Meta Tags -->
+  <meta name="description"
+    content="Explore algorithms, artificial intelligence, and reflections on technological singularity. A personal portal featuring programming insights, Linux advocacy, and mathematical concepts. The world us is heading towards a technological singularity, but is it really a bad thing?" />
+  <meta name="keywords"
+    content="algorithms, sorting algorithms, algorithm visualization, AI research, artificial intelligence, technological singularity, programming, Linux, computer engineering, TEC Costa Rica" />
+  <meta name="author" content="Rodrigo (roarba)" />
 
-    <!-- Custom CSS (Keep blocking for now, it's small) -->
-    <link rel="stylesheet" href="static/css/style.css" />
+  <!-- Open Graph / Social Media Meta Tags -->
+  <meta property="og:title" content="Roarba Portal - Technology & Algorithms" />
+  <meta property="og:description"
+    content="Dive into algorithms, AI, and technological singularity. Personal insights on programming, Linux, and computer engineering. The world is heading towards a technological singularity, but is it really a bad thing?" />
+  <meta property="og:image" content="https://roarba.com/static/img/author.jpg" />
+  <meta property="og:url" content="https://roarba.com" />
+  <meta property="og:type" content="website" />
 
-    <!-- Font Awesome CSS (Load non-blockingly) -->
-    <link
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-      rel="stylesheet"
-      media="print" 
-      onload="this.media='all'; this.onload=null;"
-    />
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://roarba.com" />
 
-    <!-- Icon -->
-    <link rel="icon" href="static/img/icon.png" type="image/x-icon" />
+  <link rel="preload" fetchpriority="high" as="image" href="static/img/black-hole-1.webp" type="image/webp">
 
-    <style>
+  <!-- Preload Non-blocking CSS -->
+  <link rel="preload" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" as="style">
+  <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" as="style">
 
+  <!-- Bootstrap CSS (Load non-blockingly) -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" media="print"
+    onload="this.media='all'; this.onload=null;" />
 
-.easter-sff {
-  display: inline-block;
-  text-decoration: none;
-  transition: all 0.5s ease;
-  color: #fc56d2;
-  cursor: help;
-  transform-origin: center;
-  padding: 0 2px;
-}
+  <!-- Custom CSS (Keep blocking for now, it's small) -->
+  <link rel="stylesheet" href="static/css/style.css" />
 
-.easter-sff:hover {
-  transform: scale(1.2);
-  color: #d58cf7;
-  animation: shake 0.3s infinite;
-  padding: 0 66px;
-  margin: 0 -64px;
-}
-@keyframes shake {
-  0% { transform: scale(1.2) rotate(0deg); }
-  25% { transform: scale(1.4) rotate(-2deg); }
-  50% { transform: scale(1.8) rotate(0deg); }
-  75% { transform: scale(2.0) rotate(2deg); }
-  100% { transform: scale(2.5) rotate(0deg); }
-}
+  <!-- Font Awesome CSS (Load non-blockingly) -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet" media="print"
+    onload="this.media='all'; this.onload=null;" />
 
-    </style>
-  </head>
-  <body>
-    <!-- Navbar -->
-    <div id="navbar-placeholder"></div>
+  <!-- Icon -->
+  <link rel="icon" href="static/img/icon.png" type="image/x-icon" />
 
-    <!-- Hero Section -->
-    <section class="hero-section">
-      <div class="container">
-        <h1 class="display-1 mb-4">Welcome To The Machine</h1>
-        <p class="lead mb-4">
-        The <a href="easter/strawberryfieldsforever.html" title="What's that?" class="easter-sff">world</a> is heading torwards a <b>Technological Singularity</b>, but is it really a <b>bad thing</b>? We always 
-          talk about robots taking over humanity, but that will not happen. We will be unified with them. It is already 
-          happening. Neuralink, LLM that do most of the work for us, large scale algorithms that predict very accurately 
-          our train of though. We are already <b>getting unified with them</b>.
-        </p>
-        <p class="lead mb-4">
-          People do not seem to be aware of the changes that are evolving mankind. Quantum chips, LLM evolving at an exponential rate, 
-          as seem by the AGI index for the OpenAI models such as o1, o3 tuned high, and recent releases of Deepseek, etc.
-        </p>
-        <p class="lead mb-4">
-          In this website, maybe called "roarba portal", or "my personal website", i will present you my ideas, thoughs and reflections about the world we live in, technology, and every 
-          aspect related to computers and life. Get updates in my <a href="https://t.me/roarbc">telegram channel</a>.<br> 
-          <h4 class="text-center" style="text-shadow: 0 0 5px #fff, 0 0 8px rgba(255,255,255,0.7);">Click "browse categories" to see the different categories of the website.</h4>
-        </p>
-        <div class="mt-4">
-          <a href="#categories-section" class="btn btn-outline-light btn-lg">
-            <i class="fas fa-folder me-2"></i>Browse Categories
-          </a>
-        </div>
+  <style>
+    .easter-sff {
+      display: inline-block;
+      text-decoration: none;
+      transition: all 0.5s ease;
+      color: #fc56d2;
+      cursor: help;
+      transform-origin: center;
+      padding: 0 2px;
+    }
+
+    .easter-sff:hover {
+      transform: scale(1.2);
+      color: #d58cf7;
+      animation: shake 0.3s infinite;
+      padding: 0 66px;
+      margin: 0 -64px;
+    }
+
+    @keyframes shake {
+      0% {
+        transform: scale(1.2) rotate(0deg);
+      }
+
+      25% {
+        transform: scale(1.4) rotate(-2deg);
+      }
+
+      50% {
+        transform: scale(1.8) rotate(0deg);
+      }
+
+      75% {
+        transform: scale(2.0) rotate(2deg);
+      }
+
+      100% {
+        transform: scale(2.5) rotate(0deg);
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Navbar -->
+  <div id="navbar-placeholder"></div>
+
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="container">
+      <h1 class="display-1 mb-4">Welcome To The Machine</h1>
+      <p class="lead mb-4">
+        The <a href="easter/strawberryfieldsforever.html" title="What's that?" class="easter-sff">world</a> is heading
+        torwards a <b>Technological Singularity</b>, but is it really a <b>bad thing</b>? We always
+        talk about robots taking over humanity, but, will that really happen?.
+      </p>
+      <p class="lead mb-4">
+        In this website, maybe called "roarba portal", or "my personal website", i will present you my ideas, thoughs
+        and reflections about the world we live in, technology, and every
+        aspect related to computers and life. Get updates in my <a href="https://t.me/roarbc">telegram channel</a>.<br>
+      <h4 class="text-center" style="text-shadow: 0 0 5px #fff, 0 0 8px rgba(255,255,255,0.7);">Click "browse
+        categories" to see the different categories of the website.</h4>
+      </p>
+      <div class="mt-4">
+        <a href="#categories-section" class="btn btn-outline-light btn-lg">
+          <i class="fas fa-folder me-2"></i>Browse Categories
+        </a>
       </div>
-    </section>
-    <!-- About Me Section -->
-    <section class="about-section py-5">
-      <div class="container">
-        <div class="row align-items-center">
-          <div class="col-md-4 mb-4 mb-md-0">
-            <div class="profile-container">
-              <img src="static/img/author.webp" alt="lVoidi Profile" class="img-fluid rounded-circle shadow" width="350" height="350">
-              <a href="https://github.com/lVoidi" class="profile-overlay" target="_blank" rel="noopener noreferrer">
-                <i class="fab fa-github"></i>
-                <span>GitHub</span>
-              </a>
+    </div>
+  </section>
+  <!-- About Me Section -->
+  <section class="about-section py-5">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-md-4 mb-4 mb-md-0">
+          <div class="profile-container">
+            <img src="static/img/author.webp" alt="lVoidi Profile" class="img-fluid rounded-circle shadow" width="350"
+              height="350">
+            <a href="https://github.com/lVoidi" class="profile-overlay" target="_blank" rel="noopener noreferrer">
+              <i class="fab fa-github"></i>
+              <span>GitHub</span>
+            </a>
+          </div>
+        </div>
+        <div class="col-md-8">
+          <h2 class="display-4 mb-4">About me</h2>
+          <p class="lead">
+            My name is Rodrigo, I am a recreational programmer, linux advocate and math enthusiast, currently studying
+            Computer Engineering in
+            the Costa Rica Institute of Technology. Things like cutting edge technologies blockchain, AI
+            and robotics really pique my interest. Aditionally, I am a music lover and I play the bass and guitar. Click
+            my icon to check out my Github.
+          </p>
+          <p class="lead">
+            Contact me at <a href="mailto:lvoidiss@gmail.com">lvoidiss@gmail.com</a>
+          </p>
+          <div class="mt-4">
+            <div class="tech-stack">
+              <i class="fab fa-python fa-2x me-3" title="Python"></i>
+              <i class="fab fa-rust fa-2x me-3" title="Rust"></i>
+              <i class="fas fa-brain fa-2x me-3" title="Machine Learning"></i>
+              <i class="fas fa-code fa-2x me-3" title="Algorithms"></i>
+              <a href="https://rateyourmusic.com/~roarba" target="_blank" rel="noopener noreferrer"
+                class="fas fa-music fa-2x me-3" title="Music"></a>
             </div>
           </div>
-          <div class="col-md-8">
-            <h2 class="display-4 mb-4">About me</h2>
-            <p class="lead">
-              My name is Rodrigo, I am a recreational programmer, linux advocate and math enthusiast, currently studying Computer Engineering in 
-              the Costa Rica Institute of Technology. Things like cutting edge technologies blockchain, AI 
-              and robotics really pique my interest. Aditionally, I am a music lover and I play the bass and guitar. Click my icon to check out my Github.
+
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Daily Selection -->
+  <section class="daily-selection py-4">
+    <div class="container">
+      <h2 class="text-center mb-4">Daily Selection</h2>
+      <div class="row">
+        <!-- Algorithm of the Day -->
+        <div class="col-md-4">
+          <div class="daily-card">
+            <div class="daily-badge">Algorithm of the Day</div>
+            <h3 id="dailyAlgorithm">Loading...</h3>
+            <p id="dailyAlgorithmDesc">Loading...</p>
+            <a href="#" id="dailyAlgorithmLink" class="btn btn-outline-light">Learn More</a>
+          </div>
+        </div>
+
+        <!-- Singularity Article -->
+        <div class="col-md-4">
+          <div class="daily-card">
+            <div class="daily-badge">Singularity Pick</div>
+            <h3 id="dailySingularity">Loading...</h3>
+            <p id="dailySingularityDesc">Loading...</p>
+            <a href="#" id="dailySingularityLink" class="btn btn-outline-light">Read More</a>
+          </div>
+        </div>
+
+        <!-- Void Article -->
+        <div class="col-md-4">
+          <div class="daily-card">
+            <div class="daily-badge">Void Pick</div>
+            <h3 id="dailyVoid">Loading...</h3>
+            <p id="dailyVoidDesc">Loading...</p>
+            <a href="#" id="dailyVoidLink" class="btn btn-outline-light">Read More</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Concepts Section -->
+  <section class="concepts-section py-5">
+    <div class="container">
+      <h2 class="display-4 text-center mb-5 text-light">Key Concepts</h2>
+      <div class="row g-4">
+        <!-- Algorithm Concept -->
+        <div class="col-md-4">
+          <div class="card h-100 shadow-sm">
+            <div class="card-body">
+              <h3 class="card-title">Algorithm</h3>
+              <p class="card-text">
+                The recipes of the real world that can explain every law of the universe.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Technological Singularity Concept -->
+        <div class="col-md-4">
+          <div class="card h-100 shadow-sm">
+            <div class="card-body">
+              <h3 class="card-title">Technological Singularity</h3>
+              <p class="card-text">
+                The unification of mankind and machines. Do not take it as the end of the world, but the beginning of a
+                new era.
+                The robots will not take us over, but rather unify with us.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Void Concept -->
+        <div class="col-md-4">
+          <div class="card h-100 shadow-sm">
+            <div class="card-body">
+              <h3 class="card-title">Void</h3>
+              <p class="card-text">
+                The universe is filled with void. Your life is filled with void. Your mind is filled with void.
+                There is always nothingness in the existence of anything.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+  <!-- Main Content -->
+  <main class="container py-5">
+    <div class="row justify-content-center" id="categories-section">
+      <!-- Algorithms Card -->
+      <div class="col-md-3">
+        <div class="card h-100">
+          <img src="static/img/algorithms.webp" class="card-img-top" alt="Algorithms" width="300" height="200"
+            loading="lazy" />
+          <div class="card-body">
+            <h5 class="card-title">The Discrete Library</h5>
+            <p class="card-text">
+              A comprehensive collection of essential algorithms with
+              implementations.
             </p>
-            <p class="lead">
-              Contact me at <a href="mailto:lvoidiss@gmail.com">lvoidiss@gmail.com</a>
+            <a href="algorithms/index.html" class="btn btn-outline-light">Explore</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Singularity Card -->
+      <div class="col-md-3">
+        <div class="card h-100">
+          <img src="static/img/singularity.webp" class="card-img-top" alt="Technological Singularity" width="300"
+            height="200" loading="lazy" />
+          <div class="card-body">
+            <h5 class="card-title">Technological Singularity</h5>
+            <p class="card-text">
+              Deep dives into AI and machine learning research papers and
+              developments.
             </p>
-            <div class="mt-4">
-              <div class="tech-stack">
-                <i class="fab fa-python fa-2x me-3" title="Python"></i>
-                <i class="fab fa-rust fa-2x me-3" title="Rust"></i>
-                <i class="fas fa-brain fa-2x me-3" title="Machine Learning"></i>
-                <i class="fas fa-code fa-2x me-3" title="Algorithms"></i>
-                <a href="https://rateyourmusic.com/~roarba" target="_blank" rel="noopener noreferrer" class="fas fa-music fa-2x me-3" title="Music"></a>
-              </div>
-            </div>
-
+            <a href="singularity/index.html" class="btn btn-outline-light">Explore</a>
           </div>
         </div>
       </div>
-    </section>    
-    <!-- Daily Selection -->
-    <section class="daily-selection py-4">
-      <div class="container">
-        <h2 class="text-center mb-4">Daily Selection</h2>
-        <div class="row">
-          <!-- Algorithm of the Day -->
-          <div class="col-md-4">
-            <div class="daily-card">
-              <div class="daily-badge">Algorithm of the Day</div>
-              <h3 id="dailyAlgorithm">Loading...</h3>
-              <p id="dailyAlgorithmDesc">Loading...</p>
-              <a href="#" id="dailyAlgorithmLink" class="btn btn-outline-light">Learn More</a>
-            </div>
-          </div>
-          
-          <!-- Singularity Article -->
-          <div class="col-md-4">
-            <div class="daily-card">
-              <div class="daily-badge">Singularity Pick</div>
-              <h3 id="dailySingularity">Loading...</h3>
-              <p id="dailySingularityDesc">Loading...</p>
-              <a href="#" id="dailySingularityLink" class="btn btn-outline-light">Read More</a>
-            </div>
-          </div>
-          
-          <!-- Void Article -->
-          <div class="col-md-4">
-            <div class="daily-card">
-              <div class="daily-badge">Void Pick</div>
-              <h3 id="dailyVoid">Loading...</h3>
-              <p id="dailyVoidDesc">Loading...</p>
-              <a href="#" id="dailyVoidLink" class="btn btn-outline-light">Read More</a>
-            </div>
+
+      <!-- Blog Card -->
+      <div class="col-md-3">
+        <div class="card h-100">
+          <img src="static/img/void.webp" class="card-img-top" alt="The Void" width="300" height="200" loading="lazy" />
+          <div class="card-body">
+            <h5 class="card-title">The Pit of Endless Void</h5>
+            <p class="card-text">
+              Yapping about everything in general.
+            </p>
+            <a href="void/index.html" class="btn btn-outline-light">Explore</a>
           </div>
         </div>
       </div>
-    </section>
-    <!-- Concepts Section -->
-    <section class="concepts-section py-5">
-      <div class="container">
-        <h2 class="display-4 text-center mb-5 text-light">Key Concepts</h2>
-        <div class="row g-4">
-          <!-- Algorithm Concept -->
-          <div class="col-md-4">
-            <div class="card h-100 shadow-sm">
-              <div class="card-body">
-                <h3 class="card-title">Algorithm</h3>
-                <p class="card-text">
-                  The recipes of the real world that can explain every law of the universe.
-                </p>
-              </div>
-            </div>
-          </div>
-          
-          <!-- Technological Singularity Concept -->
-          <div class="col-md-4">
-            <div class="card h-100 shadow-sm">
-              <div class="card-body">
-                <h3 class="card-title">Technological Singularity</h3>
-                <p class="card-text">
-                  The unification of mankind and machines. Do not take it as the end of the world, but the beginning of a new era. 
-                  The robots will not take us over, but rather unify with us.
-                </p>
-              </div>
-            </div>
-          </div>
-          
-          <!-- Void Concept -->
-          <div class="col-md-4">
-            <div class="card h-100 shadow-sm">
-              <div class="card-body">
-                <h3 class="card-title">Void</h3>
-                <p class="card-text">
-                  The universe is filled with void. Your life is filled with void. Your mind is filled with void. 
-                  There is always nothingness in the existence of anything.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-
-
-    <!-- Main Content -->
-    <main class="container py-5">
-      <div class="row justify-content-center" id="categories-section">
-        <!-- Algorithms Card -->
-        <div class="col-md-3">
-          <div class="card h-100">
-            <img
-              src="static/img/algorithms.webp"
-              class="card-img-top"
-              alt="Algorithms"
-              width="300" height="200" loading="lazy"
-            />
-            <div class="card-body">
-              <h5 class="card-title">The Discrete Library</h5>
-              <p class="card-text">
-                A comprehensive collection of essential algorithms with
-                implementations.
-              </p>
-              <a href="algorithms/index.html" class="btn btn-outline-light"
-                >Explore</a
-              >
-            </div>
-          </div>
-        </div>
-
-        <!-- Singularity Card -->
-        <div class="col-md-3">
-          <div class="card h-100">
-            <img
-              src="static/img/singularity.webp"
-              class="card-img-top"
-              alt="Technological Singularity"
-              width="300" height="200" loading="lazy"
-            />
-            <div class="card-body">
-              <h5 class="card-title">Technological Singularity</h5>
-              <p class="card-text">
-                Deep dives into AI and machine learning research papers and
-                developments.
-              </p>
-              <a href="singularity/index.html" class="btn btn-outline-light"
-                >Explore</a
-              >
-            </div>
-          </div>
-        </div>
-
-        <!-- Blog Card -->
-        <div class="col-md-3">
-          <div class="card h-100">
-            <img
-              src="static/img/void.webp"
-              class="card-img-top"
-              alt="The Void"
-              width="300" height="200" loading="lazy"
-            />
-            <div class="card-body">
-              <h5 class="card-title">The Pit of Endless Void</h5>
-              <p class="card-text">
-                Yapping about everything in general.
-              </p>
-              <a href="void/index.html" class="btn btn-outline-light"
-                >Explore</a
-              >
-            </div>
-          </div>
-        </div>
-        <!-- 
+      <!-- 
         <div class="col-md-3">
             <div class="card h-100">
             <img
@@ -317,58 +309,58 @@
           </div>
         </div>
         -->
-      </div>
-    </main>
+    </div>
+  </main>
 
-    <!-- Donations Section -->
-    <section class="donations-section py-5 bg-dark" id="donations-section">
-      <div class="container">
-        <h2 class="text-center mb-4 text-light">Support My Work</h2>
-        <div class="row justify-content-center g-4">
-          <!-- SUI Donation -->
-          <div class="col-md-5">
-            <div class="card h-100 donation-card">
-              <div class="card-body text-center">
-                <i class="fas fa-coins fa-3x mb-3"></i>
-                <h3 class="card-title">SUI Wallet</h3>
-                <p class="card-text">Support through SUI cryptocurrency</p>
-                <div class="input-group mb-3">
-                  <input type="text" class="form-control" value="0x685338b495ae581f2180bbbebfe43c8ee8defea2841f2daf0d5ebb307f1c2fc1" readonly id="suiAddress">
-                  <button class="btn btn-outline-secondary" type="button" onclick="copyToClipboard('suiAddress')">
-                    <i class="fas fa-copy"></i>
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-          
-          <!-- PayPal Donation -->
-          <div class="col-md-5">
-            <div class="card h-100 donation-card">
-              <div class="card-body text-center">
-                <i class="fab fa-paypal fa-3x mb-3"></i>
-                <h3 class="card-title">PayPal</h3>
-                <p class="card-text">Support through PayPal</p>
-                <a href="https://paypal.me/roarba" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
-                  <i class="fab fa-paypal me-2"></i>Donate via PayPal
-                </a>
+  <!-- Donations Section -->
+  <section class="donations-section py-5 bg-dark" id="donations-section">
+    <div class="container">
+      <h2 class="text-center mb-4 text-light">Support My Work</h2>
+      <div class="row justify-content-center g-4">
+        <!-- SUI Donation -->
+        <div class="col-md-5">
+          <div class="card h-100 donation-card">
+            <div class="card-body text-center">
+              <i class="fas fa-coins fa-3x mb-3"></i>
+              <h3 class="card-title">SUI Wallet</h3>
+              <p class="card-text">Support through SUI cryptocurrency</p>
+              <div class="input-group mb-3">
+                <input type="text" class="form-control"
+                  value="0x685338b495ae581f2180bbbebfe43c8ee8defea2841f2daf0d5ebb307f1c2fc1" readonly id="suiAddress">
+                <button class="btn btn-outline-secondary" type="button" onclick="copyToClipboard('suiAddress')">
+                  <i class="fas fa-copy"></i>
+                </button>
               </div>
             </div>
           </div>
         </div>
+
+        <!-- PayPal Donation -->
+        <div class="col-md-5">
+          <div class="card h-100 donation-card">
+            <div class="card-body text-center">
+              <i class="fab fa-paypal fa-3x mb-3"></i>
+              <h3 class="card-title">PayPal</h3>
+              <p class="card-text">Support through PayPal</p>
+              <a href="https://paypal.me/roarba" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+                <i class="fab fa-paypal me-2"></i>Donate via PayPal
+              </a>
+            </div>
+          </div>
+        </div>
       </div>
-    </section>
-    <div id="footer-placeholder"></div>
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" defer></script>
-    <script src="static/js/templates.js" defer></script>
-    <!-- Data sources -->
-    <script src="static/js/algorithms.js" defer></script>
-    <script src="static/js/singularity-data.js" defer></script>
-    <script src="static/js/void-data.js" defer></script>
-    <!-- Custom scripts -->
-    <script src="static/js/daily-selection.js" defer></script>
-  </body>
+    </div>
+  </section>
+  <div id="footer-placeholder"></div>
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" defer></script>
+  <script src="static/js/templates.js" defer></script>
+  <!-- Data sources -->
+  <script src="static/js/algorithms.js" defer></script>
+  <script src="static/js/singularity-data.js" defer></script>
+  <script src="static/js/void-data.js" defer></script>
+  <!-- Custom scripts -->
+  <script src="static/js/daily-selection.js" defer></script>
+</body>
+
 </html>
-
-
