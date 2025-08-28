@@ -1,6 +1,6 @@
 :root {
-    --primary-dark: #0a0a0a;
-    --secondary-dark: #1a1a1a;
+    --primary-dark: #220101;
+    --secondary-dark: #140404;
     --text-color: #e0e0e0;
     --accent-color: #ff4444;
     --accent-shadow: #ac2a2a;
@@ -124,7 +124,7 @@ body a {
 }
 
 .footer {
-    background: rgba(20, 20, 20, 0.95);
+    background: var(--secondary-dark);
     backdrop-filter: blur(10px);
     border-top: 1px solid rgba(255, 255, 255, 0.1);
     padding: 2rem 0;
@@ -366,7 +366,7 @@ main {
 
 /* Donations Section Styles */
 .donations-section {
-    background: linear-gradient(45deg, #1a1a1a, #2d2d2d);
+    background: linear-gradient(45deg, var(--daily-card-bg), #2d2d2d);
 }
 
 .donation-card {
