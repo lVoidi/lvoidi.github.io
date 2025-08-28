@@ -5,7 +5,7 @@
     left: 0;
     width: 0%;
     height: 3px;
-    background: linear-gradient(to right, #6c5ce7, #a367fc);
+    background: linear-gradient(to right, var(--primary-dark), var(--accent-color));
     z-index: 9999;
     transition: width 0.1s ease;
 }
@@ -22,7 +22,7 @@
     font-size: 0.9rem;
 }
 
-.post-meta > span {
+.post-meta>span {
     margin: 0 0.5rem;
 }
 
@@ -30,7 +30,7 @@
     font-size: 2.5rem;
     margin-bottom: 1rem;
     font-weight: 700;
-    background: linear-gradient(120deg, #6c5ce7, #a367fc);
+    background: linear-gradient(120deg, #ffaaaa, var(--accent-color));
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -225,20 +225,20 @@
     .post-title {
         font-size: 2rem;
     }
-    
+
     .post-subtitle {
         font-size: 1.1rem;
     }
-    
+
     .post-footer {
         flex-direction: column;
         align-items: flex-start;
     }
-    
+
     .post-content {
         font-size: 1rem;
     }
-} 
+}
 
 /* Dark Theme Table Styling */
 .dark-table {
@@ -261,7 +261,7 @@
 
 .dark-table tr:nth-child(even) {
     background: rgba(255, 255, 255, 0.03);
-} 
+}
 
 .math-block {
     padding: 1em;
