@@ -366,7 +366,7 @@ main {
 
 /* Donations Section Styles */
 .donations-section {
-    background: linear-gradient(45deg, var(--daily-card-bg), #2d2d2d);
+    background: linear-gradient(45deg, var(--daily-card-bg), #180000);
 }
 
 .donation-card {
