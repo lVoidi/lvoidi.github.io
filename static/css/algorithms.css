@@ -1,13 +1,14 @@
 .hero-section-small {
     min-height: 40vh;
     background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
-                url('../img/algorithms-bg.jpg');
+        url('../img/algorithms-bg.jpg');
     background-size: cover;
     background-position: center;
     display: flex;
     align-items: center;
     text-align: center;
 }
+
 .counter {
     font-size: 0.9em;
     color: #666;
@@ -19,6 +20,7 @@
     color: #333;
     padding: 5px 0;
 }
+
 .search-container {
     max-width: 600px;
     margin: 0 auto;
@@ -48,7 +50,7 @@
 }
 
 .random-btn:hover {
-    background: #8255ff;
+    background: var(--accent-hover);
 }
 
 .categories-container {
@@ -97,12 +99,13 @@
         flex-direction: column;
         width: 90%;
     }
-    
-    .search-input, .random-btn {
+
+    .search-input,
+    .random-btn {
         width: 100%;
     }
-    
+
     .random-btn {
         margin-top: 0.5rem;
     }
-} 
+}
