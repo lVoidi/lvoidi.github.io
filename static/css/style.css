@@ -2,7 +2,8 @@
     --primary-dark: #0a0a0a;
     --secondary-dark: #1a1a1a;
     --text-color: #e0e0e0;
-    --accent-color: #6e44ff;
+    --accent-color: #ff4444;
+    --accent-shadow: #ac2a2a;
 }
 
 body {
@@ -22,7 +23,7 @@ body {
 .hero-section {
     min-height: 80vh;
     background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
-                url('../img/black-hole-1.webp');
+        url('../img/black-hole-1.webp');
     background-size: cover;
     background-position: center;
     display: flex;
@@ -43,7 +44,7 @@ body {
 .card:hover {
     transform: translateY(-5px);
     border-color: var(--accent-color);
-    box-shadow: 0 5px 15px rgba(110, 68, 255, 0.2);
+    box-shadow: 0 5px 15px var(--box-shadow);
 }
 
 .card-img-top {
@@ -61,11 +62,11 @@ body {
 
 .card-body {
     padding: 1.5rem;
-    background: linear-gradient(to bottom, rgba(0,0,0,0.7), rgba(0,0,0,0.9));
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.9));
 }
 
 .card-title {
-    color: #6e44ff;
+    color: var(--accent-color);
     font-size: 1.25rem;
     margin-bottom: 1rem;
     font-weight: normal;
@@ -80,15 +81,15 @@ body {
 
 .btn {
     background: transparent;
-    border: 1px solid #6e44ff;
-    color: #6e44ff;
+    border: 1px solid var(--accent-color);
+    color: var(--accent-color);
     padding: 0.5rem 1.5rem;
     font-size: 0.9rem;
     transition: all 0.3s ease;
 }
 
 .btn:hover {
-    background-color: #6e44ff;
+    background-color: var(--accent-color);
     color: #000;
 }
 
@@ -147,7 +148,7 @@ body {
     background: rgba(110, 68, 255, 0.1);
     padding: 0.75rem;
     border-radius: 4px;
-    border: 1px solid rgba(110, 68, 255, 0.2);
+    border: 1px solid var(--box-shadow);
     color: #fff;
     word-break: break-all;
     text-align: center;
@@ -171,7 +172,7 @@ body {
 }
 
 .social-link {
-    color: #6e44ff;
+    color: var(--accent-color);
     font-size: 1.5rem;
     transition: all 0.2s ease;
     display: inline-block;
@@ -185,7 +186,7 @@ body {
     opacity: 1;
 }
 
-.footer .row > div {
+.footer .row>div {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -197,7 +198,7 @@ main {
 
 .about-section {
     background: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)),
-                url('../img/bgvid.gif');
+        url('../img/bgvid.gif');
     background-size: cover;
     background-position: center;
     position: relative;
@@ -219,7 +220,7 @@ main {
 }
 
 .about-section a {
-    color: #6e44ff;
+    color: var(--accent-color);
     text-decoration: none;
     transition: color 0.3s ease;
 }
@@ -236,7 +237,7 @@ main {
 }
 
 .tech-stack i {
-    color: #6e44ff;
+    color: var(--accent-color);
     transition: all 0.3s ease;
 }
 
@@ -292,7 +293,7 @@ main {
 
 .daily-selection {
     background: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.95)),
-                url('../img/bgvid2.gif');
+        url('../img/bgvid2.gif');
     background-size: cover;
     background-position: center;
     position: relative;
@@ -324,8 +325,8 @@ main {
 
 .daily-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 8px 25px rgba(110, 68, 255, 0.3);
-    border-color: #6e44ff;
+    box-shadow: 0 8px 25px var(--box-shadow);
+    border-color: var(--accent-color);
 }
 
 .daily-card h3 {
@@ -347,7 +348,7 @@ main {
     top: -12px;
     left: 50%;
     transform: translateX(-50%);
-    background: #6e44ff;
+    background: var(--accent-color);
     padding: 5px 15px;
     border-radius: 20px;
     font-size: 0.9em;
@@ -358,110 +359,110 @@ main {
 
 /* Donations Section Styles */
 .donations-section {
-  background: linear-gradient(45deg, #1a1a1a, #2d2d2d);
+    background: linear-gradient(45deg, #1a1a1a, #2d2d2d);
 }
 
 .donation-card {
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .donation-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
 
 .donation-card .card-body {
-  padding: 2rem;
+    padding: 2rem;
 }
 
 .donation-card i {
-  color: #6e44ff;
-  margin-bottom: 1.5rem;
-  font-size: 2.5rem;
-  opacity: 0.9;
+    color: var(--accent-color);
+    margin-bottom: 1.5rem;
+    font-size: 2.5rem;
+    opacity: 0.9;
 }
 
 .donation-card .input-group {
-  max-width: 400px;
-  margin: 0 auto;
+    max-width: 400px;
+    margin: 0 auto;
 }
 
 .donation-card .input-group input {
-  background-color: #000;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  color: #fff;
+    background-color: #000;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #fff;
 }
 
 .donation-card .input-group input:focus {
-  background-color: #000;
-  color: #fff;
-  box-shadow: none;
-  border-color: #6e44ff;
+    background-color: #000;
+    color: #fff;
+    box-shadow: none;
+    border-color: var(--accent-color);
 }
 
 .donation-card .btn-outline-secondary {
-  border-color: #6e44ff;
-  color: #6e44ff;
-  background-color: rgba(110, 68, 255, 0.1);
+    border-color: var(--accent-color);
+    color: var(--accent-color);
+    background-color: rgba(110, 68, 255, 0.1);
 }
 
 .donation-card .btn-outline-secondary:hover {
-  background-color: #6e44ff;
-  color: white;
+    background-color: var(--accent-color);
+    color: white;
 }
 
 .donation-card .btn-outline-secondary:hover i {
-  color: white;
+    color: white;
 }
 
 .donation-card .btn-primary {
-  background-color: rgba(110, 68, 255, 0.2);
-  border-color: #6e44ff;
-  padding: 0.75rem 1.5rem;
-  font-weight: 600;
-  color: #6e44ff;
-  text-shadow: none;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: var(--box-shadow);
+    border-color: var(--accent-color);
+    padding: 0.75rem 1.5rem;
+    font-weight: 600;
+    color: var(--accent-color);
+    text-shadow: none;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .donation-card .btn-primary:hover {
-  background-color: #6e44ff;
-  border-color: #6e44ff;
-  color: white;
-  box-shadow: 0 4px 8px rgba(110, 68, 255, 0.3);
+    background-color: var(--accent-color);
+    border-color: var(--accent-color);
+    color: white;
+    box-shadow: 0 4px 8px var(--box-shadow);
 }
 
 .donation-card .btn-primary:hover i {
-  color: white;
+    color: white;
 }
 
 .concepts-section {
-  background: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)),
-              url('../img/concepts.webp');
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
-  position: relative;
-  padding: 4rem 0;
+    background: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)),
+        url('../img/concepts.webp');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    position: relative;
+    padding: 4rem 0;
 }
 
 .concepts-section .card {
-  background: rgba(0, 0, 0, 0.7);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .concepts-section .card:hover {
-  transform: translateY(-5px);
-  border-color: #6e44ff;
-  box-shadow: 0 5px 15px rgba(110, 68, 255, 0.3);
+    transform: translateY(-5px);
+    border-color: var(--accent-color);
+    box-shadow: 0 5px 15px var(--box-shadow);
 }
 
 .concepts-section .card-title {
-  color: #6e44ff;
-  font-size: 1.5rem;
-  margin-bottom: 1rem;
-} 
+    color: var(--accent-color);
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
