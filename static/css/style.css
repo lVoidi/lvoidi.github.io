@@ -222,10 +222,6 @@ main {
 }
 
 .about-section {
-    background: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)),
-        url('../img/bgvid.gif');
-    background-size: cover;
-    background-position: center;
     position: relative;
     color: #fff;
     padding: 4rem 0;
@@ -317,10 +313,7 @@ main {
 }
 
 .daily-selection {
-    background: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.95)),
-        url('../img/bgvid2.gif');
-    background-size: cover;
-    background-position: center;
+    background: var(--secondary-dark);
     position: relative;
     padding: 4rem 0;
     color: #fff;
