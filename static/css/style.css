@@ -23,6 +23,23 @@ body a {
     transition: color 0.3s ease;
 }
 
+.title-gradient-red {
+    color: #e00000;
+    /* fallback color */
+    font-weight: 800;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.55);
+}
+
+@supports ((-webkit-background-clip: text) or (background-clip: text)) {
+    .title-gradient-red {
+        background: linear-gradient(180deg, #ff5151 0%, #e00000 55%, #7a0000 100%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        -webkit-text-fill-color: transparent;
+    }
+}
+
 .navbar {
     background-color: var(--secondary-dark);
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
