@@ -41,6 +41,16 @@ const AVAILABLE_TAGS = {
         label: 'Music',
         color: 'rgba(255, 165, 0, 0.2)',
         textColor: '#ffa500'
+    },
+    'Costa Rica': {
+        label: 'Costa Rica',
+        color: 'rgba(0, 255, 42, 0.2)',
+        textColor: '#00ff2a'
+    },
+    'Español': {
+        label: 'Español',
+        color: 'rgba(255, 0, 0, 0.2)',
+        textColor: '#ff0000'
     }
 };
 
@@ -155,6 +165,16 @@ const VOID_POSTS = [
         tags: ["yapping"],
         readTime: 5,
         date: "2025-08-14",
+        author: "Rodrigo Arce"
+    },
+    {
+        id: "gobierno-chaves",
+        title: "Mi Problema con el Gobierno de Chaves",
+        description: "En este artículo, hablo de todo lo que el gobierno de Chaves hizo mal en Costa Rica.",
+        image: "../static/img/void/chaves.webp",
+        tags: ["yapping", "politics", "Costa Rica", "Español"],
+        readTime: 5,
+        date: "2025-08-30",
         author: "Rodrigo Arce"
     }
 ];

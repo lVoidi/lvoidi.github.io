@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Problema con el Gobierno de Chaves | Roarba Portal</title>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description"
+        content="Learn how to use PGP keys to secure your files and sign Git commits. A comprehensive guide to generating, managing, and implementing GPG keys for digital security." />
+    <meta name="keywords"
+        content="PGP keys, GPG, digital security, git commit signing, cryptography, file encryption, public key cryptography, GnuPG" />
+    <meta name="author" content="Rodrigo Arce" />
+
+    <!-- Open Graph / Social Media Tags -->
+    <meta property="og:title" content="Complete Guide to PGP Keys and Digital Security" />
+    <meta property="og:description"
+        content="Master PGP keys: Learn to secure your files and Git commits with GPG. Step-by-step guide to digital security and cryptographic signatures." />
+    <meta property="og:image" content="https://roarba.com/static/img/void/mayuri.jpg" />
+    <meta property="og:url" content="https://roarba.com/void/pages/gpg.html" />
+    <meta property="og:type" content="article" />
+
+    <!-- Article Specific Meta Tags -->
+    <meta property="article:published_time" content="2025-02-02" />
+    <meta property="article:author" content="https://github.com/lVoidi" />
+    <meta property="article:section" content="Security" />
+    <meta property="article:tag" content="Cryptography" />
+    <meta property="article:tag" content="Security" />
+    <meta property="article:tag" content="Git" />
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://roarba.com/void/pages/gpg.html" />
+
+    <!-- Schema.org markup for Google -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "TechArticle",
+      "headline": "Using PGP keys to make your files yours",
+      "image": "https://roarba.com/static/img/author.jpg",
+      "datePublished": "2025-02-02",
+      "dateModified": "2025-02-02",
+      "author": {
+        "@type": "Person",
+        "name": "Rodrigo Arce",
+        "url": "https://github.com/lVoidi"
+      },
+      "publisher": {
+        "@type": "Person",
+        "name": "Rodrigo Arce",
+        "url": "https://roarba.com"
+      },
+      "description": "Learn how to use PGP keys to secure your files and sign Git commits. A comprehensive guide to generating, managing, and implementing GPG keys for digital security.",
+      "articleBody": "A detailed guide on implementing PGP keys for file security and Git commit signing...",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://roarba.com/void/pages/gpg.html"
+      },
+      "technical": {
+        "@type": "TechArticle",
+        "dependencies": "GnuPG, Git",
+        "proficiencyLevel": "Beginner to Intermediate"
+      }
+    }
+    </script>
+
+    <!-- CSS imports -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="../../static/css/style.css" rel="stylesheet">
+    <link href="../../static/css/blog-post.css" rel="stylesheet">
+    <link href="../../static/css/prism.css" rel="stylesheet">
+
+    <!-- MathJax -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <!-- Icon -->
+    <link rel="icon" href="../../static/img/icon.png" type="image/x-icon">
+</head>
+
+<body>
+    <!-- Reading Progress Bar -->
+    <div class="reading-progress-bar" id="readingProgress"></div>
+
+    <!-- Navigation -->
+    <div id="navbar-placeholder"></div>
+
+    <main class="container py-5">
+        <article class="post-content">
+            <header class="post-header text-center mb-5">
+                <h1 class="post-title">Mi Problema con el Gobierno de Chaves</h1>
+                <div class="post-meta">
+                    <span class="post-date">
+                        <i class="fas fa-calendar-alt"></i> August 30, 2025
+                    </span>
+                    <span class="post-read-time">
+                        <i class="fas fa-clock"></i> 5 min read
+                    </span>
+                    <div class="post-author">
+                        <img src="../../static/img/author.webp" alt="Rodrigo Arce" class="author-image">
+                        <div class="author-info">
+                            <span class="author-name">Rodrigo Arce</span>
+                            <span class="author-title">Computer Engineer</span>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <div class="post-body">
+                <h2>Prefacio</h2>
+                <p>
+                    Costa Rica es un país complejo, y aún más compleja es su historia política. Desde las garantías
+                    sociales hasta la abolición de ejército, este país ha pasado por una serie de transformaciones
+                    que le han dado forma a su identidad actual. La identidad del país se ha construido en torno
+                    a una ideología mayormente progresista.
+
+                <p>
+                    Por ejemplo, el país ha recibido distintos premios
+                    internacionales por su enfoque en la sostenibilidad y la protección del medio ambiente. Costa
+                    Rica es uno de los únicos países del mundo que ha logrado revertir la deforestación a niveles
+                    históricos. Otra cosa que distingue a Costa Rica de otros países del mundo, a lo largo de su
+                    historia, es el compromiso
+                    con la educación y la salud pública, lo que ha llevado a altos índices de alfabetización y
+                    esperanza de vida. Por ejemplo, la Universidad de Costa Rica toma el puesto 20 entre las mejores
+                    universidades de latinoamérica. La educación primaria y secundaria son gratuitas y obligatorias,
+                    lo que ha permitido que la mayoría de la población tenga acceso a una educación de calidad. Además,
+                    Costa Rica ha invertido significativamente en su sistema de salud, lo que ha llevado a una
+                    atención médica universal y de alta calidad. Costa Rica también es un país de manufactura de
+                    productos
+                    médicos especializados, lo que ha contribuido a su economía y a la creación de empleo en el sector.
+                    También, siempre ha sido caracterizado por tener una de las democracias más plenas del mundo, así
+                    como ser uno de los países <a href="https://rsf.org/es/clasificacion?year=2021">con mayor libertad
+                        de
+                        prensa en 2021</a>, tomando el puesto 5.
+                </p>
+                <p>
+                    Aunque Costa Rica a lo largo de su historia ha tenido muchos avances y muy buena reputación debido
+                    a formar un <b>estado de bienestar y democracia</b>, impulsado inicialmente por Dr. Rafael Ángel
+                    Calderón Guardia, este país no está exento de problemas. El país es altamente vulnerable
+                    económicamente,
+                    ya que la mayoría de su producto interno bruto (PIB) depende del <b>turismo</b>, lo que hace que su
+                    economía dependa de la <i>imagen del país</i>. A su vez, la
+                    desigualdad económica y social convierten <a
+                        href="https://radios.ucr.ac.cr/2019/02/doblecheck/cierto-costa-rica-es-de-los-paises-mas-desiguales-del-mundo-segun-el-banco-mundial/">en
+                        uno de los países más desiguales del mundo</a>, según el Banco Mundial. Aunado a eso,
+                    las playas del costarricense han sido transferidas a empresas privadas, hoteles e inmovilarias,
+                    desatando un terrible problema de <b>gentrificación</b>.
+                    Otro de los problemas que enfrenta el país es la <b>inseguridad y corrupción</b>, de la cual voy a
+                    hablar con
+                    más detalle luego en este artículo. Entre los otros problemas que voy a enfrentar en este artículo,
+                    están
+                    <i>la caída de libertad de prensa del puesto 5 al puesto 36, en tan solo 4 años</i>, déficit fiscal,
+                    caída de la calidad de la <i>educación y salud</i>, daño permanente a la imagen de Costa Rica, con
+                    el
+                    sucio, y lleno de sangre, <i>tratado de libre comercio con Israel</i>,y sobre todo, las políticas
+                    neoliberales
+                    que arruinan el país cada vez más y más.
+                </p>
+                <img class="img-fluid" src="../../static/img/void/chaves.webp" alt="Chaves como un cerdo">
+                <h2>1. Turismo e imagen del país</h2>
+                <h2>2. Inseguridad, corrupción y el narco</h2>
+                <h2>3. Gentrificación excesiva</h2>
+                <h2>4. Desigualdad social y económica</h2>
+                <h2>5. Déficit fiscal</h2>
+                <h2>6. Caída de la calidad de la educación y salud</h2>
+                <h2 class="post-title">7. Tratado de libre comercio con un estado genocida</h2>
+            </div>
+        </article>
+    </main>
+
+    <div id="footer-placeholder"></div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.8/clipboard.min.js"></script>
+    <script src="../../static/js/prism.js"></script>
+    <script src="../../static/js/templates.js"></script>
+    <script>
+        // Reading progress bar
+        window.addEventListener('scroll', () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.querySelector('.reading-progress-bar').style.width = scrolled + '%';
+        });
+    </script>
+</body>
+
+</html>
