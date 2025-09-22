@@ -548,3 +548,8 @@ html,
 body {
     overflow-x: hidden;
 }
+
+.red-bold-text {
+    color: var(--accent-color);
+    font-weight: bold;
+}
