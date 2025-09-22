@@ -8,6 +8,7 @@
     --daily-card-bg: #150404;
 }
 
+
 body {
     font-family: 'JetBrains Mono', monospace;
     background-color: var(--primary-dark);
@@ -523,4 +524,27 @@ main {
     100% {
         transform: scale(2.5) rotate(0deg);
     }
+}
+
+
+/* Ocultar scrollbars en todos los navegadores manteniendo el scroll */
+html,
+body {
+    -ms-overflow-style: none;
+    /* IE y Edge (legacy) */
+    scrollbar-width: none;
+    /* Firefox */
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+    width: 0 !important;
+    /* Chrome, Safari, Opera */
+    height: 0 !important;
+}
+
+/* Opcional: si aparece barra horizontal por desbordes, ocultarla */
+html,
+body {
+    overflow-x: hidden;
 }
