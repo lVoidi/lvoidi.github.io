@@ -118,16 +118,6 @@ const VOID_POSTS = [
         author: "Rodrigo Arce"
     },
     {
-        id: "microsoft-majorana",
-        title: "Microsoft introduces... A NEW STATE OF MATTER?",
-        description: "Microsoft introduced Majorana 1, is it the future of computing? let's find out.",
-        image: "../static/img/void/microsoft-majorana.jpg",
-        tags: ["yapping", "science"],
-        readTime: 5,
-        date: "2025-02-15",
-        author: "Rodrigo Arce"
-    },
-    {
         id: "chatgptimg",
         title: "ChatGPT and image generation",
         description: "In this post, i discuss new ChatGPT image generation features.",
