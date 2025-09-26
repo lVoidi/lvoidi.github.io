@@ -98,16 +98,6 @@ const VOID_POSTS = [
 
     },
     {
-        id: "sui-best-blockchain",
-        title: "Sui is the best blockchain",
-        description: "In this post, i discuss why Sui is the best blockchain in my humble opinion.",
-        image: "../static/img/void/sui.jpg",
-        tags: ["crypto", "yapping"],
-        readTime: 4,
-        date: "2025-02-08",
-        author: "Rodrigo Arce"
-    },
-    {
         id: "tensorzero",
         title: "TensorZero: an interesting project",
         description: "TensorZero creates a feedback loop for optimizing LLM applications — turning production data into smarter, faster, and cheaper models.",
