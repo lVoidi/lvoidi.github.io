@@ -156,16 +156,6 @@ const VOID_POSTS = [
         readTime: 5,
         date: "2025-08-14",
         author: "Rodrigo Arce"
-    },
-    {
-        id: "gobierno-chaves",
-        title: "Mi Problema con el Gobierno de Chaves",
-        description: "En este artículo, hablo de todo lo que el gobierno de Chaves hizo mal en Costa Rica.",
-        image: "../static/img/void/chaves.webp",
-        tags: ["yapping", "politics", "Costa Rica", "Español"],
-        readTime: 5,
-        date: "2025-08-30",
-        author: "Rodrigo Arce"
     }
 ];
 
