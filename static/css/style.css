@@ -1,3 +1,13 @@
+/* Utility for narrow, justified hero text */
+.hero-narrow-justified {
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: justify;
+    text-justify: inter-word;
+    line-height: 1.7;
+}
+
 :root {
     --primary-dark: #120101;
     --secondary-dark: #140404;
@@ -61,7 +71,7 @@ body a {
 .card {
     background-color: rgba(0, 0, 0, 0.7);
     border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 8px;
+    border-radius: 4px;
     transition: all 0.3s ease;
     overflow: hidden;
     height: 100%;
@@ -173,7 +183,7 @@ body a {
     font-size: 0.85rem;
     background: rgba(110, 68, 255, 0.1);
     padding: 0.75rem;
-    border-radius: 4px;
+    border-radius: 2px;
     border: 1px solid var(--box-shadow);
     color: #fff;
     word-break: break-all;
@@ -232,7 +242,7 @@ main {
     color: rgba(255, 255, 255, 0.9);
     backdrop-filter: blur(5px);
     padding: 1rem;
-    border-radius: 8px;
+    border-radius: 4px;
     background: rgba(0, 0, 0, 0.3);
 }
 
@@ -254,7 +264,7 @@ main {
 .tech-stack {
     background: rgba(0, 0, 0, 0.3);
     padding: 1rem;
-    border-radius: 8px;
+    border-radius: 4px;
     backdrop-filter: blur(5px);
 }
 
@@ -329,7 +339,7 @@ main {
 .daily-card {
     background: var(--daily-card-bg);
     backdrop-filter: blur(10px);
-    border-radius: 8px;
+    border-radius: 4px;
     padding: 20px;
     margin-bottom: 20px;
     position: relative;
@@ -369,7 +379,7 @@ main {
     transform: translateX(-50%);
     background: var(--accent-color);
     padding: 5px 15px;
-    border-radius: 20px;
+    border-radius: 2px;
     font-size: 0.9em;
     font-weight: bold;
     color: #fff;
