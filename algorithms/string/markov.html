@@ -1,32 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Markov Chain Text Generation | Stochastic String Processing Algorithm</title>
-    
+
     <!-- SEO Meta Tags -->
-    <meta name="description" content="Learn about Markov Chain text generation with O(n) time complexity. Includes interactive demo and implementations in Python, C++, and C# for generating realistic text based on probabilistic models.">
-    <meta name="keywords" content="markov chain, text generation, natural language processing, stochastic model, probabilistic algorithm, predictive text, state transitions, NLP, computer science, algorithm visualization">
+    <meta name="description"
+        content="Learn about Markov Chain text generation with O(n) time complexity. Includes interactive demo and implementations in Python, C++, and C# for generating realistic text based on probabilistic models.">
+    <meta name="keywords"
+        content="markov chain, text generation, natural language processing, stochastic model, probabilistic algorithm, predictive text, state transitions, NLP, computer science, algorithm visualization">
     <meta name="author" content="lVoidi">
     <meta name="robots" content="index, follow">
-    
+
     <!-- Open Graph / Social Media Meta Tags -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://roarba.com/algorithms/string/markov.html">
     <meta property="og:title" content="Markov Chain Text Generation | Stochastic String Processing Algorithm">
-    <meta property="og:description" content="Learn about Markov Chain text generation with O(n) time complexity. Includes interactive demo and implementations in Python, C++, and C# for generating realistic text based on probabilistic models.">
+    <meta property="og:description"
+        content="Learn about Markov Chain text generation with O(n) time complexity. Includes interactive demo and implementations in Python, C++, and C# for generating realistic text based on probabilistic models.">
     <meta property="og:image" content="https://roarba.com/static/img/algorithms/markov.jpg">
-    
+
     <!-- Twitter Card Tags -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Markov Chain Text Generation | Stochastic String Processing Algorithm">
-    <meta name="twitter:description" content="Learn about Markov Chain text generation with O(n) time complexity. Includes interactive demo and implementations in Python, C++, and C# for generating realistic text based on probabilistic models.">
+    <meta name="twitter:description"
+        content="Learn about Markov Chain text generation with O(n) time complexity. Includes interactive demo and implementations in Python, C++, and C# for generating realistic text based on probabilistic models.">
     <meta name="twitter:image" content="https://roarba.com/static/img/algorithms/markov.jpg">
-    
+
     <!-- Canonical URL -->
     <meta rel="canonical" href="https://roarba.com/algorithms/string/markov.html">
-    
+
     <!-- CSS imports -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
@@ -34,11 +39,10 @@
     <link href="../../static/css/algorithms.css" rel="stylesheet">
     <link href="../../static/css/algorithm-page.css" rel="stylesheet">
     <link href="../../static/css/prism.css" rel="stylesheet">
-    <link href="../../static/css/markov-visualization.css" rel="stylesheet">
 
     <!-- Icon -->
     <link rel="icon" href="../../static/img/icon.png" type="image/x-icon">
-    
+
     <!-- Schema.org structured data -->
     <script type="application/ld+json">
     {
@@ -76,9 +80,10 @@
     }
     </script>
 </head>
+
 <body>
     <div id="navbar-placeholder"></div>
-    
+
     <main class="container py-5">
         <div class="row">
             <!-- Sidebar with Quick Info -->
@@ -115,7 +120,10 @@
 
                     <section class="algorithm-section">
                         <h2>Description</h2>
-                        <p>A Markov Chain is a stochastic model that describes a sequence of possible events where the probability of each event depends only on the state of the previous event. In text generation, it's used to predict the next word or character based on the previous n words or characters.</p>
+                        <p>A Markov Chain is a stochastic model that describes a sequence of possible events where the
+                            probability of each event depends only on the state of the previous event. In text
+                            generation, it's used to predict the next word or character based on the previous n words or
+                            characters.</p>
                     </section>
 
                     <section class="algorithm-section">
@@ -143,14 +151,14 @@
                         <div class="visualization-container">
                             <div class="visualization-controls">
                                 <div class="input-group mb-3">
-                                    <textarea id="trainingText" class="form-control" 
-                                              placeholder="Enter training text" rows="4"></textarea>
+                                    <textarea id="trainingText" class="form-control" placeholder="Enter training text"
+                                        rows="4"></textarea>
                                 </div>
                                 <div class="input-group mb-3">
-                                    <input type="number" id="chainLength" class="form-control" 
-                                           placeholder="Chain length" value="2" min="1" max="5">
-                                    <input type="number" id="outputLength" class="form-control" 
-                                           placeholder="Output length" value="100" min="10">
+                                    <input type="number" id="chainLength" class="form-control"
+                                        placeholder="Chain length" value="2" min="1" max="5">
+                                    <input type="number" id="outputLength" class="form-control"
+                                        placeholder="Output length" value="100" min="10">
                                     <button class="btn btn-primary" id="generateBtn">Generate</button>
                                     <button class="btn btn-secondary" id="resetBtn">Reset</button>
                                 </div>
@@ -546,7 +554,7 @@ public class MarkovChain
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const clipboard = new ClipboardJS('.copy-button');
-            
+
             clipboard.on('success', (e) => {
                 const button = e.trigger;
                 button.innerHTML = '<i class="fas fa-check"></i>';
@@ -559,4 +567,5 @@ public class MarkovChain
     </script>
     <script src="../../static/js/templates.js"></script>
 </body>
+
 </html>
