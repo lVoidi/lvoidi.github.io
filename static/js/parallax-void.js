@@ -71,15 +71,15 @@ class ParallaxVoid {
     }
 
     createBlackHoleEffects() {
-        // Main black hole distortion
+        // Main black hole distortion (gravitational lensing)
         const blackHole = document.createElement('div');
         blackHole.className = 'black-hole-distortion';
         this.container.appendChild(blackHole);
 
-        // Accretion disk
-        const accretionDisk = document.createElement('div');
-        accretionDisk.className = 'accretion-disk';
-        this.container.appendChild(accretionDisk);
+        // Event horizon - Interstellar style
+        const eventHorizon = document.createElement('div');
+        eventHorizon.className = 'event-horizon';
+        this.container.appendChild(eventHorizon);
 
         // Additional subtle distortion effects
         this.createGravitationalLensing();

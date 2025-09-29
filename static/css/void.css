@@ -64,22 +64,53 @@
     width: 200px;
     height: 200px;
     border-radius: 50%;
-    background: radial-gradient(circle, transparent 30%, rgba(139, 0, 0, 0.1) 40%, rgba(255, 0, 0, 0.05) 60%, transparent 100%);
+    background:
+        radial-gradient(circle at 45% 40%, transparent 20%, rgba(255, 140, 0, 0.03) 25%, transparent 35%),
+        radial-gradient(circle at 55% 60%, transparent 15%, rgba(255, 200, 100, 0.05) 20%, transparent 30%),
+        radial-gradient(circle at center,
+            transparent 25%,
+            rgba(139, 0, 0, 0.08) 35%,
+            rgba(255, 100, 0, 0.06) 50%,
+            rgba(255, 200, 150, 0.03) 65%,
+            transparent 85%);
     animation: blackHoleRotation 60s linear infinite, blackHolePulse 8s ease-in-out infinite alternate;
-    filter: blur(1px);
+    filter: blur(3px);
+    box-shadow:
+        inset 0 0 80px rgba(0, 0, 0, 0.9),
+        0 0 100px rgba(255, 140, 0, 0.1),
+        0 0 200px rgba(255, 200, 100, 0.05);
 }
 
-.accretion-disk {
+/* Accretion disk removed for cleaner black hole effect */
+
+/* Event Horizon - Interstellar Style */
+.event-horizon {
     position: absolute;
-    top: 50%;
-    right: 10%;
-    width: 300px;
-    height: 300px;
+    top: 20%;
+    right: 15%;
+    width: 120px;
+    height: 120px;
     border-radius: 50%;
-    background: conic-gradient(from 0deg, transparent, rgba(255, 68, 68, 0.1), rgba(139, 0, 0, 0.2), transparent);
-    animation: accretionRotation 40s linear infinite;
-    transform: perspective(200px) rotateX(75deg);
-    filter: blur(0.5px);
+    background: radial-gradient(circle at center,
+            rgba(0, 0, 0, 1) 0%,
+            rgba(0, 0, 0, 0.95) 40%,
+            rgba(20, 10, 0, 0.3) 60%,
+            transparent 100%);
+    filter: blur(2px);
+    animation: eventHorizonPulse 12s ease-in-out infinite alternate;
+    z-index: 1;
+}
+
+@keyframes eventHorizonPulse {
+    0% {
+        transform: translate(40px, 40px) scale(1);
+        opacity: 0.8;
+    }
+
+    100% {
+        transform: translate(40px, 40px) scale(1.1);
+        opacity: 0.95;
+    }
 }
 
 @keyframes parallaxSlow {
@@ -136,25 +167,36 @@
 
 @keyframes blackHolePulse {
     0% {
-        filter: blur(1px);
-        box-shadow: 0 0 30px rgba(139, 0, 0, 0.3);
+        filter: blur(3px);
+        box-shadow:
+            inset 0 0 80px rgba(0, 0, 0, 0.9),
+            0 0 100px rgba(255, 140, 0, 0.1),
+            0 0 200px rgba(255, 200, 100, 0.05);
+        transform: scale(1);
+    }
+
+    50% {
+        filter: blur(4px);
+        box-shadow:
+            inset 0 0 100px rgba(0, 0, 0, 0.95),
+            0 0 150px rgba(255, 140, 0, 0.15),
+            0 0 300px rgba(255, 200, 100, 0.08),
+            0 0 500px rgba(255, 160, 50, 0.03);
+        transform: scale(1.05);
     }
 
     100% {
-        filter: blur(2px);
-        box-shadow: 0 0 50px rgba(255, 0, 0, 0.4), 0 0 100px rgba(139, 0, 0, 0.2);
+        filter: blur(5px);
+        box-shadow:
+            inset 0 0 120px rgba(0, 0, 0, 0.98),
+            0 0 180px rgba(255, 140, 0, 0.2),
+            0 0 350px rgba(255, 200, 100, 0.1),
+            0 0 600px rgba(255, 160, 50, 0.04);
+        transform: scale(1.1);
     }
 }
 
-@keyframes accretionRotation {
-    0% {
-        transform: perspective(200px) rotateX(75deg) rotate(0deg);
-    }
-
-    100% {
-        transform: perspective(200px) rotateX(75deg) rotate(360deg);
-    }
-}
+/* Accretion rotation animation removed */
 
 /* Content container adjustments */
 body {
@@ -348,9 +390,9 @@ body {
         height: 150px;
     }
 
-    .accretion-disk {
-        width: 200px;
-        height: 200px;
+    .event-horizon {
+        width: 90px;
+        height: 90px;
     }
 }
 
@@ -408,10 +450,10 @@ body {
         animation-duration: 90s;
     }
 
-    .accretion-disk {
-        width: 150px;
-        height: 150px;
-        animation-duration: 60s;
+    .event-horizon {
+        width: 60px;
+        height: 60px;
+        animation-duration: 15s;
     }
 }
 
@@ -426,9 +468,12 @@ body {
         opacity: 0.7;
     }
 
-    .black-hole-distortion,
-    .accretion-disk {
+    .black-hole-distortion {
         opacity: 0.5;
+    }
+
+    .event-horizon {
+        opacity: 0.3;
     }
 }
 
@@ -440,7 +485,7 @@ body {
     .stars-layer-3,
     .star,
     .black-hole-distortion,
-    .accretion-disk {
+    .event-horizon {
         animation-duration: 0s !important;
         animation: none !important;
     }
@@ -455,7 +500,7 @@ body {
 .stars-layer,
 .star,
 .black-hole-distortion,
-.accretion-disk {
+.event-horizon {
     will-change: transform;
     transform-style: preserve-3d;
     backface-visibility: hidden;
