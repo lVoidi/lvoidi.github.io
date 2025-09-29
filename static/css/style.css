@@ -1,3 +1,29 @@
+/* Red style for post card primary buttons in Singularity section */
+.card .btn-primary {
+    background-color: var(--accent-color) !important;
+    border-color: var(--accent-color) !important;
+    color: #fff !important;
+    box-shadow: 0 0 0 0.15rem rgba(255, 68, 68, 0.15);
+    transition: background 0.2s, color 0.2s;
+}
+
+.card .btn-primary:hover,
+.card .btn-primary:focus {
+    background-color: var(--accent-hover) !important;
+    border-color: var(--accent-hover) !important;
+    color: #fff !important;
+}
+
+/* Red active state for filter buttons in Singularity section */
+.filters .btn-outline-primary.active,
+.filters .btn-outline-primary:active,
+.filters .btn-outline-primary:focus {
+    background-color: var(--accent-color) !important;
+    color: #fff !important;
+    border-color: var(--accent-color) !important;
+    box-shadow: 0 0 0 0.15rem rgba(255, 68, 68, 0.25);
+}
+
 /* Utility for narrow, justified hero text */
 .hero-narrow-justified {
     max-width: 900px;
@@ -435,7 +461,7 @@ main {
 .donation-card .btn-outline-secondary {
     border-color: var(--accent-color);
     color: var(--accent-color);
-    background-color: rgba(110, 68, 255, 0.1);
+    background-color: rgba(255, 68, 68, 0.1);
 }
 
 .donation-card .btn-outline-secondary:hover {

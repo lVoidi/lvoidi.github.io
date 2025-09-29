@@ -1,22 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bitcoin Whitepaper Analysis: Satoshi's Vision for Digital Currency | Roarbaaaa Portal</title>
-    
+
     <!-- SEO Meta Tags -->
-    <meta name="description" content="In-depth analysis of Satoshi Nakamoto's Bitcoin whitepaper, exploring the revolutionary peer-to-peer electronic cash system, blockchain technology, and its impact on digital currency." />
-    <meta name="keywords" content="Bitcoin whitepaper, Satoshi Nakamoto, blockchain technology, cryptocurrency, peer-to-peer electronic cash, digital currency, proof-of-work, double-spending, decentralized finance" />
+    <meta name="description"
+        content="In-depth analysis of Satoshi Nakamoto's Bitcoin whitepaper, exploring the revolutionary peer-to-peer electronic cash system, blockchain technology, and its impact on digital currency." />
+    <meta name="keywords"
+        content="Bitcoin whitepaper, Satoshi Nakamoto, blockchain technology, cryptocurrency, peer-to-peer electronic cash, digital currency, proof-of-work, double-spending, decentralized finance" />
     <meta name="author" content="Rodrigo Arce" />
-    
+
     <!-- Open Graph / Social Media Tags -->
     <meta property="og:title" content="Bitcoin Whitepaper Analysis: Satoshi's Vision for Digital Currency" />
-    <meta property="og:description" content="Explore the revolutionary Bitcoin whitepaper by Satoshi Nakamoto, examining the technical foundations of blockchain technology and cryptocurrency." />
+    <meta property="og:description"
+        content="Explore the revolutionary Bitcoin whitepaper by Satoshi Nakamoto, examining the technical foundations of blockchain technology and cryptocurrency." />
     <meta property="og:image" content="https://roarba.com/static/img/singularity/bitcoin.png" />
     <meta property="og:url" content="https://roarba.com/singularity/pages/bitcoin-whitepaper.html" />
     <meta property="og:type" content="article" />
-    
+
     <!-- Article Specific Meta Tags -->
     <meta property="article:published_time" content="2008-10-31" />
     <meta property="article:modified_time" content="2025-01-03" />
@@ -27,7 +31,7 @@
     <meta property="article:tag" content="Blockchain" />
     <meta property="article:tag" content="Digital Currency" />
     <meta property="article:tag" content="Decentralized Finance" />
-    
+
     <!-- Canonical URL -->
     <link rel="canonical" href="https://roarba.com/singularity/pages/bitcoin-whitepaper.html" />
 
@@ -84,14 +88,16 @@
     <meta name="twitter:site" content="@lVoidi">
     <meta name="twitter:creator" content="@lVoidi">
     <meta name="twitter:title" content="Bitcoin Whitepaper Analysis: Satoshi's Vision for Digital Currency">
-    <meta name="twitter:description" content="Explore the revolutionary Bitcoin whitepaper by Satoshi Nakamoto, examining the technical foundations of blockchain technology and cryptocurrency.">
+    <meta name="twitter:description"
+        content="Explore the revolutionary Bitcoin whitepaper by Satoshi Nakamoto, examining the technical foundations of blockchain technology and cryptocurrency.">
     <meta name="twitter:image" content="https://roarba.com/static/img/singularity/bitcoin-whitepaper.jpg">
-    
+
     <!-- CSS imports -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="../../static/css/style.css" rel="stylesheet">
     <link href="../../static/css/blog-post.css" rel="stylesheet">
+    <link href="../../static/css/singularity.css" rel="stylesheet">
     <link href="../../static/css/prism.css" rel="stylesheet">
 
     <!-- Icon -->
@@ -100,9 +106,10 @@
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
-    
+
 
 </head>
+
 <body>
     <!-- Reading Progress Bar -->
     <div class="reading-progress-bar"></div>
@@ -182,10 +189,10 @@
                 <h2>Abstract</h2>
                 <div class="example-box">
                     <p>
-                        A purely peer-to-peer version of electronic cash would allow online payments to be 
-                        sent directly from one party to another without going through a financial institution. 
-                        Digital signatures provide part of the solution, but the main benefits are lost if a 
-                        trusted third party is still required to prevent double-spending. We propose a solution 
+                        A purely peer-to-peer version of electronic cash would allow online payments to be
+                        sent directly from one party to another without going through a financial institution.
+                        Digital signatures provide part of the solution, but the main benefits are lost if a
+                        trusted third party is still required to prevent double-spending. We propose a solution
                         to the double-spending problem using a peer-to-peer network.
                     </p>
                 </div>
@@ -193,64 +200,70 @@
 
             <section id="introduction">
                 <h2>Introduction</h2>
-                
+
                 <div class="example-box">
                     <h4>Historical Context</h4>
                     <p>
-                        The Bitcoin whitepaper was published on October 31, 2008, during the height of the global financial 
-                        crisis. This timing was not coincidental - the crisis had exposed fundamental weaknesses in the 
+                        The Bitcoin whitepaper was published on October 31, 2008, during the height of the global
+                        financial
+                        crisis. This timing was not coincidental - the crisis had exposed fundamental weaknesses in the
                         traditional banking system and highlighted the need for alternative financial solutions.
                     </p>
                     <p>
-                        The mysterious creator, using the pseudonym Satoshi Nakamoto, posted the whitepaper to the 
-                        cryptography mailing list with a simple message: "I've been working on a new electronic cash 
+                        The mysterious creator, using the pseudonym Satoshi Nakamoto, posted the whitepaper to the
+                        cryptography mailing list with a simple message: "I've been working on a new electronic cash
                         system that's fully peer-to-peer, with no trusted third party."
                     </p>
                 </div>
 
-                <div class="example-box" style="background: rgba(69, 69, 69, 0.1); border-left-color: #7382cc;">
+                <div class="example-box definition-box">
                     <h4>Previous Attempts at Digital Currency</h4>
                     <ul>
                         <li><strong>DigiCash (1989):</strong>
                             <p>
-                                Created by David Chaum, DigiCash was one of the first attempts at creating electronic money. 
-                                It used cryptographic protocols for anonymous transactions but still relied on a central authority.
+                                Created by David Chaum, DigiCash was one of the first attempts at creating electronic
+                                money.
+                                It used cryptographic protocols for anonymous transactions but still relied on a central
+                                authority.
                             </p>
                         </li>
                         <li><strong>B-money (1998):</strong>
                             <p>
-                                Proposed by Wei Dai, b-money introduced the idea of creating money through solving 
-                                computational puzzles and using a decentralized network. Many concepts in Bitcoin were 
+                                Proposed by Wei Dai, b-money introduced the idea of creating money through solving
+                                computational puzzles and using a decentralized network. Many concepts in Bitcoin were
                                 influenced by this proposal.
                             </p>
                         </li>
                         <li><strong>Bit Gold (2005):</strong>
                             <p>
-                                Nick Szabo's Bit Gold proposed a system for decentralized digital scarcity. It included 
+                                Nick Szabo's Bit Gold proposed a system for decentralized digital scarcity. It included
                                 concepts like proof-of-work and digital signatures that would later appear in Bitcoin.
                             </p>
                         </li>
                     </ul>
                 </div>
 
-                <div class="example-box" style="background: rgba(163, 103, 252, 0.1); border-left-color: #a367fc;">
+                <div class="example-box definition-box">
                     <h4>Key Problems Bitcoin Aimed to Solve</h4>
                     <ul>
                         <li><strong>Double-Spending:</strong>
                             <p>
-                                The fundamental challenge of digital currency: preventing the same digital token from being 
+                                The fundamental challenge of digital currency: preventing the same digital token from
+                                being
                                 spent multiple times without requiring a central authority to verify transactions.
                             </p>
                         </li>
                         <li><strong>Trust in Third Parties:</strong>
                             <p>
-                                Traditional electronic payments require trust in financial institutions to mediate disputes 
+                                Traditional electronic payments require trust in financial institutions to mediate
+                                disputes
                                 and process transactions, leading to increased costs and reversible transactions.
                             </p>
                         </li>
                         <li><strong>Privacy:</strong>
                             <p>
-                                Balancing the public nature of transactions with the privacy needs of participants, while 
+                                Balancing the public nature of transactions with the privacy needs of participants,
+                                while
                                 maintaining the system's integrity.
                             </p>
                         </li>
@@ -260,7 +273,7 @@
                 <div class="info-note">
                     <h4>Revolutionary Aspects</h4>
                     <p>
-                        Bitcoin's innovation wasn't in creating new cryptographic tools - it was in combining existing 
+                        Bitcoin's innovation wasn't in creating new cryptographic tools - it was in combining existing
                         technologies in a novel way to create a truly decentralized system:
                     </p>
                     <ul>
@@ -274,14 +287,17 @@
                 <div class="example-box">
                     <h4>Initial Reception</h4>
                     <p>
-                        The whitepaper was first met with skepticism from many cryptographers and computer scientists. 
-                        However, when Satoshi released the Bitcoin software in January 2009, it proved that the theoretical 
+                        The whitepaper was first met with skepticism from many cryptographers and computer scientists.
+                        However, when Satoshi released the Bitcoin software in January 2009, it proved that the
+                        theoretical
                         system described in the whitepaper could work in practice.
                     </p>
                     <p>
-                        The first Bitcoin transaction occurred on January 12, 2009, when Satoshi sent 10 BTC to Hal Finney, 
-                        a renowned cryptographer. The first real-world transaction happened in May 2010, when two pizzas 
-                        were purchased for 10,000 BTC - a transaction that would be worth hundreds of millions of dollars 
+                        The first Bitcoin transaction occurred on January 12, 2009, when Satoshi sent 10 BTC to Hal
+                        Finney,
+                        a renowned cryptographer. The first real-world transaction happened in May 2010, when two pizzas
+                        were purchased for 10,000 BTC - a transaction that would be worth hundreds of millions of
+                        dollars
                         today.
                     </p>
                 </div>
@@ -289,12 +305,12 @@
                 <div class="code-note">
                     <h4>Genesis Block</h4>
                     <p>
-                        The first block of the Bitcoin blockchain (the Genesis Block) contained a hidden message, 
+                        The first block of the Bitcoin blockchain (the Genesis Block) contained a hidden message,
                         timestamping the creation and referencing the financial crisis:
                     </p>
                     <pre><code class="language-text">The Times 03/Jan/2009 Chancellor on brink of second bailout for banks</code></pre>
                     <p>
-                        This message, taken from The Times newspaper headline, permanently embedded Bitcoin's creation 
+                        This message, taken from The Times newspaper headline, permanently embedded Bitcoin's creation
                         in the context of the 2008 financial crisis.
                     </p>
                 </div>
@@ -306,29 +322,29 @@
                 <div class="example-box">
                     <h4>The Mystery</h4>
                     <p>
-                        Satoshi Nakamoto, the creator of Bitcoin, remains one of the most intriguing mysteries in the 
-                        history of technology. The name is known to be a pseudonym, and despite numerous investigations 
+                        Satoshi Nakamoto, the creator of Bitcoin, remains one of the most intriguing mysteries in the
+                        history of technology. The name is known to be a pseudonym, and despite numerous investigations
                         and claims, the true identity remains unknown to this day.
                     </p>
                     <p>
-                        What makes this particularly fascinating is that Nakamoto controls approximately 1 million 
-                        bitcoins (worth billions of dollars) from early mining, which have never been moved since 
+                        What makes this particularly fascinating is that Nakamoto controls approximately 1 million
+                        bitcoins (worth billions of dollars) from early mining, which have never been moved since
                         their creation.
                     </p>
                 </div>
 
-                <div class="example-box" style="background: rgba(69, 69, 69, 0.1); border-left-color: #7382cc;">
+                <div class="example-box definition-box">
                     <h4>Known Timeline</h4>
                     <ul>
                         <li><strong>August 18, 2008:</strong>
                             <p>
-                                The domain bitcoin.org is registered through anonymousspeech.com, a service allowing 
+                                The domain bitcoin.org is registered through anonymousspeech.com, a service allowing
                                 anonymous domain registration.
                             </p>
                         </li>
                         <li><strong>October 31, 2008:</strong>
                             <p>
-                                Nakamoto publishes the Bitcoin whitepaper on the cryptography mailing list at 
+                                Nakamoto publishes the Bitcoin whitepaper on the cryptography mailing list at
                                 metzdowd.com.
                             </p>
                         </li>
@@ -339,20 +355,20 @@
                         </li>
                         <li><strong>December 12, 2010:</strong>
                             <p>
-                                Satoshi's last known public post, discussing technical aspects of Bitcoin on the 
+                                Satoshi's last known public post, discussing technical aspects of Bitcoin on the
                                 bitcointalk forum.
                             </p>
                         </li>
                         <li><strong>April 23, 2011:</strong>
                             <p>
-                                Final known communication from Satoshi, in a private email to developers, stating 
+                                Final known communication from Satoshi, in a private email to developers, stating
                                 they had "moved on to other things."
                             </p>
                         </li>
                     </ul>
                 </div>
 
-                <div class="example-box" style="background: rgba(163, 103, 252, 0.1); border-left-color: #a367fc;">
+                <div class="example-box definition-box">
                     <h4>Technical Expertise</h4>
                     <p>
                         Analysis of Satoshi's writings and code reveals several key characteristics:
@@ -360,19 +376,20 @@
                     <ul>
                         <li><strong>Programming Style:</strong>
                             <p>
-                                The original Bitcoin codebase showed proficiency in C++ and demonstrated thorough 
+                                The original Bitcoin codebase showed proficiency in C++ and demonstrated thorough
                                 understanding of cryptography, networking protocols, and distributed systems.
                             </p>
                         </li>
                         <li><strong>Writing Style:</strong>
                             <p>
-                                Used British English spellings but posted during typical US working hours. Technical 
+                                Used British English spellings but posted during typical US working hours. Technical
                                 writing was clear, precise, and showed deep knowledge of economics and monetary theory.
                             </p>
                         </li>
                         <li><strong>Security Mindset:</strong>
                             <p>
-                                Demonstrated exceptional awareness of potential attack vectors and security considerations, 
+                                Demonstrated exceptional awareness of potential attack vectors and security
+                                considerations,
                                 suggesting background in security engineering or cryptography.
                             </p>
                         </li>
@@ -396,13 +413,14 @@
                 <div class="example-box">
                     <h4>Legacy</h4>
                     <p>
-                        Satoshi's disappearance may have been one of their most important actions. By stepping away, 
-                        they ensured that Bitcoin would become truly decentralized, with no single leader or point of 
+                        Satoshi's disappearance may have been one of their most important actions. By stepping away,
+                        they ensured that Bitcoin would become truly decentralized, with no single leader or point of
                         failure. This absence has allowed Bitcoin to evolve organically through community consensus.
                     </p>
                     <p>
-                        The decision to remain anonymous while creating a transparent system paradoxically added to 
-                        Bitcoin's credibility - the focus remained on the technology rather than its creator, reinforcing 
+                        The decision to remain anonymous while creating a transparent system paradoxically added to
+                        Bitcoin's credibility - the focus remained on the technology rather than its creator,
+                        reinforcing
                         the principle of trustless verification over human authority.
                     </p>
                 </div>
@@ -423,63 +441,68 @@
                 <div class="example-box">
                     <h4>Notable Claimants</h4>
                     <p>
-                        Over the years, several individuals have claimed to be Satoshi Nakamoto, though none have 
-                        provided cryptographic proof by signing messages with the original keys or moving early bitcoins.
+                        Over the years, several individuals have claimed to be Satoshi Nakamoto, though none have
+                        provided cryptographic proof by signing messages with the original keys or moving early
+                        bitcoins.
                     </p>
                 </div>
 
-                <div class="example-box" style="background: rgba(69, 69, 69, 0.1); border-left-color: #7382cc;">
+                <div class="example-box definition-box">
                     <h4>Craig Wright Controversy</h4>
                     <p>
-                        The most persistent claimant has been Craig Wright, an Australian computer scientist who first 
+                        The most persistent claimant has been Craig Wright, an Australian computer scientist who first
                         claimed to be Satoshi in 2016.
                     </p>
                     <ul>
                         <li><strong>Initial Claims (2016):</strong>
                             <p>
-                                Wright provided allegedly fraudulent evidence to several media outlets. When technical 
+                                Wright provided allegedly fraudulent evidence to several media outlets. When technical
                                 experts demanded cryptographic proof, he promised to move early bitcoins but never did.
                             </p>
                         </li>
                         <li><strong>Legal Actions:</strong>
                             <p>
-                                Wright has initiated numerous lawsuits against community members who disputed his claims, 
+                                Wright has initiated numerous lawsuits against community members who disputed his
+                                claims,
                                 leading to significant controversy within the cryptocurrency space.
                             </p>
                         </li>
                         <li><strong>Technical Discrepancies:</strong>
                             <p>
-                                Multiple technical analyses have shown inconsistencies between Wright's technical knowledge 
+                                Multiple technical analyses have shown inconsistencies between Wright's technical
+                                knowledge
                                 and capabilities compared to the original Satoshi's demonstrated expertise.
                             </p>
                         </li>
                     </ul>
                 </div>
 
-                <div class="example-box" style="background: rgba(163, 103, 252, 0.1); border-left-color: #a367fc;">
+                <div class="example-box definition-box">
                     <h4>False Accusations and Media Speculation</h4>
                     <ul>
                         <li><strong>Dorian Nakamoto (2014):</strong>
                             <p>
-                                Newsweek published a cover story claiming Dorian Prentice Satoshi Nakamoto, a California 
-                                resident, was Bitcoin's creator. This led to significant media harassment of an innocent 
-                                person who had nothing to do with Bitcoin, highlighting the dangers of irresponsible 
+                                Newsweek published a cover story claiming Dorian Prentice Satoshi Nakamoto, a California
+                                resident, was Bitcoin's creator. This led to significant media harassment of an innocent
+                                person who had nothing to do with Bitcoin, highlighting the dangers of irresponsible
                                 journalism in the space.
                             </p>
                         </li>
                         <li><strong>Peter Todd Case:</strong>
                             <p>
-                                Peter Todd, an early Bitcoin developer, was falsely accused by some media outlets of being 
-                                Satoshi. Unlike other cases, Todd consistently denied these claims and has been a vocal 
-                                critic of individuals making false Satoshi claims. His case demonstrates how even 
-                                legitimate contributors to Bitcoin's development can be wrongly associated with Satoshi's 
+                                Peter Todd, an early Bitcoin developer, was falsely accused by some media outlets of
+                                being
+                                Satoshi. Unlike other cases, Todd consistently denied these claims and has been a vocal
+                                critic of individuals making false Satoshi claims. His case demonstrates how even
+                                legitimate contributors to Bitcoin's development can be wrongly associated with
+                                Satoshi's
                                 identity.
                             </p>
                         </li>
                         <li><strong>Nick Szabo Speculation:</strong>
                             <p>
-                                Due to his prior work on Bit Gold and similar writing style, Nick Szabo has been 
-                                frequently suggested as Satoshi. However, he has denied these claims, and the community 
+                                Due to his prior work on Bit Gold and similar writing style, Nick Szabo has been
+                                frequently suggested as Satoshi. However, he has denied these claims, and the community
                                 generally respects his privacy rather than pursuing the speculation.
                             </p>
                         </li>
@@ -514,7 +537,7 @@
                         <li>Generated misleading media coverage that confused newcomers</li>
                     </ul>
                     <p>
-                        These experiences have reinforced the community's appreciation for Satoshi's decision to 
+                        These experiences have reinforced the community's appreciation for Satoshi's decision to
                         remain anonymous and the importance of focusing on the technology rather than personalities.
                     </p>
                 </div>
@@ -535,13 +558,13 @@
                 <div class="example-box">
                     <h4>Japanese Etymology</h4>
                     <p>
-                        The name "Satoshi Nakamoto" (中本哲史 in Japanese characters) has sparked considerable 
-                        interest due to its potential meanings in Japanese. While it's a plausible Japanese name, 
+                        The name "Satoshi Nakamoto" (中本哲史 in Japanese characters) has sparked considerable
+                        interest due to its potential meanings in Japanese. While it's a plausible Japanese name,
                         certain aspects have led some to believe it was carefully chosen for its symbolic meaning.
                     </p>
                 </div>
 
-                <div class="example-box" style="background: rgba(69, 69, 69, 0.1); border-left-color: #7382cc;">
+                <div class="example-box definition-box">
                     <h4>Name Components</h4>
                     <ul>
                         <li><strong>Satoshi (哲史/聡):</strong>
@@ -572,26 +595,26 @@
                     </ul>
                 </div>
 
-                <div class="example-box" style="background: rgba(163, 103, 252, 0.1); border-left-color: #a367fc;">
+                <div class="example-box definition-box">
                     <h4>Symbolic Interpretations</h4>
                     <ul>
                         <li><strong>Combined Meaning:</strong>
                             <p>
-                                When taken together, the name could be interpreted as "wise foundation" or 
-                                "central intelligence," which some see as fitting for the creator of a 
+                                When taken together, the name could be interpreted as "wise foundation" or
+                                "central intelligence," which some see as fitting for the creator of a
                                 revolutionary financial system.
                             </p>
                         </li>
                         <li><strong>Cultural Significance:</strong>
                             <p>
-                                While the name is linguistically valid Japanese, native speakers have noted that 
-                                it has an unusual quality to it - similar to how English speakers might view a 
+                                While the name is linguistically valid Japanese, native speakers have noted that
+                                it has an unusual quality to it - similar to how English speakers might view a
                                 name like "John Smith" as almost too generic.
                             </p>
                         </li>
                         <li><strong>Numerical Significance:</strong>
                             <p>
-                                Some have noted that "Satoshi" is also the smallest unit of Bitcoin (0.00000001 BTC), 
+                                Some have noted that "Satoshi" is also the smallest unit of Bitcoin (0.00000001 BTC),
                                 though this naming came after the pseudonym was chosen.
                             </p>
                         </li>
@@ -621,12 +644,12 @@
                         <li><strong>TOSHI</strong>ba</li>
                         <li><strong>NAKA</strong>michi</li>
                         <li><strong>MOTO</strong>rola</li>
-                    </p>
-                    <p>
-                        However, like many theories about Satoshi's identity, this remains speculative and 
-                        unconfirmed. The true reasoning behind the choice of name remains as mysterious as 
-                        the identity of its owner.
-                    </p>
+                        </p>
+                        <p>
+                            However, like many theories about Satoshi's identity, this remains speculative and
+                            unconfirmed. The true reasoning behind the choice of name remains as mysterious as
+                            the identity of its owner.
+                        </p>
                 </div>
 
                 <div class="code-note">
@@ -642,13 +665,13 @@ the principles of decentralization and the power of anonymous contribution to so
                 <div class="example-box">
                     <h4>Digital Currency Fundamentals</h4>
                     <p>
-                        Bitcoin defines an electronic coin as a chain of digital signatures. Each owner transfers 
-                        coins by digitally signing a hash of the previous transaction and the public key of the 
+                        Bitcoin defines an electronic coin as a chain of digital signatures. Each owner transfers
+                        coins by digitally signing a hash of the previous transaction and the public key of the
                         next owner, adding these to the end of the coin's transaction history.
                     </p>
                 </div>
 
-                <div class="example-box" style="background: rgba(69, 69, 69, 0.1); border-left-color: #7382cc;">
+                <div class="example-box definition-box">
                     <h4>Transaction Structure</h4>
                     <ul>
                         <li><strong>Inputs:</strong>
@@ -694,25 +717,25 @@ the principles of decentralization and the power of anonymous contribution to so
                 <div class="example-box" style="background: rgba(163, 103, 252, 0.1); border-left-color: #a367fc;">
                     <h4>Digital Signatures</h4>
                     <p>
-                        Bitcoin uses the Elliptic Curve Digital Signature Algorithm (ECDSA) with the secp256k1 curve 
+                        Bitcoin uses the Elliptic Curve Digital Signature Algorithm (ECDSA) with the secp256k1 curve
                         for cryptographic signatures. This provides:
                     </p>
                     <ul>
                         <li><strong>Authentication:</strong>
                             <p>
-                                Proves that the owner of a private key authorized the transaction, as only they 
+                                Proves that the owner of a private key authorized the transaction, as only they
                                 could have produced a valid signature.
                             </p>
                         </li>
                         <li><strong>Non-repudiation:</strong>
                             <p>
-                                Once signed, a transaction cannot be denied by its creator, as the signature 
+                                Once signed, a transaction cannot be denied by its creator, as the signature
                                 mathematically proves their authorization.
                             </p>
                         </li>
                         <li><strong>Integrity:</strong>
                             <p>
-                                Any modification to the transaction after signing would invalidate the signature, 
+                                Any modification to the transaction after signing would invalidate the signature,
                                 ensuring transactions cannot be tampered with.
                             </p>
                         </li>
@@ -722,8 +745,8 @@ the principles of decentralization and the power of anonymous contribution to so
                 <div class="info-note">
                     <h4>The Double-Spending Problem</h4>
                     <p>
-                        The core challenge that Bitcoin solves is preventing an owner from spending the same coins 
-                        multiple times. Traditional solutions relied on a trusted central authority to verify 
+                        The core challenge that Bitcoin solves is preventing an owner from spending the same coins
+                        multiple times. Traditional solutions relied on a trusted central authority to verify
                         transactions. Bitcoin innovates by:
                     </p>
                     <ul>
@@ -748,7 +771,7 @@ the principles of decentralization and the power of anonymous contribution to so
                         <li>Digital signatures are valid for each input</li>
                     </ul>
                     <p>
-                        Only if all these checks pass will the transaction be considered valid and relayed to 
+                        Only if all these checks pass will the transaction be considered valid and relayed to
                         other nodes in the network.
                     </p>
                 </div>
@@ -760,9 +783,9 @@ the principles of decentralization and the power of anonymous contribution to so
                 <div class="example-box">
                     <h4>Consensus Mechanism</h4>
                     <p>
-                        Proof-of-Work (PoW) is Bitcoin's solution to establishing consensus in a trustless, 
-                        distributed system. It requires participants (miners) to expend computational resources 
-                        to create valid blocks, making it economically costly to attempt to modify the blockchain's 
+                        Proof-of-Work (PoW) is Bitcoin's solution to establishing consensus in a trustless,
+                        distributed system. It requires participants (miners) to expend computational resources
+                        to create valid blocks, making it economically costly to attempt to modify the blockchain's
                         history.
                     </p>
                 </div>
@@ -785,7 +808,7 @@ the principles of decentralization and the power of anonymous contribution to so
                         </li>
                         <li><strong>Mining Process:</strong>
                             <p>
-                                Miners must find a nonce that, when combined with the block header, produces a hash 
+                                Miners must find a nonce that, when combined with the block header, produces a hash
                                 below the target difficulty. This process is:
                             </p>
                             <ul>
@@ -812,7 +835,7 @@ the principles of decentralization and the power of anonymous contribution to so
                 <div class="example-box" style="background: rgba(163, 103, 252, 0.1); border-left-color: #a367fc;">
                     <h4>Difficulty Adjustment</h4>
                     <p>
-                        Bitcoin automatically adjusts the mining difficulty every 2,016 blocks (approximately two weeks) 
+                        Bitcoin automatically adjusts the mining difficulty every 2,016 blocks (approximately two weeks)
                         to maintain an average block time of 10 minutes. This adjustment:
                     </p>
                     <ul>
@@ -823,13 +846,13 @@ the principles of decentralization and the power of anonymous contribution to so
                         </li>
                         <li><strong>Constraints:</strong>
                             <p>
-                                The adjustment is limited to a factor of 4 in either direction to prevent extreme 
+                                The adjustment is limited to a factor of 4 in either direction to prevent extreme
                                 changes. The difficulty can never go below the minimum set in the code.
                             </p>
                         </li>
                         <li><strong>Purpose:</strong>
                             <p>
-                                This mechanism ensures the network maintains a steady block production rate regardless 
+                                This mechanism ensures the network maintains a steady block production rate regardless
                                 of changes in total mining power.
                             </p>
                         </li>
@@ -842,21 +865,21 @@ the principles of decentralization and the power of anonymous contribution to so
                         Proof-of-Work provides several key security guarantees:
                     </p>
                     <ul>
-                        <li><strong>51% Attack Resistance:</strong> 
+                        <li><strong>51% Attack Resistance:</strong>
                             <p>
-                                An attacker would need to control more than 50% of the network's total computing 
+                                An attacker would need to control more than 50% of the network's total computing
                                 power to reliably modify transaction history.
                             </p>
                         </li>
                         <li><strong>Immutability:</strong>
                             <p>
-                                Each block builds upon previous blocks, making it exponentially harder to modify 
+                                Each block builds upon previous blocks, making it exponentially harder to modify
                                 older transactions.
                             </p>
                         </li>
                         <li><strong>Decentralization:</strong>
                             <p>
-                                Anyone can participate in mining by committing computational resources, preventing 
+                                Anyone can participate in mining by committing computational resources, preventing
                                 centralized control.
                             </p>
                         </li>
@@ -866,7 +889,7 @@ the principles of decentralization and the power of anonymous contribution to so
                 <div class="example-box">
                     <h4>Energy Considerations</h4>
                     <p>
-                        The energy consumption of Bitcoin mining is often debated. While significant, it serves 
+                        The energy consumption of Bitcoin mining is often debated. While significant, it serves
                         several purposes:
                     </p>
                     <ul>
@@ -876,7 +899,7 @@ the principles of decentralization and the power of anonymous contribution to so
                         <li>Incentivizes use of cheap, often stranded or renewable energy sources</li>
                     </ul>
                     <p>
-                        The energy cost effectively transforms electrical power into digital security, creating 
+                        The energy cost effectively transforms electrical power into digital security, creating
                         what some call "proof of work as stored energy."
                     </p>
                 </div>
@@ -900,8 +923,8 @@ the principles of decentralization and the power of anonymous contribution to so
                 <div class="example-box">
                     <h4>Peer-to-Peer Design</h4>
                     <p>
-                        Bitcoin operates on a decentralized peer-to-peer network where each node participates in 
-                        maintaining and validating the blockchain. This design eliminates single points of failure 
+                        Bitcoin operates on a decentralized peer-to-peer network where each node participates in
+                        maintaining and validating the blockchain. This design eliminates single points of failure
                         and ensures no central authority can control the system.
                     </p>
                 </div>
@@ -1005,7 +1028,7 @@ the principles of decentralization and the power of anonymous contribution to so
                         </li>
                         <li><strong>DoS Protection:</strong>
                             <p>
-                                Nodes implement rate limiting, banning, and other protections against 
+                                Nodes implement rate limiting, banning, and other protections against
                                 denial-of-service attacks.
                             </p>
                         </li>
@@ -1072,8 +1095,8 @@ the principles of decentralization and the power of anonymous contribution to so
                 <div class="example-box">
                     <h4>Economic Model</h4>
                     <p>
-                        Bitcoin's incentive structure is carefully designed to align the interests of all participants 
-                        with the network's security and stability. This creates a self-sustaining system where 
+                        Bitcoin's incentive structure is carefully designed to align the interests of all participants
+                        with the network's security and stability. This creates a self-sustaining system where
                         rational economic behavior reinforces network security.
                     </p>
                 </div>
@@ -1217,8 +1240,8 @@ the principles of decentralization and the power of anonymous contribution to so
                 <div class="example-box">
                     <h4>Traditional vs Bitcoin Privacy</h4>
                     <p>
-                        Bitcoin implements a different privacy model from traditional banking. While traditional 
-                        banks achieve privacy by limiting access to information, Bitcoin makes all transactions 
+                        Bitcoin implements a different privacy model from traditional banking. While traditional
+                        banks achieve privacy by limiting access to information, Bitcoin makes all transactions
                         publicly visible but keeps the real-world identities pseudonymous.
                     </p>
                 </div>
@@ -1347,7 +1370,7 @@ the principles of decentralization and the power of anonymous contribution to so
                         </li>
                         <li><strong>Lightning Network:</strong>
                             <p>
-                                Off-chain transactions provide additional privacy benefits by not recording all 
+                                Off-chain transactions provide additional privacy benefits by not recording all
                                 transactions on the public blockchain.
                             </p>
                         </li>
@@ -1378,8 +1401,8 @@ the principles of decentralization and the power of anonymous contribution to so
                 <div class="example-box">
                     <h4>The Quantum Threat</h4>
                     <p>
-                        Quantum computing poses potential challenges to Bitcoin's cryptographic foundations. 
-                        The primary concern is that sufficiently powerful quantum computers could break the 
+                        Quantum computing poses potential challenges to Bitcoin's cryptographic foundations.
+                        The primary concern is that sufficiently powerful quantum computers could break the
                         elliptic curve cryptography (ECDSA) that Bitcoin uses for securing transactions.
                     </p>
                 </div>
@@ -1534,8 +1557,8 @@ the principles of decentralization and the power of anonymous contribution to so
                 <div class="example-box">
                     <h4>Probability Calculations</h4>
                     <p>
-                        The Bitcoin whitepaper includes crucial probability calculations that demonstrate the 
-                        system's security against various attack scenarios, particularly the probability of 
+                        The Bitcoin whitepaper includes crucial probability calculations that demonstrate the
+                        system's security against various attack scenarios, particularly the probability of
                         an attacker catching up with the honest chain.
                     </p>
                 </div>
@@ -1669,7 +1692,8 @@ the principles of decentralization and the power of anonymous contribution to so
                             </p>
                             <div class="math-block">
                                 \[
-                                \text{Total Supply} = 50 \cdot \sum_{n=0}^{\infty} \frac{210,000}{2^n} \approx 21 \text{ million BTC}
+                                \text{Total Supply} = 50 \cdot \sum_{n=0}^{\infty} \frac{210,000}{2^n} \approx 21 \text{
+                                million BTC}
                                 \]
                             </div>
                         </li>
@@ -1679,7 +1703,8 @@ the principles of decentralization and the power of anonymous contribution to so
                             </p>
                             <div class="math-block">
                                 \[
-                                \text{new_target} = \text{old_target} \cdot \frac{\text{actual_timespan}}{\text{target_timespan}}
+                                \text{new_target} = \text{old_target} \cdot
+                                \frac{\text{actual_timespan}}{\text{target_timespan}}
                                 \]
                             </div>
                         </li>
@@ -1693,9 +1718,9 @@ the principles of decentralization and the power of anonymous contribution to so
                 <div class="example-box">
                     <h4>Bitcoin's Core Innovation</h4>
                     <p>
-                        Satoshi Nakamoto's Bitcoin whitepaper introduced a revolutionary solution to the 
-                        double-spending problem through a decentralized peer-to-peer network using proof-of-work 
-                        to record a public history of transactions. This innovation has spawned an entire industry 
+                        Satoshi Nakamoto's Bitcoin whitepaper introduced a revolutionary solution to the
+                        double-spending problem through a decentralized peer-to-peer network using proof-of-work
+                        to record a public history of transactions. This innovation has spawned an entire industry
                         and fundamentally changed how we think about money and trust in digital systems.
                     </p>
                 </div>
@@ -1730,19 +1755,19 @@ the principles of decentralization and the power of anonymous contribution to so
                     <ul>
                         <li><strong>Scalability:</strong>
                             <p>
-                                Development of Layer 2 solutions like Lightning Network to handle increased 
+                                Development of Layer 2 solutions like Lightning Network to handle increased
                                 transaction volume while maintaining decentralization.
                             </p>
                         </li>
                         <li><strong>Privacy:</strong>
                             <p>
-                                Implementation of privacy-enhancing technologies while maintaining the 
+                                Implementation of privacy-enhancing technologies while maintaining the
                                 network's transparency and security.
                             </p>
                         </li>
                         <li><strong>Security:</strong>
                             <p>
-                                Continued development of quantum-resistant cryptography and other security 
+                                Continued development of quantum-resistant cryptography and other security
                                 measures to protect against future threats.
                             </p>
                         </li>
@@ -1752,8 +1777,8 @@ the principles of decentralization and the power of anonymous contribution to so
                 <div class="example-box" style="background: rgba(163, 103, 252, 0.1); border-left-color: #a367fc;">
                     <h4>Historical Significance</h4>
                     <p>
-                        The Bitcoin whitepaper represents a watershed moment in the history of technology, 
-                        finance, and social organization. Its impact extends beyond cryptocurrency to 
+                        The Bitcoin whitepaper represents a watershed moment in the history of technology,
+                        finance, and social organization. Its impact extends beyond cryptocurrency to
                         influence discussions about:
                     </p>
                     <ul>
@@ -1797,6 +1822,7 @@ The network is robust in its unstructured simplicity."
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="../../static/js/prism.js"></script>
     <script src="../../static/js/templates.js"></script>
+    <script src="../../static/js/floating-toc.js"></script>
     <script>
         // Reading progress bar
         window.addEventListener('scroll', () => {
@@ -1808,4 +1834,5 @@ The network is robust in its unstructured simplicity."
     </script>
 
 </body>
-</html> 
+
+</html>
