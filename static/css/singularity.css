@@ -176,6 +176,265 @@
     box-shadow: 0 0 0 2px rgba(255, 0, 0, 0.2);
 }
 
+/* Article Typography Styles */
+article {
+    font-family: Georgia, 'Times New Roman', serif;
+    line-height: 1.7;
+    color: #e8e8e8;
+    font-size: 1.05rem;
+}
+
+article p {
+    text-align: justify;
+    text-justify: inter-word;
+    margin-bottom: 1.5rem;
+    hyphens: auto;
+    text-indent: 1.5rem;
+    font-weight: 400;
+}
+
+article p:first-of-type,
+article h2+p,
+article h3+p,
+article h4+p {
+    text-indent: 0;
+}
+
+article h1,
+article h2,
+article h3,
+article h4,
+article h5,
+article h6 {
+    font-weight: 600;
+    margin-top: 2.5rem;
+    margin-bottom: 1.25rem;
+    letter-spacing: -0.5px;
+    color: #ffffff;
+}
+
+article h1 {
+    font-size: 2.25rem;
+    margin-top: 0;
+    margin-bottom: 2rem;
+    color: var(--accent-color);
+    text-align: center;
+    border-bottom: 2px solid rgba(255, 68, 68, 0.3);
+    padding-bottom: 1rem;
+}
+
+article h2 {
+    font-size: 1.75rem;
+    color: var(--accent-color);
+    border-left: 4px solid var(--accent-color);
+    padding-left: 1rem;
+    margin-left: -1rem;
+}
+
+article h3 {
+    font-size: 1.4rem;
+    color: #ff8888;
+}
+
+article h4 {
+    font-size: 1.2rem;
+    color: #ffaaaa;
+}
+
+article h5 {
+    font-size: 1.1rem;
+    color: #ffcccc;
+}
+
+article h6 {
+    font-size: 1rem;
+    color: #ffdddd;
+}
+
+/* Special paragraph types */
+article .lead {
+    font-size: 1.2rem;
+    font-weight: 300;
+    color: #ffcccc;
+    text-indent: 0;
+    margin-bottom: 2rem;
+    font-style: italic;
+    text-align: center;
+    border-left: 3px solid var(--accent-color);
+    padding-left: 1rem;
+    margin-left: 1rem;
+}
+
+/* Quote styling */
+article blockquote {
+    font-style: italic;
+    font-size: 1.1rem;
+    color: #ffaaaa;
+    border-left: 4px solid var(--accent-color);
+    padding-left: 1.5rem;
+    margin: 2rem 1rem;
+    text-indent: 0;
+    position: relative;
+}
+
+article blockquote::before {
+    content: '"';
+    font-size: 3rem;
+    color: var(--accent-color);
+    position: absolute;
+    left: -0.2rem;
+    top: -0.5rem;
+    font-family: Georgia, serif;
+}
+
+/* List styling */
+article ul,
+article ol {
+    margin-bottom: 1.5rem;
+    padding-left: 2rem;
+}
+
+article li {
+    margin-bottom: 0.75rem;
+    line-height: 1.6;
+    text-align: justify;
+}
+
+article li::marker {
+    color: var(--accent-color);
+}
+
+/* Code styling within articles */
+article code {
+    background: rgba(255, 68, 68, 0.1);
+    color: #ff9999;
+    padding: 0.2rem 0.4rem;
+    border-radius: 3px;
+    font-family: 'Fira Code', Consolas, 'Courier New', monospace;
+    font-size: 0.9em;
+}
+
+article pre {
+    background: rgba(20, 4, 4, 0.8);
+    border: 1px solid rgba(255, 68, 68, 0.3);
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin: 2rem 0;
+    overflow-x: auto;
+    font-family: 'Fira Code', Consolas, 'Courier New', monospace;
+}
+
+article pre code {
+    background: none;
+    padding: 0;
+    color: #ff9999;
+}
+
+/* Emphasis and strong */
+article em {
+    font-style: italic;
+    color: #ffdddd;
+}
+
+article strong {
+    font-weight: 600;
+    color: #ffffff;
+}
+
+/* Links within articles */
+article a {
+    color: var(--accent-color);
+    text-decoration: none;
+    border-bottom: 1px dotted var(--accent-color);
+    transition: all 0.2s ease;
+}
+
+article a:hover {
+    color: #ff6666;
+    border-bottom-style: solid;
+}
+
+/* Figure and image styling */
+article figure {
+    margin: 2rem 0;
+    text-align: center;
+}
+
+article figcaption {
+    font-style: italic;
+    color: #cccccc;
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+    text-indent: 0;
+}
+
+article img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Table styling */
+article table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 2rem 0;
+    font-size: 0.95rem;
+}
+
+article th,
+article td {
+    padding: 0.75rem;
+    text-align: left;
+    border-bottom: 1px solid rgba(255, 68, 68, 0.2);
+}
+
+article th {
+    background: rgba(255, 68, 68, 0.1);
+    color: var(--accent-color);
+    font-weight: 600;
+}
+
+article tr:hover {
+    background: rgba(255, 68, 68, 0.05);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    article {
+        font-size: 1rem;
+        line-height: 1.6;
+    }
+
+    article p {
+        text-indent: 1rem;
+        margin-bottom: 1.25rem;
+    }
+
+    article h1 {
+        font-size: 1.8rem;
+    }
+
+    article h2 {
+        font-size: 1.5rem;
+    }
+
+    article h3 {
+        font-size: 1.3rem;
+    }
+
+    article .lead {
+        font-size: 1.1rem;
+        margin-left: 0;
+    }
+
+    article blockquote {
+        margin: 1.5rem 0;
+        padding-left: 1rem;
+    }
+}
+
 /* Reusable red definition/info boxes */
 .definition-box {
     background: rgba(255, 68, 68, 0.08);
