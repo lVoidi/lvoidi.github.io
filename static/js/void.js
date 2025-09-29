@@ -2,53 +2,40 @@ document.addEventListener('DOMContentLoaded', () => {
     const postsContainer = document.getElementById('posts');
     const searchInput = document.getElementById('searchInput');
     const filterButtons = document.querySelectorAll('.filters .btn');
-    let selectedTags = new Set();
-
-    // Generate filter buttons dynamically
-    const filtersContainer = document.querySelector('.filters .btn-group');
-    filtersContainer.innerHTML = `
-        <button type="button" class="btn btn-outline-primary active" data-filter="all">
-            All
-        </button>
-        ${Object.entries(AVAILABLE_TAGS).map(([id, tag]) => `
-            <button type="button" class="btn btn-outline-primary" data-filter="${id}">
-                ${tag.label}
-            </button>
-        `).join('')}
-    `;
-
-    function sortPosts(posts) {
-        return [...posts].sort((a, b) => new Date(b.date) - new Date(a.date));
-    }
+    let currentFilter = 'all';
 
     function filterPosts() {
         const searchTerm = searchInput.value.toLowerCase();
         const filteredPosts = VOID_POSTS.filter(post => {
-            const matchesSearch = 
-                post.title.toLowerCase().includes(searchTerm) || 
-                post.description.toLowerCase().includes(searchTerm);
-            
-            const matchesTags = 
-                selectedTags.size === 0 || 
-                post.tags.some(tag => selectedTags.has(tag));
-            
-            return matchesSearch && matchesTags;
+            // Check if post matches current category filter
+            const matchesCategory = currentFilter === 'all' || post.category.toLowerCase() === currentFilter;
+
+            // Check if post matches search term in title, description, or tags
+            const matchesSearch =
+                post.title.toLowerCase().includes(searchTerm) ||
+                post.description.toLowerCase().includes(searchTerm) ||
+                post.tags.some(tag => tag.toLowerCase().includes(searchTerm));
+
+            return matchesCategory && matchesSearch;
         });
-        
+
         renderPosts(filteredPosts);
     }
 
     function renderPosts(posts) {
-        const sortedPosts = sortPosts(posts);
-        
-        if (sortedPosts.length === 0) {
+        if (posts.length === 0) {
             postsContainer.innerHTML = `
-                <div class="col-12 text-center no-results">
-                    <p class="lead text-muted">No posts found matching your criteria.</p>
+                <div class="col-12 text-center">
+                    <p class="lead text-muted">No posts found matching your search.</p>
                 </div>
             `;
             return;
         }
+
+        // Sort posts by date (newest first)
+        const sortedPosts = [...posts].sort((a, b) =>
+            new Date(b.date) - new Date(a.date)
+        );
 
         postsContainer.innerHTML = sortedPosts
             .map(post => createPostCardHTML(post))
@@ -73,34 +60,16 @@ document.addEventListener('DOMContentLoaded', () => {
     searchInput.addEventListener('input', filterPosts);
 
     // Filter functionality
-    document.querySelector('.filters').addEventListener('click', (e) => {
-        const button = e.target.closest('.btn');
-        if (!button) return;
-
-        const filter = button.getAttribute('data-filter');
-        
-        if (filter === 'all') {
-            selectedTags.clear();
+    filterButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            // Remove active class from all buttons
             filterButtons.forEach(btn => btn.classList.remove('active'));
+            // Add active class to clicked button
             button.classList.add('active');
-        } else {
-            // Remove 'all' selection
-            document.querySelector('[data-filter="all"]').classList.remove('active');
-            
-            // Toggle tag selection
-            button.classList.toggle('active');
-            if (button.classList.contains('active')) {
-                selectedTags.add(filter);
-            } else {
-                selectedTags.delete(filter);
-            }
-            
-            // If no tags selected, activate 'all'
-            if (selectedTags.size === 0) {
-                document.querySelector('[data-filter="all"]').classList.add('active');
-            }
-        }
-        
-        filterPosts();
+            // Update current filter
+            currentFilter = button.getAttribute('data-filter');
+            // Filter posts
+            filterPosts();
+        });
     });
 }); 
