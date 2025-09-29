@@ -1,3 +1,167 @@
+/* Parallax Background System */
+.parallax-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: -1;
+    overflow: hidden;
+    background: radial-gradient(circle at center, #1a0000 0%, #0d0000 50%, #000000 100%);
+}
+
+.stars-layer {
+    position: absolute;
+    width: 200%;
+    height: 200%;
+    top: -50%;
+    left: -50%;
+    pointer-events: none;
+}
+
+.stars-layer-1 {
+    animation: parallaxSlow 120s linear infinite;
+}
+
+.stars-layer-2 {
+    animation: parallaxMedium 80s linear infinite;
+}
+
+.stars-layer-3 {
+    animation: parallaxFast 50s linear infinite;
+}
+
+.star {
+    position: absolute;
+    background: #ff0000;
+    border-radius: 50%;
+    box-shadow: 0 0 6px #ff0000, 0 0 12px #ff0000, 0 0 18px #ff0000;
+    animation: starPulse 3s ease-in-out infinite alternate;
+}
+
+.star-small {
+    width: 1px;
+    height: 1px;
+    box-shadow: 0 0 3px #ff0000, 0 0 6px #ff0000;
+}
+
+.star-medium {
+    width: 2px;
+    height: 2px;
+    box-shadow: 0 0 4px #ff0000, 0 0 8px #ff0000, 0 0 12px #ff0000;
+}
+
+.star-large {
+    width: 3px;
+    height: 3px;
+    box-shadow: 0 0 6px #ff0000, 0 0 12px #ff0000, 0 0 18px #ff0000, 0 0 24px #ff0000;
+}
+
+.black-hole-distortion {
+    position: absolute;
+    top: 20%;
+    right: 15%;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background: radial-gradient(circle, transparent 30%, rgba(139, 0, 0, 0.1) 40%, rgba(255, 0, 0, 0.05) 60%, transparent 100%);
+    animation: blackHoleRotation 60s linear infinite, blackHolePulse 8s ease-in-out infinite alternate;
+    filter: blur(1px);
+}
+
+.accretion-disk {
+    position: absolute;
+    top: 50%;
+    right: 10%;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    background: conic-gradient(from 0deg, transparent, rgba(255, 68, 68, 0.1), rgba(139, 0, 0, 0.2), transparent);
+    animation: accretionRotation 40s linear infinite;
+    transform: perspective(200px) rotateX(75deg);
+    filter: blur(0.5px);
+}
+
+@keyframes parallaxSlow {
+    0% {
+        transform: translateX(0) translateY(0) rotate(0deg);
+    }
+
+    100% {
+        transform: translateX(-50px) translateY(-30px) rotate(360deg);
+    }
+}
+
+@keyframes parallaxMedium {
+    0% {
+        transform: translateX(0) translateY(0) rotate(0deg);
+    }
+
+    100% {
+        transform: translateX(-80px) translateY(-50px) rotate(-360deg);
+    }
+}
+
+@keyframes parallaxFast {
+    0% {
+        transform: translateX(0) translateY(0) rotate(0deg);
+    }
+
+    100% {
+        transform: translateX(-120px) translateY(-80px) rotate(720deg);
+    }
+}
+
+@keyframes starPulse {
+    0% {
+        opacity: 0.6;
+        transform: scale(1);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1.2);
+    }
+}
+
+@keyframes blackHoleRotation {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes blackHolePulse {
+    0% {
+        filter: blur(1px);
+        box-shadow: 0 0 30px rgba(139, 0, 0, 0.3);
+    }
+
+    100% {
+        filter: blur(2px);
+        box-shadow: 0 0 50px rgba(255, 0, 0, 0.4), 0 0 100px rgba(139, 0, 0, 0.2);
+    }
+}
+
+@keyframes accretionRotation {
+    0% {
+        transform: perspective(200px) rotateX(75deg) rotate(0deg);
+    }
+
+    100% {
+        transform: perspective(200px) rotateX(75deg) rotate(360deg);
+    }
+}
+
+/* Content container adjustments */
+body {
+    position: relative;
+    z-index: 1;
+}
+
 /* Card styling */
 .card {
     background: rgba(20, 10, 10, 0.9);
@@ -165,6 +329,29 @@
     .filters .btn {
         padding: 0.4rem 0.8rem;
     }
+
+    /* Reduce parallax complexity on tablets */
+    .stars-layer-1 {
+        animation-duration: 180s;
+    }
+
+    .stars-layer-2 {
+        animation-duration: 120s;
+    }
+
+    .stars-layer-3 {
+        animation-duration: 90s;
+    }
+
+    .black-hole-distortion {
+        width: 150px;
+        height: 150px;
+    }
+
+    .accretion-disk {
+        width: 200px;
+        height: 200px;
+    }
 }
 
 @media (max-width: 768px) {
@@ -193,4 +380,83 @@
     .post-date {
         font-size: 0.8rem;
     }
+
+    /* Further optimize parallax for mobile */
+    .parallax-container {
+        will-change: transform;
+    }
+
+    .stars-layer-1 {
+        animation-duration: 240s;
+    }
+
+    .stars-layer-2 {
+        animation-duration: 160s;
+    }
+
+    .stars-layer-3 {
+        animation-duration: 120s;
+    }
+
+    .star {
+        animation-duration: 4s;
+    }
+
+    .black-hole-distortion {
+        width: 100px;
+        height: 100px;
+        animation-duration: 90s;
+    }
+
+    .accretion-disk {
+        width: 150px;
+        height: 150px;
+        animation-duration: 60s;
+    }
+}
+
+@media (max-width: 576px) {
+
+    /* Minimal parallax effects for small mobile devices */
+    .parallax-container {
+        background: radial-gradient(circle at center, #1a0000 0%, #0d0000 70%, #000000 100%);
+    }
+
+    .stars-layer {
+        opacity: 0.7;
+    }
+
+    .black-hole-distortion,
+    .accretion-disk {
+        opacity: 0.5;
+    }
+}
+
+/* Reduced motion accessibility */
+@media (prefers-reduced-motion: reduce) {
+
+    .stars-layer-1,
+    .stars-layer-2,
+    .stars-layer-3,
+    .star,
+    .black-hole-distortion,
+    .accretion-disk {
+        animation-duration: 0s !important;
+        animation: none !important;
+    }
+
+    .parallax-container {
+        background: linear-gradient(180deg, #1a0000 0%, #0d0000 50%, #000000 100%);
+    }
+}
+
+/* Performance optimizations */
+.parallax-container,
+.stars-layer,
+.star,
+.black-hole-distortion,
+.accretion-disk {
+    will-change: transform;
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
 }
