@@ -1,3 +1,61 @@
+/* GOOGLE FONTS*/
+@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cormorant+Unicase:wght@300;400;500;600;700&family=Quintessential&display=swap');
+
+.cinzel-decorative-regular {
+    font-family: "Cinzel Decorative", serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.cinzel-decorative-bold {
+    font-family: "Cinzel Decorative", serif;
+    font-weight: 700;
+    font-style: normal;
+}
+
+.cinzel-decorative-black {
+    font-family: "Cinzel Decorative", serif;
+    font-weight: 900;
+    font-style: normal;
+}
+
+.cormorant-unicase-light {
+    font-family: "Cormorant Unicase", serif;
+    font-weight: 300;
+    font-style: normal;
+}
+
+.cormorant-unicase-regular {
+    font-family: "Cormorant Unicase", serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.cormorant-unicase-medium {
+    font-family: "Cormorant Unicase", serif;
+    font-weight: 500;
+    font-style: normal;
+}
+
+.cormorant-unicase-semibold {
+    font-family: "Cormorant Unicase", serif;
+    font-weight: 600;
+    font-style: normal;
+}
+
+.cormorant-unicase-bold {
+    font-family: "Cormorant Unicase", serif;
+    font-weight: 700;
+    font-style: normal;
+}
+
+.quintessential-regular {
+    font-family: "Quintessential", serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+
 /* Red style for post card primary buttons in Singularity section */
 .card .btn-primary {
     background-color: var(--accent-color) !important;
@@ -5,6 +63,12 @@
     color: #fff !important;
     box-shadow: 0 0 0 0.15rem rgba(255, 68, 68, 0.15);
     transition: background 0.2s, color 0.2s;
+}
+
+.red-bold-text {
+    color: var(--accent-color);
+    font-family: "Cinzel Decorative", serif;
+    font-weight: bold;
 }
 
 .card .btn-primary:hover,
@@ -31,6 +95,7 @@
     margin-right: auto;
     text-align: justify;
     text-justify: inter-word;
+    font-family: "Cormorant Unicase", serif;
     line-height: 1.7;
 }
 
@@ -46,7 +111,9 @@
 
 
 body {
-    font-family: 'Times new Roman', monospace;
+    /*font-family: 'Cormorant Unicase', monospace;*/
+    font-family: "Times New Roman", serif;
+    font-size: 1rem;
     background-color: var(--primary-dark);
     color: var(--text-color);
     min-height: 100vh;
@@ -60,8 +127,10 @@ body a {
     transition: color 0.3s ease;
 }
 
+
 .title-gradient-red {
     color: #e00000;
+    font-family: "Cinzel Decorative", serif;
     /* fallback color */
     font-weight: 800;
     text-shadow: 0 2px 8px rgba(0, 0, 0, 0.55);
@@ -73,6 +142,7 @@ body a {
         -webkit-background-clip: text;
         background-clip: text;
         color: transparent;
+        font-family: "Cinzel Decorative", serif;
         -webkit-text-fill-color: transparent;
     }
 }
@@ -583,9 +653,4 @@ body::-webkit-scrollbar {
 html,
 body {
     overflow-x: hidden;
-}
-
-.red-bold-text {
-    color: var(--accent-color);
-    font-weight: bold;
 }

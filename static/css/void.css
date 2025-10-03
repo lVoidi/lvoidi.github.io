@@ -505,3 +505,62 @@ body {
     transform-style: preserve-3d;
     backface-visibility: hidden;
 }
+
+/* Demon-haunted world series styling */
+.card.demon-haunted {
+    background: rgba(30, 20, 10, 0.95);
+    border: 2px solid rgba(255, 215, 0, 0.8);
+    box-shadow:
+        0 0 20px rgba(255, 215, 0, 0.4),
+        0 0 40px rgba(255, 215, 0, 0.2),
+        0 0 60px rgba(255, 215, 0, 0.1),
+        inset 0 0 20px rgba(255, 215, 0, 0.1);
+    animation: demonGlow 3s ease-in-out infinite alternate;
+}
+
+.card.demon-haunted:hover {
+    transform: translateY(-8px);
+    box-shadow:
+        0 0 30px rgba(255, 215, 0, 0.6),
+        0 0 60px rgba(255, 215, 0, 0.4),
+        0 0 90px rgba(255, 215, 0, 0.2),
+        0 8px 35px rgba(255, 215, 0, 0.3),
+        inset 0 0 30px rgba(255, 215, 0, 0.15);
+}
+
+.card.demon-haunted .card-title {
+    color: #ffd700;
+    text-shadow:
+        0 0 10px rgba(255, 215, 0, 0.8),
+        0 0 20px rgba(255, 215, 0, 0.4),
+        0 0 30px rgba(255, 215, 0, 0.2);
+}
+
+.card.demon-haunted .card-text {
+    color: #daa520;
+}
+
+.card.demon-haunted .tag {
+    background: linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(218, 165, 32, 0.2));
+    border: 1px solid rgba(255, 215, 0, 0.5);
+    color: #ffd700;
+    text-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
+}
+
+@keyframes demonGlow {
+    0% {
+        box-shadow:
+            0 0 20px rgba(255, 215, 0, 0.4),
+            0 0 40px rgba(255, 215, 0, 0.2),
+            0 0 60px rgba(255, 215, 0, 0.1),
+            inset 0 0 20px rgba(255, 215, 0, 0.1);
+    }
+
+    100% {
+        box-shadow:
+            0 0 30px rgba(255, 215, 0, 0.6),
+            0 0 50px rgba(255, 215, 0, 0.3),
+            0 0 80px rgba(255, 215, 0, 0.15),
+            inset 0 0 25px rgba(255, 215, 0, 0.15);
+    }
+}

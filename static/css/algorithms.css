@@ -518,7 +518,8 @@ body {
     border-radius: 4px;
     background: rgba(0, 0, 0, 0.5);
     color: var(--text-color);
-    font-family: 'JetBrains Mono', monospace;
+    font-family: "Cinzel Decorative", serif;
+    font-weight: 700;
 }
 
 .random-btn {
@@ -527,7 +528,8 @@ body {
     border: none;
     border-radius: 4px;
     color: var(--primary-dark);
-    font-family: 'JetBrains Mono', monospace;
+    font-family: "Cinzel Decorative", serif;
+    font-weight: 700;
     cursor: pointer;
     transition: all 0.3s ease;
 }
