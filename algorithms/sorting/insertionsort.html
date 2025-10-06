@@ -1,43 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Insertion Sort Algorithm | Simple and Adaptive Sorting Method</title>
 
-    <!-- SEO Meta Tags -->
-    <meta name="description" content="Learn the Insertion Sort algorithm with O(n²) time complexity. Includes interactive visualization and implementations in Python, C++, and C#, ideal for small or nearly sorted arrays.">
-    <meta name="keywords" content="insertion sort, adaptive sort, stable sort, in-place sort, online algorithm, incremental sort, computer science, algorithm visualization">
-    <meta name="author" content="lVoidi">
-    <meta name="robots" content="index, follow">
-    
-    <!-- Open Graph / Social Media Meta Tags -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://roarba.com/algorithms/sorting/insertionsort.html">
-    <meta property="og:title" content="Insertion Sort Algorithm | Simple and Adaptive Sorting Method">
-    <meta property="og:description" content="Learn the Insertion Sort algorithm with O(n²) time complexity. Includes interactive visualization and implementations in Python, C++, and C#, ideal for small or nearly sorted arrays.">
-    <meta property="og:image" content="https://roarba.com/static/img/algorithms/insertionsort.jpg">
-    
-    <!-- Twitter Card Tags -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Insertion Sort Algorithm | Simple and Adaptive Sorting Method">
-    <meta name="twitter:description" content="Learn the Insertion Sort algorithm with O(n²) time complexity. Includes interactive visualization and implementations in Python, C++, and C#, ideal for small or nearly sorted arrays.">
-    <meta name="twitter:image" content="https://roarba.com/static/img/algorithms/insertionsort.jpg">
-    
-    <!-- Canonical URL -->
-    <meta rel="canonical" href="https://roarba.com/algorithms/sorting/insertionsort.html">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Insertion Sort Algorithm | Simple and Adaptive Sorting Method</title>
 
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
-    <link href="../../static/css/style.css" rel="stylesheet" />
-    <link href="../../static/css/algorithms.css" rel="stylesheet" />
-    <link href="../../static/css/algorithm-page.css" rel="stylesheet" />
-    <link href="../../static/css/prism.css" rel="stylesheet" />
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"/>
-    <link rel="icon" href="../../static/img/icon.png" type="image/x-icon" />
-    
-    <!-- Schema.org structured data -->
-    <script type="application/ld+json">
+  <!-- SEO Meta Tags -->
+  <meta name="description"
+    content="Learn the Insertion Sort algorithm with O(n²) time complexity. Includes interactive visualization and implementations in Python, C++, and C#, ideal for small or nearly sorted arrays.">
+  <meta name="keywords"
+    content="insertion sort, adaptive sort, stable sort, in-place sort, online algorithm, incremental sort, computer science, algorithm visualization">
+  <meta name="author" content="lVoidi">
+  <meta name="robots" content="index, follow">
+
+  <!-- Open Graph / Social Media Meta Tags -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://roarba.com/algorithms/sorting/insertionsort.html">
+  <meta property="og:title" content="Insertion Sort Algorithm | Simple and Adaptive Sorting Method">
+  <meta property="og:description"
+    content="Learn the Insertion Sort algorithm with O(n²) time complexity. Includes interactive visualization and implementations in Python, C++, and C#, ideal for small or nearly sorted arrays.">
+  <meta property="og:image" content="https://roarba.com/static/img/algorithms/insertionsort.jpg">
+
+  <!-- Twitter Card Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Insertion Sort Algorithm | Simple and Adaptive Sorting Method">
+  <meta name="twitter:description"
+    content="Learn the Insertion Sort algorithm with O(n²) time complexity. Includes interactive visualization and implementations in Python, C++, and C#, ideal for small or nearly sorted arrays.">
+  <meta name="twitter:image" content="https://roarba.com/static/img/algorithms/insertionsort.jpg">
+
+  <!-- Canonical URL -->
+  <meta rel="canonical" href="https://roarba.com/algorithms/sorting/insertionsort.html">
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="../../static/css/style.css" rel="stylesheet" />
+  <link href="../../static/css/algorithms.css" rel="stylesheet" />
+  <link href="../../static/css/singularity.css" rel="stylesheet">
+  <link href="../../static/css/algorithm-page.css" rel="stylesheet" />
+  <link href="../../static/css/prism.css" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+  <link rel="icon" href="../../static/img/icon.png" type="image/x-icon" />
+
+  <!-- Schema.org structured data -->
+  <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "TechArticle",
@@ -72,116 +78,178 @@
       "programmingLanguage": ["Python", "C++", "C#"]
     }
     </script>
-  </head>
-  <body>
-    <!-- Navbar -->
-    <div id="navbar-placeholder"></div>
-    <!-- Algorithm Content -->
-    <main class="container py-5">
-      <div class="row">
-        <!-- Sidebar with Quick Info -->
-        <div class="col-md-3">
-          <div class="algorithm-info-card">
-            <h3>Quick Info</h3>
-            <div class="info-item">
-              <span class="info-label">Category:</span>
-              <span class="info-value">Sorting</span>
-            </div>
-            <div class="info-item">
-              <span class="info-label">Time Complexity:</span>
-              <span class="info-value">O(n²)</span>
-            </div>
-            <div class="info-item">
-              <span class="info-label">Space Complexity:</span>
-              <span class="info-value">O(1)</span>
-            </div>
-            <div class="info-item">
-              <span class="info-label">Stable:</span>
-              <span class="info-value">Yes</span>
-            </div>
-            <div class="info-item">
-              <span class="info-label">In-Place:</span>
-              <span class="info-value">Yes</span>
-            </div>
+</head>
+
+<body>
+  <!-- Navbar -->
+  <div id="navbar-placeholder"></div>
+  <!-- Algorithm Content -->
+  <main class="container py-5">
+    <div class="row">
+      <!-- Sidebar with Quick Info -->
+      <div class="col-md-3">
+        <div class="algorithm-info-card">
+          <h3>Quick Info</h3>
+          <div class="info-item">
+            <span class="info-label">Category:</span>
+            <span class="info-value">Sorting</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">Time Complexity:</span>
+            <span class="info-value">O(n²)</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">Space Complexity:</span>
+            <span class="info-value">O(1)</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">Stable:</span>
+            <span class="info-value">Yes</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">In-Place:</span>
+            <span class="info-value">Yes</span>
           </div>
         </div>
+      </div>
 
-        <!-- Main Content -->
-        <div class="col-md-9">
-          <article class="algorithm-content">
-            <h1>Insertion Sort</h1>
-            <div class="algorithm-metadata">
-              <span class="category-tag">Sorting</span>
-              <span class="difficulty-tag">Easy</span>
+      <!-- Main Content -->
+      <div class="col-md-9">
+        <article class="algorithm-content">
+          <h1>Insertion Sort</h1>
+          <div class="algorithm-metadata">
+            <span class="category-tag">Sorting</span>
+            <span class="difficulty-tag">Easy</span>
+          </div>
+
+          <section class="algorithm-section"></section>
+          <h2>Description</h2>
+          <p>
+            Insertion Sort is a simple sorting algorithm that builds the final sorted array one item at a time.
+            It works by iterating through the array and for each element, placing it in its correct position
+            among the previously sorted elements. This algorithm is much like sorting playing cards in your hands,
+            where you pick up one card at a time and insert it into its correct position in the sorted portion
+            of your hand.
+          </p>
+
+          <div class="definition-box">
+            <h4><i class="fas fa-lightbulb"></i> Key Concept</h4>
+            <p>
+              At any given iteration <strong>i</strong>, all elements before index <strong>i</strong> are already
+              sorted,
+              and the algorithm inserts the element at index <strong>i</strong> into its correct position within that
+              sorted portion.
+            </p>
+          </div>
+          <div class="definition-box">
+            <h4><i class="fas fa-chart-line"></i> Performance Characteristics</h4>
+            <ul>
+              <li><strong>Adaptive:</strong> Performs better on partially sorted arrays (O(n) in best case)</li>
+              <li><strong>Stable:</strong> Maintains relative order of equal elements</li>
+              <li><strong>In-Place:</strong> Requires only O(1) extra memory space</li>
+              <li><strong>Online:</strong> Can sort data as it's received</li>
+            </ul>
+          </div>
+          </section>
+
+          <section class="algorithm-section">
+            <h2>How It Works</h2>
+            <p>
+              The algorithm divides the array into two parts: a sorted portion (initially just the first element)
+              and an unsorted portion (the rest of the array). It repeatedly takes the first element from the
+              unsorted portion and inserts it into the correct position in the sorted portion.
+            </p>
+
+            <ol>
+              <li>Start with the first element, which is considered sorted by itself</li>
+              <li>Take the next element and compare it with the sorted portion</li>
+              <li>Insert the element into its correct position in the sorted portion</li>
+              <li>Shift the larger elements one position up to make space</li>
+              <li>Repeat steps 2-4 until all elements are processed</li>
+            </ol>
+
+            <div class="definition-box">
+              <h4><i class="fas fa-example"></i> Step-by-Step Example</h4>
+              <p>Consider sorting the array: <code>[5, 2, 4, 6, 1, 3]</code></p>
+              <pre style="padding: 15px; border-radius: 5px; font-family: monospace;">
+      <strong>Initial:</strong>  [5, 2, 4, 6, 1, 3]
+
+      <strong>Pass 1:</strong>   [5 | 2, 4, 6, 1, 3]  → Insert 2
+             [2, 5 | 4, 6, 1, 3]
+
+      <strong>Pass 2:</strong>   [2, 5 | 4, 6, 1, 3]  → Insert 4
+             [2, 4, 5 | 6, 1, 3]
+
+      <strong>Pass 3:</strong>   [2, 4, 5 | 6, 1, 3]  → Insert 6
+             [2, 4, 5, 6 | 1, 3]
+
+      <strong>Pass 4:</strong>   [2, 4, 5, 6 | 1, 3]  → Insert 1
+             [1, 2, 4, 5, 6 | 3]
+
+      <strong>Pass 5:</strong>   [1, 2, 4, 5, 6 | 3]  → Insert 3
+             [1, 2, 3, 4, 5, 6]
+              </pre>
+              <p><em>Note: The vertical bar (|) separates the sorted portion from the unsorted portion.</em></p>
             </div>
 
-            <section class="algorithm-section">
-              <h2>Description</h2>
-              <p>
-                Insertion Sort is a simple sorting algorithm that builds the final sorted array one item at a time. 
-                It works by iterating through the array and for each element, placing it in its correct position 
-                among the previously sorted elements. This algorithm is much like sorting playing cards in your hands, 
-                where you pick up one card at a time and insert it into its correct position in the sorted portion 
-                of your hand.
-              </p>
-            </section>
+            <div class="definition-box">
+              <h4><i class="fas fa-info-circle"></i> When to Use Insertion Sort</h4>
+              <ul>
+                <li><strong>Small datasets:</strong> Very efficient for arrays with fewer than 10-20 elements</li>
+                <li><strong>Nearly sorted data:</strong> Approaches O(n) time when data is already mostly sorted</li>
+                <li><strong>Online sorting:</strong> Can efficiently sort data as it arrives</li>
+                <li><strong>As part of hybrid algorithms:</strong> Often used in QuickSort and MergeSort for small
+                  subarrays
+                </li>
+              </ul>
+            </div>
+          </section>
 
-            <section class="algorithm-section">
-              <h2>How It Works</h2>
-              <ol>
-                <li>Start with the first element, which is considered sorted by itself</li>
-                <li>Take the next element and compare it with the sorted portion</li>
-                <li>Insert the element into its correct position in the sorted portion</li>
-                <li>Shift the larger elements one position up to make space</li>
-                <li>Repeat steps 2-4 until all elements are processed</li>
-              </ol>
-            </section>
-
-            <section class="algorithm-section">
-              <h2>Visualization</h2>
-              <div class="visualization-container">
-                <div class="visualization-controls">
-                  <button class="btn btn-primary" id="startVisualization">
-                    <i class="fas fa-play"></i> Start
-                  </button>
-                  <button class="btn btn-secondary" id="resetVisualization">
-                    <i class="fas fa-redo"></i> Reset
-                  </button>
-                  <div class="speed-control">
-                    <label>Speed:</label>
-                    <input type="range" id="speedControl" min="1" max="5" value="3"/>
-                  </div>
-                </div>
-                <div class="visualization-area">
-                  <svg id="insertionSortVisualization" width="100%" height="300"></svg>
-                </div>
-                <div class="visualization-steps">
-                  <p id="currentStep">Click Start to begin visualization</p>
+          <section class="algorithm-section">
+            <h2>Visualization</h2>
+            <div class="visualization-container">
+              <div class="visualization-controls">
+                <button class="btn btn-primary" id="startVisualization">
+                  <i class="fas fa-play"></i> Start
+                </button>
+                <button class="btn btn-secondary" id="resetVisualization">
+                  <i class="fas fa-redo"></i> Reset
+                </button>
+                <div class="speed-control">
+                  <label>Speed:</label>
+                  <input type="range" id="speedControl" min="1" max="5" value="3" />
                 </div>
               </div>
-            </section>
+              <div class="visualization-area">
+                <svg id="insertionSortVisualization" width="100%" height="300"></svg>
+              </div>
+              <div class="visualization-steps">
+                <p id="currentStep">Click Start to begin visualization</p>
+              </div>
+            </div>
+          </section>
 
-            <section class="algorithm-section">
-              <h2>Implementation</h2>
-              <div class="implementation-tabs">
-                <ul class="nav nav-tabs" role="tablist">
-                  <li class="nav-item">
-                    <a class="nav-link active" data-bs-toggle="tab" href="#python">Python</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" data-bs-toggle="tab" href="#cpp">C++</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" data-bs-toggle="tab" href="#csharp">C#</a>
-                  </li>
-                </ul>
-                <div class="tab-content">
-                  <div class="tab-pane fade show active" id="python">
-                    <div class="code-wrapper">
-                      <button class="copy-button" data-clipboard-target="#python-code">
-                        <i class="fas fa-copy"></i>
-                      </button>
-                      <pre><code class="language-python" id="python-code">
+          <section class="algorithm-section">
+            <h2>Implementation</h2>
+            <div class="implementation-tabs">
+              <ul class="nav nav-tabs" role="tablist">
+                <li class="nav-item">
+                  <a class="nav-link active" data-bs-toggle="tab" href="#python">Python</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" data-bs-toggle="tab" href="#cpp">C++</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" data-bs-toggle="tab" href="#csharp">C#</a>
+                </li>
+              </ul>
+              <div class="tab-content">
+                <div class="tab-pane fade show active" id="python">
+                  <div class="code-wrapper">
+                    <button class="copy-button" data-clipboard-target="#python-code">
+                      <i class="fas fa-copy"></i>
+                    </button>
+                    <pre><code class="language-python" id="python-code">
 def insertion_sort(arr):
     # Traverse through 1 to len(arr)
     for i in range(1, len(arr)):
@@ -204,15 +272,15 @@ if __name__ == "__main__":
     insertion_sort(arr)
     print("Sorted array:", arr)
                       </code></pre>
-                    </div>
                   </div>
+                </div>
 
-                  <div class="tab-pane fade" id="cpp">
-                    <div class="code-wrapper">
-                      <button class="copy-button" data-clipboard-target="#cpp-code">
-                        <i class="fas fa-copy"></i>
-                      </button>
-                      <pre><code class="language-cpp" id="cpp-code">
+                <div class="tab-pane fade" id="cpp">
+                  <div class="code-wrapper">
+                    <button class="copy-button" data-clipboard-target="#cpp-code">
+                      <i class="fas fa-copy"></i>
+                    </button>
+                    <pre><code class="language-cpp" id="cpp-code">
 #include &lt;iostream&gt;
 #include &lt;vector&gt;
 
@@ -252,15 +320,15 @@ int main() {
     return 0;
 }
                       </code></pre>
-                    </div>
                   </div>
+                </div>
 
-                  <div class="tab-pane fade" id="csharp">
-                    <div class="code-wrapper">
-                      <button class="copy-button" data-clipboard-target="#csharp-code">
-                        <i class="fas fa-copy"></i>
-                      </button>
-                      <pre><code class="language-csharp" id="csharp-code">
+                <div class="tab-pane fade" id="csharp">
+                  <div class="code-wrapper">
+                    <button class="copy-button" data-clipboard-target="#csharp-code">
+                      <i class="fas fa-copy"></i>
+                    </button>
+                    <pre><code class="language-csharp" id="csharp-code">
 public class InsertionSort
 {
     public static void Sort(int[] arr)
@@ -293,81 +361,83 @@ public class InsertionSort
     }
 }
                       </code></pre>
-                    </div>
                   </div>
                 </div>
               </div>
-            </section>
+            </div>
+          </section>
 
-            <section class="algorithm-section">
-              <h2>Complexity Analysis</h2>
-              <table class="complexity-table">
-                <tr>
-                  <th>Case</th>
-                  <th>Time Complexity</th>
-                </tr>
-                <tr>
-                  <td>Best</td>
-                  <td>O(n)</td>
-                </tr>
-                <tr>
-                  <td>Average</td>
-                  <td>O(n²)</td>
-                </tr>
-                <tr>
-                  <td>Worst</td>
-                  <td>O(n²)</td>
-                </tr>
-              </table>
-            </section>
+          <section class="algorithm-section">
+            <h2>Complexity Analysis</h2>
+            <table class="complexity-table">
+              <tr>
+                <th>Case</th>
+                <th>Time Complexity</th>
+              </tr>
+              <tr>
+                <td>Best</td>
+                <td>O(n)</td>
+              </tr>
+              <tr>
+                <td>Average</td>
+                <td>O(n²)</td>
+              </tr>
+              <tr>
+                <td>Worst</td>
+                <td>O(n²)</td>
+              </tr>
+            </table>
+          </section>
 
-            <section class="algorithm-section">
-              <h2>Advantages and Disadvantages</h2>
-              <div class="pros-cons">
-                <div class="pros">
-                  <h3>Advantages</h3>
-                  <ul>
-                    <li>Simple implementation</li>
-                    <li>Efficient for small data sets</li>
-                    <li>Adaptive - runs in O(n) time if array is already sorted</li>
-                    <li>Stable sorting algorithm</li>
-                    <li>In-place algorithm - only requires O(1) additional space</li>
-                  </ul>
-                </div>
-                <div class="cons">
-                  <h3>Disadvantages</h3>
-                  <ul>
-                    <li>Quadratic time complexity makes it inefficient for large datasets</li>
-                    <li>Generally performs worse than advanced algorithms like Quick Sort</li>
-                    <li>Requires shifting elements, which can be expensive</li>
-                  </ul>
-                </div>
+          <section class="algorithm-section">
+            <h2>Advantages and Disadvantages</h2>
+            <div class="pros-cons">
+              <div class="pros">
+                <h3>Advantages</h3>
+                <ul>
+                  <li>Simple implementation</li>
+                  <li>Efficient for small data sets</li>
+                  <li>Adaptive - runs in O(n) time if array is already sorted</li>
+                  <li>Stable sorting algorithm</li>
+                  <li>In-place algorithm - only requires O(1) additional space</li>
+                </ul>
               </div>
-            </section>
-          </article>
-        </div>
+              <div class="cons">
+                <h3>Disadvantages</h3>
+                <ul>
+                  <li>Quadratic time complexity makes it inefficient for large datasets</li>
+                  <li>Generally performs worse than advanced algorithms like Quick Sort</li>
+                  <li>Requires shifting elements, which can be expensive</li>
+                </ul>
+              </div>
+            </div>
+          </section>
+        </article>
       </div>
-    </main>
+    </div>
+    </div>
+  </main>
 
-    <div id="footer-placeholder"></div>
+  <div id="footer-placeholder"></div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="../../static/js/prism.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.8/clipboard.min.js"></script>
-    <script>
-      // Initialize clipboard.js
-      const clipboard = new ClipboardJS(".copy-button");
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../../static/js/prism.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.8/clipboard.min.js"></script>
+  <script>
+    // Initialize clipboard.js
+    const clipboard = new ClipboardJS(".copy-button");
 
-      clipboard.on("success", function (e) {
-        const button = e.trigger;
-        button.innerHTML = '<i class="fas fa-check"></i>';
-        setTimeout(() => {
-          button.innerHTML = '<i class="fas fa-copy"></i>';
-        }, 2000);
-      });
-    </script>
-    <script src="https://d3js.org/d3.v7.min.js"></script>
-    <script src="../../static/js/insertion-sort-visualization.js"></script>
-    <script src="../../static/js/templates.js"></script>
+    clipboard.on("success", function (e) {
+      const button = e.trigger;
+      button.innerHTML = '<i class="fas fa-check"></i>';
+      setTimeout(() => {
+        button.innerHTML = '<i class="fas fa-copy"></i>';
+      }, 2000);
+    });
+  </script>
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <script src="../../static/js/insertion-sort-visualization.js"></script>
+  <script src="../../static/js/templates.js"></script>
 </body>
-</html> 
+
+</html>
