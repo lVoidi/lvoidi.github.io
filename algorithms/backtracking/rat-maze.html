@@ -1,22 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rat in a Maze: Interactive Pathfinding Algorithm with Backtracking | Roarba Portal</title>
-    
+
     <!-- SEO Meta Tags -->
-    <meta name="description" content="Learn the Rat in a Maze problem with interactive visualization. Master pathfinding algorithms using backtracking with implementations in Python, C++, and C#." />
-    <meta name="keywords" content="rat in maze, pathfinding algorithm, backtracking algorithm, maze solving, algorithm visualization, python implementation, cpp implementation, path finding" />
+    <meta name="description"
+        content="Learn the Rat in a Maze problem with interactive visualization. Master pathfinding algorithms using backtracking with implementations in Python, C++, and C#." />
+    <meta name="keywords"
+        content="rat in maze, pathfinding algorithm, backtracking algorithm, maze solving, algorithm visualization, python implementation, cpp implementation, path finding" />
     <meta name="author" content="Rodrigo Arce" />
-    
+
     <!-- Open Graph / Social Media Tags -->
     <meta property="og:title" content="Rat in a Maze: Interactive Pathfinding Algorithm Visualization" />
-    <meta property="og:description" content="Master maze-solving algorithms with interactive visualization and multiple programming language implementations. Perfect for learning backtracking techniques." />
+    <meta property="og:description"
+        content="Master maze-solving algorithms with interactive visualization and multiple programming language implementations. Perfect for learning backtracking techniques." />
     <meta property="og:image" content="https://roarba.com/static/img/algorithms/rat-maze.jpg" />
     <meta property="og:url" content="https://roarba.com/algorithms/backtracking/rat-maze.html" />
     <meta property="og:type" content="article" />
-    
+
     <!-- Article Specific Meta Tags -->
     <meta property="article:published_time" content="2025-02-19" />
     <meta property="article:author" content="https://github.com/lVoidi" />
@@ -25,7 +29,7 @@
     <meta property="article:tag" content="Pathfinding" />
     <meta property="article:tag" content="Maze Solving" />
     <meta property="article:tag" content="Algorithm Visualization" />
-    
+
     <!-- Canonical URL -->
     <link rel="canonical" href="https://roarba.com/algorithms/backtracking/rat-maze.html" />
 
@@ -77,6 +81,7 @@
     <link href="../../static/css/style.css" rel="stylesheet">
     <link href="../../static/css/algorithms.css" rel="stylesheet">
     <link href="../../static/css/algorithm-page.css" rel="stylesheet">
+    <link href="../../static/css/singularity.css" rel="stylesheet">
     <link href="../../static/css/prism.css" rel="stylesheet">
 
     <!-- Icon -->
@@ -129,19 +134,26 @@
         }
 
         @keyframes pulse {
-            0% { transform: scale(0.95); }
-            50% { 
+            0% {
+                transform: scale(0.95);
+            }
+
+            50% {
                 transform: scale(1.05);
                 box-shadow: 0 0 15px rgba(189, 147, 249, 0.5);
             }
-            100% { transform: scale(0.95); }
+
+            100% {
+                transform: scale(0.95);
+            }
         }
 
         @keyframes pathReveal {
-            from { 
+            from {
                 opacity: 0;
             }
-            to { 
+
+            to {
                 opacity: 1;
             }
         }
@@ -191,6 +203,7 @@
         }
     </style>
 </head>
+
 <body>
     <div id="navbar-placeholder"></div>
 
@@ -223,7 +236,7 @@
             <div class="col-lg-9">
                 <div class="algorithm-content">
                     <h1>Rat in a Maze</h1>
-                    
+
                     <div class="algorithm-metadata">
                         <span class="category-tag">Backtracking</span>
                         <span class="difficulty-tag">Medium</span>
@@ -232,7 +245,10 @@
                     <section class="algorithm-section">
                         <h2>Description</h2>
                         <p>
-                            The Rat in a Maze is a classic backtracking problem where a rat needs to find a path from the source (top-left corner) to the destination (bottom-right corner) in a maze. The maze is represented as a binary matrix where 1 represents a valid path and 0 represents a blocked path.
+                            The Rat in a Maze is a classic backtracking problem where a rat needs to find a path from
+                            the source (top-left corner) to the destination (bottom-right corner) in a maze. The maze is
+                            represented as a binary matrix where 1 represents a valid path and 0 represents a blocked
+                            path.
                         </p>
                     </section>
 
@@ -470,7 +486,8 @@ public class RatMaze {
                         <div class="complexity-analysis">
                             <h3>Time Complexity</h3>
                             <p>
-                                The time complexity of the Rat in a Maze algorithm is O(2^(n*n)), where n is the size of the maze. This is because:
+                                The time complexity of the Rat in a Maze algorithm is O(2^(n*n)), where n is the size of
+                                the maze. This is because:
                             </p>
                             <ul>
                                 <li>At each cell, we have up to 4 possible moves</li>
@@ -504,7 +521,7 @@ public class RatMaze {
                                     <li>Memory efficient for small mazes</li>
                                 </ul>
                             </div>
-                            
+
                             <div class="cons">
                                 <h3>Disadvantages</h3>
                                 <ul>
@@ -529,7 +546,7 @@ public class RatMaze {
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const clipboard = new ClipboardJS('.copy-button');
-            
+
             clipboard.on('success', (e) => {
                 const button = e.trigger;
                 button.innerHTML = '<i class="fas fa-check"></i>';
@@ -542,4 +559,5 @@ public class RatMaze {
     </script>
     <script src="../../static/js/templates.js"></script>
 </body>
-</html> 
+
+</html>

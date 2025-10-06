@@ -1,29 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Newton's Method Algorithm | Fast Root Finding Technique</title>
-    
+
     <!-- SEO Meta Tags -->
-    <meta name="description" content="Explore Newton's Method for root finding with O(log n) time complexity. Learn implementation in Python, JavaScript, C++, and C# with visualizations and step-by-step explanation.">
-    <meta name="keywords" content="newton's method, root finding algorithm, numerical methods, computational mathematics, iterative algorithm, derivative-based method, nonlinear equations">
+    <meta name="description"
+        content="Explore Newton's Method for root finding with O(log n) time complexity. Learn implementation in Python, JavaScript, C++, and C# with visualizations and step-by-step explanation.">
+    <meta name="keywords"
+        content="newton's method, root finding algorithm, numerical methods, computational mathematics, iterative algorithm, derivative-based method, nonlinear equations">
     <meta name="author" content="lVoidi">
     <meta name="robots" content="index, follow">
-    
+
     <!-- Open Graph / Social Media Meta Tags -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://roarba.com/algorithms/numerical/newton.html">
     <meta property="og:title" content="Newton's Method Algorithm | Fast Root Finding Technique">
-    <meta property="og:description" content="Explore Newton's Method for root finding with O(log n) time complexity. Learn implementation in Python, JavaScript, C++, and C# with visualizations and step-by-step explanation.">
+    <meta property="og:description"
+        content="Explore Newton's Method for root finding with O(log n) time complexity. Learn implementation in Python, JavaScript, C++, and C# with visualizations and step-by-step explanation.">
     <meta property="og:image" content="https://roarba.com/static/img/algorithms/newton.jpg">
-    
+
     <!-- Twitter Card Tags -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Newton's Method Algorithm | Fast Root Finding Technique">
-    <meta name="twitter:description" content="Explore Newton's Method for root finding with O(log n) time complexity. Learn implementation in Python, JavaScript, C++, and C# with visualizations and step-by-step explanation.">
+    <meta name="twitter:description"
+        content="Explore Newton's Method for root finding with O(log n) time complexity. Learn implementation in Python, JavaScript, C++, and C# with visualizations and step-by-step explanation.">
     <meta name="twitter:image" content="https://roarba.com/static/img/algorithms/newton.jpg">
-    
+
     <!-- Canonical URL -->
     <meta rel="canonical" href="https://roarba.com/algorithms/numerical/newton.html">
 
@@ -33,11 +38,12 @@
     <link href="../../static/css/style.css" rel="stylesheet">
     <link href="../../static/css/algorithms.css" rel="stylesheet">
     <link href="../../static/css/algorithm-page.css" rel="stylesheet">
+    <link href="../../static/css/singularity.css" rel="stylesheet">
     <link href="../../static/css/prism.css" rel="stylesheet">
 
     <!-- Icon -->
     <link rel="icon" href="../../static/img/icon.png" type="image/x-icon">
-    
+
     <style>
         /* Responsive styles for visualization */
         .visualization-container {
@@ -106,7 +112,8 @@
             height: 100% !important;
         }
 
-        #functionInput, #initialGuess {
+        #functionInput,
+        #initialGuess {
             width: 100%;
             padding: 8px 12px;
             border-radius: 4px;
@@ -134,7 +141,7 @@
                 flex-direction: row;
             }
 
-            .input-controls > * {
+            .input-controls>* {
                 flex: 1;
             }
 
@@ -181,9 +188,10 @@
     }
     </script>
 </head>
+
 <body>
     <div id="navbar-placeholder"></div>
-    
+
     <main class="container py-5">
         <div class="row">
             <!-- Sidebar with Quick Info -->
@@ -220,7 +228,9 @@
 
                     <section class="algorithm-section">
                         <h2>Description</h2>
-                        <p>Newton's Method (also known as Newton-Raphson method) is an iterative method for finding successively better approximations to the roots of a real-valued function. It uses the first derivative of a function to find better approximations to the roots.</p>
+                        <p>Newton's Method (also known as Newton-Raphson method) is an iterative method for finding
+                            successively better approximations to the roots of a real-valued function. It uses the first
+                            derivative of a function to find better approximations to the roots.</p>
                     </section>
 
                     <section class="algorithm-section">
@@ -231,7 +241,9 @@
                             <li>Apply the formula: xₙ₊₁ = xₙ - f(xₙ)/f'(xₙ)</li>
                             <li>Repeat until convergence or maximum iterations reached</li>
                         </ol>
-                        <p>The method is based on the idea that a continuous and differentiable function can be approximated by its tangent line, and where that tangent line crosses the x-axis might be a better approximation to the root than the original guess.</p>
+                        <p>The method is based on the idea that a continuous and differentiable function can be
+                            approximated by its tangent line, and where that tangent line crosses the x-axis might be a
+                            better approximation to the root than the original guess.</p>
                     </section>
 
                     <section class="algorithm-section">
@@ -240,8 +252,10 @@
                             <div class="visualization-controls">
                                 <div class="input-group">
                                     <div class="input-controls">
-                                        <input type="text" id="functionInput" class="form-control" placeholder="Enter function (e.g., x^2 - 4)">
-                                        <input type="number" id="initialGuess" class="form-control" placeholder="Initial guess">
+                                        <input type="text" id="functionInput" class="form-control"
+                                            placeholder="Enter function (e.g., x^2 - 4)">
+                                        <input type="number" id="initialGuess" class="form-control"
+                                            placeholder="Initial guess">
                                         <div class="button-group">
                                             <button class="btn btn-primary" id="startBtn">
                                                 <i class="fas fa-play"></i> Start
@@ -253,7 +267,8 @@
                                     </div>
                                     <div class="speed-control">
                                         <label>Speed:</label>
-                                        <input type="range" id="speedControl" class="form-range" min="1" max="5" value="3">
+                                        <input type="range" id="speedControl" class="form-range" min="1" max="5"
+                                            value="3">
                                     </div>
                                 </div>
                             </div>
@@ -570,7 +585,7 @@ public class NewtonMethod
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const clipboard = new ClipboardJS('.copy-button');
-            
+
             clipboard.on('success', (e) => {
                 const button = e.trigger;
                 button.innerHTML = '<i class="fas fa-check"></i>';
@@ -583,4 +598,5 @@ public class NewtonMethod
     </script>
     <script src="../../static/js/templates.js"></script>
 </body>
+
 </html>

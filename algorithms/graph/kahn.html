@@ -1,22 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kahn's Algorithm: Topological Sorting of DAGs | Roarba Portal</title>
-    
+
     <!-- SEO Meta Tags -->
-    <meta name="description" content="Learn Kahn's algorithm with interactive visualization. Master topological sorting of directed acyclic graphs (DAGs) with step-by-step explanations. Includes Python, C++, and C# implementations." />
-    <meta name="keywords" content="kahn algorithm, topological sort, dag, directed acyclic graph, graph algorithms, dependency resolution, task scheduling" />
+    <meta name="description"
+        content="Learn Kahn's algorithm with interactive visualization. Master topological sorting of directed acyclic graphs (DAGs) with step-by-step explanations. Includes Python, C++, and C# implementations." />
+    <meta name="keywords"
+        content="kahn algorithm, topological sort, dag, directed acyclic graph, graph algorithms, dependency resolution, task scheduling" />
     <meta name="author" content="Rodrigo Arce" />
-    
+
     <!-- Open Graph / Social Media Tags -->
     <meta property="og:title" content="Kahn's Algorithm: Interactive Topological Sorting Tutorial" />
-    <meta property="og:description" content="Master Kahn's algorithm for topological sorting of directed acyclic graphs. Features interactive visualization and implementations in multiple programming languages." />
+    <meta property="og:description"
+        content="Master Kahn's algorithm for topological sorting of directed acyclic graphs. Features interactive visualization and implementations in multiple programming languages." />
     <meta property="og:image" content="https://roarba.com/static/img/algorithms/kahn.jpg" />
     <meta property="og:url" content="https://roarba.com/algorithms/graph/kahn.html" />
     <meta property="og:type" content="article" />
-    
+
     <!-- Article Specific Meta Tags -->
     <meta property="article:published_time" content="2025-02-19" />
     <meta property="article:author" content="https://github.com/lVoidi" />
@@ -24,7 +28,7 @@
     <meta property="article:tag" content="Graph Theory" />
     <meta property="article:tag" content="Topological Sort" />
     <meta property="article:tag" content="Task Scheduling" />
-    
+
     <!-- Canonical URL -->
     <link rel="canonical" href="https://roarba.com/algorithms/graph/kahn.html" />
 
@@ -69,7 +73,7 @@
       "interactivityType": "mixed"
     }
     </script>
-    
+
     <!-- CSS imports -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
@@ -77,8 +81,10 @@
     <link href="../../static/css/algorithms.css" rel="stylesheet">
     <link href="../../static/css/algorithm-page.css" rel="stylesheet">
     <link href="../../static/css/prism.css" rel="stylesheet">
+    <link href="../../static/css/singularity.css" rel="stylesheet">
     <link rel="icon" href="../../static/img/icon.png" type="image/x-icon">
 </head>
+
 <body>
     <div id="navbar-placeholder"></div>
 
@@ -120,8 +126,10 @@
                     <section class="algorithm-section">
                         <h2>Description</h2>
                         <p>
-                            Kahn's algorithm is a method for performing a topological sort on a directed acyclic graph (DAG). 
-                            It works by repeatedly removing vertices with no incoming edges and adding them to the result list. 
+                            Kahn's algorithm is a method for performing a topological sort on a directed acyclic graph
+                            (DAG).
+                            It works by repeatedly removing vertices with no incoming edges and adding them to the
+                            result list.
                             This process continues until all vertices are processed or a cycle is detected.
                         </p>
                     </section>
@@ -131,12 +139,15 @@
                         <div class="history-content">
                             <img src="../../static/img/kahn.jpg" alt="Arthur B. Kahn" class="history-image">
                             <p>
-                                The algorithm was developed by Arthur B. Kahn in 1962 and was published in his paper 
-                                "Topological sorting of large networks". At the time, Kahn was working at Mathematical Analysis 
-                                Research Corporation. The algorithm was developed to solve the practical problem of scheduling 
+                                The algorithm was developed by Arthur B. Kahn in 1962 and was published in his paper
+                                "Topological sorting of large networks". At the time, Kahn was working at Mathematical
+                                Analysis
+                                Research Corporation. The algorithm was developed to solve the practical problem of
+                                scheduling
                                 tasks with dependencies, which naturally forms a directed acyclic graph.
-                                
-                                The algorithm's simplicity and efficiency made it a fundamental tool in computer science, 
+
+                                The algorithm's simplicity and efficiency made it a fundamental tool in computer
+                                science,
                                 particularly in build systems, dependency resolution, and task scheduling.
                             </p>
                         </div>
@@ -270,7 +281,7 @@ if __name__ == "__main__":
                                         </code></pre>
                                     </div>
                                 </div>
-                                
+
                                 <!-- C++ Implementation -->
                                 <div class="tab-pane fade" id="cpp">
                                     <div class="code-wrapper">
@@ -487,7 +498,8 @@ public class Program
                             <div class="time-complexity">
                                 <h3>Time Complexity</h3>
                                 <p>
-                                    The time complexity of Kahn's algorithm is O(V + E), where V is the number of vertices 
+                                    The time complexity of Kahn's algorithm is O(V + E), where V is the number of
+                                    vertices
                                     and E is the number of edges in the graph. This can be broken down into:
                                 </p>
                                 <ul>
@@ -507,7 +519,7 @@ public class Program
                                     </li>
                                 </ul>
                             </div>
-                            
+
                             <div class="space-complexity">
                                 <h3>Space Complexity</h3>
                                 <p>
@@ -577,7 +589,7 @@ public class Program
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const clipboard = new ClipboardJS('.copy-button');
-            
+
             clipboard.on('success', (e) => {
                 const button = e.trigger;
                 button.innerHTML = '<i class="fas fa-check"></i>';
@@ -590,4 +602,5 @@ public class Program
     </script>
     <script src="../../static/js/templates.js"></script>
 </body>
-</html> 
+
+</html>

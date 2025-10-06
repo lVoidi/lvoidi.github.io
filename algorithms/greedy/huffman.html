@@ -1,22 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Huffman Coding: Data Compression Algorithm | Roarbaaaa Portal</title>
-    
+
     <!-- SEO Meta Tags -->
-    <meta name="description" content="Learn Huffman coding algorithm with interactive visualization. Master lossless data compression using variable-length codes. Includes Python, C++, and C# implementations." />
-    <meta name="keywords" content="huffman coding, data compression, lossless compression, greedy algorithms, variable-length codes, encoding, file compression, information theory" />
+    <meta name="description"
+        content="Learn Huffman coding algorithm with interactive visualization. Master lossless data compression using variable-length codes. Includes Python, C++, and C# implementations." />
+    <meta name="keywords"
+        content="huffman coding, data compression, lossless compression, greedy algorithms, variable-length codes, encoding, file compression, information theory" />
     <meta name="author" content="Rodrigo Arce" />
-    
+
     <!-- Open Graph / Social Media Tags -->
     <meta property="og:title" content="Huffman Coding: Interactive Data Compression Tutorial" />
-    <meta property="og:description" content="Master the Huffman coding algorithm with interactive visualization. Learn how to compress data efficiently using variable-length codes." />
+    <meta property="og:description"
+        content="Master the Huffman coding algorithm with interactive visualization. Learn how to compress data efficiently using variable-length codes." />
     <meta property="og:image" content="https://roarba.com/static/img/algorithms/huffman.jpg" />
     <meta property="og:url" content="https://roarba.com/algorithms/greedy/huffman.html" />
     <meta property="og:type" content="article" />
-    
+
     <!-- Article Specific Meta Tags -->
     <meta property="article:published_time" content="2025-02-19" />
     <meta property="article:author" content="https://github.com/lVoidi" />
@@ -24,7 +28,7 @@
     <meta property="article:tag" content="Greedy Algorithms" />
     <meta property="article:tag" content="Data Compression" />
     <meta property="article:tag" content="Information Theory" />
-    
+
     <!-- Canonical URL -->
     <link rel="canonical" href="https://roarba.com/algorithms/greedy/huffman.html" />
 
@@ -69,13 +73,14 @@
       "interactivityType": "mixed"
     }
     </script>
-    
+
     <!-- CSS imports -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="../../static/css/style.css" rel="stylesheet">
     <link href="../../static/css/algorithms.css" rel="stylesheet">
     <link href="../../static/css/algorithm-page.css" rel="stylesheet">
+    <link href="../../static/css/singularity.css" rel="stylesheet">
     <link href="../../static/css/prism.css" rel="stylesheet">
     <link rel="icon" href="../../static/img/icon.png" type="image/x-icon">
     <style>
@@ -85,7 +90,7 @@
             --bs-table-bg: transparent !important;
             --bs-table-accent-bg: transparent !important;
         }
-        
+
         /* Force dark background on all table elements */
         #frequencyTable,
         #frequencyTable tr,
@@ -96,41 +101,41 @@
             background-color: #1e1e2f !important;
             color: #e4e4e4 !important;
         }
-        
+
         /* Table structure */
         #frequencyTable {
             margin-bottom: 0 !important;
             border-collapse: collapse !important;
         }
-        
-        #frequencyTable th, 
+
+        #frequencyTable th,
         #frequencyTable td {
             border-color: #2d2d42 !important;
             padding: 8px 12px !important;
         }
-        
+
         /* Specific row colors */
         #frequencyTable tbody tr {
             background-color: #232338 !important;
         }
-        
+
         #frequencyTable tbody tr:nth-of-type(odd) {
             background-color: #1a1a2e !important;
         }
-        
+
         /* Specific cell colors to override Bootstrap */
         #frequencyTable tbody tr td {
             background-color: #232338 !important;
         }
-        
+
         #frequencyTable tbody tr:nth-of-type(odd) td {
             background-color: #1a1a2e !important;
         }
-        
+
         #frequencyTable thead tr th {
             background-color: #2d2d42 !important;
         }
-        
+
         /* Rest of existing styles */
         .history-box {
             background-color: #1e1e2f;
@@ -138,52 +143,52 @@
             padding: 15px;
             margin-bottom: 30px;
         }
-        
+
         .history-content {
             display: flex;
             flex-direction: row;
             gap: 20px;
         }
-        
+
         .history-image {
             max-width: 200px;
             border-radius: 5px;
             object-fit: cover;
         }
-        
+
         .bg-dark-card {
             background-color: #1e1e2f;
         }
-        
+
         #textInput {
             background-color: #2d2d42 !important;
             color: #e4e4e4 !important;
             border-color: #4b4b65 !important;
         }
-        
+
         #textInput::placeholder {
             color: #8a8aa5;
         }
-        
+
         .table-container {
             border-radius: 8px;
             overflow: hidden;
             border: 1px solid #2d2d42;
         }
-        
+
         .visualization-area {
             background-color: #1e1e2f;
             border-radius: 8px;
             padding: 10px;
             margin-bottom: 15px;
             border: 1px solid #2d2d42;
-            box-shadow: inset 0 0 20px rgba(0,0,0,0.2);
+            box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.2);
             height: 100%;
             min-height: 400px;
             position: relative;
             overflow: hidden;
         }
-        
+
         #huffmanVisualization {
             position: absolute;
             top: 0;
@@ -191,11 +196,11 @@
             width: 100%;
             height: 100%;
         }
-        
+
         #huffmanVisualization path.link {
             stroke: #4b4b65;
         }
-        
+
         .visualization-steps {
             background-color: #1e1e2f;
             border-radius: 8px;
@@ -204,68 +209,73 @@
             color: #e4e4e4;
             border-left: 4px solid #5e72e4;
         }
-        
+
         .speed-control {
             display: flex;
             align-items: center;
             gap: 10px;
         }
-        
+
         .speed-control label {
             margin-bottom: 0;
             min-width: 60px;
         }
-        
+
         .speed-control input {
             flex: 1;
         }
-        
+
         .visualization-container {
             margin-bottom: 30px;
         }
-        
+
         /* Responsive adjustments */
         @media (max-width: 768px) {
             .history-content {
                 flex-direction: column;
                 align-items: center;
             }
-            
+
             .history-image {
                 margin-bottom: 15px;
             }
-            
+
             .visualization-controls .input-group {
                 flex-direction: column;
             }
-            
+
             .visualization-controls .btn {
                 margin-top: 10px;
             }
-            
+
             .visualization-area {
-                min-height: 500px; /* Taller for mobile screens */
-                padding: 5px;      /* Less padding on mobile */
+                min-height: 500px;
+                /* Taller for mobile screens */
+                padding: 5px;
+                /* Less padding on mobile */
             }
-            
+
             /* Make table container scrollable on mobile */
             .table-container {
                 overflow-x: auto;
                 max-height: 300px;
                 overflow-y: auto;
             }
-            
+
             #frequencyTable {
-                font-size: 13px; /* Smaller font on mobile */
+                font-size: 13px;
+                /* Smaller font on mobile */
             }
-            
-            #frequencyTable th, 
+
+            #frequencyTable th,
             #frequencyTable td {
-                padding: 6px 8px !important; /* Smaller padding */
+                padding: 6px 8px !important;
+                /* Smaller padding */
             }
         }
     </style>
 </head>
+
 <body>
     <div id="navbar-placeholder"></div>
 
@@ -306,7 +316,10 @@
                     <section class="algorithm-section">
                         <h2>Description</h2>
                         <p>
-                            Huffman coding is a data compression technique that uses variable-length codes to represent characters based on their frequency of occurrence. More frequent characters are assigned shorter codes, while less frequent characters receive longer codes, resulting in efficient data compression.
+                            Huffman coding is a data compression technique that uses variable-length codes to represent
+                            characters based on their frequency of occurrence. More frequent characters are assigned
+                            shorter codes, while less frequent characters receive longer codes, resulting in efficient
+                            data compression.
                         </p>
                     </section>
 
@@ -315,18 +328,26 @@
                         <div class="history-content">
                             <img src="../../static/img/huffman.jpg" alt="David A. Huffman" class="history-image">
                             <p>
-                                Huffman coding was developed by David A. Huffman while he was a graduate student at MIT in 1952. 
-                                The algorithm came about as a result of a term paper assignment in an Information Theory class 
-                                taught by Robert M. Fano. Fano had been working on a similar problem with Claude Shannon, 
+                                Huffman coding was developed by David A. Huffman while he was a graduate student at MIT
+                                in 1952.
+                                The algorithm came about as a result of a term paper assignment in an Information Theory
+                                class
+                                taught by Robert M. Fano. Fano had been working on a similar problem with Claude
+                                Shannon,
                                 and had developed the Shannon-Fano coding.
-                                
-                                When given the assignment, Huffman worked on the problem for months until he finally came up 
-                                with a more efficient solution than the existing Shannon-Fano coding. His professor, Robert Fano, 
-                                was impressed and helped Huffman publish his findings. The paper, "A Method for the Construction 
-                                of Minimum-Redundancy Codes", was published in the Proceedings of the IRE in 1952 and became 
+
+                                When given the assignment, Huffman worked on the problem for months until he finally
+                                came up
+                                with a more efficient solution than the existing Shannon-Fano coding. His professor,
+                                Robert Fano,
+                                was impressed and helped Huffman publish his findings. The paper, "A Method for the
+                                Construction
+                                of Minimum-Redundancy Codes", was published in the Proceedings of the IRE in 1952 and
+                                became
                                 one of the most cited papers in computer science.
-                                
-                                Today, Huffman coding is used in various file compression formats including JPEG, PNG, and MP3, 
+
+                                Today, Huffman coding is used in various file compression formats including JPEG, PNG,
+                                and MP3,
                                 and serves as a fundamental building block in many modern data compression algorithms.
                             </p>
                         </div>
@@ -350,7 +371,8 @@
                         <div class="visualization-container">
                             <div class="visualization-controls p-3 mb-3 bg-dark-card rounded">
                                 <div class="mb-3">
-                                    <input type="text" id="textInput" class="form-control bg-dark text-light border-secondary" 
+                                    <input type="text" id="textInput"
+                                        class="form-control bg-dark text-light border-secondary"
                                         placeholder="Enter text to compress" value="hello world">
                                 </div>
                                 <div class="d-flex flex-wrap gap-2 mb-3">
@@ -547,7 +569,7 @@ if __name__ == "__main__":
                                         </code></pre>
                                     </div>
                                 </div>
-                                
+
                                 <!-- C++ Implementation -->
                                 <div class="tab-pane fade" id="cpp">
                                     <div class="code-wrapper">
@@ -693,7 +715,7 @@ int main() {
                                         </code></pre>
                                     </div>
                                 </div>
-                                
+
                                 <!-- C# Implementation -->
                                 <div class="tab-pane fade" id="csharp">
                                     <div class="code-wrapper">
@@ -852,7 +874,8 @@ public class Program
                             <div class="time-complexity">
                                 <h3>Time Complexity</h3>
                                 <p>
-                                    The time complexity of Huffman coding is O(n log n), where n is the number of unique characters in the input text. This can be broken down into:
+                                    The time complexity of Huffman coding is O(n log n), where n is the number of unique
+                                    characters in the input text. This can be broken down into:
                                 </p>
                                 <ul>
                                     <li>
@@ -883,7 +906,7 @@ public class Program
                                     </li>
                                 </ul>
                             </div>
-                            
+
                             <div class="space-complexity">
                                 <h3>Space Complexity</h3>
                                 <p>
@@ -936,7 +959,7 @@ public class Program
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const clipboard = new ClipboardJS('.copy-button');
-            
+
             clipboard.on('success', (e) => {
                 const button = e.trigger;
                 button.innerHTML = '<i class="fas fa-check"></i>';
@@ -949,4 +972,5 @@ public class Program
     </script>
     <script src="../../static/js/templates.js"></script>
 </body>
-</html> 
+
+</html>

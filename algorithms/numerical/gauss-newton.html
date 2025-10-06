@@ -1,29 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gauss-Newton Algorithm | Nonlinear Least Squares Optimization</title>
-    
+
     <!-- SEO Meta Tags -->
-    <meta name="description" content="Explore the Gauss-Newton algorithm for solving nonlinear least squares problems with implementations in Python, JavaScript, C++, and C#. Includes curve fitting examples and convergence analysis.">
-    <meta name="keywords" content="gauss-newton algorithm, nonlinear least squares, optimization, numerical methods, curve fitting, parameter estimation, regression analysis">
+    <meta name="description"
+        content="Explore the Gauss-Newton algorithm for solving nonlinear least squares problems with implementations in Python, JavaScript, C++, and C#. Includes curve fitting examples and convergence analysis.">
+    <meta name="keywords"
+        content="gauss-newton algorithm, nonlinear least squares, optimization, numerical methods, curve fitting, parameter estimation, regression analysis">
     <meta name="author" content="lVoidi">
     <meta name="robots" content="index, follow">
-    
+
     <!-- Open Graph / Social Media Meta Tags -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://roarba.com/algorithms/numerical/gauss-newton.html">
     <meta property="og:title" content="Gauss-Newton Algorithm | Nonlinear Least Squares Optimization">
-    <meta property="og:description" content="Explore the Gauss-Newton algorithm for solving nonlinear least squares problems with implementations in Python, JavaScript, C++, and C#. Includes curve fitting examples and convergence analysis.">
+    <meta property="og:description"
+        content="Explore the Gauss-Newton algorithm for solving nonlinear least squares problems with implementations in Python, JavaScript, C++, and C#. Includes curve fitting examples and convergence analysis.">
     <meta property="og:image" content="https://roarba.com/static/img/algorithms/gauss-newton.jpg">
-    
+
     <!-- Twitter Card Tags -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Gauss-Newton Algorithm | Nonlinear Least Squares Optimization">
-    <meta name="twitter:description" content="Explore the Gauss-Newton algorithm for solving nonlinear least squares problems with implementations in Python, JavaScript, C++, and C#. Includes curve fitting examples and convergence analysis.">
+    <meta name="twitter:description"
+        content="Explore the Gauss-Newton algorithm for solving nonlinear least squares problems with implementations in Python, JavaScript, C++, and C#. Includes curve fitting examples and convergence analysis.">
     <meta name="twitter:image" content="https://roarba.com/static/img/algorithms/gauss-newton.jpg">
-    
+
     <!-- Canonical URL -->
     <meta rel="canonical" href="https://roarba.com/algorithms/numerical/gauss-newton.html">
 
@@ -33,6 +38,7 @@
     <link href="../../static/css/style.css" rel="stylesheet">
     <link href="../../static/css/algorithms.css" rel="stylesheet">
     <link href="../../static/css/algorithm-page.css" rel="stylesheet">
+    <link href="../../static/css/singularity.css" rel="stylesheet">
     <link href="../../static/css/prism.css" rel="stylesheet">
 
     <!-- Icon -->
@@ -75,6 +81,7 @@
     }
     </script>
 </head>
+
 <body>
     <div id="navbar-placeholder"></div>
 
@@ -107,7 +114,7 @@
             <div class="col-lg-9">
                 <div class="algorithm-content">
                     <h1>Gauss-Newton Algorithm</h1>
-                    
+
                     <div class="algorithm-metadata">
                         <span class="category-tag">Numerical Methods</span>
                         <span class="difficulty-tag">Hard</span>
@@ -116,9 +123,12 @@
                     <section class="algorithm-section">
                         <h2>Description</h2>
                         <p>
-                            The Gauss-Newton algorithm is a method used to solve non-linear least squares problems. It's particularly 
-                            useful for fitting a parameterized function to a set of measured data points by minimizing the sum of 
-                            the squares of the errors between the data and the function. The algorithm combines Gauss's method of least 
+                            The Gauss-Newton algorithm is a method used to solve non-linear least squares problems. It's
+                            particularly
+                            useful for fitting a parameterized function to a set of measured data points by minimizing
+                            the sum of
+                            the squares of the errors between the data and the function. The algorithm combines Gauss's
+                            method of least
                             squares with Newton's method for finding roots of equations.
                         </p>
                     </section>
@@ -157,13 +167,19 @@
                     <section class="algorithm-section history-box">
                         <h2>History</h2>
                         <div class="history-content">
-                            <img src="../../static/img/gauss.jpg" alt="Gauss-Newton Algorithm Illustration" class="history-image">
+                            <img src="../../static/img/gauss.jpg" alt="Gauss-Newton Algorithm Illustration"
+                                class="history-image">
                             <p>
-                                The Gauss-Newton algorithm combines two fundamental mathematical approaches: Gauss's method of least 
-                                squares (1795) and Newton's method for finding roots (1669). Carl Friedrich Gauss developed the method 
-                                of least squares while studying astronomical data, and this was later combined with Newton's iterative 
-                                approach to create a powerful tool for non-linear optimization. The algorithm was formally described 
-                                in the early 20th century and has since become a cornerstone of numerical optimization and data fitting.
+                                The Gauss-Newton algorithm combines two fundamental mathematical approaches: Gauss's
+                                method of least
+                                squares (1795) and Newton's method for finding roots (1669). Carl Friedrich Gauss
+                                developed the method
+                                of least squares while studying astronomical data, and this was later combined with
+                                Newton's iterative
+                                approach to create a powerful tool for non-linear optimization. The algorithm was
+                                formally described
+                                in the early 20th century and has since become a cornerstone of numerical optimization
+                                and data fitting.
                             </p>
                         </div>
                     </section>
@@ -204,7 +220,7 @@
                                 padding: 20px;
                                 margin: 20px 0;
                             }
-                            
+
                             .visualization-controls {
                                 display: flex;
                                 justify-content: space-between;
@@ -214,44 +230,44 @@
                                 background: #1e1e2e;
                                 border-radius: 8px;
                             }
-                            
+
                             .control-group {
                                 display: flex;
                                 align-items: center;
                                 gap: 15px;
                             }
-                            
+
                             .form-label {
                                 color: #f8f8f2;
                                 margin: 0;
                                 font-size: 1.1em;
                             }
-                            
+
                             .form-select-lg {
                                 background-color: #44475a;
                                 color: #f8f8f2;
                                 border: 1px solid #6272a4;
                                 min-width: 200px;
                             }
-                            
+
                             .form-select-lg:focus {
                                 border-color: #bd93f9;
                                 box-shadow: 0 0 0 0.25rem rgba(189, 147, 249, 0.25);
                             }
-                            
+
                             .visualization-wrapper {
                                 background: #1e1e2e;
                                 border-radius: 8px;
                                 padding: 20px;
                                 margin-top: 20px;
                             }
-                            
+
                             #visualizer {
                                 width: 100%;
                                 height: auto;
                                 margin-bottom: 20px;
                             }
-                            
+
                             .visualization-info {
                                 text-align: center;
                                 padding: 15px;
@@ -259,36 +275,36 @@
                                 border-radius: 8px;
                                 margin-top: 20px;
                             }
-                            
+
                             .current-step {
                                 color: #f8f8f2;
                                 font-family: "Segoe UI", Arial, sans-serif;
                                 font-size: 1.2em;
                                 line-height: 1.6;
                             }
-                            
+
                             .btn-lg {
                                 padding: 0.8rem 1.5rem;
                                 font-size: 1.1em;
                             }
-                            
+
                             .btn-primary {
                                 background-color: #50fa7b;
                                 border-color: #50fa7b;
                                 color: #282a36;
                             }
-                            
+
                             .btn-primary:hover {
                                 background-color: #69ff94;
                                 border-color: #69ff94;
                                 color: #282a36;
                             }
-                            
+
                             .btn-secondary {
                                 background-color: #6272a4;
                                 border-color: #6272a4;
                             }
-                            
+
                             .btn-secondary:hover {
                                 background-color: #7b88b8;
                                 border-color: #7b88b8;
@@ -403,7 +419,7 @@ if __name__ == "__main__":
                                         </code></pre>
                                     </div>
                                 </div>
-                                
+
                                 <div class="tab-pane fade" id="cpp">
                                     <div class="code-wrapper">
                                         <button class="copy-button" data-clipboard-target="#cppCode">
@@ -673,7 +689,7 @@ public class GaussNewton {
                                     <li>Solving linear system: O(n³)</li>
                                 </ul>
                             </div>
-                            
+
                             <div class="space-complexity">
                                 <h3>Space Complexity</h3>
                                 <p>
@@ -727,7 +743,7 @@ public class GaussNewton {
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const clipboard = new ClipboardJS('.copy-button');
-            
+
             clipboard.on('success', (e) => {
                 const button = e.trigger;
                 button.innerHTML = '<i class="fas fa-check"></i>';
@@ -740,4 +756,5 @@ public class GaussNewton {
     </script>
     <script src="../../static/js/templates.js"></script>
 </body>
-</html> 
+
+</html>

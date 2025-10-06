@@ -1,22 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Linear Regression: Interactive Predictive Modeling Tutorial | Roarba Portal</title>
-    
+
     <!-- SEO Meta Tags -->
-    <meta name="description" content="Learn Linear Regression with interactive visualization. Master predictive modeling and statistical analysis with gradient descent. Includes Python, C++, and C# implementations." />
-    <meta name="keywords" content="linear regression, machine learning, predictive modeling, gradient descent, statistical analysis, regression analysis, data science, model fitting" />
+    <meta name="description"
+        content="Learn Linear Regression with interactive visualization. Master predictive modeling and statistical analysis with gradient descent. Includes Python, C++, and C# implementations." />
+    <meta name="keywords"
+        content="linear regression, machine learning, predictive modeling, gradient descent, statistical analysis, regression analysis, data science, model fitting" />
     <meta name="author" content="Rodrigo Arce" />
-    
+
     <!-- Open Graph / Social Media Tags -->
     <meta property="og:title" content="Linear Regression: Interactive Predictive Modeling Tutorial" />
-    <meta property="og:description" content="Master Linear Regression with interactive visualization. Learn how to predict continuous variables using statistical modeling and gradient descent optimization." />
+    <meta property="og:description"
+        content="Master Linear Regression with interactive visualization. Learn how to predict continuous variables using statistical modeling and gradient descent optimization." />
     <meta property="og:image" content="https://roarba.com/static/img/algorithms/linear-regression.jpg" />
     <meta property="og:url" content="https://roarba.com/algorithms/machine-learning/linear-regression.html" />
     <meta property="og:type" content="article" />
-    
+
     <!-- Article Specific Meta Tags -->
     <meta property="article:published_time" content="2025-02-19" />
     <meta property="article:author" content="https://github.com/lVoidi" />
@@ -24,7 +28,7 @@
     <meta property="article:tag" content="Machine Learning" />
     <meta property="article:tag" content="Statistics" />
     <meta property="article:tag" content="Data Science" />
-    
+
     <!-- Canonical URL -->
     <link rel="canonical" href="https://roarba.com/algorithms/machine-learning/linear-regression.html" />
 
@@ -69,12 +73,13 @@
       "interactivityType": "mixed"
     }
     </script>
-    
+
     <!-- CSS imports -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="../../static/css/style.css" rel="stylesheet">
     <link href="../../static/css/algorithms.css" rel="stylesheet">
+    <link href="../../static/css/singularity.css" rel="stylesheet">
     <link href="../../static/css/algorithm-page.css" rel="stylesheet">
     <link href="../../static/css/prism.css" rel="stylesheet">
 
@@ -130,7 +135,8 @@
             position: relative;
             width: 100%;
             height: 0;
-            padding-bottom: 60%; /* Mantener proporción 5:3 */
+            padding-bottom: 60%;
+            /* Mantener proporción 5:3 */
         }
 
         #regressionPlot {
@@ -167,9 +173,10 @@
         }
     </style>
 </head>
+
 <body>
     <div id="navbar-placeholder"></div>
-    
+
     <main class="container py-5">
         <div class="row">
             <!-- Sidebar with Quick Info -->
@@ -206,7 +213,9 @@
 
                     <section class="algorithm-section">
                         <h2>Description</h2>
-                        <p>Linear Regression is a fundamental machine learning algorithm used for predicting a continuous output variable based on one or more input features. It works by finding the best-fitting linear relationship between the input and output variables.</p>
+                        <p>Linear Regression is a fundamental machine learning algorithm used for predicting a
+                            continuous output variable based on one or more input features. It works by finding the
+                            best-fitting linear relationship between the input and output variables.</p>
                     </section>
 
                     <section class="algorithm-section">
@@ -285,7 +294,8 @@
                                 </div>
                                 <div class="speed-control">
                                     <label>Learning Rate:</label>
-                                    <input type="range" id="learningRate" class="form-range" min="1" max="100" value="30">
+                                    <input type="range" id="learningRate" class="form-range" min="1" max="100"
+                                        value="30">
                                 </div>
                             </div>
                             <div class="visualization-area">
@@ -633,7 +643,7 @@ public class LinearRegression
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const clipboard = new ClipboardJS('.copy-button');
-            
+
             clipboard.on('success', (e) => {
                 const button = e.trigger;
                 button.innerHTML = '<i class="fas fa-check"></i>';
@@ -646,4 +656,5 @@ public class LinearRegression
     </script>
     <script src="../../static/js/templates.js"></script>
 </body>
+
 </html>

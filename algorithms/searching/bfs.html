@@ -1,54 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Breadth First Search (BFS) Algorithm | Graph Traversal Method</title>
-    
+
     <!-- SEO Meta Tags -->
-    <meta name="description" content="Learn the Breadth First Search (BFS) algorithm with O(V+E) time complexity. Includes interactive visualization, applications, and implementations in Python, C++, and C# for graph traversal and shortest path finding.">
-    <meta name="keywords" content="breadth first search, BFS, graph traversal, shortest path algorithm, level order traversal, graph search algorithm, queue-based search">
+    <meta name="description"
+        content="Learn the Breadth First Search (BFS) algorithm with O(V+E) time complexity. Includes interactive visualization, applications, and implementations in Python, C++, and C# for graph traversal and shortest path finding.">
+    <meta name="keywords"
+        content="breadth first search, BFS, graph traversal, shortest path algorithm, level order traversal, graph search algorithm, queue-based search">
     <meta name="author" content="lVoidi">
     <meta name="robots" content="index, follow">
-    
+
     <!-- Open Graph / Social Media Meta Tags -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://roarba.com/algorithms/searching/bfs.html">
     <meta property="og:title" content="Breadth First Search (BFS) Algorithm | Graph Traversal Method">
-    <meta property="og:description" content="Learn the Breadth First Search (BFS) algorithm with O(V+E) time complexity. Includes interactive visualization, applications, and implementations in Python, C++, and C# for graph traversal and shortest path finding.">
+    <meta property="og:description"
+        content="Learn the Breadth First Search (BFS) algorithm with O(V+E) time complexity. Includes interactive visualization, applications, and implementations in Python, C++, and C# for graph traversal and shortest path finding.">
     <meta property="og:image" content="https://roarba.com/static/img/algorithms/bfs.jpg">
-    
+
     <!-- Twitter Card Tags -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Breadth First Search (BFS) Algorithm | Graph Traversal Method">
-    <meta name="twitter:description" content="Learn the Breadth First Search (BFS) algorithm with O(V+E) time complexity. Includes interactive visualization, applications, and implementations in Python, C++, and C# for graph traversal and shortest path finding.">
+    <meta name="twitter:description"
+        content="Learn the Breadth First Search (BFS) algorithm with O(V+E) time complexity. Includes interactive visualization, applications, and implementations in Python, C++, and C# for graph traversal and shortest path finding.">
     <meta name="twitter:image" content="https://roarba.com/static/img/algorithms/bfs.jpg">
-    
+
     <!-- Canonical URL -->
     <meta rel="canonical" href="https://roarba.com/algorithms/searching/bfs.html">
-    
+
     <!-- CSS imports -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="../../static/css/style.css" rel="stylesheet">
     <link href="../../static/css/algorithms.css" rel="stylesheet">
     <link href="../../static/css/algorithm-page.css" rel="stylesheet">
+    <link href="../../static/css/singularity.css" rel="stylesheet">
     <link href="../../static/css/prism.css" rel="stylesheet">
 
     <!-- Icon -->
     <link rel="icon" href="../../static/img/icon.png" type="image/x-icon">
-    
+
     <style>
         /* BFS Visualization Styles */
         .visualization-container {
             width: 100%;
-            max-width: 700px; /* Limit max width */
+            max-width: 700px;
+            /* Limit max width */
             margin: 20px auto;
             padding: 15px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
             background: var(--code-bg-color);
             border-radius: 8px;
         }
+
         .visualization-controls {
             display: flex;
             flex-wrap: wrap;
@@ -56,12 +64,15 @@
             margin-bottom: 20px;
             align-items: center;
         }
-        .control-group { /* Added for button spacing */
+
+        .control-group {
+            /* Added for button spacing */
             display: flex;
             flex-wrap: wrap;
             gap: 10px;
-            flex-grow: 1; 
+            flex-grow: 1;
         }
+
         .speed-control {
             display: flex;
             align-items: center;
@@ -69,62 +80,77 @@
             min-width: 150px;
             flex-basis: 200px;
         }
+
         .speed-control label {
             margin-bottom: 0;
             color: var(--text-color);
             white-space: nowrap;
         }
+
         .speed-control input[type="range"] {
             flex-grow: 1;
             cursor: pointer;
         }
+
         .visualization-area {
             width: 100%;
-            min-height: 400px; /* Ensure minimum height */
+            min-height: 400px;
+            /* Ensure minimum height */
             background: var(--background-color);
             border: 1px solid var(--border-color);
             border-radius: 4px;
             margin-bottom: 15px;
-            overflow: hidden; /* Prevent content spill */
-            position: relative; 
+            overflow: hidden;
+            /* Prevent content spill */
+            position: relative;
         }
+
         #bfsVisualization {
-            display: block; 
+            display: block;
             width: 100%;
             height: 100%;
             /* Add viewBox via JS if needed for scaling */
         }
+
         .visualization-steps {
             text-align: center;
             margin-top: 10px;
             color: var(--text-color-muted);
             font-style: italic;
         }
-        
+
         /* Graph element styles (similar to DFS) */
         .graph-edge {
-            stroke: #6c757d; 
+            stroke: #6c757d;
             stroke-width: 2;
             transition: stroke 0.3s ease;
         }
-         .graph-edge.visited {
-            stroke: #17a2b8; /* Cyan */
+
+        .graph-edge.visited {
+            stroke: #17a2b8;
+            /* Cyan */
             stroke-width: 3;
         }
-       .graph-node {
+
+        .graph-node {
             fill: var(--secondary-color);
             stroke: #fff;
             stroke-width: 2;
             cursor: pointer;
             transition: fill 0.3s ease;
         }
+
         .graph-node.visited {
-            fill: #28a745; /* Green */
+            fill: #28a745;
+            /* Green */
         }
+
         .graph-node.current {
-             fill: #ffc107; /* Yellow */
-             stroke-width: 3;
-         }
+            fill: #ffc107;
+            /* Yellow */
+            stroke-width: 3;
+        }
+
         .node-label {
             fill: #fff;
             font-size: 12px;
@@ -134,25 +160,42 @@
 
         /* Responsive Styles */
         @media (max-width: 768px) {
-             .visualization-container { max-width: 95%; padding: 10px; }
-             .visualization-controls {
-                 flex-direction: column;
-                 align-items: stretch;
-             }
-             .control-group {
-                  display: grid;
-                  grid-template-columns: 1fr 1fr;
-             }
-             .speed-control { width: 100%; }
-         }
+            .visualization-container {
+                max-width: 95%;
+                padding: 10px;
+            }
+
+            .visualization-controls {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .control-group {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .speed-control {
+                width: 100%;
+            }
+        }
 
         @media (max-width: 480px) {
-            .control-group { grid-template-columns: 1fr; }
-            .visualization-container { padding: 5px; }
-            .btn { font-size: 0.9em; padding: 0.3rem 0.6rem; }
+            .control-group {
+                grid-template-columns: 1fr;
+            }
+
+            .visualization-container {
+                padding: 5px;
+            }
+
+            .btn {
+                font-size: 0.9em;
+                padding: 0.3rem 0.6rem;
+            }
         }
     </style>
-    
+
     <!-- Schema.org structured data -->
     <script type="application/ld+json">
     {
@@ -190,9 +233,10 @@
     }
     </script>
 </head>
+
 <body>
     <div id="navbar-placeholder"></div>
-    
+
     <main class="container py-5">
         <div class="row">
             <!-- Sidebar -->
@@ -230,7 +274,10 @@
 
                     <section class="algorithm-section">
                         <h2>Description</h2>
-                        <p>Breadth First Search (BFS) is a graph traversal algorithm that explores all vertices at the present depth before moving on to vertices at the next depth level. Starting from a chosen source vertex, it systematically explores the graph layer by layer, making it particularly effective for:</p>
+                        <p>Breadth First Search (BFS) is a graph traversal algorithm that explores all vertices at the
+                            present depth before moving on to vertices at the next depth level. Starting from a chosen
+                            source vertex, it systematically explores the graph layer by layer, making it particularly
+                            effective for:</p>
                         <ul>
                             <li>Finding shortest paths in unweighted graphs</li>
                             <li>Testing if a graph is bipartite</li>
@@ -475,7 +522,7 @@ void bfs(const vector&lt;vector&lt;int&gt;&gt;& graph, int start) {
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const clipboard = new ClipboardJS('.copy-button');
-            
+
             clipboard.on('success', (e) => {
                 const button = e.trigger;
                 button.innerHTML = '<i class="fas fa-check"></i>';
@@ -488,4 +535,5 @@ void bfs(const vector&lt;vector&lt;int&gt;&gt;& graph, int start) {
     </script>
     <script src="../../static/js/templates.js"></script>
 </body>
-</html> 
+
+</html>

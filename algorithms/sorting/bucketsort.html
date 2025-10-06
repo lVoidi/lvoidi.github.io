@@ -1,43 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bucket Sort Algorithm | Distribution-based Sorting Method</title>
-    
+
     <!-- SEO Meta Tags -->
-    <meta name="description" content="Learn the Bucket Sort algorithm with O(n) average time complexity. Includes interactive visualization and implementations in Python, C++, and C# for efficiently sorting uniformly distributed values.">
-    <meta name="keywords" content="bucket sort, distribution sort, scatter-gather sort, uniform distribution, linear time sort, comparison sort, computer science, algorithm visualization">
+    <meta name="description"
+        content="Learn the Bucket Sort algorithm with O(n) average time complexity. Includes interactive visualization and implementations in Python, C++, and C# for efficiently sorting uniformly distributed values.">
+    <meta name="keywords"
+        content="bucket sort, distribution sort, scatter-gather sort, uniform distribution, linear time sort, comparison sort, computer science, algorithm visualization">
     <meta name="author" content="lVoidi">
     <meta name="robots" content="index, follow">
-    
+
     <!-- Open Graph / Social Media Meta Tags -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://roarba.com/algorithms/sorting/bucketsort.html">
     <meta property="og:title" content="Bucket Sort Algorithm | Distribution-based Sorting Method">
-    <meta property="og:description" content="Learn the Bucket Sort algorithm with O(n) average time complexity. Includes interactive visualization and implementations in Python, C++, and C# for efficiently sorting uniformly distributed values.">
+    <meta property="og:description"
+        content="Learn the Bucket Sort algorithm with O(n) average time complexity. Includes interactive visualization and implementations in Python, C++, and C# for efficiently sorting uniformly distributed values.">
     <meta property="og:image" content="https://roarba.com/static/img/algorithms/bucketsort.jpg">
-    
+
     <!-- Twitter Card Tags -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Bucket Sort Algorithm | Distribution-based Sorting Method">
-    <meta name="twitter:description" content="Learn the Bucket Sort algorithm with O(n) average time complexity. Includes interactive visualization and implementations in Python, C++, and C# for efficiently sorting uniformly distributed values.">
+    <meta name="twitter:description"
+        content="Learn the Bucket Sort algorithm with O(n) average time complexity. Includes interactive visualization and implementations in Python, C++, and C# for efficiently sorting uniformly distributed values.">
     <meta name="twitter:image" content="https://roarba.com/static/img/algorithms/bucketsort.jpg">
-    
+
     <!-- Canonical URL -->
     <meta rel="canonical" href="https://roarba.com/algorithms/sorting/bucketsort.html">
-    
+
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="../../static/css/style.css" rel="stylesheet">
     <link href="../../static/css/algorithms.css" rel="stylesheet">
     <link href="../../static/css/algorithm-page.css" rel="stylesheet">
+    <link href="../../static/css/singularity.css" rel="stylesheet">
     <link href="../../static/css/prism.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 
     <!-- Icon -->
     <link rel="icon" href="../../static/img/icon.png" type="image/x-icon">
-    
+
     <!-- Schema.org structured data -->
     <script type="application/ld+json">
     {
@@ -75,6 +81,7 @@
     }
     </script>
 </head>
+
 <body>
     <!-- Navbar -->
     <div id="navbar-placeholder"></div>
@@ -119,7 +126,10 @@
 
                     <section class="algorithm-section">
                         <h2>Description</h2>
-                        <p>Bucket Sort is a distribution-based sorting algorithm that works by distributing elements into a number of buckets, sorting these buckets individually, and then concatenating them to get the final sorted array. It's particularly efficient when input is uniformly distributed over a range.</p>
+                        <p>Bucket Sort is a distribution-based sorting algorithm that works by distributing elements
+                            into a number of buckets, sorting these buckets individually, and then concatenating them to
+                            get the final sorted array. It's particularly efficient when input is uniformly distributed
+                            over a range.</p>
                     </section>
 
                     <section class="algorithm-section history-box">
@@ -127,11 +137,18 @@
                         <div class="history-content">
                             <img src="../../static/img/bucket-sort.jpg" alt="Bucket Sort Concept" class="history-image">
                             <p>
-                                Bucket Sort emerged from the need to sort large datasets with uniformly distributed values. Its origins can be traced back to the early days of computer science when researchers were exploring ways to sort data more efficiently than comparison-based methods.
-                                
-                                The algorithm gained prominence in the 1950s alongside other distribution-based sorting methods. Its ability to achieve linear time complexity under certain conditions made it particularly valuable for specific applications, such as sorting floating-point numbers between 0 and 1.
-                                
-                                The concept of bucket sort has influenced various modern sorting techniques and is still used in specialized applications where data distribution is known to be roughly uniform.
+                                Bucket Sort emerged from the need to sort large datasets with uniformly distributed
+                                values. Its origins can be traced back to the early days of computer science when
+                                researchers were exploring ways to sort data more efficiently than comparison-based
+                                methods.
+
+                                The algorithm gained prominence in the 1950s alongside other distribution-based sorting
+                                methods. Its ability to achieve linear time complexity under certain conditions made it
+                                particularly valuable for specific applications, such as sorting floating-point numbers
+                                between 0 and 1.
+
+                                The concept of bucket sort has influenced various modern sorting techniques and is still
+                                used in specialized applications where data distribution is known to be roughly uniform.
                             </p>
                         </div>
                     </section>
@@ -248,7 +265,7 @@ if __name__ == "__main__":
                                         </code></pre>
                                     </div>
                                 </div>
-                                
+
                                 <!-- C++ Implementation -->
                                 <div class="tab-pane fade" id="cpp">
                                     <div class="code-wrapper">
@@ -304,7 +321,7 @@ int main() {
                                         </code></pre>
                                     </div>
                                 </div>
-                                
+
                                 <!-- C# Implementation -->
                                 <div class="tab-pane fade" id="csharp">
                                     <div class="code-wrapper">
@@ -454,7 +471,7 @@ public class BucketSort {
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const clipboard = new ClipboardJS('.copy-button');
-            
+
             clipboard.on('success', (e) => {
                 const button = e.trigger;
                 button.innerHTML = '<i class="fas fa-check"></i>';
@@ -467,4 +484,5 @@ public class BucketSort {
     </script>
     <script src="../../static/js/templates.js"></script>
 </body>
-</html> 
+
+</html>

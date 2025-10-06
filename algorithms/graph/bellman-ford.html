@@ -1,22 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bellman-Ford Algorithm: Shortest Paths with Negative Weights | Roarbaa Portal</title>
-    
+
     <!-- SEO Meta Tags -->
-    <meta name="description" content="Learn the Bellman-Ford algorithm with interactive visualization. Master finding shortest paths in graphs with negative weights and cycle detection. Includes Python, C++, and C# implementations." />
-    <meta name="keywords" content="bellman ford algorithm, shortest path, negative weights, negative cycles, graph algorithms, dynamic programming, network routing, arbitrage detection" />
+    <meta name="description"
+        content="Learn the Bellman-Ford algorithm with interactive visualization. Master finding shortest paths in graphs with negative weights and cycle detection. Includes Python, C++, and C# implementations." />
+    <meta name="keywords"
+        content="bellman ford algorithm, shortest path, negative weights, negative cycles, graph algorithms, dynamic programming, network routing, arbitrage detection" />
     <meta name="author" content="Rodrigo Arce" />
-    
+
     <!-- Open Graph / Social Media Tags -->
-    <meta property="og:title" content="Bellman-Ford Algorithm: Interactive Shortest Path Tutorial with Negative Weights" />
-    <meta property="og:description" content="Master the Bellman-Ford algorithm for finding shortest paths in graphs with negative weights. Features interactive visualization and implementations in multiple programming languages." />
+    <meta property="og:title"
+        content="Bellman-Ford Algorithm: Interactive Shortest Path Tutorial with Negative Weights" />
+    <meta property="og:description"
+        content="Master the Bellman-Ford algorithm for finding shortest paths in graphs with negative weights. Features interactive visualization and implementations in multiple programming languages." />
     <meta property="og:image" content="https://roarba.com/static/img/algorithms/bellman.jpg" />
     <meta property="og:url" content="https://roarba.com/algorithms/graph/bellman-ford.html" />
     <meta property="og:type" content="article" />
-    
+
     <!-- Article Specific Meta Tags -->
     <meta property="article:published_time" content="2025-02-19" />
     <meta property="article:author" content="https://github.com/lVoidi" />
@@ -24,7 +29,7 @@
     <meta property="article:tag" content="Graph Theory" />
     <meta property="article:tag" content="Dynamic Programming" />
     <meta property="article:tag" content="Network Routing" />
-    
+
     <!-- Canonical URL -->
     <link rel="canonical" href="https://roarba.com/algorithms/graph/bellman-ford.html" />
 
@@ -69,18 +74,19 @@
       "interactivityType": "mixed"
     }
     </script>
-    
+
     <!-- CSS imports -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="../../static/css/style.css" rel="stylesheet">
     <link href="../../static/css/algorithms.css" rel="stylesheet">
+    <link href="../../static/css/singularity.css" rel="stylesheet">
     <link href="../../static/css/algorithm-page.css" rel="stylesheet">
     <link href="../../static/css/prism.css" rel="stylesheet">
 
     <!-- Icon -->
     <link rel="icon" href="../../static/img/icon.png" type="image/x-icon">
-    
+
     <style>
         /* Visualization specific styles */
         .visualization-container {
@@ -89,6 +95,7 @@
             margin: 20px auto;
             padding: 15px;
         }
+
         .visualization-controls {
             display: flex;
             flex-wrap: wrap;
@@ -96,12 +103,16 @@
             margin-bottom: 20px;
             align-items: center;
         }
+
         .control-group {
-            display: flex; /* Make buttons flex */
+            display: flex;
+            /* Make buttons flex */
             flex-wrap: wrap;
-            gap: 10px; /* Add gap between buttons */
+            gap: 10px;
+            /* Add gap between buttons */
             flex-grow: 1;
         }
+
         .speed-control {
             display: flex;
             align-items: center;
@@ -109,26 +120,31 @@
             min-width: 150px;
             flex-basis: 200px;
         }
+
         .speed-control label {
             margin-bottom: 0;
             color: var(--text-color);
             white-space: nowrap;
         }
+
         .speed-control input[type="range"] {
             flex-grow: 1;
             cursor: pointer;
         }
+
         .visualization-area {
             background: var(--background-color);
             border-radius: 8px;
             padding: 10px;
             margin-bottom: 20px;
-            min-height: 450px; /* Adjusted height */
+            min-height: 450px;
+            /* Adjusted height */
             display: flex;
             flex-direction: column;
             align-items: center;
             overflow: hidden;
         }
+
         .visualization-steps {
             text-align: center;
             margin-top: 10px;
@@ -141,14 +157,16 @@
                 flex-direction: column;
                 align-items: stretch;
             }
+
             .control-group {
-                 display: grid;
-                 grid-template-columns: 1fr 1fr;
+                display: grid;
+                grid-template-columns: 1fr 1fr;
             }
+
             .speed-control {
-                 width: 100%;
+                width: 100%;
             }
-         }
+        }
 
         @media (max-width: 480px) {
             .control-group {
@@ -157,9 +175,10 @@
         }
     </style>
 </head>
+
 <body>
     <div id="navbar-placeholder"></div>
-    
+
     <main class="container py-5">
         <div class="row">
             <!-- Sidebar -->
@@ -197,7 +216,10 @@
 
                     <section class="algorithm-section">
                         <h2>Description</h2>
-                        <p>The Bellman-Ford algorithm finds the shortest paths from a source vertex to all other vertices in a weighted graph. Unlike Dijkstra's algorithm, it can handle graphs with negative weight edges and detect negative weight cycles. The algorithm works by repeatedly relaxing all edges V-1 times, where V is the number of vertices.</p>
+                        <p>The Bellman-Ford algorithm finds the shortest paths from a source vertex to all other
+                            vertices in a weighted graph. Unlike Dijkstra's algorithm, it can handle graphs with
+                            negative weight edges and detect negative weight cycles. The algorithm works by repeatedly
+                            relaxing all edges V-1 times, where V is the number of vertices.</p>
                         <ul>
                             <li>Can detect negative cycles in the graph</li>
                             <li>Works with both positive and negative edge weights</li>
@@ -210,23 +232,25 @@
                         <div class="history-content">
                             <img src="../../static/img/bellman.jpg" alt="Richard Bellman" class="history-image">
                             <p>
-                                The Bellman-Ford algorithm was independently discovered by Alfonso Shimbel (1955), 
-                                Edward F. Moore (1957), and Richard Bellman (1958). However, it is most commonly 
-                                named after Richard Bellman and Lester Ford Jr., who published it in 1958 and 1956 
-                                respectively. Richard Bellman made significant contributions to the field of dynamic 
+                                The Bellman-Ford algorithm was independently discovered by Alfonso Shimbel (1955),
+                                Edward F. Moore (1957), and Richard Bellman (1958). However, it is most commonly
+                                named after Richard Bellman and Lester Ford Jr., who published it in 1958 and 1956
+                                respectively. Richard Bellman made significant contributions to the field of dynamic
                                 programming, which is a key concept used in this algorithm.
 
-                                Lester Ford Jr. developed the algorithm while working on network flow problems at 
-                                the RAND Corporation. His work was focused on solving transportation and logistics 
-                                challenges, which naturally led to the development of efficient path-finding algorithms. 
-                                The algorithm was later refined and popularized by Richard Bellman, who provided a more 
-                                rigorous mathematical analysis and showed its connection to dynamic programming principles.
+                                Lester Ford Jr. developed the algorithm while working on network flow problems at
+                                the RAND Corporation. His work was focused on solving transportation and logistics
+                                challenges, which naturally led to the development of efficient path-finding algorithms.
+                                The algorithm was later refined and popularized by Richard Bellman, who provided a more
+                                rigorous mathematical analysis and showed its connection to dynamic programming
+                                principles.
 
-                                The algorithm's ability to handle negative edge weights made it particularly valuable 
-                                for applications beyond simple path finding, such as in financial arbitrage detection 
-                                and network routing protocols. Today, it remains a fundamental algorithm in computer 
-                                science, particularly in networking where it formed the basis for the RIP (Routing 
-                                Information Protocol) used in early internet routing. <b>The GOAT of dynamic programming.</b>
+                                The algorithm's ability to handle negative edge weights made it particularly valuable
+                                for applications beyond simple path finding, such as in financial arbitrage detection
+                                and network routing protocols. Today, it remains a fundamental algorithm in computer
+                                science, particularly in networking where it formed the basis for the RIP (Routing
+                                Information Protocol) used in early internet routing. <b>The GOAT of dynamic
+                                    programming.</b>
                             </p>
                         </div>
                     </section>
@@ -504,7 +528,7 @@ public:
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const clipboard = new ClipboardJS('.copy-button');
-            
+
             clipboard.on('success', (e) => {
                 const button = e.trigger;
                 button.innerHTML = '<i class="fas fa-check"></i>';
@@ -517,4 +541,5 @@ public:
     </script>
     <script src="../../static/js/templates.js"></script>
 </body>
-</html> 
+
+</html>

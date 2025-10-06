@@ -1,29 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bisection Method Algorithm | Root Finding Numerical Method</title>
-    
+
     <!-- SEO Meta Tags -->
-    <meta name="description" content="Learn the Bisection Method algorithm for root finding with time complexity O(log((b-a)/ε)), implementations in Python, JavaScript, C++, and C#, step-by-step explanation, and interactive visualization.">
-    <meta name="keywords" content="bisection method, root finding algorithm, numerical methods, computational mathematics, interval halving, binary search, continuous function">
+    <meta name="description"
+        content="Learn the Bisection Method algorithm for root finding with time complexity O(log((b-a)/ε)), implementations in Python, JavaScript, C++, and C#, step-by-step explanation, and interactive visualization.">
+    <meta name="keywords"
+        content="bisection method, root finding algorithm, numerical methods, computational mathematics, interval halving, binary search, continuous function">
     <meta name="author" content="lVoidi">
     <meta name="robots" content="index, follow">
-    
+
     <!-- Open Graph / Social Media Meta Tags -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://roarba.com/algorithms/numerical/bisection.html">
     <meta property="og:title" content="Bisection Method Algorithm | Root Finding Numerical Method">
-    <meta property="og:description" content="Learn the Bisection Method algorithm for root finding with time complexity O(log((b-a)/ε)), implementations in Python, JavaScript, C++, and C#, step-by-step explanation, and interactive visualization.">
+    <meta property="og:description"
+        content="Learn the Bisection Method algorithm for root finding with time complexity O(log((b-a)/ε)), implementations in Python, JavaScript, C++, and C#, step-by-step explanation, and interactive visualization.">
     <meta property="og:image" content="https://roarba.com/static/img/algorithms/bisection.jpg">
-    
+
     <!-- Twitter Card Tags -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Bisection Method Algorithm | Root Finding Numerical Method">
-    <meta name="twitter:description" content="Learn the Bisection Method algorithm for root finding with time complexity O(log((b-a)/ε)), implementations in Python, JavaScript, C++, and C#, step-by-step explanation, and interactive visualization.">
+    <meta name="twitter:description"
+        content="Learn the Bisection Method algorithm for root finding with time complexity O(log((b-a)/ε)), implementations in Python, JavaScript, C++, and C#, step-by-step explanation, and interactive visualization.">
     <meta name="twitter:image" content="https://roarba.com/static/img/algorithms/bisection.jpg">
-    
+
     <!-- Canonical URL -->
     <meta rel="canonical" href="https://roarba.com/algorithms/numerical/bisection.html">
 
@@ -33,11 +38,12 @@
     <link href="../../static/css/style.css" rel="stylesheet">
     <link href="../../static/css/algorithms.css" rel="stylesheet">
     <link href="../../static/css/algorithm-page.css" rel="stylesheet">
+    <link href="../../static/css/singularity.css" rel="stylesheet">
     <link href="../../static/css/prism.css" rel="stylesheet">
 
     <!-- Icon -->
     <link rel="icon" href="../../static/img/icon.png" type="image/x-icon">
-    
+
     <!-- Schema.org structured data -->
     <script type="application/ld+json">
     {
@@ -74,7 +80,7 @@
       "programmingLanguage": ["Python", "JavaScript", "C++", "C#"]
     }
     </script>
-    
+
     <style>
         /* Responsive styles for History box */
         .history-box {
@@ -86,80 +92,82 @@
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
             border-left: 5px solid #6a5acd;
         }
-        
+
         .history-content {
             display: flex;
             flex-direction: row;
             align-items: flex-start;
             gap: 20px;
         }
-        
+
         .history-image {
             width: 150px;
             height: auto;
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
         }
-        
+
         .history-box h2 {
             color: #6a5acd;
             margin-bottom: 15px;
         }
-        
+
         .history-text {
             flex: 1;
             line-height: 1.6;
         }
-        
+
         /* Mobile responsive styles */
         @media (max-width: 768px) {
             .history-content {
                 flex-direction: column;
                 align-items: center;
             }
-            
+
             .history-image {
                 width: 120px;
                 margin-bottom: 15px;
             }
-            
+
             .history-box {
                 padding: 15px;
             }
-            
+
             .visualization-container {
                 padding: 10px;
                 overflow-x: hidden;
             }
-            
+
             .visualization-controls {
                 flex-direction: column;
                 gap: 10px;
                 align-items: stretch;
             }
-            
+
             .control-group {
                 flex-direction: column;
                 width: 100%;
             }
-            
+
             .control-group label {
                 margin-bottom: 5px;
             }
-            
+
             canvas {
                 max-width: 100%;
                 height: auto;
             }
-            
+
             /* Better button spacing for mobile */
-            #startBtn, #resetBtn {
+            #startBtn,
+            #resetBtn {
                 width: 48%;
                 margin-bottom: 10px;
             }
         }
     </style>
 </head>
+
 <body>
     <div id="navbar-placeholder"></div>
 
@@ -192,7 +200,7 @@
             <div class="col-lg-9">
                 <div class="algorithm-content">
                     <h1>Bisection Method</h1>
-                    
+
                     <div class="algorithm-metadata">
                         <span class="category-tag">Numerical Methods</span>
                         <span class="difficulty-tag">Easy</span>
@@ -201,10 +209,12 @@
                     <section class="algorithm-section">
                         <h2>Description</h2>
                         <p>
-                            The Bisection Method is a simple and robust root-finding algorithm that works by repeatedly 
-                            bisecting an interval and selecting a subinterval where a root must lie. It is based on the 
-                            Intermediate Value Theorem from calculus, which states that if a continuous function has values 
-                            of opposite signs at the endpoints of an interval, then it must have at least one root within 
+                            The Bisection Method is a simple and robust root-finding algorithm that works by repeatedly
+                            bisecting an interval and selecting a subinterval where a root must lie. It is based on the
+                            Intermediate Value Theorem from calculus, which states that if a continuous function has
+                            values
+                            of opposite signs at the endpoints of an interval, then it must have at least one root
+                            within
                             that interval.
                         </p>
                     </section>
@@ -247,10 +257,14 @@
                             <img src="../../static/img/gauss.jpg" alt="Carl Friedrich Gauss" class="history-image">
                             <div class="history-text">
                                 <p>
-                                    The Bisection Method, also known as the Binary Search Method for root-finding, is one of the oldest 
-                                    and most straightforward numerical methods. Its origins can be traced back to ancient mathematics, 
-                                    but it was first formally described by Bolzano in his 1817 paper on the Intermediate Value Theorem. 
-                                    Despite its simplicity, the method remains valuable today due to its reliability and guaranteed 
+                                    The Bisection Method, also known as the Binary Search Method for root-finding, is
+                                    one of the oldest
+                                    and most straightforward numerical methods. Its origins can be traced back to
+                                    ancient mathematics,
+                                    but it was first formally described by Bolzano in his 1817 paper on the Intermediate
+                                    Value Theorem.
+                                    Despite its simplicity, the method remains valuable today due to its reliability and
+                                    guaranteed
                                     convergence for continuous functions.
                                 </p>
                             </div>
@@ -349,7 +363,7 @@ if __name__ == "__main__":
                                         </code></pre>
                                     </div>
                                 </div>
-                                
+
                                 <div class="tab-pane fade" id="cpp">
                                     <div class="code-wrapper">
                                         <button class="copy-button" data-clipboard-target="#cppCode">
@@ -495,7 +509,7 @@ public class BisectionMethod {
                                     <li>Number of iterations = log₂((b-a)/ε)</li>
                                 </ul>
                             </div>
-                            
+
                             <div class="space-complexity">
                                 <h3>Space Complexity</h3>
                                 <p>
@@ -548,7 +562,7 @@ public class BisectionMethod {
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const clipboard = new ClipboardJS('.copy-button');
-            
+
             clipboard.on('success', (e) => {
                 const button = e.trigger;
                 button.innerHTML = '<i class="fas fa-check"></i>';
@@ -561,4 +575,5 @@ public class BisectionMethod {
     </script>
     <script src="../../static/js/templates.js"></script>
 </body>
-</html> 
+
+</html>

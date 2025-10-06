@@ -1,22 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tarjan's Algorithm: Find Strongly Connected Components | Roarba Portal</title>
-    
+
     <!-- SEO Meta Tags -->
-    <meta name="description" content="Learn Tarjan's algorithm with interactive visualization. Discover how to find strongly connected components in directed graphs using depth-first search. Complete with Python, C++, and C# implementations." />
-    <meta name="keywords" content="tarjan algorithm, strongly connected components, scc, graph algorithms, depth first search, dfs, directed graphs, robert tarjan" />
+    <meta name="description"
+        content="Learn Tarjan's algorithm with interactive visualization. Discover how to find strongly connected components in directed graphs using depth-first search. Complete with Python, C++, and C# implementations." />
+    <meta name="keywords"
+        content="tarjan algorithm, strongly connected components, scc, graph algorithms, depth first search, dfs, directed graphs, robert tarjan" />
     <meta name="author" content="Rodrigo Arce" />
-    
+
     <!-- Open Graph / Social Media Tags -->
     <meta property="og:title" content="Tarjan's Algorithm: Interactive Strongly Connected Components Tutorial" />
-    <meta property="og:description" content="Master Tarjan's algorithm for finding strongly connected components in directed graphs. Features interactive visualization and implementations in multiple programming languages." />
+    <meta property="og:description"
+        content="Master Tarjan's algorithm for finding strongly connected components in directed graphs. Features interactive visualization and implementations in multiple programming languages." />
     <meta property="og:image" content="https://roarba.com/static/img/algorithms/tarjan.jpg" />
     <meta property="og:url" content="https://roarba.com/algorithms/graph/tarjan.html" />
     <meta property="og:type" content="article" />
-    
+
     <!-- Article Specific Meta Tags -->
     <meta property="article:published_time" content="2025-02-19" />
     <meta property="article:author" content="https://github.com/lVoidi" />
@@ -24,7 +28,7 @@
     <meta property="article:tag" content="Graph Theory" />
     <meta property="article:tag" content="Depth First Search" />
     <meta property="article:tag" content="Connected Components" />
-    
+
     <!-- Canonical URL -->
     <link rel="canonical" href="https://roarba.com/algorithms/graph/tarjan.html" />
 
@@ -69,7 +73,7 @@
       "interactivityType": "mixed"
     }
     </script>
-    
+
     <!-- CSS imports -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
@@ -77,8 +81,10 @@
     <link href="../../static/css/algorithms.css" rel="stylesheet">
     <link href="../../static/css/algorithm-page.css" rel="stylesheet">
     <link href="../../static/css/prism.css" rel="stylesheet">
+    <link href="../../static/css/singularity.css" rel="stylesheet">
     <link rel="icon" href="../../static/img/icon.png" type="image/x-icon">
 </head>
+
 <body>
     <!-- Navbar -->
     <div id="navbar-placeholder"></div>
@@ -121,9 +127,9 @@
                     <section class="algorithm-section">
                         <h2>Description</h2>
                         <p>
-                            Tarjan's algorithm is a graph theory algorithm for finding strongly connected components 
-                            of a directed graph. It runs in linear time and uses a single depth-first search, making 
-                            it more efficient than Kosaraju's algorithm in practice. The algorithm is based on finding 
+                            Tarjan's algorithm is a graph theory algorithm for finding strongly connected components
+                            of a directed graph. It runs in linear time and uses a single depth-first search, making
+                            it more efficient than Kosaraju's algorithm in practice. The algorithm is based on finding
                             the lowest reachable vertex ID in each connected component.
                         </p>
                     </section>
@@ -133,10 +139,13 @@
                         <div class="history-content">
                             <img src="../../static/img/tarjan.jpg" alt="Robert Tarjan" class="history-image">
                             <p>
-                                The algorithm was developed by Robert Tarjan in 1972. At the time, Tarjan was a graduate 
-                                student at Stanford University. This algorithm was one of his many contributions to computer 
-                                science, for which he later won the Turing Award in 1986. The algorithm showcases an elegant 
-                                use of depth-first search and demonstrates how complex graph problems can be solved efficiently 
+                                The algorithm was developed by Robert Tarjan in 1972. At the time, Tarjan was a graduate
+                                student at Stanford University. This algorithm was one of his many contributions to
+                                computer
+                                science, for which he later won the Turing Award in 1986. The algorithm showcases an
+                                elegant
+                                use of depth-first search and demonstrates how complex graph problems can be solved
+                                efficiently
                                 with the right approach.
                             </p>
                         </div>
@@ -145,7 +154,8 @@
                     <section class="algorithm-section">
                         <h2>How It Works</h2>
                         <p>
-                            Tarjan's algorithm uses a <a href="../searching/dfs.html">depth-first search (DFS)</a> approach with additional tracking of vertices:
+                            Tarjan's algorithm uses a <a href="../searching/dfs.html">depth-first search (DFS)</a>
+                            approach with additional tracking of vertices:
                         </p>
                         <ol>
                             <li>
@@ -303,7 +313,7 @@ if __name__ == "__main__":
                                         </code></pre>
                                     </div>
                                 </div>
-                                
+
                                 <!-- C++ Implementation -->
                                 <div class="tab-pane fade" id="cpp">
                                     <div class="code-wrapper">
@@ -523,7 +533,8 @@ public class Program
                             <div class="time-complexity">
                                 <h3>Time Complexity</h3>
                                 <p>
-                                    The time complexity of Tarjan's algorithm is O(V + E), where V is the number of vertices 
+                                    The time complexity of Tarjan's algorithm is O(V + E), where V is the number of
+                                    vertices
                                     and E is the number of edges in the graph. This can be broken down into:
                                 </p>
                                 <ul>
@@ -542,7 +553,7 @@ public class Program
                                     </li>
                                 </ul>
                             </div>
-                            
+
                             <div class="space-complexity">
                                 <h3>Space Complexity</h3>
                                 <p>
@@ -618,7 +629,7 @@ public class Program
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const clipboard = new ClipboardJS('.copy-button');
-            
+
             clipboard.on('success', (e) => {
                 const button = e.trigger;
                 button.innerHTML = '<i class="fas fa-check"></i>';
@@ -631,4 +642,5 @@ public class Program
     </script>
     <script src="../../static/js/templates.js"></script>
 </body>
-</html> 
+
+</html>

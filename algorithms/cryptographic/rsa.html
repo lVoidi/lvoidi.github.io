@@ -1,22 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RSA Algorithm: Interactive Public-Key Cryptography Implementation | Roarba Portal</title>
-    
+
     <!-- SEO Meta Tags -->
-    <meta name="description" content="Learn about RSA (Rivest-Shamir-Adleman) with interactive visualization. Understand public-key cryptography, key generation, encryption, and decryption with Python, C++, and C# implementations." />
-    <meta name="keywords" content="rsa algorithm, public key cryptography, asymmetric encryption, rivest shamir adleman, cryptography implementation, digital signatures, key generation, prime numbers" />
+    <meta name="description"
+        content="Learn about RSA (Rivest-Shamir-Adleman) with interactive visualization. Understand public-key cryptography, key generation, encryption, and decryption with Python, C++, and C# implementations." />
+    <meta name="keywords"
+        content="rsa algorithm, public key cryptography, asymmetric encryption, rivest shamir adleman, cryptography implementation, digital signatures, key generation, prime numbers" />
     <meta name="author" content="Rodrigo Arce" />
-    
+
     <!-- Open Graph / Social Media Tags -->
     <meta property="og:title" content="RSA Algorithm: Interactive Public-Key Cryptography Implementation" />
-    <meta property="og:description" content="Master the RSA cryptosystem with interactive visualization and multiple programming language implementations. Essential for secure communication and digital signatures." />
+    <meta property="og:description"
+        content="Master the RSA cryptosystem with interactive visualization and multiple programming language implementations. Essential for secure communication and digital signatures." />
     <meta property="og:image" content="https://roarba.com/static/img/algorithms/rsa.jpg" />
     <meta property="og:url" content="https://roarba.com/algorithms/cryptographic/rsa.html" />
     <meta property="og:type" content="article" />
-    
+
     <!-- Article Specific Meta Tags -->
     <meta property="article:published_time" content="2025-02-19" />
     <meta property="article:author" content="https://github.com/lVoidi" />
@@ -24,7 +28,7 @@
     <meta property="article:tag" content="Cryptography" />
     <meta property="article:tag" content="Public Key Cryptography" />
     <meta property="article:tag" content="Security" />
-    
+
     <!-- Canonical URL -->
     <link rel="canonical" href="https://roarba.com/algorithms/cryptographic/rsa.html" />
 
@@ -69,7 +73,7 @@
       "interactivityType": "mixed"
     }
     </script>
-    
+
     <!-- CSS imports -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
@@ -77,6 +81,7 @@
     <link href="../../static/css/algorithms.css" rel="stylesheet">
     <link href="../../static/css/algorithm-page.css" rel="stylesheet">
     <link href="../../static/css/prism.css" rel="stylesheet">
+    <link href="../../static/css/singularity.css" rel="stylesheet">
 
     <!-- Icon -->
     <link rel="icon" href="../../static/img/icon.png" type="image/x-icon">
@@ -84,25 +89,30 @@
     <style>
         /* Ensure visualization area has enough space */
         .visualization-area {
-            padding: 20px; /* Add padding */
-            min-height: 350px; /* Increased minimum height */
+            padding: 20px;
+            /* Add padding */
+            min-height: 350px;
+            /* Increased minimum height */
             background: var(--background-color);
             border-radius: 8px;
             margin-bottom: 20px;
-            overflow-y: auto; /* Add scroll if content overflows */
+            overflow-y: auto;
+            /* Add scroll if content overflows */
         }
 
         .rsa-steps .step {
-            margin-bottom: 15px; /* Add space between steps */
+            margin-bottom: 15px;
+            /* Add space between steps */
             padding: 15px;
             background: rgba(255, 255, 255, 0.05);
             border-radius: 5px;
         }
 
-        .key-details p, 
-        .encryption-details .step-detail, 
+        .key-details p,
+        .encryption-details .step-detail,
         .decryption-details .step-detail {
-            margin-bottom: 5px; /* Space out lines */
+            margin-bottom: 5px;
+            /* Space out lines */
             font-family: monospace;
         }
 
@@ -114,8 +124,10 @@
         @media (max-width: 768px) {
             .visualization-area {
                 padding: 15px;
-                min-height: 300px; /* Adjust min-height for tablets */
+                min-height: 300px;
+                /* Adjust min-height for tablets */
             }
+
             .rsa-steps .step {
                 padding: 10px;
             }
@@ -124,23 +136,28 @@
         @media (max-width: 480px) {
             .visualization-area {
                 padding: 10px;
-                min-height: 280px; /* Further adjust min-height for phones */
+                min-height: 280px;
+                /* Further adjust min-height for phones */
             }
+
             .rsa-steps .step {
                 padding: 8px;
                 margin-bottom: 10px;
             }
-            .key-details p, 
-            .encryption-details .step-detail, 
+
+            .key-details p,
+            .encryption-details .step-detail,
             .decryption-details .step-detail {
-                font-size: 0.9em; /* Slightly smaller font */
+                font-size: 0.9em;
+                /* Slightly smaller font */
             }
         }
     </style>
 </head>
+
 <body>
     <div id="navbar-placeholder"></div>
-    
+
     <main class="container py-5">
         <div class="row">
             <!-- Sidebar with Quick Info -->
@@ -177,7 +194,9 @@
 
                     <section class="algorithm-section">
                         <h2>Description</h2>
-                        <p>RSA (Rivest-Shamir-Adleman) is a public-key cryptosystem widely used for secure data transmission. It is based on the practical difficulty of factoring the product of two large prime numbers.</p>
+                        <p>RSA (Rivest-Shamir-Adleman) is a public-key cryptosystem widely used for secure data
+                            transmission. It is based on the practical difficulty of factoring the product of two large
+                            prime numbers.</p>
                     </section>
 
                     <section class="algorithm-section">
@@ -188,7 +207,7 @@
                                     <li>Choose two large prime numbers p and q</li>
                                     <li>Calculate n = p × q</li>
                                     <li>Calculate φ(n) = (p-1) × (q-1)</li>
-                                    <li>Choose e such that 1 < e < φ(n) and gcd(e, φ(n)) = 1</li>
+                                    <li>Choose e such that 1 < e < φ(n) and gcd(e, φ(n))=1</li>
                                     <li>Calculate d such that d × e ≡ 1 (mod φ(n))</li>
                                 </ul>
                             </li>
@@ -255,7 +274,8 @@
                                 <li>Performance trade-offs:
                                     <ul>
                                         <li>Larger keys provide better security but slower operations</li>
-                                        <li>Public key operations (encryption) are faster than private key operations (decryption)</li>
+                                        <li>Public key operations (encryption) are faster than private key operations
+                                            (decryption)</li>
                                         <li>Key generation is the most computationally intensive operation</li>
                                     </ul>
                                 </li>
@@ -268,7 +288,8 @@
                         <div class="visualization-container">
                             <div class="visualization-controls">
                                 <div class="input-group mb-3">
-                                    <input type="text" id="messageInput" class="form-control" placeholder="Enter message to encrypt">
+                                    <input type="text" id="messageInput" class="form-control"
+                                        placeholder="Enter message to encrypt">
                                     <button class="btn btn-primary" id="encryptBtn">
                                         <i class="fas fa-lock"></i> Encrypt
                                     </button>
@@ -407,7 +428,7 @@ if __name__ == "__main__":
                                         </code></pre>
                                     </div>
                                 </div>
-                                
+
                                 <!-- C++ Implementation -->
                                 <div class="tab-pane fade" id="cpp">
                                     <div class="code-wrapper">
@@ -540,7 +561,7 @@ int main() {
                                         </code></pre>
                                     </div>
                                 </div>
-                                
+
                                 <!-- C# Implementation -->
                                 <div class="tab-pane fade" id="csharp">
                                     <div class="code-wrapper">
@@ -734,7 +755,7 @@ public class RSA
             </div>
         </div>
     </main>
-    
+
     <div id="footer-placeholder"></div>
 
     <!-- Scripts -->
@@ -745,7 +766,7 @@ public class RSA
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const clipboard = new ClipboardJS('.copy-button');
-            
+
             clipboard.on('success', (e) => {
                 const button = e.trigger;
                 button.innerHTML = '<i class="fas fa-check"></i>';
@@ -758,4 +779,5 @@ public class RSA
     </script>
     <script src="../../static/js/templates.js"></script>
 </body>
+
 </html>

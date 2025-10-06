@@ -1,22 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Longest Common Subsequence: Interactive Dynamic Programming | Roarbaa Portal</title>
-    
+
     <!-- SEO Meta Tags -->
-    <meta name="description" content="Learn the Longest Common Subsequence (LCS) algorithm with interactive visualization. Understand dynamic programming solution, implementations in Python, C++, and C#. Step-by-step explanation with complexity analysis." />
-    <meta name="keywords" content="longest common subsequence, lcs algorithm, dynamic programming, sequence alignment, string comparison, bioinformatics algorithms, dp problems, algorithm visualization" />
+    <meta name="description"
+        content="Learn the Longest Common Subsequence (LCS) algorithm with interactive visualization. Understand dynamic programming solution, implementations in Python, C++, and C#. Step-by-step explanation with complexity analysis." />
+    <meta name="keywords"
+        content="longest common subsequence, lcs algorithm, dynamic programming, sequence alignment, string comparison, bioinformatics algorithms, dp problems, algorithm visualization" />
     <meta name="author" content="Rodrigo Arce" />
-    
+
     <!-- Open Graph / Social Media Tags -->
     <meta property="og:title" content="Longest Common Subsequence: Interactive Dynamic Programming Implementation" />
-    <meta property="og:description" content="Master the Longest Common Subsequence algorithm with interactive visualization and multiple programming language implementations. Essential for sequence comparison and bioinformatics." />
+    <meta property="og:description"
+        content="Master the Longest Common Subsequence algorithm with interactive visualization and multiple programming language implementations. Essential for sequence comparison and bioinformatics." />
     <meta property="og:image" content="https://roarba.com/static/img/algorithms/lcs.jpg" />
     <meta property="og:url" content="https://roarba.com/algorithms/dynamic/lcs.html" />
     <meta property="og:type" content="article" />
-    
+
     <!-- Article Specific Meta Tags -->
     <meta property="article:published_time" content="2025-02-19" />
     <meta property="article:author" content="https://github.com/lVoidi" />
@@ -24,7 +28,7 @@
     <meta property="article:tag" content="Dynamic Programming" />
     <meta property="article:tag" content="String Algorithms" />
     <meta property="article:tag" content="Sequence Analysis" />
-    
+
     <!-- Canonical URL -->
     <link rel="canonical" href="https://roarba.com/algorithms/dynamic/lcs.html" />
 
@@ -69,11 +73,12 @@
       "interactivityType": "mixed"
     }
     </script>
-    
+
     <!-- CSS imports -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="../../static/css/style.css" rel="stylesheet">
     <link href="../../static/css/algorithms.css" rel="stylesheet">
+    <link href="../../static/css/singularity.css" rel="stylesheet">
     <link href="../../static/css/algorithm-page.css" rel="stylesheet">
     <link href="../../static/css/prism.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
@@ -89,6 +94,7 @@
             margin: 20px auto;
             padding: 15px;
         }
+
         .visualization-controls {
             display: flex;
             flex-wrap: wrap;
@@ -96,12 +102,14 @@
             margin-bottom: 20px;
             align-items: center;
         }
+
         .control-group {
             display: flex;
             flex-wrap: wrap;
             gap: 10px;
             flex-grow: 1;
         }
+
         .speed-control {
             display: flex;
             align-items: center;
@@ -109,15 +117,18 @@
             min-width: 150px;
             flex-basis: 200px;
         }
+
         .speed-control label {
             margin-bottom: 0;
             color: var(--text-color);
             white-space: nowrap;
         }
+
         .speed-control input[type="range"] {
             flex-grow: 1;
             cursor: pointer;
         }
+
         .visualization-area {
             background: var(--background-color);
             border-radius: 8px;
@@ -129,43 +140,49 @@
             align-items: center;
             overflow: hidden;
         }
+
         .visualization-steps {
             text-align: center;
             margin-top: 10px;
             color: var(--text-color-muted);
         }
-        
+
         /* SVG specific styles */
         #lcsVisualization {
             max-width: 100%;
             height: auto;
         }
-        
+
         /* Responsive styles */
         @media (max-width: 768px) {
             .visualization-controls {
                 flex-direction: column;
                 align-items: stretch;
             }
-            .control-group, .speed-control {
+
+            .control-group,
+            .speed-control {
                 width: 100%;
             }
+
             .visualization-area {
                 padding: 5px;
                 min-height: 350px;
             }
         }
-        
+
         @media (max-width: 480px) {
             .visualization-area {
                 min-height: 300px;
             }
+
             #lcsVisualization text {
                 font-size: 0.8em;
             }
         }
     </style>
 </head>
+
 <body>
     <!-- Navbar -->
     <div id="navbar-placeholder"></div>
@@ -210,7 +227,10 @@
 
                     <section class="algorithm-section">
                         <h2>Description</h2>
-                        <p>The Longest Common Subsequence (LCS) algorithm finds the longest subsequence common to two sequences. Unlike substrings, subsequences are not required to occupy consecutive positions within the original sequences. It's a classic dynamic programming problem with applications in bioinformatics and file comparison.</p>
+                        <p>The Longest Common Subsequence (LCS) algorithm finds the longest subsequence common to two
+                            sequences. Unlike substrings, subsequences are not required to occupy consecutive positions
+                            within the original sequences. It's a classic dynamic programming problem with applications
+                            in bioinformatics and file comparison.</p>
                     </section>
 
                     <section class="algorithm-section history-box">
@@ -218,11 +238,16 @@
                         <div class="history-content">
                             <img src="../../static/img/lcs.jpg" alt="LCS Concept" class="history-image">
                             <p>
-                                The Longest Common Subsequence problem emerged in the early days of computer science, particularly in the context of computational biology and text comparison. The dynamic programming solution was first formalized in the 1970s.
-                                
-                                The algorithm gained significant importance with the rise of bioinformatics, where it's used to compare DNA sequences and identify evolutionary relationships. It also became fundamental in the development of diff tools for version control systems.
-                                
-                                Today, LCS remains a cornerstone algorithm in sequence comparison, file differencing, and various applications in computational biology.
+                                The Longest Common Subsequence problem emerged in the early days of computer science,
+                                particularly in the context of computational biology and text comparison. The dynamic
+                                programming solution was first formalized in the 1970s.
+
+                                The algorithm gained significant importance with the rise of bioinformatics, where it's
+                                used to compare DNA sequences and identify evolutionary relationships. It also became
+                                fundamental in the development of diff tools for version control systems.
+
+                                Today, LCS remains a cornerstone algorithm in sequence comparison, file differencing,
+                                and various applications in computational biology.
                             </p>
                         </div>
                     </section>
@@ -332,7 +357,7 @@ if __name__ == "__main__":
     print(f"LCS of {X} and {Y} is {lcs(X, Y)}")</code></pre>
                                     </div>
                                 </div>
-                                
+
                                 <!-- C++ Implementation -->
                                 <div class="tab-pane fade" id="cpp">
                                     <div class="code-wrapper">
@@ -392,7 +417,7 @@ int main() {
 }</code></pre>
                                     </div>
                                 </div>
-                                
+
                                 <!-- C# Implementation -->
                                 <div class="tab-pane fade" id="csharp">
                                     <div class="code-wrapper">
@@ -549,7 +574,7 @@ public class LCS {
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const clipboard = new ClipboardJS('.copy-button');
-            
+
             clipboard.on('success', (e) => {
                 const button = e.trigger;
                 button.innerHTML = '<i class="fas fa-check"></i>';
@@ -562,4 +587,5 @@ public class LCS {
     </script>
     <script src="../../static/js/templates.js"></script>
 </body>
-</html> 
+
+</html>

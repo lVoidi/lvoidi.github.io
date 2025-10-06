@@ -1,22 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>0/1 Knapsack Problem: Interactive Dynamic Programming Tutorial | Roarbaa Portal</title>
-    
+
     <!-- SEO Meta Tags -->
-    <meta name="description" content="Master the 0/1 Knapsack problem with interactive visualization. Learn dynamic programming solution for optimal item selection with weight constraints. Implementations in Python, C++, and C#." />
-    <meta name="keywords" content="0/1 knapsack problem, dynamic programming, optimization algorithms, algorithm visualization, combinatorial optimization, resource allocation" />
+    <meta name="description"
+        content="Master the 0/1 Knapsack problem with interactive visualization. Learn dynamic programming solution for optimal item selection with weight constraints. Implementations in Python, C++, and C#." />
+    <meta name="keywords"
+        content="0/1 knapsack problem, dynamic programming, optimization algorithms, algorithm visualization, combinatorial optimization, resource allocation" />
     <meta name="author" content="Rodrigo Arce" />
-    
+
     <!-- Open Graph / Social Media Tags -->
     <meta property="og:title" content="0/1 Knapsack Problem: Interactive Dynamic Programming Tutorial" />
-    <meta property="og:description" content="Learn how to solve the 0/1 Knapsack problem with interactive visualization. Understand optimal item selection under weight constraints using dynamic programming." />
+    <meta property="og:description"
+        content="Learn how to solve the 0/1 Knapsack problem with interactive visualization. Understand optimal item selection under weight constraints using dynamic programming." />
     <meta property="og:image" content="https://roarba.com/static/img/algorithms/knapsack.jpg" />
     <meta property="og:url" content="https://roarba.com/algorithms/dynamic/knapsack.html" />
     <meta property="og:type" content="article" />
-    
+
     <!-- Article Specific Meta Tags -->
     <meta property="article:published_time" content="2025-02-19" />
     <meta property="article:author" content="https://github.com/lVoidi" />
@@ -24,7 +28,7 @@
     <meta property="article:tag" content="Dynamic Programming" />
     <meta property="article:tag" content="Optimization Problems" />
     <meta property="article:tag" content="Resource Allocation" />
-    
+
     <!-- Canonical URL -->
     <link rel="canonical" href="https://roarba.com/algorithms/dynamic/knapsack.html" />
 
@@ -69,12 +73,13 @@
       "interactivityType": "mixed"
     }
     </script>
-    
+
     <!-- CSS imports -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="../../static/css/style.css" rel="stylesheet">
     <link href="../../static/css/algorithms.css" rel="stylesheet">
     <link href="../../static/css/algorithm-page.css" rel="stylesheet">
+    <link href="../../static/css/singularity.css" rel="stylesheet">
     <link href="../../static/css/prism.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 
@@ -82,117 +87,151 @@
     <link rel="icon" href="../../static/img/icon.png" type="image/x-icon">
 
     <style>
-        /* Basic styles for visualization (assuming JS targets #knapsackVisualization) */
-        .visualization-container { /* Consistency */
+        /* Basic styles for visualization */
+        .visualization-container {
+            /* Consistency */
             width: 100%;
             max-width: 800px;
             margin: 20px auto;
             padding: 15px;
         }
-        .visualization-controls { /* Consistency */
-             display: flex;
-             flex-wrap: wrap;
-             gap: 15px;
-             margin-bottom: 20px;
-             align-items: center;
+
+        .visualization-controls {
+            /* Consistency */
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 20px;
+            align-items: center;
         }
-         .control-group { /* Consistency */
-             display: flex;
-             flex-wrap: wrap;
-             gap: 10px;
-             flex-grow: 1;
+
+        .control-group {
+            /* Consistency */
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            flex-grow: 1;
         }
-        .speed-control { /* Consistency */
+
+        .speed-control {
+            /* Consistency */
             display: flex;
             align-items: center;
             gap: 10px;
             min-width: 150px;
             flex-basis: 200px;
         }
-         .speed-control label { /* Consistency */
-             margin-bottom: 0;
-             color: var(--text-color);
-             white-space: nowrap;
+
+        .speed-control label {
+            /* Consistency */
+            margin-bottom: 0;
+            color: var(--text-color);
+            white-space: nowrap;
         }
-         .speed-control input[type="range"] { /* Consistency */
-             flex-grow: 1;
-             cursor: pointer;
+
+        .speed-control input[type="range"] {
+            /* Consistency */
+            flex-grow: 1;
+            cursor: pointer;
         }
-         .visualization-area { /* Consistency */
+
+        .visualization-area {
+            /* Consistency */
             background: var(--background-color);
             border-radius: 8px;
             padding: 20px;
             margin-bottom: 20px;
-            min-height: 400px; /* Keep original height */
-            display: flex; /* Center SVG if needed */
+            min-height: 400px;
+            /* Keep original height */
+            display: flex;
+            /* Center SVG if needed */
             justify-content: center;
             align-items: center;
-         }
-         .visualization-steps { /* Consistency */
+        }
+
+        .visualization-steps {
+            /* Consistency */
             text-align: center;
             margin-top: 10px;
             color: var(--text-color-muted);
-         }
+        }
 
         /* History Box Styles */
         .history-box {
-            background: rgba(40, 42, 54, 0.5); /* Existing style from file */
+            background: rgba(40, 42, 54, 0.5);
+            /* Existing style from file */
             border-radius: 8px;
             padding: 20px;
             margin: 20px 0;
         }
+
         .history-content {
             display: flex;
             gap: 20px;
             align-items: start;
         }
+
         .history-image {
-             max-width: 200px; /* Limit initial size */
-             height: auto; /* Maintain aspect ratio */
-             object-fit: cover;
-             border-radius: 8px;
-             box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-             flex-shrink: 0;
+            max-width: 200px;
+            /* Limit initial size */
+            height: auto;
+            /* Maintain aspect ratio */
+            object-fit: cover;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            flex-shrink: 0;
         }
 
         /* Responsive Styles */
-         @media (max-width: 768px) {
-             .history-content {
+        @media (max-width: 768px) {
+            .history-content {
                 flex-direction: column;
                 align-items: center;
-             }
-             .history-image {
-                 max-width: 80%;
-                 margin-bottom: 15px;
-             }
-             .visualization-controls { /* Responsive controls */
-                 flex-direction: column;
-                 align-items: stretch;
-             }
-             .control-group, .speed-control {
-                 width: 100%;
-             }
-         }
-          @media (max-width: 480px) { /* Mobile specific */
-              .visualization-area {
-                  padding: 10px;
-                  min-height: 300px; /* Adjust height for smaller screens */
-              }
-               /* Attempt to style SVG elements for mobile - effectiveness depends on JS structure */
-               #knapsackVisualization text {
-                   font-size: 0.8em; /* Smaller text in SVG */
-               }
-               #knapsackVisualization rect.dp-cell {
-                   /* Assuming cells have this class from JS */
-                   /* Adjust cell size if needed, though scaling SVG might be better */
-               }
-               #knapsackVisualization .item-box {
-                   /* Assuming item boxes have this class */
-                  transform: scale(0.8); /* Scale down item boxes */
-               }
-          }
+            }
+
+            .history-image {
+                max-width: 80%;
+                margin-bottom: 15px;
+            }
+
+            .visualization-controls {
+                /* Responsive controls */
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .control-group,
+            .speed-control {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 480px) {
+
+            /* Mobile specific */
+            .visualization-area {
+                padding: 10px;
+                min-height: 300px;
+                /* Adjust height for smaller screens */
+            }
+
+
+            #knapsackVisualization text {
+                font-size: 0.8em;
+                /* Smaller text in SVG */
+            }
+
+            #knapsackVisualization rect.dp-cell {}
+
+            #knapsackVisualization .item-box {
+
+                transform: scale(0.8);
+
+            }
+        }
     </style>
 </head>
+
 <body>
     <!-- Navbar -->
     <div id="navbar-placeholder"></div>
@@ -237,17 +276,27 @@
 
                     <section class="algorithm-section">
                         <h2>Description</h2>
-                        <p>The 0/1 Knapsack problem is a classic optimization problem where given a set of items, each with a weight and value, we need to determine which items to include in a collection so that the total weight is less than or equal to a given limit and the total value is as large as possible. The term "0/1" indicates that we must either take an item completely (1) or leave it (0).</p>
+                        <p>The 0/1 Knapsack problem is a classic optimization problem where given a set of items, each
+                            with a weight and value, we need to determine which items to include in a collection so that
+                            the total weight is less than or equal to a given limit and the total value is as large as
+                            possible. The term "0/1" indicates that we must either take an item completely (1) or leave
+                            it (0).</p>
                     </section>
 
                     <section class="algorithm-section history-box">
                         <h2>History</h2>
                         <div class="history-content">
-                            <img src="../../static/img/algorithms/knapsack.jpg" alt="Knapsack Problem Concept" class="history-image">
+                            <img src="../../static/img/algorithms/knapsack.jpg" alt="Knapsack Problem Concept"
+                                class="history-image">
                             <p>
-                                The Knapsack problem was first studied in the early 20th century and has since become one of the most researched problems in combinatorial optimization. Its name comes from the problem faced by someone who is constrained by a fixed-size knapsack and must fill it with the most valuable items.
-                                
-                                The problem has found applications in resource allocation, cargo loading, cutting stock problems, and even in cryptography. The dynamic programming solution was developed in the 1950s and remains the most practical approach for moderate-sized instances.
+                                The Knapsack problem was first studied in the early 20th century and has since become
+                                one of the most researched problems in combinatorial optimization. Its name comes from
+                                the problem faced by someone who is constrained by a fixed-size knapsack and must fill
+                                it with the most valuable items.
+
+                                The problem has found applications in resource allocation, cargo loading, cutting stock
+                                problems, and even in cryptography. The dynamic programming solution was developed in
+                                the 1950s and remains the most practical approach for moderate-sized instances.
                             </p>
                         </div>
                     </section>
@@ -365,7 +414,7 @@ if __name__ == "__main__":
     print(f"Selected items: {selected_items}")</code></pre>
                                     </div>
                                 </div>
-                                
+
                                 <!-- C++ Implementation -->
                                 <div class="tab-pane fade" id="cpp">
                                     <div class="code-wrapper">
@@ -437,7 +486,7 @@ int main() {
 }</code></pre>
                                     </div>
                                 </div>
-                                
+
                                 <!-- C# Implementation -->
                                 <div class="tab-pane fade" id="csharp">
                                     <div class="code-wrapper">
@@ -555,7 +604,7 @@ public class KnapsackSolver {
                                     <li>Can be optimized for space</li>
                                 </ul>
                             </div>
-                            
+
                             <div class="cons">
                                 <h3>Disadvantages</h3>
                                 <ul>
@@ -586,4 +635,5 @@ public class KnapsackSolver {
     <script src="../../static/js/templates.js"></script>
     <script src="../../static/js/knapsack-visualization.js"></script>
 </body>
+
 </html>

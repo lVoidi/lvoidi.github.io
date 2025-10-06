@@ -1,22 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kruskal's Algorithm: Find Minimum Spanning Tree | Roarba Portal</title>
-    
+
     <!-- SEO Meta Tags -->
-    <meta name="description" content="Learn Kruskal's algorithm with interactive visualization. Master finding minimum spanning trees in weighted graphs. Includes Python, C++, and C# implementations." />
-    <meta name="keywords" content="kruskal algorithm, minimum spanning tree, MST, graph theory, greedy algorithms, union find, disjoint set, weighted graphs" />
+    <meta name="description"
+        content="Learn Kruskal's algorithm with interactive visualization. Master finding minimum spanning trees in weighted graphs. Includes Python, C++, and C# implementations." />
+    <meta name="keywords"
+        content="kruskal algorithm, minimum spanning tree, MST, graph theory, greedy algorithms, union find, disjoint set, weighted graphs" />
     <meta name="author" content="Rodrigo Arce" />
-    
+
     <!-- Open Graph / Social Media Tags -->
     <meta property="og:title" content="Kruskal's Algorithm: Interactive MST Tutorial" />
-    <meta property="og:description" content="Master Kruskal's algorithm with interactive visualization. Learn how to find minimum spanning trees in weighted graphs efficiently." />
+    <meta property="og:description"
+        content="Master Kruskal's algorithm with interactive visualization. Learn how to find minimum spanning trees in weighted graphs efficiently." />
     <meta property="og:image" content="https://roarba.com/static/img/algorithms/kruskal.jpg" />
     <meta property="og:url" content="https://roarba.com/algorithms/greedy/kruskal.html" />
     <meta property="og:type" content="article" />
-    
+
     <!-- Article Specific Meta Tags -->
     <meta property="article:published_time" content="2025-02-19" />
     <meta property="article:author" content="https://github.com/lVoidi" />
@@ -24,7 +28,7 @@
     <meta property="article:tag" content="Greedy Algorithms" />
     <meta property="article:tag" content="Graph Theory" />
     <meta property="article:tag" content="Data Structures" />
-    
+
     <!-- Canonical URL -->
     <link rel="canonical" href="https://roarba.com/algorithms/greedy/kruskal.html" />
 
@@ -69,21 +73,23 @@
       "interactivityType": "mixed"
     }
     </script>
-    
+
     <!-- CSS imports -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="../../static/css/style.css" rel="stylesheet">
     <link href="../../static/css/algorithms.css" rel="stylesheet">
+    <link href="../../static/css/singularity.css" rel="stylesheet">
     <link href="../../static/css/algorithm-page.css" rel="stylesheet">
     <link href="../../static/css/prism.css" rel="stylesheet">
 
     <!-- Icon -->
     <link rel="icon" href="../../static/img/icon.png" type="image/x-icon">
 </head>
+
 <body>
     <div id="navbar-placeholder"></div>
-    
+
     <main class="container py-5">
         <div class="row">
             <!-- Sidebar -->
@@ -120,7 +126,10 @@
 
                     <section class="algorithm-section">
                         <h2>Description</h2>
-                        <p>Kruskal's algorithm is a minimum spanning tree algorithm that finds an edge of the least possible weight that connects any two trees in the forest. It is a greedy algorithm as it finds a minimum spanning tree for a connected weighted graph adding increasing cost arcs at each step.</p>
+                        <p>Kruskal's algorithm is a minimum spanning tree algorithm that finds an edge of the least
+                            possible weight that connects any two trees in the forest. It is a greedy algorithm as it
+                            finds a minimum spanning tree for a connected weighted graph adding increasing cost arcs at
+                            each step.</p>
                     </section>
 
                     <section class="algorithm-section">
@@ -180,7 +189,7 @@
                                     <a class="nav-link" data-bs-toggle="tab" href="#csharp">C#</a>
                                 </li>
                             </ul>
-                            
+
                             <div class="tab-content">
                                 <!-- Python Implementation -->
                                 <div class="tab-pane fade show active" id="python">
@@ -269,7 +278,7 @@ if __name__ == "__main__":
                                         </code></pre>
                                     </div>
                                 </div>
-                                
+
                                 <!-- C++ Implementation -->
                                 <div class="tab-pane fade" id="cpp">
                                     <div class="code-wrapper">
@@ -378,7 +387,7 @@ int main() {
                                         </code></pre>
                                     </div>
                                 </div>
-                                
+
                                 <!-- C# Implementation -->
                                 <div class="tab-pane fade" id="csharp">
                                     <div class="code-wrapper">
@@ -503,7 +512,7 @@ public class Kruskal
                                     <li>Union-Find operations take O(α(V)), which is nearly constant</li>
                                 </ul>
                             </div>
-                            
+
                             <div class="complexity-item">
                                 <h3>Space Complexity</h3>
                                 <p><strong>O(V)</strong> where:</p>
@@ -529,7 +538,7 @@ public class Kruskal
                                     <li>Good for distributed systems</li>
                                 </ul>
                             </div>
-                            
+
                             <div class="cons">
                                 <h3>Disadvantages</h3>
                                 <ul>
@@ -568,7 +577,7 @@ public class Kruskal
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const clipboard = new ClipboardJS('.copy-button');
-            
+
             clipboard.on('success', (e) => {
                 const button = e.trigger;
                 button.innerHTML = '<i class="fas fa-check"></i>';
@@ -581,4 +590,5 @@ public class Kruskal
     </script>
     <script src="../../static/js/templates.js"></script>
 </body>
+
 </html>

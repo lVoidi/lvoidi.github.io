@@ -1,22 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kosaraju's Algorithm: Find Strongly Connected Components | Roarba Portal</title>
-    
+
     <!-- SEO Meta Tags -->
-    <meta name="description" content="Learn Kosaraju's algorithm with interactive visualization. Understand how to find strongly connected components in directed graphs using depth-first search. Implementations in Python, C++, and C#." />
-    <meta name="keywords" content="kosaraju algorithm, strongly connected components, graph algorithms, directed graphs, dfs, graph theory, scc algorithm, graph visualization" />
+    <meta name="description"
+        content="Learn Kosaraju's algorithm with interactive visualization. Understand how to find strongly connected components in directed graphs using depth-first search. Implementations in Python, C++, and C#." />
+    <meta name="keywords"
+        content="kosaraju algorithm, strongly connected components, graph algorithms, directed graphs, dfs, graph theory, scc algorithm, graph visualization" />
     <meta name="author" content="Rodrigo Arce" />
-    
+
     <!-- Open Graph / Social Media Tags -->
     <meta property="og:title" content="Kosaraju's Algorithm: Interactive Strongly Connected Components Tutorial" />
-    <meta property="og:description" content="Master Kosaraju's algorithm with interactive visualization. Learn how to find strongly connected components in directed graphs using two-pass depth-first search." />
+    <meta property="og:description"
+        content="Master Kosaraju's algorithm with interactive visualization. Learn how to find strongly connected components in directed graphs using two-pass depth-first search." />
     <meta property="og:image" content="https://roarba.com/static/img/algorithms/kosaraju.jpg" />
     <meta property="og:url" content="https://roarba.com/algorithms/graph/kosaraju.html" />
     <meta property="og:type" content="article" />
-    
+
     <!-- Article Specific Meta Tags -->
     <meta property="article:published_time" content="2025-02-19" />
     <meta property="article:author" content="https://github.com/lVoidi" />
@@ -24,7 +28,7 @@
     <meta property="article:tag" content="Graph Theory" />
     <meta property="article:tag" content="Graph Algorithms" />
     <meta property="article:tag" content="Connected Components" />
-    
+
     <!-- Canonical URL -->
     <link rel="canonical" href="https://roarba.com/algorithms/graph/kosaraju.html" />
 
@@ -69,7 +73,7 @@
       "interactivityType": "mixed"
     }
     </script>
-    
+
     <!-- CSS imports -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
@@ -77,8 +81,10 @@
     <link href="../../static/css/algorithms.css" rel="stylesheet">
     <link href="../../static/css/algorithm-page.css" rel="stylesheet">
     <link href="../../static/css/prism.css" rel="stylesheet">
+    <link href="../../static/css/singularity.css" rel="stylesheet">
     <link rel="icon" href="../../static/img/icon.png" type="image/x-icon">
 </head>
+
 <body>
     <!-- Navbar -->
     <div id="navbar-placeholder"></div>
@@ -121,9 +127,12 @@
                     <section class="algorithm-section">
                         <h2>Description</h2>
                         <p>
-                            Kosaraju's algorithm is a linear time algorithm to find the strongly connected components (SCCs) 
-                            of a directed graph. A strongly connected component is a portion of a directed graph in which there 
-                            is a path from each vertex to every other vertex. The algorithm uses depth-first search and works 
+                            Kosaraju's algorithm is a linear time algorithm to find the strongly connected components
+                            (SCCs)
+                            of a directed graph. A strongly connected component is a portion of a directed graph in
+                            which there
+                            is a path from each vertex to every other vertex. The algorithm uses depth-first search and
+                            works
                             by performing two passes over the graph.
                         </p>
                     </section>
@@ -133,13 +142,13 @@
                         <div class="history-content">
                             <img src="../../static/img/kosaraju.jpg" alt="S. Rao Kosaraju" class="history-image">
                             <p>
-                                Kosaraju's algorithm was developed by S. Rao Kosaraju in 1978 but was first published 
-                                by Micha Sharir in 1981. Kosaraju presented this algorithm during a classroom lecture 
-                                at the University of Pennsylvania. The algorithm is notable for its simplicity and 
+                                Kosaraju's algorithm was developed by S. Rao Kosaraju in 1978 but was first published
+                                by Micha Sharir in 1981. Kosaraju presented this algorithm during a classroom lecture
+                                at the University of Pennsylvania. The algorithm is notable for its simplicity and
                                 elegance, using two depth-first searches to find strongly connected components.
-                                
-                                Despite being discovered later than Tarjan's algorithm (1972), which solves the same 
-                                problem, Kosaraju's algorithm is often preferred in teaching due to its simpler 
+
+                                Despite being discovered later than Tarjan's algorithm (1972), which solves the same
+                                problem, Kosaraju's algorithm is often preferred in teaching due to its simpler
                                 conceptual approach, even though both algorithms have the same linear time complexity.
                             </p>
                         </div>
@@ -299,7 +308,7 @@ if __name__ == "__main__":
                                         </code></pre>
                                     </div>
                                 </div>
-                                
+
                                 <!-- C++ Implementation -->
                                 <div class="tab-pane fade" id="cpp">
                                     <div class="code-wrapper">
@@ -556,7 +565,8 @@ public class Program
                             <div class="time-complexity">
                                 <h3>Time Complexity</h3>
                                 <p>
-                                    The time complexity of Kosaraju's algorithm is O(V + E), where V is the number of vertices 
+                                    The time complexity of Kosaraju's algorithm is O(V + E), where V is the number of
+                                    vertices
                                     and E is the number of edges in the graph. This can be broken down into:
                                 </p>
                                 <ul>
@@ -586,7 +596,7 @@ public class Program
                                     Total: O(V + E) + O(V + E) + O(V + E) = O(V + E)
                                 </p>
                             </div>
-                            
+
                             <div class="space-complexity">
                                 <h3>Space Complexity</h3>
                                 <p>
@@ -620,7 +630,7 @@ public class Program
                                     </li>
                                 </ul>
                                 <p>
-                                    While the transposed graph requires O(V + E) space, the original space complexity is 
+                                    While the transposed graph requires O(V + E) space, the original space complexity is
                                     typically cited as O(V) since we assume the input graph already uses O(V + E) space.
                                 </p>
                             </div>
@@ -667,7 +677,7 @@ public class Program
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const clipboard = new ClipboardJS('.copy-button');
-            
+
             clipboard.on('success', (e) => {
                 const button = e.trigger;
                 button.innerHTML = '<i class="fas fa-check"></i>';
@@ -680,4 +690,5 @@ public class Program
     </script>
     <script src="../../static/js/templates.js"></script>
 </body>
-</html> 
+
+</html>

@@ -1,22 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Activity Selection: Maximize Non-overlapping Tasks | Roarbaa Portal</title>
-    
+
     <!-- SEO Meta Tags -->
-    <meta name="description" content="Learn the Activity Selection Problem with interactive visualization. Master scheduling non-overlapping activities using greedy approach. Includes Python, C++, and C# implementations." />
-    <meta name="keywords" content="activity selection problem, task scheduling, greedy algorithms, non-overlapping intervals, interval scheduling, time management, optimization algorithms" />
+    <meta name="description"
+        content="Learn the Activity Selection Problem with interactive visualization. Master scheduling non-overlapping activities using greedy approach. Includes Python, C++, and C# implementations." />
+    <meta name="keywords"
+        content="activity selection problem, task scheduling, greedy algorithms, non-overlapping intervals, interval scheduling, time management, optimization algorithms" />
     <meta name="author" content="Rodrigo Arce" />
-    
+
     <!-- Open Graph / Social Media Tags -->
     <meta property="og:title" content="Activity Selection: Interactive Task Scheduling Tutorial" />
-    <meta property="og:description" content="Master the Activity Selection algorithm with interactive visualization. Learn how to schedule maximum non-overlapping activities efficiently." />
+    <meta property="og:description"
+        content="Master the Activity Selection algorithm with interactive visualization. Learn how to schedule maximum non-overlapping activities efficiently." />
     <meta property="og:image" content="https://roarba.com/static/img/algorithms/activity-selection.jpg" />
     <meta property="og:url" content="https://roarba.com/algorithms/greedy/activity-selection.html" />
     <meta property="og:type" content="article" />
-    
+
     <!-- Article Specific Meta Tags -->
     <meta property="article:published_time" content="2025-02-19" />
     <meta property="article:author" content="https://github.com/lVoidi" />
@@ -24,7 +28,7 @@
     <meta property="article:tag" content="Greedy Algorithms" />
     <meta property="article:tag" content="Scheduling" />
     <meta property="article:tag" content="Optimization" />
-    
+
     <!-- Canonical URL -->
     <link rel="canonical" href="https://roarba.com/algorithms/greedy/activity-selection.html" />
 
@@ -69,21 +73,23 @@
       "interactivityType": "mixed"
     }
     </script>
-    
+
     <!-- CSS imports -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="../../static/css/style.css" rel="stylesheet">
     <link href="../../static/css/algorithms.css" rel="stylesheet">
     <link href="../../static/css/algorithm-page.css" rel="stylesheet">
+    <link href="../../static/css/singularity.css" rel="stylesheet">
     <link href="../../static/css/prism.css" rel="stylesheet">
 
     <!-- Icon -->
     <link rel="icon" href="../../static/img/icon.png" type="image/x-icon">
 </head>
+
 <body>
     <div id="navbar-placeholder"></div>
-    
+
     <main class="container py-5">
         <div class="row">
             <!-- Sidebar -->
@@ -120,7 +126,10 @@
 
                     <section class="algorithm-section">
                         <h2>Description</h2>
-                        <p>The Activity Selection Problem is a classic greedy algorithm problem that involves selecting the maximum number of activities that can be performed by a single person, given that the person can only work on a single activity at a time. Each activity has a start time and a finish time, and activities cannot overlap.</p>
+                        <p>The Activity Selection Problem is a classic greedy algorithm problem that involves selecting
+                            the maximum number of activities that can be performed by a single person, given that the
+                            person can only work on a single activity at a time. Each activity has a start time and a
+                            finish time, and activities cannot overlap.</p>
                     </section>
 
                     <section class="algorithm-section">
@@ -130,7 +139,8 @@
                             <li>Select the first activity (with earliest finish time)</li>
                             <li>For each remaining activity:
                                 <ul>
-                                    <li>If the start time of the current activity is greater than or equal to the finish time of the last selected activity:
+                                    <li>If the start time of the current activity is greater than or equal to the finish
+                                        time of the last selected activity:
                                         <ul>
                                             <li>Select this activity</li>
                                             <li>Update the last selected activity</li>
@@ -140,7 +150,9 @@
                             </li>
                             <li>Return the selected activities</li>
                         </ol>
-                        <p>The greedy choice is to always select the activity with the earliest finish time among the remaining compatible activities. This ensures that we have maximum time left for other activities.</p>
+                        <p>The greedy choice is to always select the activity with the earliest finish time among the
+                            remaining compatible activities. This ensures that we have maximum time left for other
+                            activities.</p>
                     </section>
 
                     <section class="algorithm-section">
@@ -167,7 +179,8 @@
                                 <!-- SVG will be inserted here -->
                             </div>
                             <div class="visualization-steps">
-                                <p id="currentStep">Generate random activities and click Start to begin visualization</p>
+                                <p id="currentStep">Generate random activities and click Start to begin visualization
+                                </p>
                             </div>
                         </div>
                     </section>
@@ -248,7 +261,7 @@
                                     <a class="nav-link" data-bs-toggle="tab" href="#csharp">C#</a>
                                 </li>
                             </ul>
-                            
+
                             <div class="tab-content">
                                 <!-- Python Implementation -->
                                 <div class="tab-pane fade show active" id="python">
@@ -492,7 +505,7 @@ public class ActivitySelection
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const clipboard = new ClipboardJS('.copy-button');
-            
+
             clipboard.on('success', (e) => {
                 const button = e.trigger;
                 button.innerHTML = '<i class="fas fa-check"></i>';
@@ -504,4 +517,5 @@ public class ActivitySelection
         });
     </script>
 </body>
-</html> 
+
+</html>

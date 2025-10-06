@@ -1,22 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fibonacci Dynamic Programming: Interactive Algorithm Visualization | Roarba Portal</title>
-    
+
     <!-- SEO Meta Tags -->
-    <meta name="description" content="Learn the Fibonacci sequence using dynamic programming with interactive visualization. Understand time and space complexity, implementations in Python, C++, and C#. Optimized solution with O(n) time complexity." />
-    <meta name="keywords" content="fibonacci sequence, dynamic programming, fibonacci algorithm, dp problems, algorithm visualization, fibonacci implementation, fibonacci optimization" />
+    <meta name="description"
+        content="Learn the Fibonacci sequence using dynamic programming with interactive visualization. Understand time and space complexity, implementations in Python, C++, and C#. Optimized solution with O(n) time complexity." />
+    <meta name="keywords"
+        content="fibonacci sequence, dynamic programming, fibonacci algorithm, dp problems, algorithm visualization, fibonacci implementation, fibonacci optimization" />
     <meta name="author" content="Rodrigo Arce" />
-    
+
     <!-- Open Graph / Social Media Tags -->
     <meta property="og:title" content="Fibonacci Dynamic Programming: Interactive Algorithm Visualization" />
-    <meta property="og:description" content="Master the Fibonacci sequence using dynamic programming with interactive visualization. Learn optimal implementation with O(n) time complexity and constant space." />
+    <meta property="og:description"
+        content="Master the Fibonacci sequence using dynamic programming with interactive visualization. Learn optimal implementation with O(n) time complexity and constant space." />
     <meta property="og:image" content="https://roarba.com/static/img/algorithms/fibonacci.jpg" />
     <meta property="og:url" content="https://roarba.com/algorithms/dynamic/fibonacci.html" />
     <meta property="og:type" content="article" />
-    
+
     <!-- Article Specific Meta Tags -->
     <meta property="article:published_time" content="2025-02-19" />
     <meta property="article:author" content="https://github.com/lVoidi" />
@@ -24,7 +28,7 @@
     <meta property="article:tag" content="Dynamic Programming" />
     <meta property="article:tag" content="Number Theory" />
     <meta property="article:tag" content="Optimization" />
-    
+
     <!-- Canonical URL -->
     <link rel="canonical" href="https://roarba.com/algorithms/dynamic/fibonacci.html" />
 
@@ -69,7 +73,7 @@
       "interactivityType": "mixed"
     }
     </script>
-    
+
     <!-- CSS imports -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
@@ -77,13 +81,15 @@
     <link href="../../static/css/algorithms.css" rel="stylesheet">
     <link href="../../static/css/algorithm-page.css" rel="stylesheet">
     <link href="../../static/css/prism.css" rel="stylesheet">
+    <link href="../../static/css/singularity.css" rel="stylesheet">
 
     <!-- Icon -->
     <link rel="icon" href="../../static/img/icon.png" type="image/x-icon">
 </head>
+
 <body>
     <div id="navbar-placeholder"></div>
-    
+
     <main class="container py-5">
         <div class="row">
             <!-- Sidebar -->
@@ -120,8 +126,10 @@
 
                     <section class="algorithm-section">
                         <h2>Description</h2>
-                        <p>The Fibonacci sequence is a series of numbers where each number is the sum of the two preceding ones, usually starting with 0 and 1. Dynamic programming optimizes the calculation by storing previously computed values.</p>
-                        
+                        <p>The Fibonacci sequence is a series of numbers where each number is the sum of the two
+                            preceding ones, usually starting with 0 and 1. Dynamic programming optimizes the calculation
+                            by storing previously computed values.</p>
+
                         <div class="formula-box">
                             <p>F(n) = F(n-1) + F(n-2)</p>
                             <p>where F(0) = 0 and F(1) = 1</p>
@@ -147,7 +155,8 @@
                         <div class="visualization-container">
                             <div class="visualization-controls">
                                 <div class="input-group">
-                                    <input type="number" id="fibInput" class="form-control" placeholder="Enter n" min="0" max="23">
+                                    <input type="number" id="fibInput" class="form-control" placeholder="Enter n"
+                                        min="0" max="23">
                                     <button class="btn btn-primary" id="calculateFib">Calculate</button>
                                 </div>
                             </div>
@@ -161,7 +170,7 @@
                     </section>
 
                     <!-- Implementation section will be added in the next message -->
-                    
+
                     <section class="algorithm-section">
                         <h2>Complexity Analysis</h2>
                         <div class="complexity-analysis">
@@ -174,7 +183,7 @@
                                     <li>No recursive calls or redundant calculations</li>
                                 </ul>
                             </div>
-                            
+
                             <div class="complexity-item">
                                 <h3>Space Complexity</h3>
                                 <p><strong>O(1)</strong> because:</p>
@@ -199,7 +208,7 @@
                                     <li>Handles large inputs efficiently</li>
                                 </ul>
                             </div>
-                            
+
                             <div class="cons">
                                 <h3>Disadvantages</h3>
                                 <ul>
@@ -226,7 +235,7 @@
                                     <a class="nav-link" data-bs-toggle="tab" href="#csharp">C#</a>
                                 </li>
                             </ul>
-                            
+
                             <div class="tab-content">
                                 <!-- Python Implementation -->
                                 <div class="tab-pane fade show active" id="python">
@@ -302,7 +311,7 @@ if __name__ == "__main__":
                                         </code></pre>
                                     </div>
                                 </div>
-                                
+
                                 <!-- C++ Implementation -->
                                 <div class="tab-pane fade" id="cpp">
                                     <div class="code-wrapper">
@@ -392,7 +401,7 @@ int main() {
                                         </code></pre>
                                     </div>
                                 </div>
-                                
+
                                 <!-- C# Implementation -->
                                 <div class="tab-pane fade" id="csharp">
                                     <div class="code-wrapper">
@@ -490,7 +499,7 @@ public class Fibonacci
             </div>
         </div>
     </main>
-    
+
     <div id="footer-placeholder"></div>
 
     <!-- Scripts -->
@@ -501,7 +510,7 @@ public class Fibonacci
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const clipboard = new ClipboardJS('.copy-button');
-            
+
             clipboard.on('success', (e) => {
                 const button = e.trigger;
                 button.innerHTML = '<i class="fas fa-check"></i>';
@@ -514,4 +523,5 @@ public class Fibonacci
     </script>
     <script src="../../static/js/templates.js"></script>
 </body>
+
 </html>

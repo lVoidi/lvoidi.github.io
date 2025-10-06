@@ -1,22 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ford-Fulkerson Algorithm: Maximum Flow in Networks | Roarba Portal</title>
-    
+
     <!-- SEO Meta Tags -->
-    <meta name="description" content="Learn the Ford-Fulkerson algorithm with interactive visualization. Master maximum flow computation in flow networks with step-by-step explanations. Includes Python, C++, and C# implementations." />
-    <meta name="keywords" content="ford fulkerson algorithm, maximum flow, network flow, flow networks, graph algorithms, augmenting paths, residual graphs, network optimization" />
+    <meta name="description"
+        content="Learn the Ford-Fulkerson algorithm with interactive visualization. Master maximum flow computation in flow networks with step-by-step explanations. Includes Python, C++, and C# implementations." />
+    <meta name="keywords"
+        content="ford fulkerson algorithm, maximum flow, network flow, flow networks, graph algorithms, augmenting paths, residual graphs, network optimization" />
     <meta name="author" content="Rodrigo Arce" />
-    
+
     <!-- Open Graph / Social Media Tags -->
     <meta property="og:title" content="Ford-Fulkerson Algorithm: Interactive Maximum Flow Tutorial" />
-    <meta property="og:description" content="Master the Ford-Fulkerson algorithm for computing maximum flow in networks. Features interactive visualization and implementations in multiple programming languages." />
+    <meta property="og:description"
+        content="Master the Ford-Fulkerson algorithm for computing maximum flow in networks. Features interactive visualization and implementations in multiple programming languages." />
     <meta property="og:image" content="https://roarba.com/static/img/algorithms/ford-fulkerson.jpg" />
     <meta property="og:url" content="https://roarba.com/algorithms/graph/ford-fulkerson.html" />
     <meta property="og:type" content="article" />
-    
+
     <!-- Article Specific Meta Tags -->
     <meta property="article:published_time" content="2025-02-19" />
     <meta property="article:author" content="https://github.com/lVoidi" />
@@ -24,7 +28,7 @@
     <meta property="article:tag" content="Graph Theory" />
     <meta property="article:tag" content="Network Flow" />
     <meta property="article:tag" content="Optimization" />
-    
+
     <!-- Canonical URL -->
     <link rel="canonical" href="https://roarba.com/algorithms/graph/ford-fulkerson.html" />
 
@@ -69,16 +73,17 @@
       "interactivityType": "mixed"
     }
     </script>
-    
+
     <!-- CSS imports -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="../../static/css/style.css" rel="stylesheet">
     <link href="../../static/css/algorithms.css" rel="stylesheet">
+    <link href="../../static/css/singularity.css" rel="stylesheet">
     <link href="../../static/css/algorithm-page.css" rel="stylesheet">
     <link href="../../static/css/prism.css" rel="stylesheet">
     <link rel="icon" href="../../static/img/icon.png" type="image/x-icon">
-    
+
     <style>
         /* Visualization styles */
         .visualization-container {
@@ -87,6 +92,7 @@
             margin: 20px auto;
             padding: 15px;
         }
+
         .visualization-controls {
             display: flex;
             flex-wrap: wrap;
@@ -94,6 +100,7 @@
             margin-bottom: 20px;
             align-items: center;
         }
+
         .speed-control {
             display: flex;
             align-items: center;
@@ -101,15 +108,18 @@
             min-width: 150px;
             flex-basis: 200px;
         }
+
         .speed-control label {
             margin-bottom: 0;
             color: var(--text-color);
             white-space: nowrap;
         }
+
         .speed-control input[type="range"] {
             flex-grow: 1;
             cursor: pointer;
         }
+
         .visualization-area {
             background: var(--background-color);
             border-radius: 8px;
@@ -121,12 +131,14 @@
             align-items: center;
             overflow: hidden;
         }
+
         .visualization-status {
             display: flex;
             flex-wrap: wrap;
             gap: 15px;
             margin-top: 15px;
         }
+
         .status-box {
             flex: 1;
             min-width: 150px;
@@ -134,43 +146,50 @@
             border-radius: 8px;
             padding: 10px;
         }
+
         .status-box h4 {
             margin-top: 0;
             margin-bottom: 8px;
             font-size: 1rem;
         }
-        
+
         /* Responsive styles */
         @media (max-width: 768px) {
             .visualization-controls {
                 flex-direction: column;
                 align-items: stretch;
             }
+
             .speed-control {
                 width: 100%;
             }
+
             .visualization-area {
                 padding: 5px;
                 min-height: 350px;
             }
+
             .status-box {
                 padding: 8px;
             }
         }
-        
+
         @media (max-width: 480px) {
             .visualization-area {
                 min-height: 300px;
             }
+
             .visualization-area svg text {
                 font-size: 0.8em;
             }
+
             .status-box {
                 min-width: 100px;
             }
         }
     </style>
 </head>
+
 <body>
     <!-- Navbar -->
     <div id="navbar-placeholder"></div>
@@ -213,21 +232,28 @@
                     <section class="algorithm-section">
                         <h2>Description</h2>
                         <p>
-                            The Ford-Fulkerson algorithm is a method for computing the maximum flow in a flow network. 
-                            It works by finding augmenting paths through the residual graph and adding flow along these paths. 
-                            The algorithm repeatedly finds augmenting paths and adds flow until no more augmenting paths can be found.
+                            The Ford-Fulkerson algorithm is a method for computing the maximum flow in a flow network.
+                            It works by finding augmenting paths through the residual graph and adding flow along these
+                            paths.
+                            The algorithm repeatedly finds augmenting paths and adds flow until no more augmenting paths
+                            can be found.
                         </p>
                     </section>
 
                     <section class="algorithm-section history-box">
                         <h2>History</h2>
                         <div class="history-content">
-                            <img src="../../static/img/ford-fulkerson.jpg" alt="Ford and Fulkerson" class="history-image">
+                            <img src="../../static/img/ford-fulkerson.jpg" alt="Ford and Fulkerson"
+                                class="history-image">
                             <p>
-                                The algorithm was first published in 1956 by L. R. Ford, Jr. and D. R. Fulkerson. It was developed 
-                                during their time at RAND Corporation, where they were working on Soviet railway traffic flow and 
-                                trying to identify which routes would be most disruptive if blocked. The algorithm has since become 
-                                a fundamental tool in network flow theory and has applications in transportation, telecommunications, 
+                                The algorithm was first published in 1956 by L. R. Ford, Jr. and D. R. Fulkerson. It was
+                                developed
+                                during their time at RAND Corporation, where they were working on Soviet railway traffic
+                                flow and
+                                trying to identify which routes would be most disruptive if blocked. The algorithm has
+                                since become
+                                a fundamental tool in network flow theory and has applications in transportation,
+                                telecommunications,
                                 and many other fields.
                             </p>
                         </div>
@@ -249,7 +275,8 @@
                             <li>
                                 <strong>Finding Augmenting Path:</strong>
                                 <ul>
-                                    <li>Use <a href="../searching/bfs.html">BFS</a> or <a href="../searching/dfs.html">DFS</a> to find a path from source to sink</li>
+                                    <li>Use <a href="../searching/bfs.html">BFS</a> or <a
+                                            href="../searching/dfs.html">DFS</a> to find a path from source to sink</li>
                                     <li>Path must have positive residual capacity in all edges</li>
                                 </ul>
                             </li>
@@ -615,7 +642,7 @@ public class Program
                             <div class="time-complexity">
                                 <h3>Time Complexity</h3>
                                 <p>
-                                    The time complexity of Ford-Fulkerson algorithm is O(VE²), where V is the number 
+                                    The time complexity of Ford-Fulkerson algorithm is O(VE²), where V is the number
                                     of vertices and E is the number of edges. This can be broken down into:
                                 </p>
                                 <ul>
@@ -642,7 +669,7 @@ public class Program
                                     </li>
                                 </ul>
                             </div>
-                            
+
                             <div class="space-complexity">
                                 <h3>Space Complexity</h3>
                                 <p>
@@ -716,7 +743,7 @@ public class Program
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const clipboard = new ClipboardJS('.copy-button');
-            
+
             clipboard.on('success', (e) => {
                 const button = e.trigger;
                 button.innerHTML = '<i class="fas fa-check"></i>';
@@ -728,4 +755,5 @@ public class Program
         });
     </script>
 </body>
-</html> 
+
+</html>

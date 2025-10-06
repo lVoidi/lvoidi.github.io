@@ -1,29 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gauss-Seidel Method Algorithm | Iterative Linear System Solver</title>
-    
+
     <!-- SEO Meta Tags -->
-    <meta name="description" content="Master the Gauss-Seidel iterative method for solving linear systems with implementations in Python, JavaScript, C++, and C#. Includes convergence analysis and interactive visualization.">
-    <meta name="keywords" content="gauss-seidel method, iterative solver, numerical methods, linear systems, computational mathematics, matrix operations, linear algebra">
+    <meta name="description"
+        content="Master the Gauss-Seidel iterative method for solving linear systems with implementations in Python, JavaScript, C++, and C#. Includes convergence analysis and interactive visualization.">
+    <meta name="keywords"
+        content="gauss-seidel method, iterative solver, numerical methods, linear systems, computational mathematics, matrix operations, linear algebra">
     <meta name="author" content="lVoidi">
     <meta name="robots" content="index, follow">
-    
+
     <!-- Open Graph / Social Media Meta Tags -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://roarba.com/algorithms/numerical/gauss-seidel.html">
     <meta property="og:title" content="Gauss-Seidel Method Algorithm | Iterative Linear System Solver">
-    <meta property="og:description" content="Master the Gauss-Seidel iterative method for solving linear systems with implementations in Python, JavaScript, C++, and C#. Includes convergence analysis and interactive visualization.">
+    <meta property="og:description"
+        content="Master the Gauss-Seidel iterative method for solving linear systems with implementations in Python, JavaScript, C++, and C#. Includes convergence analysis and interactive visualization.">
     <meta property="og:image" content="https://roarba.com/static/img/algorithms/gauss-seidel.jpg">
-    
+
     <!-- Twitter Card Tags -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Gauss-Seidel Method Algorithm | Iterative Linear System Solver">
-    <meta name="twitter:description" content="Master the Gauss-Seidel iterative method for solving linear systems with implementations in Python, JavaScript, C++, and C#. Includes convergence analysis and interactive visualization.">
+    <meta name="twitter:description"
+        content="Master the Gauss-Seidel iterative method for solving linear systems with implementations in Python, JavaScript, C++, and C#. Includes convergence analysis and interactive visualization.">
     <meta name="twitter:image" content="https://roarba.com/static/img/algorithms/gauss-seidel.jpg">
-    
+
     <!-- Canonical URL -->
     <meta rel="canonical" href="https://roarba.com/algorithms/numerical/gauss-seidel.html">
 
@@ -33,6 +38,7 @@
     <link href="../../static/css/style.css" rel="stylesheet">
     <link href="../../static/css/algorithms.css" rel="stylesheet">
     <link href="../../static/css/algorithm-page.css" rel="stylesheet">
+    <link href="../../static/css/singularity.css" rel="stylesheet">
     <link href="../../static/css/prism.css" rel="stylesheet">
 
     <!-- Icon -->
@@ -74,7 +80,7 @@
       "programmingLanguage": ["Python", "JavaScript", "C++", "C#"]
     }
     </script>
-    
+
     <style>
         /* Responsive styles for History box */
         .history-box {
@@ -86,80 +92,82 @@
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
             border-left: 5px solid #6a5acd;
         }
-        
+
         .history-content {
             display: flex;
             flex-direction: row;
             align-items: flex-start;
             gap: 20px;
         }
-        
+
         .history-image {
             width: 150px;
             height: auto;
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
         }
-        
+
         .history-box h2 {
             color: #6a5acd;
             margin-bottom: 15px;
         }
-        
+
         .history-text {
             flex: 1;
             line-height: 1.6;
         }
-        
+
         /* Mobile responsive styles */
         @media (max-width: 768px) {
             .history-content {
                 flex-direction: column;
                 align-items: center;
             }
-            
+
             .history-image {
                 width: 120px;
                 margin-bottom: 15px;
             }
-            
+
             .history-box {
                 padding: 15px;
             }
-            
+
             .visualization-container {
                 padding: 10px;
                 overflow-x: hidden;
             }
-            
+
             .visualization-controls {
                 flex-direction: column;
                 gap: 10px;
                 align-items: stretch;
             }
-            
+
             .control-group {
                 flex-direction: column;
                 width: 100%;
             }
-            
+
             .control-group label {
                 margin-bottom: 5px;
             }
-            
+
             canvas {
                 max-width: 100%;
                 height: auto;
             }
-            
+
             /* Better button spacing for mobile */
-            #startBtn, #resetBtn {
+            #startBtn,
+            #resetBtn {
                 width: 48%;
                 margin-bottom: 10px;
             }
         }
     </style>
 </head>
+
 <body>
     <div id="navbar-placeholder"></div>
 
@@ -192,7 +200,7 @@
             <div class="col-lg-9">
                 <div class="algorithm-content">
                     <h1>Gauss-Seidel Method</h1>
-                    
+
                     <div class="algorithm-metadata">
                         <span class="category-tag">Numerical Methods</span>
                         <span class="difficulty-tag">Medium</span>
@@ -201,9 +209,9 @@
                     <section class="algorithm-section">
                         <h2>Description</h2>
                         <p>
-                            The Gauss-Seidel method is an iterative method for solving systems of linear equations. 
-                            It is an improvement over the Jacobi method that uses the most recently calculated values 
-                            in the same iteration. The method is especially efficient for diagonally dominant matrices 
+                            The Gauss-Seidel method is an iterative method for solving systems of linear equations.
+                            It is an improvement over the Jacobi method that uses the most recently calculated values
+                            in the same iteration. The method is especially efficient for diagonally dominant matrices
                             and is widely used in engineering and physics applications.
                         </p>
                     </section>
@@ -249,11 +257,15 @@
                             <img src="../../static/img/gauss.jpg" alt="Carl Friedrich Gauss" class="history-image">
                             <div class="history-text">
                                 <p>
-                                    The Gauss-Seidel method was developed by German mathematicians Carl Friedrich Gauss 
-                                    and Philipp Ludwig von Seidel. Although Gauss described the basic method, it was Seidel 
-                                    who formally published it in 1874. The method emerged as an improvement over the Jacobi 
-                                    method, taking advantage of the most recently calculated values to accelerate convergence. 
-                                    Its efficiency and simplicity made it one of the most popular iterative methods for solving 
+                                    The Gauss-Seidel method was developed by German mathematicians Carl Friedrich Gauss
+                                    and Philipp Ludwig von Seidel. Although Gauss described the basic method, it was
+                                    Seidel
+                                    who formally published it in 1874. The method emerged as an improvement over the
+                                    Jacobi
+                                    method, taking advantage of the most recently calculated values to accelerate
+                                    convergence.
+                                    Its efficiency and simplicity made it one of the most popular iterative methods for
+                                    solving
                                     systems of linear equations.
                                 </p>
                             </div>
@@ -359,7 +371,7 @@ if __name__ == "__main__":
                                         </code></pre>
                                     </div>
                                 </div>
-                                
+
                                 <div class="tab-pane fade" id="cpp">
                                     <div class="code-wrapper">
                                         <button class="copy-button" data-clipboard-target="#cppCode">
@@ -546,7 +558,7 @@ public class GaussSeidel {
                                     <li>k depends on tolerance and convergence</li>
                                 </ul>
                             </div>
-                            
+
                             <div class="space-complexity">
                                 <h3>Space Complexity</h3>
                                 <p>
@@ -599,7 +611,7 @@ public class GaussSeidel {
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const clipboard = new ClipboardJS('.copy-button');
-            
+
             clipboard.on('success', (e) => {
                 const button = e.trigger;
                 button.innerHTML = '<i class="fas fa-check"></i>';
@@ -612,4 +624,5 @@ public class GaussSeidel {
     </script>
     <script src="../../static/js/templates.js"></script>
 </body>
-</html> 
+
+</html>

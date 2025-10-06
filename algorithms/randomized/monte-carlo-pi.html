@@ -1,43 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Monte Carlo Pi Estimation | Randomized Numerical Algorithm</title>
-    
+
     <!-- SEO Meta Tags -->
-    <meta name="description" content="Learn how to estimate π (pi) using the Monte Carlo method with O(n) time complexity. Includes Python, C++, and C# implementations with interactive visualization and error analysis.">
-    <meta name="keywords" content="monte carlo pi, pi estimation, randomized algorithms, numerical methods, monte carlo simulation, probabilistic algorithms, computational geometry">
+    <meta name="description"
+        content="Learn how to estimate π (pi) using the Monte Carlo method with O(n) time complexity. Includes Python, C++, and C# implementations with interactive visualization and error analysis.">
+    <meta name="keywords"
+        content="monte carlo pi, pi estimation, randomized algorithms, numerical methods, monte carlo simulation, probabilistic algorithms, computational geometry">
     <meta name="author" content="lVoidi">
     <meta name="robots" content="index, follow">
-    
+
     <!-- Open Graph / Social Media Meta Tags -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://roarba.com/algorithms/randomized/monte-carlo-pi.html">
     <meta property="og:title" content="Monte Carlo Pi Estimation | Randomized Numerical Algorithm">
-    <meta property="og:description" content="Learn how to estimate π (pi) using the Monte Carlo method with O(n) time complexity. Includes Python, C++, and C# implementations with interactive visualization and error analysis.">
+    <meta property="og:description"
+        content="Learn how to estimate π (pi) using the Monte Carlo method with O(n) time complexity. Includes Python, C++, and C# implementations with interactive visualization and error analysis.">
     <meta property="og:image" content="https://roarba.com/static/img/algorithms/monte-carlo-pi.jpg">
-    
+
     <!-- Twitter Card Tags -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Monte Carlo Pi Estimation | Randomized Numerical Algorithm">
-    <meta name="twitter:description" content="Learn how to estimate π (pi) using the Monte Carlo method with O(n) time complexity. Includes Python, C++, and C# implementations with interactive visualization and error analysis.">
+    <meta name="twitter:description"
+        content="Learn how to estimate π (pi) using the Monte Carlo method with O(n) time complexity. Includes Python, C++, and C# implementations with interactive visualization and error analysis.">
     <meta name="twitter:image" content="https://roarba.com/static/img/algorithms/monte-carlo-pi.jpg">
-    
+
     <!-- Canonical URL -->
     <meta rel="canonical" href="https://roarba.com/algorithms/randomized/monte-carlo-pi.html">
-    
+
     <!-- CSS imports -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="../../static/css/style.css" rel="stylesheet">
     <link href="../../static/css/algorithms.css" rel="stylesheet">
+    <link href="../../static/css/singularity.css" rel="stylesheet">
     <link href="../../static/css/algorithm-page.css" rel="stylesheet">
     <link href="../../static/css/prism.css" rel="stylesheet">
 
     <!-- Icon -->
     <link rel="icon" href="../../static/img/icon.png" type="image/x-icon">
-    
+
     <!-- Schema.org structured data -->
     <script type="application/ld+json">
     {
@@ -75,6 +81,7 @@
     }
     </script>
 </head>
+
 <body>
     <div id="navbar-placeholder"></div>
     <main class="container py-5">
@@ -113,7 +120,9 @@
 
                     <section class="algorithm-section">
                         <h2>Description</h2>
-                        <p>Monte Carlo Pi Estimation is a randomized algorithm that approximates the value of π using random sampling. The method uses the relationship between the area of a circle and its circumscribing square to estimate π through random point generation and probability.</p>
+                        <p>Monte Carlo Pi Estimation is a randomized algorithm that approximates the value of π using
+                            random sampling. The method uses the relationship between the area of a circle and its
+                            circumscribing square to estimate π through random point generation and probability.</p>
                     </section>
 
                     <section class="algorithm-section">
@@ -125,7 +134,8 @@
                             <li>Ratio of points inside circle to total points ≈ π/4</li>
                             <li>Multiply ratio by 4 to estimate π</li>
                         </ol>
-                        <p>The accuracy of the estimation improves with the number of points generated, following a rate of approximately 1/√n where n is the number of points.</p>
+                        <p>The accuracy of the estimation improves with the number of points generated, following a rate
+                            of approximately 1/√n where n is the number of points.</p>
                     </section>
 
                     <section class="algorithm-section">
@@ -133,7 +143,8 @@
                         <div class="visualization-container">
                             <div class="visualization-controls">
                                 <div class="input-group mb-3">
-                                    <input type="number" id="pointsInput" class="form-control" value="1000" min="100" max="1000000" step="100" placeholder="Number of points">
+                                    <input type="number" id="pointsInput" class="form-control" value="1000" min="100"
+                                        max="1000000" step="100" placeholder="Number of points">
                                     <button class="btn btn-primary" id="startBtn">
                                         <i class="fas fa-play"></i> Start
                                     </button>
@@ -517,7 +528,7 @@ public class MonteCarloPi
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const clipboard = new ClipboardJS('.copy-button');
-            
+
             clipboard.on('success', (e) => {
                 const button = e.trigger;
                 button.innerHTML = '<i class="fas fa-check"></i>';
@@ -530,4 +541,5 @@ public class MonteCarloPi
     </script>
     <script src="../../static/js/templates.js"></script>
 </body>
+
 </html>
