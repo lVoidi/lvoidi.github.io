@@ -1,43 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Heap Sort Algorithm | Efficient Comparison-based Sorting Method</title>
-    
+
     <!-- SEO Meta Tags -->
-    <meta name="description" content="Learn the Heap Sort algorithm with O(n log n) time complexity. Includes interactive visualization and implementations in Python, C++, and C# using binary heap data structure.">
-    <meta name="keywords" content="heap sort, heapsort, binary heap, priority queue, comparison sort, in-place sort, selection sort, computer science, algorithm visualization">
+    <meta name="description"
+        content="Learn the Heap Sort algorithm with O(n log n) time complexity. Includes interactive visualization and implementations in Python, C++, and C# using binary heap data structure.">
+    <meta name="keywords"
+        content="heap sort, heapsort, binary heap, priority queue, comparison sort, in-place sort, selection sort, computer science, algorithm visualization">
     <meta name="author" content="lVoidi">
     <meta name="robots" content="index, follow">
-    
+
     <!-- Open Graph / Social Media Meta Tags -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://roarba.com/algorithms/sorting/heapsort.html">
     <meta property="og:title" content="Heap Sort Algorithm | Efficient Comparison-based Sorting Method">
-    <meta property="og:description" content="Learn the Heap Sort algorithm with O(n log n) time complexity. Includes interactive visualization and implementations in Python, C++, and C# using binary heap data structure.">
+    <meta property="og:description"
+        content="Learn the Heap Sort algorithm with O(n log n) time complexity. Includes interactive visualization and implementations in Python, C++, and C# using binary heap data structure.">
     <meta property="og:image" content="https://roarba.com/static/img/algorithms/heapsort.jpg">
-    
+
     <!-- Twitter Card Tags -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Heap Sort Algorithm | Efficient Comparison-based Sorting Method">
-    <meta name="twitter:description" content="Learn the Heap Sort algorithm with O(n log n) time complexity. Includes interactive visualization and implementations in Python, C++, and C# using binary heap data structure.">
+    <meta name="twitter:description"
+        content="Learn the Heap Sort algorithm with O(n log n) time complexity. Includes interactive visualization and implementations in Python, C++, and C# using binary heap data structure.">
     <meta name="twitter:image" content="https://roarba.com/static/img/algorithms/heapsort.jpg">
-    
+
     <!-- Canonical URL -->
     <meta rel="canonical" href="https://roarba.com/algorithms/sorting/heapsort.html">
-    
+
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="../../static/css/style.css" rel="stylesheet">
     <link href="../../static/css/algorithms.css" rel="stylesheet">
+    <link href="../../static/css/singularity.css" rel="stylesheet">
     <link href="../../static/css/algorithm-page.css" rel="stylesheet">
     <link href="../../static/css/prism.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 
     <!-- Icon -->
     <link rel="icon" href="../../static/img/icon.png" type="image/x-icon">
-    
+
     <!-- Schema.org structured data -->
     <script type="application/ld+json">
     {
@@ -75,6 +81,7 @@
     }
     </script>
 </head>
+
 <body>
     <div id="navbar-placeholder"></div>
     <main class="container py-5">
@@ -117,7 +124,39 @@
 
                     <section class="algorithm-section">
                         <h2>Description</h2>
-                        <p>Heap Sort is a comparison-based sorting algorithm that uses a binary heap data structure. It divides its input into a sorted and an unsorted region, and iteratively shrinks the unsorted region by extracting the largest element and moving it to the sorted region.</p>
+                        <p>Heap Sort is a comparison-based sorting algorithm that uses a binary heap data structure. It
+                            divides its input into a sorted and an unsorted region, and iteratively shrinks the unsorted
+                            region by extracting the largest element and moving it to the sorted region.</p>
+
+                        <div class="definition-box">
+                            <h4>What is Heap Sort?</h4>
+                            <p>Heap Sort works by visualizing the elements of the array as a special kind of complete
+                                binary tree called a heap. The algorithm first builds a max heap from the input data,
+                                then repeatedly extracts the maximum element from the heap and reconstructs the heap
+                                until all elements are sorted.</p>
+                        </div>
+
+                        <div class="definition-box">
+                            <h4>Key Characteristics</h4>
+                            <ul>
+                                <li><strong>Comparison-Based:</strong> Elements are sorted by comparing them with each
+                                    other</li>
+                                <li><strong>In-Place:</strong> Requires only a constant amount of additional memory
+                                    space</li>
+                                <li><strong>Not Stable:</strong> Does not preserve the relative order of equal elements
+                                </li>
+                                <li><strong>Non-Adaptive:</strong> Performance doesn't improve on partially sorted data
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="definition-box">
+                            <h4>How Does It Differ from Other Sorting Algorithms?</h4>
+                            <p>Unlike Quick Sort, Heap Sort guarantees O(n log n) time complexity in the worst case.
+                                Unlike Merge Sort, it doesn't require additional memory space. The algorithm is
+                                particularly useful when you need consistent performance and have strict memory
+                                constraints.</p>
+                        </div>
                     </section>
 
                     <section class="algorithm-section history-box">
@@ -125,44 +164,132 @@
                         <div class="history-content">
                             <img src="../../static/img/williams.jpg" alt="J.W.J. Williams" class="history-image">
                             <p>
-                                Heap Sort was invented by J.W.J. Williams in 1964, marking a significant milestone in the history of sorting algorithms. The algorithm was first published in the paper "Algorithm 232 - Heapsort" in the Communications of the ACM. 
-                                
-                                The development of Heap Sort was particularly notable because it was the first sorting algorithm to achieve optimal time complexity O(n log n) in the worst case while using only O(1) auxiliary space. This was a significant improvement over Quick Sort's worst-case time complexity of O(n²).
+                                Heap Sort was invented by J.W.J. Williams in 1964, marking a significant milestone in
+                                the history of sorting algorithms. The algorithm was first published in the paper
+                                "Algorithm 232 - Heapsort" in the Communications of the ACM.
 
-                                The binary heap data structure, which is fundamental to Heap Sort, was also introduced in this same paper. Robert W. Floyd later improved the algorithm in 1964 with his "bottom-up" heap construction method, which reduced the complexity of building the initial heap from O(n log n) to O(n).
+                                The development of Heap Sort was particularly notable because it was the first sorting
+                                algorithm to achieve optimal time complexity O(n log n) in the worst case while using
+                                only O(1) auxiliary space. This was a significant improvement over Quick Sort's
+                                worst-case time complexity of O(n²).
+
+                                The binary heap data structure, which is fundamental to Heap Sort, was also introduced
+                                in this same paper. Robert W. Floyd later improved the algorithm in 1964 with his
+                                "bottom-up" heap construction method, which reduced the complexity of building the
+                                initial heap from O(n log n) to O(n).
                             </p>
                         </div>
                     </section>
 
                     <section class="algorithm-section">
                         <h2>Understanding Heaps</h2>
-                        <p>A binary heap is a complete binary tree with the following properties:</p>
-                        <ul>
-                            <li><strong>Structure Property:</strong> A binary heap is a complete binary tree, which means all levels are fully filled except possibly the last level, which is filled from left to right.</li>
-                            <li><strong>Heap Property:</strong> In a max-heap, for any given node I, the value of I is greater than or equal to the values of its children. The opposite is true for a min-heap.</li>
-                        </ul>
-                        <p>For an array-based implementation, given an index i:</p>
-                        <div class="formula-box">
-                            <p>Parent(i) = ⌊(i - 1) / 2⌋</p>
-                            <p>LeftChild(i) = 2i + 1</p>
-                            <p>RightChild(i) = 2i + 2</p>
+                        <p>A binary heap is a complete binary tree that forms the foundation of the Heap Sort algorithm.
+                            Understanding heaps is crucial to comprehending how Heap Sort achieves its efficiency.</p>
+
+                        <div class="definition-box">
+                            <h4>Binary Heap Structure</h4>
+                            <p>A binary heap is a complete binary tree with two fundamental properties:</p>
+                            <ul>
+                                <li><strong>Structure Property:</strong> A binary heap is a complete binary tree, which
+                                    means all levels are fully filled except possibly the last level, which is filled
+                                    from
+                                    left to right. This property ensures the tree remains balanced.</li>
+                                <li><strong>Heap Property:</strong> In a max-heap, for any given node I, the value of I
+                                    is
+                                    greater than or equal to the values of its children. The opposite is true for a
+                                    min-heap, where parent nodes are smaller than their children.</li>
+                            </ul>
+                        </div>
+
+                        <div class="definition-box">
+                            <h4>Array Representation</h4>
+                            <p>Binary heaps are typically implemented using arrays, which provides efficient memory
+                                usage and access patterns. For an array-based implementation, given an index i:</p>
+                            <div class="formula-box">
+                                <p>Parent(i) = ⌊(i - 1) / 2⌋</p>
+                                <p>LeftChild(i) = 2i + 1</p>
+                                <p>RightChild(i) = 2i + 2</p>
+                            </div>
+                            <p>This mathematical relationship allows us to navigate the tree structure without storing
+                                explicit pointers, making heap operations very efficient.</p>
+                        </div>
+
+                        <div class="definition-box">
+                            <h4>Max-Heap vs Min-Heap</h4>
+                            <p><strong>Max-Heap:</strong> The parent node is always greater than or equal to its
+                                children. The maximum element is always at the root. This is what Heap Sort uses for
+                                ascending order sorting.</p>
+                            <p><strong>Min-Heap:</strong> The parent node is always less than or equal to its children.
+                                The minimum element is always at the root. This can be used for descending order
+                                sorting.</p>
                         </div>
                     </section>
 
                     <section class="algorithm-section">
                         <h2>How It Works</h2>
-                        <ol>
-                            <li><strong>Build Max Heap:</strong> Convert the input array into a max heap structure</li>
-                            <li><strong>Heapify:</strong> Recursively ensure the heap property is maintained</li>
-                            <li><strong>Extract and Sort:</strong>
-                                <ul>
-                                    <li>Swap the root (maximum element) with the last element</li>
-                                    <li>Reduce heap size by 1</li>
-                                    <li>Heapify the root to maintain the heap property</li>
-                                    <li>Repeat until heap is empty</li>
-                                </ul>
-                            </li>
-                        </ol>
+                        <p>Heap Sort operates in two main phases: building the heap and extracting elements in sorted
+                            order.</p>
+
+                        <div class="definition-box">
+                            <h4>Phase 1: Build Max Heap</h4>
+                            <p>The first step is to convert the input array into a max heap structure. This is done by
+                                calling the heapify operation on all non-leaf nodes, starting from the last non-leaf
+                                node and moving up to the root.</p>
+                            <p>The last non-leaf node is at index ⌊n/2⌋ - 1, where n is the array length. We work
+                                backwards because heapifying assumes the children are already valid heaps.</p>
+                            <p><strong>Time Complexity:</strong> Although it appears to be O(n log n), building a heap
+                                from an unsorted array actually takes O(n) time due to the mathematical properties of
+                                the heap structure.</p>
+                        </div>
+
+                        <div class="definition-box">
+                            <h4>Phase 2: Heapify Operation</h4>
+                            <p>Heapify is the core operation that maintains the heap property. When called on a node,
+                                it:</p>
+                            <ul>
+                                <li>Compares the node with its left and right children</li>
+                                <li>Identifies the largest element among the three</li>
+                                <li>If the largest is not the current node, swaps them</li>
+                                <li>Recursively calls heapify on the affected child subtree</li>
+                            </ul>
+                            <p>This process continues down the tree until the heap property is satisfied or a leaf node
+                                is reached.</p>
+                        </div>
+
+                        <div class="definition-box">
+                            <h4>Phase 3: Extract and Sort</h4>
+                            <p>Once the max heap is built, we repeatedly perform the following steps:</p>
+                            <ol>
+                                <li><strong>Swap:</strong> Exchange the root (maximum element) with the last element in
+                                    the unsorted portion of the array. This moves the maximum element to its correct
+                                    sorted position.</li>
+                                <li><strong>Reduce Heap Size:</strong> Decrease the heap size by 1, effectively removing
+                                    the sorted element from consideration.</li>
+                                <li><strong>Heapify Root:</strong> Call heapify on the root to restore the heap
+                                    property, as the swap may have violated it.</li>
+                                <li><strong>Repeat:</strong> Continue this process until the heap contains only one
+                                    element.</li>
+                            </ol>
+                            <p>After n-1 iterations, all elements will be in sorted order. The array is sorted in-place,
+                                with the maximum elements gradually accumulating at the end.</p>
+                        </div>
+
+                        <div class="definition-box">
+                            <h4>Step-by-Step Example</h4>
+                            <p>Consider sorting [4, 10, 3, 5, 1]:</p>
+                            <ol>
+                                <li><strong>Build Max Heap:</strong> [10, 5, 3, 4, 1] - The array is rearranged into a
+                                    max heap</li>
+                                <li><strong>First Extraction:</strong> Swap 10 and 1, then heapify: [5, 4, 3, 1 | 10]
+                                </li>
+                                <li><strong>Second Extraction:</strong> Swap 5 and 1, then heapify: [4, 1, 3 | 5, 10]
+                                </li>
+                                <li><strong>Third Extraction:</strong> Swap 4 and 3, then heapify: [3, 1 | 4, 5, 10]
+                                </li>
+                                <li><strong>Fourth Extraction:</strong> Swap 3 and 1: [1 | 3, 4, 5, 10]</li>
+                                <li><strong>Result:</strong> [1, 3, 4, 5, 10] - Fully sorted array</li>
+                            </ol>
+                        </div>
                     </section>
 
                     <section class="algorithm-section">
@@ -254,7 +381,7 @@ if __name__ == "__main__":
                                         </code></pre>
                                     </div>
                                 </div>
-                                
+
                                 <div class="tab-pane fade" id="cpp">
                                     <div class="code-wrapper">
                                         <button class="copy-button" data-clipboard-target="#cpp-code">
@@ -439,7 +566,7 @@ public class HeapSort
         // Initialize clipboard.js
         document.addEventListener('DOMContentLoaded', () => {
             const clipboard = new ClipboardJS('.copy-button');
-            
+
             clipboard.on('success', (e) => {
                 const button = e.trigger;
                 button.innerHTML = '<i class="fas fa-check"></i>';
@@ -452,4 +579,5 @@ public class HeapSort
     </script>
     <script src="../../static/js/templates.js"></script>
 </body>
-</html> 
+
+</html>
