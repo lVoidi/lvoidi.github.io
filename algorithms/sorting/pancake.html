@@ -1,53 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Pancake Sort Algorithm | Prefix Reversal Sorting Method</title>
 
-    <!-- SEO Meta Tags -->
-    <meta name="description" content="Learn the Pancake Sort algorithm with O(n²) time complexity. Includes interactive visualization and implementations in Python, C++, and C# using only flip operations to sort an array." />
-    <meta name="keywords" content="pancake sort, prefix reversal, flip sort, comparison sort, in-place sort, mathematical sorting, computer science, algorithm visualization" />
-    <meta name="author" content="lVoidi" />
-    <meta name="robots" content="index, follow" />
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pancake Sort Algorithm | Prefix Reversal Sorting Method</title>
 
-    <!-- Open Graph / Social Media Meta Tags -->
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://roarba.com/algorithms/sorting/pancake.html" />
-    <meta property="og:title" content="Pancake Sort Algorithm | Prefix Reversal Sorting Method" />
-    <meta property="og:description" content="Learn the Pancake Sort algorithm with O(n²) time complexity. Includes interactive visualization and implementations in Python, C++, and C# using only flip operations to sort an array." />
-    <meta property="og:image" content="https://roarba.com/static/img/algorithms/pancake.jpg" />
+  <!-- SEO Meta Tags -->
+  <meta name="description"
+    content="Learn the Pancake Sort algorithm with O(n²) time complexity. Includes interactive visualization and implementations in Python, C++, and C# using only flip operations to sort an array." />
+  <meta name="keywords"
+    content="pancake sort, prefix reversal, flip sort, comparison sort, in-place sort, mathematical sorting, computer science, algorithm visualization" />
+  <meta name="author" content="lVoidi" />
+  <meta name="robots" content="index, follow" />
 
-    <!-- Twitter Card Tags -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Pancake Sort Algorithm | Prefix Reversal Sorting Method" />
-    <meta name="twitter:description" content="Learn the Pancake Sort algorithm with O(n²) time complexity. Includes interactive visualization and implementations in Python, C++, and C# using only flip operations to sort an array." />
-    <meta name="twitter:image" content="https://roarba.com/static/img/algorithms/pancake.jpg" />
+  <!-- Open Graph / Social Media Meta Tags -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://roarba.com/algorithms/sorting/pancake.html" />
+  <meta property="og:title" content="Pancake Sort Algorithm | Prefix Reversal Sorting Method" />
+  <meta property="og:description"
+    content="Learn the Pancake Sort algorithm with O(n²) time complexity. Includes interactive visualization and implementations in Python, C++, and C# using only flip operations to sort an array." />
+  <meta property="og:image" content="https://roarba.com/static/img/algorithms/pancake.jpg" />
 
-    <!-- Canonical URL -->
-    <meta rel="canonical" href="https://roarba.com/algorithms/sorting/pancake.html" />
+  <!-- Twitter Card Tags -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Pancake Sort Algorithm | Prefix Reversal Sorting Method" />
+  <meta name="twitter:description"
+    content="Learn the Pancake Sort algorithm with O(n²) time complexity. Includes interactive visualization and implementations in Python, C++, and C# using only flip operations to sort an array." />
+  <meta name="twitter:image" content="https://roarba.com/static/img/algorithms/pancake.jpg" />
 
-    <!-- Bootstrap CSS -->
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
-    <link href="../../static/css/style.css" rel="stylesheet" />
-    <link href="../../static/css/algorithms.css" rel="stylesheet" />
-    <link href="../../static/css/algorithm-page.css" rel="stylesheet" />
+  <!-- Canonical URL -->
+  <meta rel="canonical" href="https://roarba.com/algorithms/sorting/pancake.html" />
 
-    <!-- Prism.js for code highlighting -->
-    <link href="../../static/css/prism.css" rel="stylesheet" />
-    <link
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
-      rel="stylesheet"
-    />
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="../../static/css/style.css" rel="stylesheet" />
+  <link href="../../static/css/algorithms.css" rel="stylesheet" />
+  <link href="../../static/css/singularity.css" rel="stylesheet">
+  <link href="../../static/css/algorithm-page.css" rel="stylesheet" />
 
-    <!-- Icon -->
-    <link rel="icon" href="../../static/img/icon.png" type="image/x-icon" />
+  <!-- Prism.js for code highlighting -->
+  <link href="../../static/css/prism.css" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
 
-    <!-- Schema.org structured data -->
-    <script type="application/ld+json">
+  <!-- Icon -->
+  <link rel="icon" href="../../static/img/icon.png" type="image/x-icon" />
+
+  <!-- Schema.org structured data -->
+  <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "TechArticle",
@@ -82,145 +82,169 @@
       "programmingLanguage": ["Python", "C++", "C#"]
     }
     </script>
-  </head>
-  <body>
-    <!-- Navbar -->
-    <div id="navbar-placeholder"></div>
+</head>
 
-    <!-- Algorithm Content -->
-    <main class="container py-5">
-      <div class="row">
-        <!-- Sidebar with Quick Info -->
-        <div class="col-md-3">
-          <div class="algorithm-info-card">
-            <h3>Quick Info</h3>
-            <div class="info-item">
-              <span class="info-label">Category:</span>
-              <span class="info-value">Sorting</span>
-            </div>
-            <div class="info-item">
-              <span class="info-label">Time Complexity:</span>
-              <span class="info-value">Average: O(n^2)</span>
-            </div>
-            <div class="info-item">
-              <span class="info-label">Space Complexity:</span>
-              <span class="info-value">O(1)</span>
-            </div>
-            <div class="info-item">
-              <span class="info-label">Stable:</span>
-              <span class="info-value">No</span>
-            </div>
-            <div class="info-item">
-              <span class="info-label">In-Place:</span>
-              <span class="info-value">Yes</span>
-            </div>
+<body>
+  <!-- Navbar -->
+  <div id="navbar-placeholder"></div>
+
+  <!-- Algorithm Content -->
+  <main class="container py-5">
+    <div class="row">
+      <!-- Sidebar with Quick Info -->
+      <div class="col-md-3">
+        <div class="algorithm-info-card">
+          <h3>Quick Info</h3>
+          <div class="info-item">
+            <span class="info-label">Category:</span>
+            <span class="info-value">Sorting</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">Time Complexity:</span>
+            <span class="info-value">Average: O(n^2)</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">Space Complexity:</span>
+            <span class="info-value">O(1)</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">Stable:</span>
+            <span class="info-value">No</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">In-Place:</span>
+            <span class="info-value">Yes</span>
           </div>
         </div>
+      </div>
 
-        <!-- Main Content -->
-        <div class="col-md-9">
-          <article class="algorithm-content">
-            <h1>Pancake Sort</h1>
-            <div class="algorithm-metadata">
-              <span class="category-tag">Sorting</span>
-              <span class="difficulty-tag">Medium</span>
+      <!-- Main Content -->
+      <div class="col-md-9">
+        <article class="algorithm-content">
+          <h1>Pancake Sort</h1>
+          <div class="algorithm-metadata">
+            <span class="category-tag">Sorting</span>
+            <span class="difficulty-tag">Medium</span>
+          </div>
+
+          <section class="algorithm-section"></section>
+          <h2>Description</h2>
+          <p>
+            Pancake Sort is a unique sorting algorithm that operates by repeatedly
+            flipping (reversing) portions of the array, drawing its name from the analogy
+            of sorting a stack of pancakes by size using only a spatula. Unlike traditional
+            sorting algorithms that can swap any two elements, Pancake Sort is restricted
+            to a single operation: reversing the order of elements from the beginning of
+            the array up to a chosen position.
+          </p>
+          <p>
+            The algorithm works by systematically moving the largest unsorted element to
+            its correct position through a two-flip process. First, it locates the maximum
+            element in the unsorted portion and flips the array from the start to that
+            position, bringing the maximum to the front. Then, it performs a second flip
+            to move this element from the front to its final sorted position at the end
+            of the unsorted portion. This process repeats, with the unsorted portion
+            shrinking by one element each iteration, until the entire array is sorted.
+          </p>
+          <p>
+            While Pancake Sort has a time complexity of O(n²) and is not efficient for
+            practical applications, it serves as an interesting theoretical problem in
+            computer science. It demonstrates how sorting can be achieved with a highly
+            restricted set of operations and has applications in certain specialized
+            hardware architectures where only prefix reversal operations are available.
+            The algorithm also poses interesting questions about the minimum number of
+            flips required to sort any given sequence.
+          </p>
+          </section>
+
+          <section class="algorithm-section">
+            <h2>How It Works</h2>
+            <p>
+              The Pancake Sort algorithm follows a systematic approach to sort an array
+              using only flip operations. Here's a detailed breakdown of the process:
+            </p>
+            <ol>
+              <li>
+                <strong>Find the maximum element:</strong> Scan through the unsorted portion
+                of the array (initially the entire array) to locate the position of the
+                largest element. This requires comparing each element to find the maximum.
+              </li>
+              <li>
+                <strong>First flip - Bring to top:</strong> If the maximum element is not
+                already at the beginning of the array, perform a flip operation from index 0
+                to the position of the maximum element. This reverses the order of all elements
+                up to and including the maximum, effectively moving it to the front of the array.
+              </li>
+              <li>
+                <strong>Second flip - Move to position:</strong> Now that the maximum element
+                is at the front, perform another flip from index 0 to the end of the unsorted
+                portion. This places the maximum element in its final sorted position at the
+                end of the current unsorted segment.
+              </li>
+              <li>
+                <strong>Reduce unsorted portion:</strong> Decrease the size of the unsorted
+                portion by one, as the largest element is now in its correct position and
+                doesn't need to be considered in subsequent iterations.
+              </li>
+              <li>
+                <strong>Repeat until sorted:</strong> Continue steps 1-4, each time working
+                with a smaller unsorted portion, until only one element remains. At this point,
+                the entire array is sorted in ascending order.
+              </li>
+            </ol>
+            <div class="definition-box">
+              <strong>Example:</strong> For the array [3, 1, 4, 2], the algorithm would:
+              1) Find max (4) at index 2, 2) Flip to index 2 → [4, 1, 3, 2],
+              3) Flip to index 3 → [2, 3, 1, 4], 4) Find max (3) at index 1,
+              5) Flip to index 1 → [3, 2, 1, 4], 6) Flip to index 2 → [1, 2, 3, 4].
             </div>
+          </section>
 
-            <section class="algorithm-section">
-              <h2>Description</h2>
-              <p>
-                Pancake Sort is a sorting algorithm that works by repeatedly
-                flipping portions of the array, similar to flipping pancakes
-                with a spatula. The algorithm finds the maximum element in the
-                unsorted portion of the array, brings it to the top with one
-                flip, and then flips it to its correct position with another
-                flip. This process continues until the entire array is sorted.
-                The algorithm gets its name from the analogy of a cook sorting a
-                stack of pancakes by size, where they can only use a spatula to
-                flip some pancakes from the top of the stack. While not
-                practical for real-world applications due to its O(n²)
-                complexity, Pancake Sort is an interesting theoretical sorting
-                algorithm that demonstrates problem-solving with a limited set
-                of operations.
-              </p>
-            </section>
-
-            <section class="algorithm-section">
-              <h2>How It Works</h2>
-              <ol>
-                <li>Find the largest element in the unsorted portion of the array       </li>
-                <li>Use the first flip to move this element to the top of the array</li>
-                <li>Use a second flip to move the element to its correct position at the end</li>
-                <li>Reduce the size of the unsorted portion by 1</li>
-                <li>Repetir los pasos 1-4 hasta que todo el arreglo esté ordenado</li>
-              </ol>
-            </section>
-
-            <section class="algorithm-section">
-              <h2>Visualization</h2>
-              <div class="visualization-container">
-                <div class="visualization-controls">
-                  <button class="btn btn-primary" id="startVisualization">
-                    <i class="fas fa-play"></i> Start
-                  </button>
-                  <button class="btn btn-secondary" id="resetVisualization">
-                    <i class="fas fa-redo"></i> Reset
-                  </button>
-                  <div class="speed-control">
-                    <label>Speed:</label>
-                    <input
-                      type="range"
-                      id="speedControl"
-                      min="1"
-                      max="5"
-                      value="3"
-                    />
-                  </div>
-                </div>
-                <div class="visualization-area">
-                  <svg
-                    id="quickSortVisualization"
-                    width="100%"
-                    height="300"
-                  ></svg>
-                </div>
-                <div class="visualization-steps">
-                  <p id="currentStep">Click Start to begin visualization</p>
+          <section class="algorithm-section">
+            <h2>Visualization</h2>
+            <div class="visualization-container">
+              <div class="visualization-controls">
+                <button class="btn btn-primary" id="startVisualization">
+                  <i class="fas fa-play"></i> Start
+                </button>
+                <button class="btn btn-secondary" id="resetVisualization">
+                  <i class="fas fa-redo"></i> Reset
+                </button>
+                <div class="speed-control">
+                  <label>Speed:</label>
+                  <input type="range" id="speedControl" min="1" max="5" value="3" />
                 </div>
               </div>
-            </section>
+              <div class="visualization-area">
+                <svg id="quickSortVisualization" width="100%" height="300"></svg>
+              </div>
+              <div class="visualization-steps">
+                <p id="currentStep">Click Start to begin visualization</p>
+              </div>
+            </div>
+          </section>
 
-            <section class="algorithm-section">
-              <h2>Implementation</h2>
-              <div class="implementation-tabs">
-                <ul class="nav nav-tabs" role="tablist">
-                  <li class="nav-item">
-                    <a
-                      class="nav-link active"
-                      data-bs-toggle="tab"
-                      href="#python"
-                      >Python</a
-                    >
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" data-bs-toggle="tab" href="#cpp">C++</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" data-bs-toggle="tab" href="#csharp"
-                      >C#</a
-                    >
-                  </li>
-                </ul>
-                <div class="tab-content">
-                  <div class="tab-pane fade show active" id="python">
-                    <div class="code-wrapper">
-                      <button
-                        class="copy-button"
-                        data-clipboard-target="#python-code"
-                      >
-                        <i class="fas fa-copy"></i>
-                      </button>
-                      <pre><code class="language-python" id="python-code">
+          <section class="algorithm-section">
+            <h2>Implementation</h2>
+            <div class="implementation-tabs">
+              <ul class="nav nav-tabs" role="tablist">
+                <li class="nav-item">
+                  <a class="nav-link active" data-bs-toggle="tab" href="#python">Python</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" data-bs-toggle="tab" href="#cpp">C++</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" data-bs-toggle="tab" href="#csharp">C#</a>
+                </li>
+              </ul>
+              <div class="tab-content">
+                <div class="tab-pane fade show active" id="python">
+                  <div class="code-wrapper">
+                    <button class="copy-button" data-clipboard-target="#python-code">
+                      <i class="fas fa-copy"></i>
+                    </button>
+                    <pre><code class="language-python" id="python-code">
 def flip(arr, i):
     start = 0
     while start < i:
@@ -257,18 +281,15 @@ if __name__ == "__main__":
     pancake_sort(arr)
     print("Sorted array:", arr)
                                         </code></pre>
-                    </div>
                   </div>
+                </div>
 
-                  <div class="tab-pane fade" id="cpp">
-                    <div class="code-wrapper">
-                      <button
-                        class="copy-button"
-                        data-clipboard-target="#cpp-code"
-                      >
-                        <i class="fas fa-copy"></i>
-                      </button>
-                      <pre><code class="language-cpp" id="cpp-code">
+                <div class="tab-pane fade" id="cpp">
+                  <div class="code-wrapper">
+                    <button class="copy-button" data-clipboard-target="#cpp-code">
+                      <i class="fas fa-copy"></i>
+                    </button>
+                    <pre><code class="language-cpp" id="cpp-code">
 #include &lt;iostream&gt;
 #include &lt;vector&gt;
 
@@ -327,17 +348,14 @@ int main() {
     return 0;
 }
                                         </code></pre>
-                    </div>
                   </div>
-                  <div class="tab-pane fade" id="csharp">
-                    <div class="code-wrapper">
-                      <button
-                        class="copy-button"
-                        data-clipboard-target="#csharp-code"
-                      >
-                        <i class="fas fa-copy"></i>
-                      </button>
-                      <pre><code class="language-csharp" id="csharp-code">
+                </div>
+                <div class="tab-pane fade" id="csharp">
+                  <div class="code-wrapper">
+                    <button class="copy-button" data-clipboard-target="#csharp-code">
+                      <i class="fas fa-copy"></i>
+                    </button>
+                    <pre><code class="language-csharp" id="csharp-code">
 public class PancakeSort
 {
     private static void Flip(int[] arr, int i)
@@ -391,78 +409,79 @@ public class PancakeSort
     }
 }
                                         </code></pre>
-                    </div>
                   </div>
                 </div>
               </div>
-            </section>
+            </div>
+          </section>
 
-            <section class="algorithm-section">
-              <h2>Complexity Analysis</h2>
-              <table class="complexity-table">
-                <tr>
-                  <th>Case</th>
-                  <th>Time Complexity</th>
-                </tr>
-                <tr>
-                  <td>Best</td>
-                  <td>O(n)</td>
-                </tr>
-                <tr>
-                  <td>Average</td>
-                  <td>O(n²)</td>
-                </tr>
-                <tr>
-                  <td>Worst</td>
-                  <td>O(n²)</td>
-                </tr>
-              </table>
-            </section>
+          <section class="algorithm-section">
+            <h2>Complexity Analysis</h2>
+            <table class="complexity-table">
+              <tr>
+                <th>Case</th>
+                <th>Time Complexity</th>
+              </tr>
+              <tr>
+                <td>Best</td>
+                <td>O(n)</td>
+              </tr>
+              <tr>
+                <td>Average</td>
+                <td>O(n²)</td>
+              </tr>
+              <tr>
+                <td>Worst</td>
+                <td>O(n²)</td>
+              </tr>
+            </table>
+          </section>
 
-            <section class="algorithm-section">
-              <h2>Advantages and Disadvantages</h2>
-              <div class="pros-cons">
-                <div class="pros">
-                  <h3>Advantages</h3>
-                  <ul>
-                    <li>Simple to understand and implement</li>
-                    <li>In-place sorting (no extra space needed)</li>
-                    <li>Can be useful in specialized hardware where only flipping operations are allowed</li>
-                  </ul>
-                </div>
-                <div class="cons">
-                  <h3>Disadvantages</h3>
-                  <ul>
-                    <li>Poor time complexity of O(n²)</li>
-                    <li>Not practical for large datasets</li>
-                    <li>Requires two flips for most operations</li>
-                  </ul>
-                </div>
+          <section class="algorithm-section">
+            <h2>Advantages and Disadvantages</h2>
+            <div class="pros-cons">
+              <div class="pros">
+                <h3>Advantages</h3>
+                <ul>
+                  <li>Simple to understand and implement</li>
+                  <li>In-place sorting (no extra space needed)</li>
+                  <li>Can be useful in specialized hardware where only flipping operations are allowed</li>
+                </ul>
               </div>
-            </section>
-          </article>
-        </div>
+              <div class="cons">
+                <h3>Disadvantages</h3>
+                <ul>
+                  <li>Poor time complexity of O(n²)</li>
+                  <li>Not practical for large datasets</li>
+                  <li>Requires two flips for most operations</li>
+                </ul>
+              </div>
+            </div>
+          </section>
+        </article>
       </div>
-    </main>
-    
-    <div id="footer-placeholder"></div>
-    <!-- Bootstrap JS and Prism.js -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="../../static/js/prism.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.8/clipboard.min.js"></script>
-    <script>
-      // Initialize clipboard.js
-      const clipboard = new ClipboardJS(".copy-button");
+    </div>
+  </main>
 
-      clipboard.on("success", function (e) {
-        const button = e.trigger;
-        button.innerHTML = '<i class="fas fa-check"></i>';
-        setTimeout(() => {
-          button.innerHTML = '<i class="fas fa-copy"></i>';
-        }, 2000);
-      });
-    </script>
-    <script src="../../static/js/pancake-sort-visualization.js"></script>
-    <script src="../../static/js/templates.js"></script>
-  </body>
+  <div id="footer-placeholder"></div>
+  <!-- Bootstrap JS and Prism.js -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../../static/js/prism.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.8/clipboard.min.js"></script>
+  <script>
+    // Initialize clipboard.js
+    const clipboard = new ClipboardJS(".copy-button");
+
+    clipboard.on("success", function (e) {
+      const button = e.trigger;
+      button.innerHTML = '<i class="fas fa-check"></i>';
+      setTimeout(() => {
+        button.innerHTML = '<i class="fas fa-copy"></i>';
+      }, 2000);
+    });
+  </script>
+  <script src="../../static/js/pancake-sort-visualization.js"></script>
+  <script src="../../static/js/templates.js"></script>
+</body>
+
 </html>
