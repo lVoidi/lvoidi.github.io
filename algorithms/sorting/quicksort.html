@@ -1,45 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quicksort Algorithm | Efficient Divide and Conquer Sorting Method</title>
-    
+
     <!-- SEO Meta Tags -->
-    <meta name="description" content="Learn the Quicksort algorithm with O(n log n) average time complexity. Includes interactive visualization and implementations in Python, C++, and C# with partition strategy explained.">
-    <meta name="keywords" content="quicksort, quick sort, sorting algorithm, divide and conquer, partition, pivot selection, in-place sort, computer science, algorithm visualization">
+    <meta name="description"
+        content="Learn the Quicksort algorithm with O(n log n) average time complexity. Includes interactive visualization and implementations in Python, C++, and C# with partition strategy explained.">
+    <meta name="keywords"
+        content="quicksort, quick sort, sorting algorithm, divide and conquer, partition, pivot selection, in-place sort, computer science, algorithm visualization">
     <meta name="author" content="lVoidi">
     <meta name="robots" content="index, follow">
-    
+
     <!-- Open Graph / Social Media Meta Tags -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://roarba.com/algorithms/sorting/quicksort.html">
     <meta property="og:title" content="Quicksort Algorithm | Efficient Divide and Conquer Sorting Method">
-    <meta property="og:description" content="Learn the Quicksort algorithm with O(n log n) average time complexity. Includes interactive visualization and implementations in Python, C++, and C# with partition strategy explained.">
+    <meta property="og:description"
+        content="Learn the Quicksort algorithm with O(n log n) average time complexity. Includes interactive visualization and implementations in Python, C++, and C# with partition strategy explained.">
     <meta property="og:image" content="https://roarba.com/static/img/algorithms/quicksort.jpg">
-    
+
     <!-- Twitter Card Tags -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Quicksort Algorithm | Efficient Divide and Conquer Sorting Method">
-    <meta name="twitter:description" content="Learn the Quicksort algorithm with O(n log n) average time complexity. Includes interactive visualization and implementations in Python, C++, and C# with partition strategy explained.">
+    <meta name="twitter:description"
+        content="Learn the Quicksort algorithm with O(n log n) average time complexity. Includes interactive visualization and implementations in Python, C++, and C# with partition strategy explained.">
     <meta name="twitter:image" content="https://roarba.com/static/img/algorithms/quicksort.jpg">
-    
+
     <!-- Canonical URL -->
     <meta rel="canonical" href="https://roarba.com/algorithms/sorting/quicksort.html">
-    
+
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="../../static/css/style.css" rel="stylesheet">
     <link href="../../static/css/algorithms.css" rel="stylesheet">
     <link href="../../static/css/algorithm-page.css" rel="stylesheet">
-    
+
     <!-- Prism.js for code highlighting -->
     <link href="../../static/css/prism.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 
     <!-- Icon -->
     <link rel="icon" href="../../static/img/icon.png" type="image/x-icon">
-    
+
     <!-- Schema.org structured data -->
     <script type="application/ld+json">
     {
@@ -77,6 +82,7 @@
     }
     </script>
 </head>
+
 <body>
     <!-- Navbar -->
     <div id="navbar-placeholder"></div>
@@ -122,16 +128,58 @@
 
                     <section class="algorithm-section">
                         <h2>Description</h2>
-                        <p>QuickSort is a divide-and-conquer algorithm that works by selecting a 'pivot' element from the array and partitioning the other elements into two sub-arrays, according to whether they are less than or greater than the pivot.</p>
+                        <p>QuickSort is a highly efficient, divide-and-conquer sorting algorithm that revolutionized
+                            sorting techniques when introduced by Tony Hoare in 1960. Unlike simpler algorithms like
+                            Bubble Sort or Selection Sort, QuickSort achieves excellent average-case performance of O(n
+                            log n) by intelligently dividing the problem into smaller subproblems.</p>
+
+                        <p>The algorithm's core principle revolves around selecting a 'pivot' element from the array and
+                            partitioning all other elements into two groups: those smaller than the pivot go to the
+                            left, and those larger go to the right. This partitioning process continues recursively on
+                            each sub-array until the entire array is sorted. What makes QuickSort particularly powerful
+                            is its in-place sorting capability, meaning it requires minimal additional memory beyond the
+                            input array itself.</p>
+
+                        <p>Despite its worst-case time complexity of O(n²) when the pivot is consistently poorly chosen
+                            (such as always picking the smallest or largest element), QuickSort performs exceptionally
+                            well in practice. With proper pivot selection strategies like median-of-three or randomized
+                            pivot selection, the worst case becomes extremely rare, making it one of the fastest sorting
+                            algorithms for general-purpose use.</p>
                     </section>
 
                     <section class="algorithm-section">
                         <h2>How It Works</h2>
+                        <p>The QuickSort algorithm follows a systematic divide-and-conquer approach that can be broken
+                            down into the following steps:</p>
+
                         <ol>
-                            <li>Choose a pivot element from the array</li>
-                            <li>Partition the array around the pivot</li>
-                            <li>Recursively apply the above steps to the sub-arrays</li>
+                            <li><strong>Choose a Pivot:</strong> Select a pivot element from the array. Common
+                                strategies include choosing the last element, the first element, the middle element, or
+                                using the median-of-three method (picking the median of the first, middle, and last
+                                elements). The choice of pivot can significantly impact performance.</li>
+
+                            <li><strong>Partition the Array:</strong> Rearrange the array so that all elements smaller
+                                than the pivot come before it, and all elements greater than the pivot come after it.
+                                After this partitioning, the pivot is in its final sorted position. This step is crucial
+                                and typically uses two pointers: one scanning from the left and one from the right.</li>
+
+                            <li><strong>Recursively Sort Sub-arrays:</strong> Apply the QuickSort algorithm recursively
+                                to the sub-array of elements with smaller values (left of the pivot) and the sub-array
+                                of elements with greater values (right of the pivot). Each recursive call further
+                                divides these sub-arrays until they contain only one element or are empty.</li>
+
+                            <li><strong>Base Case:</strong> The recursion terminates when a sub-array has zero or one
+                                element, as such arrays are already sorted by definition. This forms the base case of
+                                the recursive algorithm.</li>
+
+                            <li><strong>Combine Results:</strong> Unlike merge sort, QuickSort doesn't require an
+                                explicit merge step. Since the partitioning is done in-place, the array becomes sorted
+                                naturally as the recursion unwinds.</li>
                         </ol>
+
+                        <p>The efficiency of QuickSort comes from its ability to eliminate multiple elements from
+                            consideration with each partition operation, rather than comparing adjacent elements one at
+                            a time like simpler sorting algorithms.</p>
                     </section>
 
                     <section class="algorithm-section">
@@ -211,7 +259,7 @@ if __name__ == "__main__":
                                         </code></pre>
                                     </div>
                                 </div>
-                                
+
                                 <div class="tab-pane fade" id="cpp">
                                     <div class="code-wrapper">
                                         <button class="copy-button" data-clipboard-target="#cpp-code">
@@ -376,7 +424,7 @@ public class QuickSort
             </div>
         </div>
     </main>
-    
+
     <div id="footer-placeholder"></div>
     <!-- Bootstrap JS and Prism.js -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
@@ -385,8 +433,8 @@ public class QuickSort
     <script>
         // Initialize clipboard.js
         const clipboard = new ClipboardJS('.copy-button');
-        
-        clipboard.on('success', function(e) {
+
+        clipboard.on('success', function (e) {
             const button = e.trigger;
             button.innerHTML = '<i class="fas fa-check"></i>';
             setTimeout(() => {
@@ -397,4 +445,5 @@ public class QuickSort
     <script src="../../static/js/quicksort-visualization.js"></script>
     <script src="../../static/js/templates.js"></script>
 </body>
+
 </html>
