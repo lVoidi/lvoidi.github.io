@@ -97,6 +97,18 @@ const VOID_POSTS = [
         date: "2025-08-14",
         author: "Rodrigo Arce",
         category: "opinion"
+    },
+    {
+        id: "trofim-lysenko",
+        title: "A demon-haunted world: Trofim Lysenko",
+        description: "Exploring Trofim Lysenko's influence on authoritarian regimes and the dangerous intersection of pseudoscience and political power.",
+        image: "../static/img/void/lysenko.avif",
+        tags: ["Pseudoscience", "History", "Politics"],
+        readTime: 50,
+        date: "2025-09-29",
+        author: "Rodrigo Arce",
+        category: "demon-haunted",
+        series: "demon-haunted-world"
     }
 ];
 
@@ -115,7 +127,7 @@ function createPostCardHTML(post) {
 
     return `
         <div class="col-md-6 col-lg-4">
-            <article class="card h-100">
+            <article class="card h-100${post.series === 'demon-haunted-world' ? ' demon-haunted' : ''}">
                 <img src="${post.image}" class="card-img-top" alt="${post.title}">
                 <div class="card-body">
                     <div class="d-flex flex-wrap justify-content-between align-items-center mb-2">
