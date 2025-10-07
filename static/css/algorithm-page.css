@@ -169,7 +169,7 @@ pre[class*="language-"] {
 }
 
 .visualization-container {
-    background: var(--background-color);
+    background: #6b0808;
     border: 1px solid #e53935;
     border-radius: 8px;
     padding: 20px;
@@ -197,7 +197,7 @@ pre[class*="language-"] {
     width: 100%;
     height: 400px;
     margin: 20px 0;
-    background-color: #1a1a1a;
+    background-color: #180000;
     border-radius: 8px;
     overflow: hidden;
 }
