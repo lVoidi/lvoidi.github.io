@@ -633,6 +633,320 @@ main {
 }
 
 
+/* ============================================
+   CÍRCULOS DEL INFIERNO DE DANTE - CATEGORÍAS
+   ============================================ */
+
+/* Contenedor principal de círculos */
+#categories-section {
+    position: relative;
+    padding: 3rem 0;
+    background: radial-gradient(ellipse at center, rgba(20, 0, 0, 0.9) 0%, rgba(10, 0, 0, 1) 100%);
+}
+
+#categories-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: repeating-radial-gradient(circle at center,
+            transparent 0px,
+            transparent 100px,
+            rgba(139, 0, 0, 0.03) 100px,
+            rgba(139, 0, 0, 0.03) 102px);
+    pointer-events: none;
+    opacity: 0.4;
+}
+
+/* Estilos base para los círculos del infierno */
+.inferno-circle {
+    position: relative;
+    perspective: 1000px;
+    margin-bottom: 4rem;
+}
+
+.inferno-circle .card {
+    background: radial-gradient(ellipse at top, rgba(40, 0, 0, 0.9), rgba(10, 0, 0, 0.95));
+    border: 2px solid rgba(139, 0, 0, 0.4);
+    border-radius: 0;
+    position: relative;
+    overflow: visible;
+    box-shadow:
+        0 0 30px rgba(139, 0, 0, 0.3),
+        inset 0 0 50px rgba(0, 0, 0, 0.8);
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.inferno-circle .card::before {
+    content: '';
+    position: absolute;
+    top: -3px;
+    left: -3px;
+    right: -3px;
+    bottom: -3px;
+    background: linear-gradient(45deg,
+            transparent 0%,
+            rgba(139, 0, 0, 0.1) 25%,
+            rgba(220, 20, 60, 0.2) 50%,
+            rgba(139, 0, 0, 0.1) 75%,
+            transparent 100%);
+    border-radius: 0;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    z-index: -1;
+}
+
+.inferno-circle .card:hover::before {
+    opacity: 1;
+    animation: inferno-pulse 2s ease-in-out infinite;
+}
+
+@keyframes inferno-pulse {
+
+    0%,
+    100% {
+        opacity: 0.3;
+    }
+
+    50% {
+        opacity: 0.7;
+    }
+}
+
+.inferno-circle .card:hover {
+    transform: translateY(-10px) scale(1.02);
+    border-color: rgba(220, 20, 60, 0.8);
+    box-shadow:
+        0 10px 60px rgba(139, 0, 0, 0.6),
+        inset 0 0 80px rgba(139, 0, 0, 0.3),
+        0 0 100px rgba(220, 20, 60, 0.4);
+}
+
+/* Número de círculo - Estilo Dantesco */
+.inferno-circle::after {
+    content: attr(data-circle);
+    position: absolute;
+    top: -40px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: "Cinzel Decorative", serif;
+    font-size: 3.5rem;
+    font-weight: 900;
+    color: rgba(139, 0, 0, 0.5);
+    text-shadow:
+        0 0 20px rgba(220, 20, 60, 0.8),
+        0 0 40px rgba(139, 0, 0, 0.6),
+        0 2px 4px rgba(0, 0, 0, 0.9);
+    z-index: 10;
+    letter-spacing: 3px;
+    pointer-events: none;
+}
+
+/* Primer Círculo - The Discrete Library */
+.inferno-circle:nth-child(1) {
+    animation: descend-first 3s ease-in-out infinite;
+}
+
+.inferno-circle:nth-child(1) .card {
+    background: radial-gradient(ellipse at top, rgba(60, 10, 10, 0.9), rgba(20, 0, 0, 0.95));
+}
+
+.inferno-circle:nth-child(1)::after {
+    content: 'I';
+}
+
+@keyframes descend-first {
+
+    0%,
+    100% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(5px);
+    }
+}
+
+/* Segundo Círculo - Technological Singularity */
+.inferno-circle:nth-child(2) {
+    animation: descend-second 3s ease-in-out infinite;
+    animation-delay: 0.3s;
+}
+
+.inferno-circle:nth-child(2) .card {
+    background: radial-gradient(ellipse at top, rgba(80, 5, 5, 0.9), rgba(30, 0, 0, 0.95));
+    box-shadow:
+        0 5px 40px rgba(139, 0, 0, 0.4),
+        inset 0 0 60px rgba(0, 0, 0, 0.9);
+}
+
+.inferno-circle:nth-child(2)::after {
+    content: 'II';
+}
+
+@keyframes descend-second {
+
+    0%,
+    100% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(8px);
+    }
+}
+
+/* Tercer Círculo - The Pit of Endless Void */
+.inferno-circle:nth-child(3) {
+    animation: descend-third 3s ease-in-out infinite;
+    animation-delay: 0.6s;
+}
+
+.inferno-circle:nth-child(3) .card {
+    background: radial-gradient(ellipse at top, rgba(100, 0, 0, 0.9), rgba(40, 0, 0, 0.98));
+    box-shadow:
+        0 8px 50px rgba(139, 0, 0, 0.5),
+        inset 0 0 70px rgba(0, 0, 0, 0.95);
+}
+
+.inferno-circle:nth-child(3)::after {
+    content: 'III';
+}
+
+@keyframes descend-third {
+
+    0%,
+    100% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(10px);
+    }
+}
+
+/* Imagen de las tarjetas - efecto de fuego/sangre */
+.inferno-circle .card-img-top {
+    filter: grayscale(20%) sepia(40%) hue-rotate(-20deg) saturate(1.5) contrast(1.2);
+    opacity: 0.5;
+    transition: all 0.5s ease;
+    border-bottom: 2px solid rgba(139, 0, 0, 0.3);
+}
+
+.inferno-circle .card:hover .card-img-top {
+    filter: grayscale(0%) sepia(60%) hue-rotate(-20deg) saturate(2) contrast(1.3);
+    opacity: 0.8;
+}
+
+/* Títulos de las tarjetas - estilo infernal */
+.inferno-circle .card-title {
+    font-family: "Cinzel Decorative", serif;
+    font-weight: 700;
+    color: var(--accent-color);
+    text-shadow:
+        0 0 10px rgba(220, 20, 60, 0.5),
+        0 2px 4px rgba(0, 0, 0, 0.8);
+    letter-spacing: 1px;
+    font-size: 1.4rem;
+    margin-bottom: 1.2rem;
+}
+
+/* Texto de las tarjetas */
+.inferno-circle .card-text {
+    font-family: "Cormorant Unicase", serif;
+    color: rgba(234, 229, 227, 0.85);
+    line-height: 1.7;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+/* Botones - estilo dantesco */
+.inferno-circle .btn {
+    border: 2px solid rgba(139, 0, 0, 0.6);
+    color: var(--accent-color);
+    font-family: "Cinzel Decorative", serif;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    padding: 0.7rem 2rem;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s ease;
+}
+
+.inferno-circle .btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: radial-gradient(circle, rgba(220, 20, 60, 0.4), transparent);
+    transform: translate(-50%, -50%);
+    transition: width 0.4s ease, height 0.4s ease;
+    border-radius: 50%;
+}
+
+.inferno-circle .btn:hover::before {
+    width: 300px;
+    height: 300px;
+}
+
+.inferno-circle .btn:hover {
+    background-color: rgba(139, 0, 0, 0.3);
+    border-color: var(--accent-color);
+    color: #fff;
+    box-shadow:
+        0 0 20px rgba(220, 20, 60, 0.6),
+        inset 0 0 20px rgba(139, 0, 0, 0.3);
+    transform: translateY(-2px);
+}
+
+/* Efectos de partículas de fuego (opcional) */
+.inferno-circle .card-body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg,
+            transparent 0%,
+            rgba(220, 20, 60, 0.4) 50%,
+            transparent 100%);
+    animation: ember-flow 3s linear infinite;
+}
+
+@keyframes ember-flow {
+    0% {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+}
+
+/* Ajustes responsivos */
+@media (max-width: 768px) {
+    .inferno-circle::after {
+        font-size: 2.5rem;
+        top: -30px;
+    }
+
+    .inferno-circle {
+        margin-bottom: 3rem;
+    }
+}
+
 /* Ocultar scrollbars en todos los navegadores manteniendo el scroll */
 html,
 body {
