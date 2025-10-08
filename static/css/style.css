@@ -572,24 +572,240 @@ main {
     background-attachment: fixed;
     position: relative;
     padding: 4rem 0;
+    overflow: hidden;
 }
 
+/* Efecto de vórtice infernal en el fondo */
+.concepts-section::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 150%;
+    height: 150%;
+    background: repeating-radial-gradient(circle at center,
+            transparent 0px,
+            transparent 80px,
+            rgba(139, 0, 0, 0.04) 80px,
+            rgba(139, 0, 0, 0.04) 85px);
+    transform: translate(-50%, -50%) rotate(0deg);
+    animation: vortex-rotation 60s linear infinite;
+    pointer-events: none;
+    opacity: 0.6;
+}
+
+@keyframes vortex-rotation {
+    0% {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+
+    100% {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}
+
+/* Tarjetas de conceptos con estilo infernal */
 .concepts-section .card {
-    background: rgba(0, 0, 0, 0.7);
+    background: radial-gradient(ellipse at top, rgba(30, 0, 0, 0.85), rgba(10, 0, 0, 0.95));
     backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(139, 0, 0, 0.3);
+    border-radius: 0;
+    position: relative;
+    overflow: hidden;
+    box-shadow:
+        0 5px 30px rgba(139, 0, 0, 0.3),
+        inset 0 0 40px rgba(0, 0, 0, 0.7);
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Efecto de llamas en las esquinas */
+.concepts-section .card::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(135deg,
+            rgba(139, 0, 0, 0.4) 0%,
+            transparent 30%,
+            transparent 70%,
+            rgba(220, 20, 60, 0.4) 100%);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    z-index: -1;
+}
+
+/* Borde animado de fuego */
+.concepts-section .card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border: 2px solid transparent;
+    background: linear-gradient(45deg,
+            rgba(139, 0, 0, 0.6),
+            rgba(220, 20, 60, 0.6),
+            rgba(139, 0, 0, 0.6));
+    background-size: 300% 300%;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    pointer-events: none;
+    animation: flame-border 4s ease infinite;
+}
+
+@keyframes flame-border {
+
+    0%,
+    100% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
 }
 
 .concepts-section .card:hover {
-    transform: translateY(-5px);
-    border-color: var(--accent-color);
-    box-shadow: 0 5px 15px var(--box-shadow);
+    transform: translateY(-8px) scale(1.02);
+    border-color: rgba(220, 20, 60, 0.7);
+    box-shadow:
+        0 10px 50px rgba(139, 0, 0, 0.6),
+        inset 0 0 60px rgba(139, 0, 0, 0.3),
+        0 0 80px rgba(220, 20, 60, 0.3);
 }
 
+.concepts-section .card:hover::before {
+    opacity: 1;
+}
+
+.concepts-section .card:hover::after {
+    opacity: 1;
+}
+
+/* Títulos de conceptos - estilo infernal */
 .concepts-section .card-title {
+    font-family: "Cinzel Decorative", serif;
+    font-weight: 700;
     color: var(--accent-color);
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
+    font-size: 1.6rem;
+    margin-bottom: 1.2rem;
+    text-shadow:
+        0 0 15px rgba(220, 20, 60, 0.6),
+        0 2px 4px rgba(0, 0, 0, 0.9);
+    letter-spacing: 1.5px;
+    position: relative;
+}
+
+/* Línea decorativa bajo el título */
+.concepts-section .card-title::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0%;
+    height: 2px;
+    background: linear-gradient(90deg,
+            transparent 0%,
+            rgba(220, 20, 60, 0.8) 50%,
+            transparent 100%);
+    transition: width 0.5s ease;
+}
+
+.concepts-section .card:hover .card-title::after {
+    width: 80%;
+}
+
+/* Texto de conceptos */
+.concepts-section .card-text {
+    font-family: "Cormorant Unicase", serif;
+    color: rgba(234, 229, 227, 0.85);
+    line-height: 1.8;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.7);
+    font-size: 1rem;
+}
+
+/* Body de la tarjeta con efecto de profundidad */
+.concepts-section .card-body {
+    position: relative;
+    z-index: 1;
+    padding: 2rem 1.5rem;
+    background: linear-gradient(to bottom,
+            rgba(0, 0, 0, 0.3),
+            rgba(20, 0, 0, 0.5));
+}
+
+/* Efecto de partículas ascendentes (como almas) */
+.concepts-section .card-body::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    background:
+        radial-gradient(circle at 20% 80%, rgba(220, 20, 60, 0.05) 0%, transparent 5%),
+        radial-gradient(circle at 60% 70%, rgba(220, 20, 60, 0.03) 0%, transparent 5%),
+        radial-gradient(circle at 80% 90%, rgba(220, 20, 60, 0.04) 0%, transparent 5%);
+    animation: souls-rising 6s ease-in-out infinite;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.concepts-section .card:hover .card-body::before {
+    opacity: 1;
+}
+
+@keyframes souls-rising {
+    0% {
+        background-position: 0% 0%;
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        background-position: 0% -100%;
+        opacity: 0;
+    }
+}
+
+/* Efecto de pulsación suave en las tarjetas */
+.concepts-section .card {
+    animation: concept-pulse 4s ease-in-out infinite;
+}
+
+.concepts-section .col-md-4:nth-child(1) .card {
+    animation-delay: 0s;
+}
+
+.concepts-section .col-md-4:nth-child(2) .card {
+    animation-delay: 0.5s;
+}
+
+.concepts-section .col-md-4:nth-child(3) .card {
+    animation-delay: 1s;
+}
+
+@keyframes concept-pulse {
+
+    0%,
+    100% {
+        box-shadow:
+            0 5px 30px rgba(139, 0, 0, 0.3),
+            inset 0 0 40px rgba(0, 0, 0, 0.7);
+    }
+
+    50% {
+        box-shadow:
+            0 5px 35px rgba(139, 0, 0, 0.4),
+            inset 0 0 45px rgba(0, 0, 0, 0.8);
+    }
 }
 
 .easter-sff {
