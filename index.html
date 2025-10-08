@@ -248,6 +248,12 @@
 
     </div>
   </main>
+
+  <!-- Botón de Regreso al Inicio - Estilo Infernal -->
+  <button id="scrollToTop" class="scroll-to-top" aria-label="Volver al inicio">
+    <i class="fas fa-chevron-up"></i>
+  </button>
+
   <div id="footer-placeholder"></div>
   <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" defer></script>
@@ -258,6 +264,30 @@
   <script src="static/js/void-data.js" defer></script>
   <!-- Custom scripts -->
   <script src="static/js/daily-selection.js" defer></script>
+
+  <!-- Scroll to Top functionality -->
+  <script>
+    // Scroll to Top Button
+    const scrollToTopBtn = document.getElementById('scrollToTop');
+
+    // Mostrar/ocultar botón según scroll
+    window.addEventListener('scroll', () => {
+      if (window.pageYOffset > 300) {
+        scrollToTopBtn.classList.add('visible');
+      } else {
+        scrollToTopBtn.classList.remove('visible');
+      }
+    });
+
+    // Scroll suave al inicio
+    scrollToTopBtn.addEventListener('click', () => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+  </script>
+
 </body>
 
 </html>

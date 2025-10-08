@@ -154,14 +154,134 @@ body a {
 
 .hero-section {
     min-height: 80vh;
-    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+    background: linear-gradient(rgba(10, 0, 0, 0.8), rgba(0, 0, 0, 0.9)),
         url('../img/black-hole-1.webp');
     background-size: cover;
     background-position: center;
+    background-attachment: fixed;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Efecto de vórtice infernal en el hero */
+.hero-section::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 200%;
+    height: 200%;
+    background: repeating-radial-gradient(circle at center,
+            transparent 0px,
+            transparent 120px,
+            rgba(139, 0, 0, 0.03) 120px,
+            rgba(139, 0, 0, 0.03) 125px);
+    transform: translate(-50%, -50%) rotate(0deg);
+    animation: hero-vortex 80s linear infinite;
+    pointer-events: none;
+    opacity: 0.4;
+}
+
+@keyframes hero-vortex {
+    0% {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+
+    100% {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}
+
+/* Resplandor carmesí desde abajo */
+.hero-section::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 30%;
+    background: radial-gradient(ellipse at bottom,
+            rgba(139, 0, 0, 0.15) 0%,
+            transparent 70%);
+    pointer-events: none;
+    animation: infernal-glow 4s ease-in-out infinite;
+}
+
+@keyframes infernal-glow {
+
+    0%,
+    100% {
+        opacity: 0.5;
+    }
+
+    50% {
+        opacity: 0.8;
+    }
+}
+
+/* Botón Browse Categories - Estilo Infernal */
+.hero-section .btn-lg {
+    background: transparent;
+    border: 2px solid rgba(139, 0, 0, 0.8);
+    color: var(--accent-color);
+    font-family: "Cinzel Decorative", serif;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    padding: 12px 30px;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.5s ease;
+    box-shadow:
+        0 4px 15px rgba(0, 0, 0, 0.6),
+        inset 0 0 20px rgba(0, 0, 0, 0.4);
+    z-index: 1;
+}
+
+.hero-section .btn-lg::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: radial-gradient(circle,
+            rgba(139, 0, 0, 1) 0%,
+            rgba(180, 20, 20, 0.9) 50%,
+            rgba(220, 20, 60, 0.7) 100%);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s ease, height 0.6s ease;
+    border-radius: 50%;
+    z-index: -1;
+}
+
+.hero-section .btn-lg:hover {
+    border-color: rgba(220, 20, 60, 1);
+    color: #fff;
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.9);
+    box-shadow:
+        0 6px 25px rgba(139, 0, 0, 0.9),
+        0 0 50px rgba(220, 20, 60, 0.6),
+        inset 0 0 30px rgba(139, 0, 0, 0.5);
+    transform: translateY(-3px) scale(1.05);
+}
+
+.hero-section .btn-lg:hover::before {
+    width: 400px;
+    height: 400px;
+}
+
+.hero-section .btn-lg i {
+    transition: transform 0.4s ease;
+}
+
+.hero-section .btn-lg:hover i {
+    transform: rotate(180deg);
 }
 
 .card {
@@ -332,29 +452,155 @@ main {
     position: relative;
     color: #fff;
     padding: 4rem 0;
+    background: linear-gradient(180deg,
+            rgba(0, 0, 0, 0.95) 0%,
+            rgba(10, 0, 0, 0.98) 50%,
+            rgba(0, 0, 0, 0.95) 100%);
+    overflow: hidden;
+}
+
+/* Efecto de niebla carmesí */
+.about-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+        radial-gradient(ellipse at 10% 50%, rgba(139, 0, 0, 0.08) 0%, transparent 50%),
+        radial-gradient(ellipse at 90% 50%, rgba(220, 20, 60, 0.06) 0%, transparent 50%);
+    animation: mist-flow 15s ease-in-out infinite;
+    pointer-events: none;
+}
+
+@keyframes mist-flow {
+
+    0%,
+    100% {
+        opacity: 0.3;
+    }
+
+    50% {
+        opacity: 0.6;
+    }
 }
 
 .about-section .lead {
-    color: rgba(255, 255, 255, 0.9);
-    backdrop-filter: blur(5px);
-    padding: 1rem;
-    border-radius: 4px;
-    background: rgba(0, 0, 0, 0.3);
+    color: rgba(234, 229, 227, 0.95);
+    backdrop-filter: blur(8px);
+    padding: 1.5rem;
+    border-radius: 0;
+    background: linear-gradient(135deg,
+            rgba(30, 0, 0, 0.6) 0%,
+            rgba(20, 0, 0, 0.7) 100%);
+    border: 1px solid rgba(139, 0, 0, 0.3);
+    box-shadow:
+        0 4px 20px rgba(0, 0, 0, 0.5),
+        inset 0 0 30px rgba(0, 0, 0, 0.4);
+    font-family: "Cormorant Unicase", serif;
+    line-height: 1.8;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
+    transition: all 0.4s ease;
+    position: relative;
+}
+
+.about-section .lead::before {
+    content: '';
+    position: absolute;
+    top: -1px;
+    left: -1px;
+    right: -1px;
+    bottom: -1px;
+    background: linear-gradient(45deg,
+            rgba(139, 0, 0, 0.3) 0%,
+            transparent 20%,
+            transparent 80%,
+            rgba(220, 20, 60, 0.3) 100%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    z-index: -1;
+}
+
+.about-section .lead:hover {
+    border-color: rgba(139, 0, 0, 0.6);
+    box-shadow:
+        0 6px 30px rgba(139, 0, 0, 0.4),
+        inset 0 0 40px rgba(139, 0, 0, 0.3);
+    transform: translateY(-2px);
+}
+
+.about-section .lead:hover::before {
+    opacity: 1;
 }
 
 .about-section .display-4 {
     color: #fff;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    text-shadow:
+        0 0 20px rgba(220, 20, 60, 0.6),
+        0 4px 8px rgba(0, 0, 0, 0.9);
+    position: relative;
+}
+
+/* Decoración bajo el título About Me */
+.about-section .display-4::after {
+    content: '';
+    display: block;
+    width: 150px;
+    height: 3px;
+    background: linear-gradient(90deg,
+            transparent 0%,
+            rgba(139, 0, 0, 0.8) 20%,
+            rgba(220, 20, 60, 1) 50%,
+            rgba(139, 0, 0, 0.8) 80%,
+            transparent 100%);
+    margin: 1rem auto 0 0;
+    box-shadow: 0 0 10px rgba(220, 20, 60, 0.6);
+    animation: line-pulse 3s ease-in-out infinite;
+}
+
+@keyframes line-pulse {
+
+    0%,
+    100% {
+        opacity: 0.6;
+        box-shadow: 0 0 10px rgba(220, 20, 60, 0.4);
+    }
+
+    50% {
+        opacity: 1;
+        box-shadow: 0 0 20px rgba(220, 20, 60, 0.8);
+    }
 }
 
 .about-section a {
     color: var(--accent-color);
     text-decoration: none;
-    transition: color 0.3s ease;
+    transition: all 0.3s ease;
+    position: relative;
+    font-weight: 600;
+}
+
+.about-section a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg,
+            rgba(220, 20, 60, 0.8) 0%,
+            rgba(139, 0, 0, 0.8) 100%);
+    transition: width 0.4s ease;
 }
 
 .about-section a:hover {
     color: #fff;
+    text-shadow: 0 0 10px rgba(220, 20, 60, 0.8);
+}
+
+.about-section a:hover::after {
+    width: 100%;
 }
 
 .tech-stack {
@@ -381,7 +627,19 @@ main {
 }
 
 .profile-container img {
-    transition: filter 0.3s ease;
+    transition: all 0.5s ease;
+    border: 3px solid rgba(139, 0, 0, 0.3);
+    box-shadow:
+        0 0 30px rgba(0, 0, 0, 0.8),
+        0 0 60px rgba(139, 0, 0, 0.3);
+}
+
+.profile-container:hover img {
+    filter: blur(2px) brightness(0.7);
+    border-color: rgba(220, 20, 60, 0.6);
+    box-shadow:
+        0 0 40px rgba(139, 0, 0, 0.6),
+        0 0 80px rgba(220, 20, 60, 0.5);
 }
 
 .profile-overlay {
@@ -394,29 +652,41 @@ main {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: rgba(0, 0, 0, 0.7);
+    background: radial-gradient(circle,
+            rgba(139, 0, 0, 0.9) 0%,
+            rgba(0, 0, 0, 0.95) 100%);
     color: white;
     opacity: 0;
-    transition: opacity 0.3s ease;
+    transition: opacity 0.5s ease;
     text-decoration: none;
     border-radius: 50%;
+    border: 2px solid rgba(220, 20, 60, 0);
 }
 
 .profile-overlay i {
-    font-size: 2.5rem;
-    margin-bottom: 0.5rem;
+    font-size: 3rem;
+    margin-bottom: 0.8rem;
+    color: var(--accent-color);
+    text-shadow: 0 0 20px rgba(220, 20, 60, 0.8);
+    transition: all 0.4s ease;
 }
 
 .profile-overlay span {
-    font-size: 1.2rem;
-}
-
-.profile-container:hover img {
-    filter: blur(2px);
+    font-size: 1.3rem;
+    font-family: "Cinzel Decorative", serif;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.9);
 }
 
 .profile-container:hover .profile-overlay {
     opacity: 1;
+    border-color: rgba(220, 20, 60, 0.8);
+}
+
+.profile-container:hover .profile-overlay i {
+    transform: scale(1.2) rotate(360deg);
+    color: #fff;
 }
 
 .daily-selection {
@@ -1512,4 +1782,176 @@ body::-webkit-scrollbar {
 html,
 body {
     overflow-x: hidden;
+}
+
+/* ============================================
+   BOTÓN DE SCROLL TO TOP - ESTILO INFERNAL
+   ============================================ */
+
+.scroll-to-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 55px;
+    height: 55px;
+    background: radial-gradient(circle,
+            rgba(139, 0, 0, 0.95) 0%,
+            rgba(80, 0, 0, 0.98) 100%);
+    border: 2px solid rgba(139, 0, 0, 0.8);
+    border-radius: 50%;
+    color: var(--accent-color);
+    font-size: 1.3rem;
+    cursor: pointer;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(100px);
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 1000;
+    box-shadow:
+        0 8px 25px rgba(0, 0, 0, 0.8),
+        0 0 30px rgba(139, 0, 0, 0.5),
+        inset 0 0 20px rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+/* Efecto de llamas internas */
+.scroll-to-top::before {
+    content: '';
+    position: absolute;
+    inset: -3px;
+    background: linear-gradient(45deg,
+            rgba(220, 20, 60, 0.4) 0%,
+            transparent 30%,
+            transparent 70%,
+            rgba(139, 0, 0, 0.4) 100%);
+    border-radius: 50%;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    z-index: -1;
+    animation: flame-rotate 4s linear infinite;
+}
+
+@keyframes flame-rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Estado visible */
+.scroll-to-top.visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+/* Hover - El botón arde */
+.scroll-to-top:hover {
+    background: radial-gradient(circle,
+            rgba(180, 20, 20, 1) 0%,
+            rgba(139, 0, 0, 1) 100%);
+    border-color: rgba(220, 20, 60, 1);
+    color: #fff;
+    transform: translateY(-5px) scale(1.1);
+    box-shadow:
+        0 12px 40px rgba(139, 0, 0, 0.9),
+        0 0 60px rgba(220, 20, 60, 0.8),
+        inset 0 0 30px rgba(220, 20, 60, 0.4);
+}
+
+.scroll-to-top:hover::before {
+    opacity: 1;
+}
+
+.scroll-to-top:hover i {
+    animation: arrow-bounce 0.6s ease-in-out infinite;
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.9);
+}
+
+@keyframes arrow-bounce {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-5px);
+    }
+}
+
+/* Click - Efecto de explosión */
+.scroll-to-top:active {
+    transform: translateY(-2px) scale(0.95);
+    box-shadow:
+        0 4px 15px rgba(139, 0, 0, 0.7),
+        0 0 40px rgba(220, 20, 60, 0.6),
+        inset 0 0 25px rgba(220, 20, 60, 0.6);
+}
+
+/* Icono */
+.scroll-to-top i {
+    transition: all 0.3s ease;
+    font-size: 1.4rem;
+}
+
+/* Animación de aparición */
+@keyframes scroll-btn-appear {
+    0% {
+        opacity: 0;
+        transform: translateY(100px) rotate(-180deg);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0) rotate(0deg);
+    }
+}
+
+.scroll-to-top.visible {
+    animation: scroll-btn-appear 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Pulso de energía constante */
+.scroll-to-top::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    border: 2px solid rgba(220, 20, 60, 0.6);
+    opacity: 0;
+    animation: pulse-ring 2s ease-out infinite;
+}
+
+@keyframes pulse-ring {
+    0% {
+        transform: scale(1);
+        opacity: 0.8;
+    }
+
+    100% {
+        transform: scale(1.5);
+        opacity: 0;
+    }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .scroll-to-top {
+        bottom: 20px;
+        right: 20px;
+        width: 50px;
+        height: 50px;
+        font-size: 1.1rem;
+    }
+
+    .scroll-to-top i {
+        font-size: 1.2rem;
+    }
 }

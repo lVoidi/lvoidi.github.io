@@ -427,15 +427,31 @@ const algorithms = {
 function renderAlgorithms(filteredAlgorithms = null) {
     const grid = document.getElementById('algorithmsGrid');
     const algorithmsToRender = filteredAlgorithms || Object.values(algorithms).flat();
-    
+
+    // Función para formatear el nombre de la categoría
+    const formatCategoryName = (category) => {
+        const categoryNames = {
+            'sorting': 'Sorting',
+            'searching': 'Searching',
+            'graph': 'Graph',
+            'dynamic': 'Dynamic',
+            'greedy': 'Greedy',
+            'backtracking': 'Backtracking',
+            'cryptographic': 'Cryptographic',
+            'machine_learning': 'Machine Learning',
+            'string': 'String',
+            'numerical': 'Numerical',
+            'randomized': 'Randomized'
+        };
+        return categoryNames[category] || category;
+    };
+
     grid.innerHTML = algorithmsToRender.map(algo => `
         <div class="algorithm-card">
+            <div class="category-badge">${formatCategoryName(algo.category)}</div>
             <h3>${algo.name}</h3>
-            <p>${algo.description}</p>
-            <div class="algo-meta">
-                <span class="category">${algo.category}</span>
-                <span class="complexity">${algo.complexity}</span>
-            </div>
+            <p>${algo.description}</p> 
+            <div class="complexity">${algo.complexity}</div><br>
             <a href="${algo.link}" class="btn btn-outline-light mt-3">Learn More</a>
         </div>
     `).join('');
@@ -449,7 +465,7 @@ document.getElementById('searchBar').addEventListener('input', (e) => {
     const searchTerm = e.target.value.toLowerCase();
     const filtered = Object.values(algorithms)
         .flat()
-        .filter(algo => 
+        .filter(algo =>
             algo.name.toLowerCase().includes(searchTerm) ||
             algo.description.toLowerCase().includes(searchTerm)
         );
@@ -468,7 +484,7 @@ document.querySelectorAll('.category-item input').forEach(checkbox => {
     checkbox.addEventListener('change', () => {
         const selectedCategories = Array.from(document.querySelectorAll('.category-item input:checked'))
             .map(input => input.value);
-        
+
         if (selectedCategories.length === 0) {
             renderAlgorithms();
             return;
@@ -484,13 +500,13 @@ document.querySelectorAll('.category-item input').forEach(checkbox => {
 function updateCounters() {
     const categoryCounts = {};
     let total = 0;
-    
+
     // Contar algoritmos por categoría
     Object.keys(algorithms).forEach(category => {
         categoryCounts[category] = algorithms[category].length;
         total += algorithms[category].length;
     });
-    
+
     // Actualizar contadores en el DOM
     Object.keys(categoryCounts).forEach(category => {
         const counterElement = document.getElementById(`${category}-counter`);
@@ -498,12 +514,12 @@ function updateCounters() {
             counterElement.textContent = `(${categoryCounts[category]})`;
         }
     });
-    
+
     // Actualizar contador total
     document.getElementById('totalCounter').textContent = total;
 }
 
 // Agregar la llamada inicial cuando se carga el documento
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     renderAlgorithms();
 }); 
