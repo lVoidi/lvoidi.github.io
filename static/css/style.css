@@ -151,17 +151,19 @@ body a {
 
 .hero-section {
     min-height: 80vh;
-    background: linear-gradient(rgba(10, 0, 0, 0.8), rgba(0, 0, 0, 0.9)),
-        url('../img/black-hole-1.webp');
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
+    background: url('../img/inferno_bg.webp');
+    background-size: contain;
+    background-position: center top;
+    background-repeat: no-repeat;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
     position: relative;
-    overflow: hidden;
+    overflow: visible;
+    z-index: 2;
+    margin-bottom: 0;
+    padding-bottom: 0;
 }
 
 /* Efecto de vórtice infernal en el hero */
@@ -193,31 +195,16 @@ body a {
     }
 }
 
-/* Resplandor carmesí desde abajo */
+/* Fade-in negro hacia abajo para transición suave */
 .hero-section::after {
     content: '';
     position: absolute;
-    bottom: 0;
+    bottom: 1px;
     left: 0;
     right: 0;
-    height: 30%;
-    background: radial-gradient(ellipse at bottom,
-            rgba(139, 0, 0, 0.15) 0%,
-            transparent 70%);
+    height: 10%;
     pointer-events: none;
-    animation: infernal-glow 4s ease-in-out infinite;
-}
-
-@keyframes infernal-glow {
-
-    0%,
-    100% {
-        opacity: 0.5;
-    }
-
-    50% {
-        opacity: 0.8;
-    }
+    z-index: 1;
 }
 
 /* Botón Browse Categories - Estilo Infernal */
@@ -440,11 +427,21 @@ main {
     position: relative;
     color: #fff;
     padding: 4rem 0;
+    padding-top: 0;
+    margin-top: 0;
     background: linear-gradient(180deg,
             rgba(0, 0, 0, 0.95) 0%,
             rgba(10, 0, 0, 0.98) 50%,
             rgba(0, 0, 0, 0.95) 100%);
     overflow: hidden;
+    z-index: 1;
+}
+
+.about-section svg {
+    display: block;
+    margin: 0;
+    padding: 0;
+    line-height: 0;
 }
 
 /* Efecto de niebla carmesí */
@@ -1825,5 +1822,9 @@ body {
 
     .scroll-to-top i {
         font-size: 1.2rem;
+    }
+
+    .hero-section {
+        background-size: cover;
     }
 }
