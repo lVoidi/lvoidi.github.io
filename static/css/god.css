@@ -2,3 +2,9 @@ body {
     background-color: #000;
     color: #f00;
 }
+
+.fire-top {
+    transform: rotate(180deg);
+    padding: 0;
+    margin: 0;
+}
