@@ -55,8 +55,8 @@
             window.location.href = redirectUrl;
         }, 1500);
         setTimeout(() => {
-            flashbang.style.opacity = '0';
-        }, 1550);
+            flashbang.remove();
+        }, 1650);
 
 
     }
