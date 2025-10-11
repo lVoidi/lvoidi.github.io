@@ -14,3 +14,8 @@ a {
     color: #f00;
     font-size: xx-large;
 }
+
+img {
+    max-width: 100%;
+    height: auto;
+}
