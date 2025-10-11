@@ -18,8 +18,8 @@
         this.style.transform = 'scale(1.1) rotate(' + (clickCount * 36) + 'deg)';
 
 
-        const glowIntensity = 30 + (clickCount * 10);
-        const glowOpacity = 0.3 + (clickCount * 0.05);
+        const glowIntensity = 30 + (clickCount * 15);
+        const glowOpacity = 0.3 + (clickCount * 0.07);
         this.style.boxShadow = `0 0 ${glowIntensity}px rgba(255, 68, 68, ${glowOpacity}), 
                                  0 0 ${glowIntensity * 1.5}px rgba(255, 68, 68, ${glowOpacity * 0.5})`;
 
