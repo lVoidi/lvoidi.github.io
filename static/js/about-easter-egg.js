@@ -39,7 +39,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: white;
+            background: black;
             z-index: 99999;
             opacity: 0;
             transition: opacity 0.3s ease;
