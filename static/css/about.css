@@ -1,0 +1,457 @@
+/* About Page Specific Styles - Minimalist Infernal Aesthetic */
+.about-hero {
+    min-height: 50vh;
+    background: linear-gradient(180deg, var(--primary-dark) 0%, var(--secondary-dark) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    border-bottom: 1px solid rgba(139, 0, 0, 0.3);
+    padding: 3rem 0;
+}
+
+.about-hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: repeating-linear-gradient(90deg,
+            transparent,
+            transparent 100px,
+            rgba(139, 0, 0, 0.02) 100px,
+            rgba(139, 0, 0, 0.02) 101px);
+    pointer-events: none;
+}
+
+.hero-profile-image {
+    margin-bottom: 2rem;
+    position: relative;
+    z-index: 1;
+}
+
+.hero-profile-image .profile-img {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--accent-color);
+    box-shadow: 0 0 20px rgba(255, 68, 68, 0.3),
+        0 0 40px rgba(255, 68, 68, 0.1);
+    transition: all 0.3s ease;
+}
+
+.hero-profile-image .profile-img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 30px rgba(255, 68, 68, 0.5),
+        0 0 60px rgba(255, 68, 68, 0.2);
+}
+
+.about-content {
+    padding: 4rem 0;
+    background-color: var(--primary-dark);
+}
+
+.about-intro {
+    max-width: 800px;
+    margin: 0 auto 3rem;
+    text-align: justify;
+    font-family: "Cormorant Unicase", serif;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: var(--text-color);
+}
+
+/* Experience Section */
+.experience-section {
+    max-width: 900px;
+    margin: 3rem auto 4rem;
+    padding: 0 1rem;
+}
+
+.experience-timeline {
+    position: relative;
+    padding-left: 2rem;
+}
+
+.experience-timeline::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(180deg,
+            rgba(139, 0, 0, 0.5) 0%,
+            rgba(139, 0, 0, 0.2) 100%);
+}
+
+.experience-item {
+    position: relative;
+    margin-bottom: 2.5rem;
+    padding-left: 1.5rem;
+}
+
+.experience-item::before {
+    content: '';
+    position: absolute;
+    left: -2rem;
+    top: 0.3rem;
+    width: 12px;
+    height: 12px;
+    background-color: var(--accent-color);
+    border: 2px solid var(--primary-dark);
+    border-radius: 50%;
+    box-shadow: 0 0 0 3px rgba(139, 0, 0, 0.2);
+}
+
+.experience-header {
+    margin-bottom: 0.5rem;
+}
+
+.experience-title {
+    font-family: "Cinzel Decorative", serif;
+    color: var(--accent-color);
+    font-size: 1.2rem;
+    margin-bottom: 0.3rem;
+    font-weight: 600;
+}
+
+.experience-company {
+    font-family: "Cormorant Unicase", serif;
+    color: var(--text-color);
+    font-size: 1rem;
+    margin-bottom: 0.2rem;
+}
+
+.experience-date {
+    font-family: "Cormorant Unicase", serif;
+    color: rgba(234, 229, 227, 0.6);
+    font-size: 0.9rem;
+    font-style: italic;
+}
+
+.experience-description {
+    font-family: "Cormorant Unicase", serif;
+    color: var(--text-color);
+    line-height: 1.7;
+    text-align: justify;
+    margin-top: 0.8rem;
+}
+
+.experience-description ul {
+    margin-top: 0.5rem;
+    padding-left: 1.5rem;
+}
+
+.experience-description li {
+    margin-bottom: 0.5rem;
+}
+
+.experience-description li::marker {
+    color: var(--accent-color);
+}
+
+/* Project Carousel Styles */
+.carousel-container {
+    max-width: 900px;
+    margin: 3rem auto;
+    position: relative;
+}
+
+.carousel-inner {
+    border: 1px solid rgba(139, 0, 0, 0.3);
+    background-color: var(--secondary-dark);
+}
+
+.carousel-item img {
+    width: 100%;
+    height: 500px;
+    object-fit: cover;
+    filter: grayscale(20%) brightness(0.8);
+}
+
+.carousel-caption {
+    background: linear-gradient(to top,
+            rgba(18, 1, 1, 0.98) 0%,
+            rgba(18, 1, 1, 0.85) 60%,
+            rgba(18, 1, 1, 0.4) 100%);
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 3rem 1.5rem 1.5rem;
+}
+
+.carousel-caption h5 {
+    font-family: "Cinzel Decorative", serif;
+    color: var(--accent-color);
+    font-size: 1.5rem;
+    margin-bottom: 0.8rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+    font-weight: 700;
+}
+
+.carousel-caption p {
+    font-size: 1.1rem;
+    color: var(--text-color);
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+    line-height: 1.6;
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+    width: 80px;
+    opacity: 1;
+    transition: all 0.3s ease;
+    z-index: 10;
+}
+
+.carousel-control-prev:hover,
+.carousel-control-next:hover {
+    opacity: 1;
+}
+
+.carousel-control-prev:hover .carousel-control-prev-icon,
+.carousel-control-next:hover .carousel-control-next-icon {
+    background-color: rgba(139, 0, 0, 0.4);
+    transform: scale(1.1);
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    width: 50px;
+    height: 50px;
+    background-size: 60%;
+    background-color: rgba(139, 0, 0, 0.3);
+    border-radius: 50%;
+    border: 2px solid var(--accent-color);
+    filter: brightness(1.5) drop-shadow(0 0 8px rgba(255, 68, 68, 0.6));
+    transition: all 0.3s ease;
+    padding: 10px;
+}
+
+.carousel-control-prev-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23ff4444'%3e%3cpath d='M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z'/%3e%3c/svg%3e");
+}
+
+.carousel-control-next-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23ff4444'%3e%3cpath d='M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
+}
+
+/* Carousel Indicators - More Visible */
+.carousel-indicators {
+    margin-bottom: 1.5rem;
+}
+
+.carousel-indicators [data-bs-target] {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: rgba(255, 68, 68, 0.5);
+    border: 2px solid rgba(255, 68, 68, 0.8);
+    opacity: 0.7;
+    transition: all 0.3s ease;
+}
+
+.carousel-indicators [data-bs-target]:hover {
+    opacity: 1;
+    transform: scale(1.2);
+}
+
+.carousel-indicators .active {
+    background-color: var(--accent-color);
+    border-color: var(--accent-color);
+    opacity: 1;
+    transform: scale(1.3);
+    box-shadow: 0 0 8px rgba(255, 68, 68, 0.6);
+}
+
+/* Contact Section */
+.contact-section {
+    background: linear-gradient(180deg, var(--primary-dark) 0%, var(--secondary-dark) 100%);
+    padding: 4rem 0;
+    border-top: 1px solid rgba(139, 0, 0, 0.3);
+}
+
+.contact-links {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+    margin-top: 2rem;
+}
+
+.contact-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.8rem 1.5rem;
+    background: transparent;
+    border: 1px solid rgba(139, 0, 0, 0.5);
+    color: var(--text-color);
+    text-decoration: none;
+    font-family: "Cinzel Decorative", serif;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.contact-link::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(139, 0, 0, 0.2), transparent);
+    transition: left 0.5s ease;
+}
+
+.contact-link:hover {
+    border-color: var(--accent-color);
+    color: var(--accent-color);
+    transform: translateY(-2px);
+}
+
+.contact-link:hover::before {
+    left: 100%;
+}
+
+.contact-link i {
+    font-size: 1.2rem;
+}
+
+/* Skills Section */
+.skills-section {
+    padding: 4rem 0;
+    background-color: var(--primary-dark);
+}
+
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    max-width: 1000px;
+    margin: 2rem auto 0;
+}
+
+.skill-category {
+    background-color: var(--secondary-dark);
+    border: 1px solid rgba(139, 0, 0, 0.2);
+    padding: 1.5rem;
+    transition: border-color 0.3s ease;
+}
+
+.skill-category:hover {
+    border-color: rgba(139, 0, 0, 0.5);
+}
+
+.skill-category h4 {
+    font-family: "Cinzel Decorative", serif;
+    color: var(--accent-color);
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.skill-category ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.skill-category li {
+    font-family: "Cormorant Unicase", serif;
+    color: var(--text-color);
+    padding: 0.3rem 0;
+    font-size: 1rem;
+}
+
+.skill-category li::before {
+    content: '›';
+    color: var(--accent-color);
+    margin-right: 0.5rem;
+    font-weight: bold;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .about-hero {
+        min-height: auto;
+        padding: 2rem 0;
+    }
+
+    .hero-profile-image .profile-img {
+        width: 150px;
+        height: 150px;
+    }
+
+    .carousel-item img {
+        height: 300px;
+    }
+
+    .carousel-caption {
+        padding: 2rem 1rem 1rem;
+    }
+
+    .carousel-caption h5 {
+        font-size: 1.2rem;
+    }
+
+    .carousel-caption p {
+        font-size: 0.95rem;
+    }
+
+    .carousel-control-prev,
+    .carousel-control-next {
+        width: 60px;
+    }
+
+    .carousel-control-prev-icon,
+    .carousel-control-next-icon {
+        width: 40px;
+        height: 40px;
+        background-size: 60%;
+        padding: 8px;
+    }
+
+    .carousel-indicators [data-bs-target] {
+        width: 10px;
+        height: 10px;
+    }
+
+    .contact-links {
+        gap: 1rem;
+    }
+
+    .skills-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .experience-section {
+        margin: 2rem auto 3rem;
+    }
+
+    .experience-timeline {
+        padding-left: 1.5rem;
+    }
+
+    .experience-item {
+        padding-left: 1rem;
+    }
+
+    .experience-item::before {
+        left: -1.5rem;
+        width: 10px;
+        height: 10px;
+    }
+
+    .experience-title {
+        font-size: 1.1rem;
+    }
+}
