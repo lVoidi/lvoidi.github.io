@@ -26,6 +26,7 @@
 
         if (clickCount >= maxClicks) {
             triggerFlashbang();
+            clickCount = 0;
         }
     });
 
