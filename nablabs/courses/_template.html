@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="es">
+<!--
+    - [COURSE-ID] = ID del curso (ej: nlpy-1)
+    - [COURSE-TITLE] = Título completo del curso
+    - [COURSE-SUBTITLE] = Subtítulo breve
+    - [DURATION] = Duración (ej: 10 semanas)
+    - [LEVEL] = Nivel (Principiante/Intermedio/Avanzado)
+    - [STATUS] = Estado (available/coming-soon)
+-->
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>[COURSE-TITLE] | Nablabs</title>
+    <meta name="description" content="[COURSE-SUBTITLE]">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="course-page.css">
+    <link rel="icon" href="/static/img/nablabs.webp" type="image/x-icon" />
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <img src="/static/img/nablabs.webp" alt="Nablabs Logo" class="logo">
+                <span class="brand-name">Nablabs</span>
+            </div>
+            <button class="nav-toggle" id="navToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="../index.html">Inicio</a></li>
+                <li><a href="../index.html#nosotros">Nosotros</a></li>
+                <li><a href="../index.html#vision">Visión</a></li>
+                <li><a href="../index.html#cursos">Cursos</a></li>
+                <li><a href="../index.html#contacto">Contacto</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Course Header -->
+    <section class="course-header">
+        <div class="container">
+            <div class="breadcrumb">
+                <a href="../index.html">Inicio</a>
+                <span class="separator">/</span>
+                <a href="../index.html#cursos">Cursos</a>
+                <span class="separator">/</span>
+                <span>[COURSE-ID]</span>
+            </div>
+            <h1>[COURSE-TITLE]</h1>
+            <div class="course-header-meta">
+                <span class="meta-item"><i class="far fa-clock"></i> [DURATION]</span>
+                <span class="meta-item"><i class="fas fa-book"></i> [LEVEL]</span>
+                <span class="meta-item"><i class="fas fa-users"></i> Cupos limitados</span>
+            </div>
+            <span class="course-badge [STATUS]">
+                <!-- Cambiar según el status: "Disponible" o "Próximamente" -->
+                Disponible
+            </span>
+        </div>
+    </section>
+
+    <!-- Course Content -->
+    <section class="section">
+        <div class="container">
+            <div class="course-layout">
+                <!-- Main Content -->
+                <div class="course-main">
+                    <div class="course-section">
+                        <h2>Descripción del Curso</h2>
+                        <p>[DESCRIPCIÓN DEL CURSO - Explica de qué trata el curso, a quién está dirigido y qué pueden
+                            esperar los estudiantes]</p>
+                    </div>
+
+                    <div class="course-section">
+                        <h2>¿Qué Aprenderás?</h2>
+                        <ul class="learning-objectives">
+                            <li><i class="fas fa-check"></i> [Objetivo de aprendizaje 1]</li>
+                            <li><i class="fas fa-check"></i> [Objetivo de aprendizaje 2]</li>
+                            <li><i class="fas fa-check"></i> [Objetivo de aprendizaje 3]</li>
+                            <li><i class="fas fa-check"></i> [Objetivo de aprendizaje 4]</li>
+                            <li><i class="fas fa-check"></i> [Objetivo de aprendizaje 5]</li>
+                            <!-- Agrega más objetivos según necesites -->
+                        </ul>
+                    </div>
+
+                    <div class="course-section">
+                        <h2>Contenido del Curso</h2>
+                        <div class="curriculum">
+                            <div class="curriculum-module">
+                                <h3><i class="fas fa-chevron-right"></i> Módulo 1: [Nombre del Módulo]</h3>
+                                <ul>
+                                    <li>[Tema 1]</li>
+                                    <li>[Tema 2]</li>
+                                    <li>[Tema 3]</li>
+                                    <li>[Tema 4]</li>
+                                </ul>
+                            </div>
+
+                            <div class="curriculum-module">
+                                <h3><i class="fas fa-chevron-right"></i> Módulo 2: [Nombre del Módulo]</h3>
+                                <ul>
+                                    <li>[Tema 1]</li>
+                                    <li>[Tema 2]</li>
+                                    <li>[Tema 3]</li>
+                                    <li>[Tema 4]</li>
+                                </ul>
+                            </div>
+
+                            <!-- Copia y pega este bloque para agregar más módulos -->
+                            <div class="curriculum-module">
+                                <h3><i class="fas fa-chevron-right"></i> Módulo 3: [Nombre del Módulo]</h3>
+                                <ul>
+                                    <li>[Tema 1]</li>
+                                    <li>[Tema 2]</li>
+                                    <li>[Tema 3]</li>
+                                    <li>[Tema 4]</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="course-section">
+                        <h2>Requisitos</h2>
+                        <ul class="requirements">
+                            <li><i class="fas fa-laptop"></i> Computadora con Windows, macOS o Linux</li>
+                            <li><i class="fas fa-wifi"></i> Conexión a internet estable</li>
+                            <li><i class="fas fa-heart"></i> Ganas de aprender y dedicación</li>
+                            <li><i class="fas fa-brain"></i> [Requisito específico del curso]</li>
+                            <!-- Agrega o modifica requisitos según necesites -->
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Sidebar -->
+                <aside class="course-sidebar">
+                    <div class="sidebar-card">
+                        <h3>Información del Curso</h3>
+                        <div class="info-item">
+                            <i class="far fa-calendar"></i>
+                            <div>
+                                <strong>Inicio</strong>
+                                <p>Próximamente</p>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <i class="far fa-clock"></i>
+                            <div>
+                                <strong>Duración</strong>
+                                <p>[DURATION]</p>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <i class="fas fa-signal"></i>
+                            <div>
+                                <strong>Nivel</strong>
+                                <p>[LEVEL]</p>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <i class="fas fa-language"></i>
+                            <div>
+                                <strong>Idioma</strong>
+                                <p>Español</p>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <i class="fas fa-certificate"></i>
+                            <div>
+                                <strong>Certificado</strong>
+                                <p>Al completar el curso</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="sidebar-card cta-card">
+                        <h3>¿Interesado?</h3>
+                        <p>Completa nuestro formulario para recibir información sobre fechas de inicio y cupos
+                            disponibles.</p>
+                        <a href="https://docs.google.com/forms/d/e/1FAIpQLScOagUiNz4rBRnEQ0UC_rUjgXn0PSrnJ6q42UVZKheh-FlXAw/viewform?usp=sharing"
+                            target="_blank" rel="noopener noreferrer" class="cta-button">
+                            <i class="fas fa-paper-plane"></i> Solicitar Información
+                        </a>
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <img src="/static/img/nablabs.webp" alt="Nablabs Logo" class="footer-logo">
+                    <p>Hazlo simple, hazlo rapido, hazlo con Nablabs</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Enlaces</h4>
+                    <ul>
+                        <li><a href="../index.html#nosotros">Nosotros</a></li>
+                        <li><a href="../index.html#vision">Visión</a></li>
+                        <li><a href="../index.html#cursos">Cursos</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="../terminos.html">Términos y Condiciones</a></li>
+                        <li><a href="../privacidad.html">Aviso de Privacidad</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contacto</h4>
+                    <p>Costa Rica</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; <span id="currentYear"></span> Nablabs. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Navigation Toggle
+        const navToggle = document.getElementById('navToggle');
+        const navMenu = document.getElementById('navMenu');
+
+        navToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+
+        // Close menu when clicking on a link
+        const navLinks = document.querySelectorAll('.nav-menu a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+            });
+        });
+
+        // Update current year in footer
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+    </script>
+</body>
+
+</html>

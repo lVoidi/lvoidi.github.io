@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NLPY-1 - Introducción a Python | Nablabs</title>
+    <meta name="description" content="Aprende los fundamentos de programación con Python desde cero.">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="icon" href="/static/img/nablabs.webp" type="image/x-icon" />
+    <link rel="stylesheet" href="course-page.css">
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <img src="/static/img/nablabs.webp" alt="Nablabs Logo" class="logo">
+                <span class="brand-name">Nablabs</span>
+            </div>
+            <button class="nav-toggle" id="navToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="../index.html">Inicio</a></li>
+                <li><a href="../index.html#nosotros">Nosotros</a></li>
+                <li><a href="../index.html#vision">Visión</a></li>
+                <li><a href="../index.html#cursos">Cursos</a></li>
+                <li><a href="../index.html#contacto">Contacto</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Course Header -->
+    <section class="course-header">
+        <div class="container">
+            <div class="breadcrumb">
+                <a href="../index.html">Inicio</a>
+                <span class="separator">/</span>
+                <a href="../index.html#cursos">Cursos</a>
+                <span class="separator">/</span>
+                <span>NLPY-1</span>
+            </div>
+            <h1>NLPY-1 - Introducción a la Programación con Python</h1>
+            <div class="course-header-meta">
+                <span class="meta-item"><i class="far fa-clock"></i> 10 semanas</span>
+                <span class="meta-item"><i class="fas fa-book"></i> Principiante</span>
+                <span class="meta-item"><i class="fas fa-users"></i> Cupos limitados</span>
+            </div>
+            <span class="course-badge available">Disponible</span>
+        </div>
+    </section>
+
+    <!-- Course Content -->
+    <section class="section">
+        <div class="container">
+            <div class="course-layout">
+                <!-- Main Content -->
+                <div class="course-main">
+                    <div class="course-section">
+                        <h2>Descripción del Curso</h2>
+                        <p>Este curso está diseñado para personas sin experiencia previa en programación que desean
+                            aprender Python desde cero. A través de 10 semanas de contenido estructurado, aprenderás los
+                            fundamentos de la programación y cómo aplicarlos usando Python, uno de los lenguajes más
+                            populares y versátiles del mundo.</p>
+                    </div>
+
+                    <div class="course-section">
+                        <h2>¿Qué Aprenderás?</h2>
+                        <ul class="learning-objectives">
+                            <li><i class="fas fa-check"></i> Fundamentos de programación: variables, tipos de datos y
+                                operadores</li>
+                            <li><i class="fas fa-check"></i> Estructuras de control: condicionales y bucles</li>
+                            <li><i class="fas fa-check"></i> Funciones y modularización de código</li>
+                            <li><i class="fas fa-check"></i> Estructuras de datos: listas, tuplas, diccionarios y
+                                conjuntos</li>
+                            <li><i class="fas fa-check"></i> Manejo de archivos y excepciones</li>
+                            <li><i class="fas fa-check"></i> Introducción a la programación orientada a objetos</li>
+                            <li><i class="fas fa-check"></i> Buenas prácticas y estilo de código Pythonic</li>
+                            <li><i class="fas fa-check"></i> Proyecto final aplicando todos los conceptos aprendidos
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="course-section">
+                        <h2>Contenido del Curso</h2>
+                        <div class="curriculum">
+                            <div class="curriculum-module">
+                                <h3><i class="fas fa-chevron-right"></i> Semana 0: Funciones, Variables</h3>
+                                <h4>Conceptos fundamentales</h4>
+                                <ul>
+                                    <li>Introducción a Python y su sintaxis</li>
+                                    <li>Funciones básicas: print(), input()</li>
+                                    <li>Variables y asignación</li>
+                                    <li>Tipos de datos básicos: strings, integers, floats</li>
+                                    <li>Comentarios en el código</li>
+                                    <li>Formateo de strings (f-strings)</li>
+                                    <li>Métodos de strings: strip(), title(), capitalize(), split()</li>
+                                    <li>Operadores aritméticos básicos</li>
+                                    <li>Conversión de tipos (type casting)</li>
+                                    <li><strong>Proyecto:</strong> Calculadora de propinas o programa interactivo simple
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="curriculum-module">
+                                <h3><i class="fas fa-chevron-right"></i> Semana 1: Condicionales</h3>
+                                <h4>Control de flujo</h4>
+                                <ul>
+                                    <li>Operadores de comparación: >, <,>=, <=,==, !=</li>
+                                    <li>Sentencias if, elif, else</li>
+                                    <li>Operadores lógicos: and, or, not</li>
+                                    <li>Operador match (switch en Python 3.10+)</li>
+                                    <li>Valores booleanos y expresiones booleanas</li>
+                                    <li>Anidamiento de condicionales</li>
+                                    <li><strong>Proyecto:</strong> Sistema de calificaciones o validador de entrada</li>
+                                </ul>
+                            </div>
+
+                            <div class="curriculum-module">
+                                <h3><i class="fas fa-chevron-right"></i> Semana 2: Bucles (Loops)</h3>
+                                <h4>Estructuras de repetición</h4>
+                                <ul>
+                                    <li>Bucle while</li>
+                                    <li>Bucle for</li>
+                                    <li>Iteración sobre secuencias</li>
+                                    <li>Función range()</li>
+                                    <li>Sentencias break y continue</li>
+                                    <li>Bucles infinitos y cómo evitarlos</li>
+                                    <li>Validación de entrada con bucles</li>
+                                    <li><strong>Proyecto:</strong> Juego de adivinanzas o generador de patrones</li>
+                                </ul>
+                            </div>
+
+                            <div class="curriculum-module">
+                                <h3><i class="fas fa-chevron-right"></i> Semana 3: Excepciones</h3>
+                                <h4>Manejo de errores</h4>
+                                <ul>
+                                    <li>Tipos de errores comunes: SyntaxError, ValueError, NameError</li>
+                                    <li>Bloques try y except</li>
+                                    <li>Cláusula else en manejo de excepciones</li>
+                                    <li>Cláusula finally</li>
+                                    <li>Creación de excepciones con raise</li>
+                                    <li>Buenas prácticas en manejo de errores</li>
+                                    <li><strong>Proyecto:</strong> Validador robusto de datos de usuario</li>
+                                </ul>
+                            </div>
+
+                            <div class="curriculum-module">
+                                <h3><i class="fas fa-chevron-right"></i> Semana 4: Librerías</h3>
+                                <h4>Módulos y paquetes</h4>
+                                <ul>
+                                    <li>Importación de módulos: import</li>
+                                    <li>Importación selectiva: from ... import ...</li>
+                                    <li>Librería estándar de Python</li>
+                                    <li>Módulos útiles: random, statistics, sys, os</li>
+                                    <li>Uso de pip para instalar paquetes externos</li>
+                                    <li>Creación de módulos propios</li>
+                                    <li>Documentación y búsqueda de librerías</li>
+                                    <li><strong>Proyecto:</strong> Programa que utiliza múltiples librerías externas
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="curriculum-module">
+                                <h3><i class="fas fa-chevron-right"></i> Semana 5: Pruebas Unitarias</h3>
+                                <h4>Testing y depuración</h4>
+                                <ul>
+                                    <li>Importancia del testing</li>
+                                    <li>Framework pytest</li>
+                                    <li>Función assert</li>
+                                    <li>Estructura de pruebas unitarias</li>
+                                    <li>Casos de prueba: normales, límite, excepciones</li>
+                                    <li>Test-Driven Development (TDD) básico</li>
+                                    <li>Cobertura de código</li>
+                                    <li><strong>Proyecto:</strong> Crear funciones con sus respectivas pruebas unitarias
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="curriculum-module">
+                                <h3><i class="fas fa-chevron-right"></i> Semana 6: Entrada/Salida de Archivos</h3>
+                                <h4>Manipulación de archivos</h4>
+                                <ul>
+                                    <li>Función open()</li>
+                                    <li>Modos de apertura: r, w, a, r+</li>
+                                    <li>Lectura de archivos: read(), readline(), readlines()</li>
+                                    <li>Escritura en archivos: write(), writelines()</li>
+                                    <li>Bloque with para manejo automático de archivos</li>
+                                    <li>Archivos CSV: lectura y escritura</li>
+                                    <li>Módulo csv</li>
+                                    <li>Trabajo con rutas de archivos</li>
+                                    <li><strong>Proyecto:</strong> Agenda de contactos o analizador de datos CSV</li>
+                                </ul>
+                            </div>
+
+                            <div class="curriculum-module">
+                                <h3><i class="fas fa-chevron-right"></i> Semana 7: Expresiones Regulares</h3>
+                                <h4>Patrones y búsqueda de texto</h4>
+                                <ul>
+                                    <li>Introducción a regex</li>
+                                    <li>Módulo re</li>
+                                    <li>Funciones: search(), match(), findall(), sub()</li>
+                                    <li>Patrones básicos y metacaracteres</li>
+                                    <li>Clases de caracteres: \d, \w, \s</li>
+                                    <li>Cuantificadores: *, +, ?, {n,m}</li>
+                                    <li>Grupos de captura</li>
+                                    <li>Validación de formatos (emails, teléfonos, etc.)</li>
+                                    <li><strong>Proyecto:</strong> Validador de formatos o extractor de información</li>
+                                </ul>
+                            </div>
+
+                            <div class="curriculum-module">
+                                <h3><i class="fas fa-chevron-right"></i> Semana 8: Programación Orientada a Objetos</h3>
+                                <h4>POO en Python</h4>
+                                <ul>
+                                    <li>Clases y objetos</li>
+                                    <li>Método __init__ (constructor)</li>
+                                    <li>Atributos de instancia y de clase</li>
+                                    <li>Métodos de instancia</li>
+                                    <li>Encapsulación y convenciones de privacidad</li>
+                                    <li>Propiedades con @property</li>
+                                    <li>Métodos especiales: __str__, __repr__</li>
+                                    <li>Herencia</li>
+                                    <li>Métodos de clase @classmethod</li>
+                                    <li>Métodos estáticos @staticmethod</li>
+                                    <li><strong>Proyecto:</strong> Sistema de gestión (biblioteca, inventario,
+                                        estudiantes)</li>
+                                </ul>
+                            </div>
+
+                            <div class="curriculum-module">
+                                <h3><i class="fas fa-chevron-right"></i> Semana 9: Et Cetera</h3>
+                                <h4>Conceptos avanzados</h4>
+                                <ul>
+                                    <li>Conjuntos (sets)</li>
+                                    <li>Diccionarios avanzados</li>
+                                    <li>Funciones lambda</li>
+                                    <li>List comprehensions</li>
+                                    <li>Dictionary comprehensions</li>
+                                    <li>Argumentos variables: *args y **kwargs</li>
+                                    <li>Generadores e iteradores</li>
+                                    <li>Decoradores básicos</li>
+                                    <li>Manejo de APIs simples</li>
+                                    <li>Introducción a entornos virtuales</li>
+                                    <li><strong>Proyecto Final:</strong> Aplicación completa que integre múltiples
+                                        conceptos</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="course-section">
+                        <h2>Recursos Complementarios</h2>
+                        <ul class="learning-objectives">
+                            <li><i class="fas fa-book"></i> Documentación oficial de Python</li>
+                            <li><i class="fas fa-code"></i> PEP 8: Guía de estilo</li>
+                            <li><i class="fas fa-bug"></i> Debugging con print statements y debuggers</li>
+                            <li><i class="fab fa-github"></i> GitHub para control de versiones</li>
+                            <li><i class="fas fa-star"></i> Buenas prácticas de programación</li>
+                        </ul>
+                    </div>
+
+                    <div class="course-section">
+                        <h2>Evaluación</h2>
+                        <div class="evaluation-grid">
+                            <div class="evaluation-item">
+                                <div class="eval-icon"><i class="fas fa-laptop-code"></i></div>
+                                <h4>Problem Sets</h4>
+                                <p>Ejercicios semanales</p>
+                                <div class="eval-percentage">60%</div>
+                            </div>
+                            <div class="evaluation-item">
+                                <div class="eval-icon"><i class="fas fa-project-diagram"></i></div>
+                                <h4>Proyecto Final</h4>
+                                <p>Aplicación completa</p>
+                                <div class="eval-percentage">30%</div>
+                            </div>
+                            <div class="evaluation-item">
+                                <div class="eval-icon"><i class="fas fa-comments"></i></div>
+                                <h4>Participación</h4>
+                                <p>Quizzes y asistencia</p>
+                                <div class="eval-percentage">10%</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="course-section">
+                        <h2>Requisitos</h2>
+                        <ul class="requirements">
+                            <li><i class="fas fa-laptop"></i> Computadora con Windows, macOS o Linux</li>
+                            <li><i class="fas fa-wifi"></i> Conexión a internet estable</li>
+                            <li><i class="fas fa-heart"></i> Ganas de aprender y dedicación</li>
+                            <li><i class="fas fa-brain"></i> No se requiere experiencia previa en programación</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Sidebar -->
+                <aside class="course-sidebar">
+                    <div class="sidebar-card">
+                        <h3>Información del Curso</h3>
+                        <div class="info-item">
+                            <i class="far fa-calendar"></i>
+                            <div>
+                                <strong>Inicio</strong>
+                                <p>Próximamente</p>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <i class="far fa-clock"></i>
+                            <div>
+                                <strong>Duración</strong>
+                                <p>10 semanas</p>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <i class="fas fa-signal"></i>
+                            <div>
+                                <strong>Nivel</strong>
+                                <p>Principiante</p>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <i class="fas fa-language"></i>
+                            <div>
+                                <strong>Idioma</strong>
+                                <p>Español</p>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <i class="fas fa-certificate"></i>
+                            <div>
+                                <strong>Certificado</strong>
+                                <p>Al completar el curso</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="sidebar-card cta-card">
+                        <h3>¿Interesado?</h3>
+                        <p>Completa nuestro formulario para recibir información sobre fechas de inicio y cupos
+                            disponibles.</p>
+                        <a href="https://docs.google.com/forms/d/e/1FAIpQLSeQ-HW7JdDKQEadZGqPKrPV6vUTF6aCxHuiajqs2UQAau6p_A/viewform?usp=sharing&ouid=116035223412641445928"
+                            target="_blank" rel="noopener noreferrer" class="cta-button">
+                            <i class="fas fa-paper-plane"></i> Solicitar Información
+                        </a>
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <img src="/static/img/nablabs.webp" alt="Nablabs Logo" class="footer-logo">
+                    <p>Hazlo simple, hazlo rapido, hazlo con Nablabs</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Enlaces</h4>
+                    <ul>
+                        <li><a href="../index.html#nosotros">Nosotros</a></li>
+                        <li><a href="../index.html#vision">Visión</a></li>
+                        <li><a href="../index.html#cursos">Cursos</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="../terminos.html">Términos y Condiciones</a></li>
+                        <li><a href="../privacidad.html">Aviso de Privacidad</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contacto</h4>
+                    <p>Costa Rica</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; <span id="currentYear"></span> Nablabs. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Navigation Toggle
+        const navToggle = document.getElementById('navToggle');
+        const navMenu = document.getElementById('navMenu');
+
+        navToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+
+        // Close menu when clicking on a link
+        const navLinks = document.querySelectorAll('.nav-menu a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+            });
+        });
+
+        // Update current year in footer
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+    </script>
+</body>
+
+</html>

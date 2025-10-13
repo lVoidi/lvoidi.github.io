@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nablabs - Hazlo simple, hazlo rapido, hazlo con Nablabs</title>
+    <meta name="description"
+        content="Startup costarricense dedicado a educación en tecnologías emergentes, IA, ciberseguridad y ciencias de la computación.">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" href="/static/img/nablabs.webp" type="image/x-icon" />
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <img src="/static/img/nablabs.webp" alt="Nablabs Logo" class="logo">
+                <span class="brand-name">Nablabs</span>
+            </div>
+            <button class="nav-toggle" id="navToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#nosotros">Nosotros</a></li>
+                <li><a href="#vision">Visión</a></li>
+                <li><a href="#cursos">Cursos</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="inicio">
+        <div class="container">
+            <h1>Hazlo simple, hazlo rapido, hazlo con Nablabs</h1>
+            <p class="hero-subtitle">Educación en Inteligencia Artificial, Programación, Ciberseguridad y Robótica</p>
+            <a href="#cursos" class="cta-button">Explorar Cursos</a>
+        </div>
+    </section>
+
+    <!-- Quiénes Somos -->
+    <section class="section" id="nosotros">
+        <div class="container">
+            <h2>¿Quiénes Somos?</h2>
+            <p class="lead">Nablabs es un startup costarricense dedicado a las tecnologías emergentes.</p>
+            <p>Nos especializamos en expandir el conocimiento tecnológico mediante educación de calidad y en desarrollar
+                proyectos de investigación en Inteligencia Artificial y Robótica.</p>
+        </div>
+    </section>
+
+    <!-- Visión y Objetivos -->
+    <section class="section section-alt" id="vision">
+        <div class="container">
+            <h2>Visión y Objetivos</h2>
+
+            <div class="vision-grid">
+                <div class="vision-card">
+                    <h3><i class="fas fa-eye"></i> Nuestra Visión</h3>
+                    <ul>
+                        <li>Ofrecer cursos de programación, inteligencia artificial, ciberseguridad y ciencias de la
+                            computación para expandir el conocimiento tecnológico en Costa Rica</li>
+                        <li>Financiar proyectos futuros de Inteligencia Artificial y Robótica mediante educación de
+                            calidad</li>
+                        <li>Desarrollar investigación y desarrollo (R&D) en Large Language Models (LLM)</li>
+                        <li>Realizar R&D en robótica, integrando modelos avanzados de inteligencia artificial</li>
+                    </ul>
+                </div>
+
+                <div class="vision-card">
+                    <h3><i class="fas fa-bullseye"></i> Objetivo General</h3>
+                    <p>Desarrollar experimentos sobre tecnologías emergentes, como Inteligencia Artificial y robótica,
+                        para que Costa Rica demuestre su capacidad en el mercado internacional.</p>
+                </div>
+
+                <div class="vision-card vision-card-wide">
+                    <h3><i class="fas fa-tasks"></i> Objetivos Específicos</h3>
+                    <ul>
+                        <li>Expandir el conocimiento sobre tecnología en la población costarricense, mediante cursos,
+                            talleres prácticos y proyectos que permitan el entendimiento de tecnologías emergentes como
+                            inteligencia artificial, robótica y ciencias de la computación</li>
+                        <li>Experimentar con diversos modelos de inteligencia artificial para comprender profundamente
+                            el funcionamiento de LLMs</li>
+                        <li>Desarrollar propuestas de investigación que generen avances en el campo de inteligencia
+                            artificial y aumenten su utilidad como modelo de negocios</li>
+                        <li>Crear modelos de inteligencia artificial que permitan la cooperación humano-máquina para
+                            lograr un modelo de desarrollo sostenible</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Cursos Section -->
+    <section class="section" id="cursos">
+        <div class="container">
+            <h2>Nuestros Cursos</h2>
+            <p class="section-intro">Explora nuestros cursos especializados en tecnologías emergentes.
+            </p>
+
+            <!-- Filtros y Búsqueda -->
+            <div class="filters-section">
+                <div class="search-bar">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="searchInput" placeholder="Buscar cursos..." autocomplete="off">
+                </div>
+
+                <div class="filters-row">
+                    <div class="filter-group">
+                        <label for="levelFilter"><i class="fas fa-layer-group"></i> Nivel:</label>
+                        <select id="levelFilter">
+                            <option value="all">Todos</option>
+                            <option value="Principiante">Principiante</option>
+                            <option value="Intermedio">Intermedio</option>
+                            <option value="Avanzado">Avanzado</option>
+                        </select>
+                    </div>
+
+                    <div class="filter-group">
+                        <label for="statusFilter"><i class="fas fa-check-circle"></i> Estado:</label>
+                        <select id="statusFilter">
+                            <option value="all">Todos</option>
+                            <option value="available">Disponible</option>
+                            <option value="coming-soon">Próximamente</option>
+                        </select>
+                    </div>
+
+                    <button id="clearFilters" class="clear-filters-btn">
+                        <i class="fas fa-times-circle"></i> Limpiar filtros
+                    </button>
+                </div>
+
+                <div class="tags-section">
+                    <label><i class="fas fa-tags"></i> Filtrar por tema:</label>
+                    <div class="tags-container" id="tagsFilter">
+                        <!-- Tags se agregarán dinámicamente -->
+                    </div>
+                </div>
+
+                <div class="results-count" id="resultsCount">
+                    <!-- Contador de resultados -->
+                </div>
+            </div>
+
+            <div class="courses-grid" id="coursesContainer">
+                <!-- Los cursos se agregarán aquí dinámicamente -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Contacto -->
+    <section class="section" id="contacto">
+        <div class="container">
+            <h2>Contacto</h2>
+            <p class="lead">¿Interesado en nuestros cursos o en colaborar con nosotros?</p>
+            <div class="contact-cta">
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSeQ-HW7JdDKQEadZGqPKrPV6vUTF6aCxHuiajqs2UQAau6p_A/viewform?usp=sharing&ouid=116035223412641445928"
+                    target="_blank" rel="noopener noreferrer" class="cta-button contact-button">
+                    <i class="fas fa-paper-plane"></i> Solicitar Información
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <img src="/static/img/nablabs.webp" alt="Nablabs Logo" class="footer-logo">
+                    <p>Hazlo simple, hazlo rapido, hazlo con Nablabs</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Enlaces</h4>
+                    <ul>
+                        <li><a href="#nosotros">Nosotros</a></li>
+                        <li><a href="#vision">Visión</a></li>
+                        <li><a href="#cursos">Cursos</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="terminos.html">Términos y Condiciones</a></li>
+                        <li><a href="privacidad.html">Aviso de Privacidad</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contacto</h4>
+                    <p>Costa Rica</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; <span id="currentYear"></span> Nablabs. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
