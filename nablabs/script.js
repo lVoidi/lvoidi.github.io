@@ -42,7 +42,13 @@ const courses = [
         duration: "10 semanas",
         level: "Principiante",
         status: "available",
-        tags: ["Python", "Programación", "Fundamentos", "Principiante"]
+        tags: ["Python", "Programación", "Fundamentos", "Principiante"],
+        pricing: {
+            perHour: 3000,
+            hoursPerWeek: 3,
+            biweekly: 18000,
+            currency: "₡"
+        }
     },
     // Ejemplo de más cursos:
     // {
@@ -110,6 +116,13 @@ function renderCourses(coursesToRender = courses) {
                     <span class="course-duration"><i class="far fa-clock"></i> ${course.duration}</span>
                     <span class="course-level"><i class="fas fa-book"></i> ${course.level}</span>
                 </div>
+                ${course.pricing ? `
+                    <div class="course-pricing">
+                        <span class="price-badge">
+                            <i class="fas fa-tag"></i> ${course.pricing.currency}${course.pricing.biweekly.toLocaleString()}/quincena
+                        </span>
+                    </div>
+                ` : ''}
                 ${(course.tags || []).length > 0 ? `
                     <div class="course-tags">
                         ${course.tags.slice(0, 3).map(tag => `<span class="course-tag">${tag}</span>`).join('')}

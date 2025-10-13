@@ -536,6 +536,32 @@ body {
     font-weight: 600;
 }
 
+.course-pricing {
+    margin: 0.75rem 0;
+}
+
+.price-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background-color: var(--color-dark);
+    color: var(--color-light);
+    padding: 0.5rem 0.9rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    transition: all 0.3s ease;
+}
+
+.price-badge i {
+    font-size: 0.85rem;
+}
+
+.course-card:hover .price-badge {
+    background-color: var(--color-medium);
+    transform: scale(1.05);
+}
+
 .no-results {
     text-align: center;
     color: var(--fg-soft);

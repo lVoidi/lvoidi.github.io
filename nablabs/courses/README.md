@@ -15,7 +15,13 @@ const courses = [
         duration: "10 semanas",
         level: "Principiante",  // Principiante, Intermedio o Avanzado
         status: "available",  // available o coming-soon
-        tags: ["Python", "Programación", "Fundamentos", "Principiante"]  // Tags para búsqueda y filtrado
+        tags: ["Python", "Programación", "Fundamentos", "Principiante"],  // Tags para búsqueda y filtrado
+        pricing: {  // Información de precios (opcional)
+            perHour: 3000,        // Precio por hora
+            hoursPerWeek: 3,      // Horas semanales de clase
+            biweekly: 18000,      // Precio quincenal (perHour * hoursPerWeek * 2)
+            currency: "₡"         // Símbolo de moneda
+        }
     },
     // Agrega tu nuevo curso aquí
     {
@@ -25,12 +31,20 @@ const courses = [
         duration: "14 semanas",
         level: "Intermedio",
         status: "coming-soon",
-        tags: ["IA", "Machine Learning", "Inteligencia Artificial", "Intermedio"]
+        tags: ["IA", "Machine Learning", "Inteligencia Artificial", "Intermedio"],
+        pricing: {
+            perHour: 4000,
+            hoursPerWeek: 4,
+            biweekly: 32000,
+            currency: "₡"
+        }
     }
 ];
 ```
 
-**Nota sobre Tags**: Los tags ayudan a los usuarios a filtrar cursos por temas. Usa entre 3-5 tags relevantes por curso. Los tags se mostrarán automáticamente como opciones de filtro en la página principal.
+**Notas importantes**:
+- **Tags**: Los tags ayudan a los usuarios a filtrar cursos por temas. Usa entre 3-5 tags relevantes por curso.
+- **Pricing**: El objeto pricing es opcional. Si se incluye, se mostrará un badge de precio en la tarjeta del curso y una sección detallada de precios en la página del curso.
 
 ### Paso 2: Crear la Página del Curso
 
