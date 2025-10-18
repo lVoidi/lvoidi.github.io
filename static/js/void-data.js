@@ -98,7 +98,7 @@ const VOID_POSTS = [
         author: "Rodrigo Arce",
         category: "opinion"
     },
-    {
+    /*{
         id: "trofim-lysenko",
         title: "A demon-haunted world: Trofim Lysenko",
         description: "Exploring Trofim Lysenko's influence on authoritarian regimes and the dangerous intersection of pseudoscience and political power.",
@@ -109,7 +109,7 @@ const VOID_POSTS = [
         author: "Rodrigo Arce",
         category: "demon-haunted",
         series: "demon-haunted-world"
-    }
+    }*/
 ];
 
 // Function to generate HTML for a single card
