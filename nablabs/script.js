@@ -45,8 +45,8 @@ const courses = [
         tags: ["Python", "Programación", "Fundamentos", "Principiante"],
         pricing: {
             perHour: 3000,
-            hoursPerWeek: 3,
-            biweekly: 18000,
+            hoursPerWeek: 4,
+            biweekly: 2 * 4 * 3000,
             currency: "₡"
         }
     },
