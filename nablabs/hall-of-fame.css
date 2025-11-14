@@ -1,0 +1,321 @@
+/* ===================================
+   HALL OF FAME STYLES
+   =================================== */
+
+/* Hero Section */
+.hof-hero {
+    background: var(--gradient-hero);
+    padding: 140px 0 80px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.hof-hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 50% 50%, rgba(152, 151, 26, 0.1) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+.hof-hero-content {
+    position: relative;
+    z-index: 1;
+}
+
+.hof-hero .hero-title {
+    font-size: 3.5rem;
+    color: var(--color-dark);
+    margin-bottom: 1.5rem;
+    line-height: 1.2;
+}
+
+.hof-hero .hero-title i {
+    color: var(--yellow);
+    margin-right: 1rem;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.1);
+    }
+}
+
+.hof-hero .hero-subtitle {
+    font-size: 1.4rem;
+    color: var(--fg-soft);
+    max-width: 700px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+/* Projects Section */
+.hof-projects {
+    padding: 80px 0;
+    background: var(--bg);
+}
+
+.section-intro {
+    text-align: center;
+    font-size: 1.3rem;
+    color: var(--fg-soft);
+    max-width: 800px;
+    margin: 0 auto 60px;
+    line-height: 1.8;
+}
+
+/* Projects Grid */
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 2.5rem;
+    margin-bottom: 80px;
+}
+
+/* Project Card */
+.project-card {
+    background: var(--bg-hard);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border: 2px solid transparent;
+}
+
+.project-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+    border-color: var(--color-medium);
+}
+
+/* Project Image */
+.project-image {
+    position: relative;
+    height: 220px;
+    overflow: hidden;
+    background: var(--color-medium-light);
+}
+
+.project-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.project-card:hover .project-image img {
+    transform: scale(1.1);
+}
+
+.project-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(73, 54, 40, 0.9);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.project-card:hover .project-overlay {
+    opacity: 1;
+}
+
+.project-overlay i {
+    font-size: 3rem;
+    color: var(--color-light);
+}
+
+.project-overlay span {
+    color: var(--color-light);
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+/* Project Content */
+.project-content {
+    padding: 1.8rem;
+}
+
+.project-content h3 {
+    font-size: 1.4rem;
+    color: var(--color-dark);
+    margin-bottom: 1rem;
+    line-height: 1.3;
+}
+
+.project-author {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1rem;
+    color: var(--fg-soft);
+    margin-bottom: 1rem;
+}
+
+.project-author i {
+    color: var(--color-medium);
+}
+
+.project-description {
+    font-size: 1.05rem;
+    color: var(--fg);
+    line-height: 1.6;
+    margin-bottom: 1.2rem;
+}
+
+/* Project Tags */
+.project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.tag {
+    display: inline-block;
+    padding: 0.4rem 0.9rem;
+    background: var(--color-medium);
+    color: var(--color-light);
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    transition: background 0.2s ease;
+}
+
+.tag:hover {
+    background: var(--color-dark);
+}
+
+/* Call to Action */
+.hof-cta {
+    background: var(--gradient-primary);
+    border-radius: 16px;
+    padding: 60px 40px;
+    text-align: center;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.hof-cta-content h2 {
+    font-size: 2.5rem;
+    color: var(--color-light);
+    margin-bottom: 1rem;
+}
+
+.hof-cta-content p {
+    font-size: 1.3rem;
+    color: var(--color-light);
+    margin-bottom: 2rem;
+    opacity: 0.95;
+}
+
+.cta-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 1rem 2.5rem;
+    background: var(--color-light);
+    color: var(--color-dark);
+    text-decoration: none;
+    border-radius: 50px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.cta-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+    background: var(--bg-hard);
+}
+
+.cta-button i {
+    transition: transform 0.3s ease;
+}
+
+.cta-button:hover i {
+    transform: translateX(5px);
+}
+
+/* Active nav link */
+.nav-menu a.active {
+    color: var(--color-medium);
+    font-weight: 700;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .hof-hero {
+        padding: 100px 0 60px;
+    }
+
+    .hof-hero .hero-title {
+        font-size: 2.5rem;
+    }
+
+    .hof-hero .hero-subtitle {
+        font-size: 1.1rem;
+    }
+
+    .projects-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .hof-projects {
+        padding: 60px 0;
+    }
+
+    .section-intro {
+        font-size: 1.1rem;
+        margin-bottom: 40px;
+    }
+
+    .hof-cta {
+        padding: 40px 20px;
+    }
+
+    .hof-cta-content h2 {
+        font-size: 2rem;
+    }
+
+    .hof-cta-content p {
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .hof-hero .hero-title {
+        font-size: 2rem;
+    }
+
+    .project-content h3 {
+        font-size: 1.2rem;
+    }
+
+    .project-image {
+        height: 180px;
+    }
+
+    .hof-cta-content h2 {
+        font-size: 1.6rem;
+    }
+}

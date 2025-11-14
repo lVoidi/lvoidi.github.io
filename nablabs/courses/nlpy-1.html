@@ -10,33 +10,19 @@
     <link rel="stylesheet" href="../styles.css">
     <link rel="icon" href="/static/img/nablabs.webp" type="image/x-icon" />
     <link rel="stylesheet" href="course-page.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bona+Nova+SC:ital,wght@0,400;0,700;1,400&family=Cormorant:ital,wght@0,300..700;1,300..700&display=swap"
+        rel="stylesheet">
 </head>
 
 <body>
-    <!-- Navbar -->
-    <nav class="navbar">
-        <div class="container">
-            <div class="nav-brand">
-                <img src="/static/img/nablabs.webp" alt="Nablabs Logo" class="logo">
-                <span class="brand-name">Nablabs</span>
-            </div>
-            <button class="nav-toggle" id="navToggle">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-            <ul class="nav-menu" id="navMenu">
-                <li><a href="../index.html">Inicio</a></li>
-                <li><a href="../index.html#nosotros">Nosotros</a></li>
-                <li><a href="../index.html#vision">Visión</a></li>
-                <li><a href="../index.html#cursos">Cursos</a></li>
-                <li><a href="../index.html#contacto">Contacto</a></li>
-            </ul>
-        </div>
-    </nav>
+    <!-- Navbar Container -->
+    <div id="navbar-container"></div>
 
     <!-- Course Header -->
-    <section class="course-header">
+    <section class="course-header cormorant-regular">
         <div class="container">
             <div class="breadcrumb">
                 <a href="../index.html">Inicio</a>
@@ -45,7 +31,7 @@
                 <span class="separator">/</span>
                 <span>NLPY-1</span>
             </div>
-            <h1>NLPY-1 - Introducción a la Programación con Python</h1>
+            <h1 class="bona-nova-sc-bold">NLPY-1 - Introducción a la Programación con Python</h1>
             <div class="course-header-meta">
                 <span class="meta-item"><i class="far fa-clock"></i> 10 semanas</span>
                 <span class="meta-item"><i class="fas fa-book"></i> Principiante</span>
@@ -57,7 +43,7 @@
 
     <!-- Course Content -->
     <section class="section">
-        <div class="container">
+        <div class="container cormorant-regular">
             <div class="course-layout">
                 <!-- Main Content -->
                 <div class="course-main">
@@ -384,60 +370,10 @@
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <img src="/static/img/nablabs.webp" alt="Nablabs Logo" class="footer-logo">
-                    <p>Hazlo simple, hazlo rapido, hazlo con Nablabs</p>
-                </div>
-                <div class="footer-section">
-                    <h4>Enlaces</h4>
-                    <ul>
-                        <li><a href="../index.html#nosotros">Nosotros</a></li>
-                        <li><a href="../index.html#vision">Visión</a></li>
-                        <li><a href="../index.html#cursos">Cursos</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Legal</h4>
-                    <ul>
-                        <li><a href="../terminos.html">Términos y Condiciones</a></li>
-                        <li><a href="../privacidad.html">Aviso de Privacidad</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Contacto</h4>
-                    <p>Costa Rica</p>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; <span id="currentYear"></span> Nablabs. Todos los derechos reservados.</p>
-            </div>
-        </div>
-    </footer>
+    <!-- Footer Container -->
+    <div id="footer-container"></div>
 
-    <script>
-        // Mobile Navigation Toggle
-        const navToggle = document.getElementById('navToggle');
-        const navMenu = document.getElementById('navMenu');
-
-        navToggle.addEventListener('click', () => {
-            navMenu.classList.toggle('active');
-        });
-
-        // Close menu when clicking on a link
-        const navLinks = document.querySelectorAll('.nav-menu a');
-        navLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                navMenu.classList.remove('active');
-            });
-        });
-
-        // Update current year in footer
-        document.getElementById('currentYear').textContent = new Date().getFullYear();
-    </script>
+    <script src="../components/loader.js"></script>
 </body>
 
 </html>

@@ -1,18 +1,5 @@
-// Mobile Navigation Toggle
-const navToggle = document.getElementById('navToggle');
-const navMenu = document.getElementById('navMenu');
-
-navToggle.addEventListener('click', () => {
-    navMenu.classList.toggle('active');
-});
-
-// Close menu when clicking on a link
-const navLinks = document.querySelectorAll('.nav-menu a');
-navLinks.forEach(link => {
-    link.addEventListener('click', () => {
-        navMenu.classList.remove('active');
-    });
-});
+// ===== NOTA: Navbar y Footer ahora se manejan en components/loader.js =====
+// Este código se ha movido a loader.js para evitar duplicación
 
 // Smooth scrolling for anchor links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -27,9 +14,6 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         }
     });
 });
-
-// Update current year in footer
-document.getElementById('currentYear').textContent = new Date().getFullYear();
 
 // ===== SISTEMA MODULAR DE CURSOS =====
 // Aquí puedes agregar tus cursos de manera fácil y escalable
@@ -211,7 +195,7 @@ function clearFilters() {
 }
 
 // Inicializar sistema de cursos y filtros
-document.addEventListener('DOMContentLoaded', () => {
+function initializeCourses() {
     renderCourses(courses);
     renderFilters();
 
@@ -247,7 +231,15 @@ document.addEventListener('DOMContentLoaded', () => {
     if (clearButton) {
         clearButton.addEventListener('click', clearFilters);
     }
-});
+}
+
+// Inicializar cuando el DOM esté listo
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initializeCourses);
+} else {
+    // DOM ya está listo
+    initializeCourses();
+}
 
 // ===== INSTRUCCIONES PARA AGREGAR CURSOS =====
 /*

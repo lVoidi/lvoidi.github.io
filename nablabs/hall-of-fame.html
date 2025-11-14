@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Salón de la Fama - Nablabs</title>
+    <meta name="description"
+        content="Descubre los mejores proyectos de nuestros estudiantes. Proyectos destacados que inspiran y demuestran el talento de la comunidad Nablabs.">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" href="/static/img/nablabs.webp" type="image/x-icon" />
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="hall-of-fame.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bona+Nova+SC:ital,wght@0,400;0,700;1,400&family=Cormorant:ital,wght@0,300..700;1,300..700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <!-- Navbar Container -->
+    <div id="navbar-container"></div>
+
+    <!-- Hero Section -->
+    <section class="hof-hero">
+        <div class="container">
+            <div class="hof-hero-content">
+                <div class="hero-badge cormorant-regular">Inspiración y Excelencia</div>
+                <h1 class="hero-title bona-nova-sc-bold">
+                    <i class="fas fa-trophy"></i>
+                    Salón de la Fama
+                </h1>
+                <p class="hero-subtitle cormorant-regular">
+                    Los mejores proyectos creados por nuestros estudiantes.<br>
+                    <strong>Proyectos que inspiran, innovaciones que transforman.</strong>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="hof-projects">
+        <div class="container">
+            <div class="section-intro cormorant-regular">
+                <p>Cada proyecto aquí representa horas de dedicación, creatividad y aprendizaje. Estos estudiantes han
+                    demostrado que con compromiso y las herramientas correctas, todo es posible.</p>
+            </div>
+
+            <!-- Projects Grid -->
+            <div class="projects-grid" id="projectsGrid">
+
+            </div>
+
+            <!-- Call to Action -->
+            <div class="hof-cta">
+                <div class="hof-cta-content cormorant-regular">
+                    <h2 class="bona-nova-sc-bold">¿Quieres ver tu proyecto aquí?</h2>
+                    <p>Únete a Nablabs, aprende con los mejores y crea proyectos que marquen la diferencia.</p>
+                    <a href="index.html#contacto" class="cta-button cta-primary cormorant-regular">
+                        <span>Comienza tu aventura</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Container -->
+    <div id="footer-container"></div>
+
+    <script src="components/loader.js"></script>
+    <script src="script.js"></script>
+    <script src="hall-of-fame.js"></script>
+</body>
+
+</html>
