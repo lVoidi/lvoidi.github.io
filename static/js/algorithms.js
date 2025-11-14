@@ -1,5 +1,5 @@
 // Algorithm database
-const algorithms = {
+const algorithms = {/*
     sorting: [
         {
             name: "Quick Sort",
@@ -421,7 +421,7 @@ const algorithms = {
             link: "randomized/kargers-min-cut.html"
         }
     ]
-};
+*/};
 
 // Function to render algorithms
 function renderAlgorithms(filteredAlgorithms = null) {

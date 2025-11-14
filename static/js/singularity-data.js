@@ -1,4 +1,5 @@
 const SINGULARITY_POSTS = [
+    /*
     {
         id: "sui-whitepaper",
         title: "Understanding the Sui Blockchain",
@@ -9,40 +10,7 @@ const SINGULARITY_POSTS = [
         date: "2025-01-02",
         author: "Rodrigo Arce",
         category: "blockchain"
-    },
-    {
-        id: "bitcoin-whitepaper",
-        title: "The Bitcoin Whitepaper",
-        description: "A detailed analysis of the Bitcoin whitepaper by Satoshi Nakamoto, exploring the concept of a decentralized digital currency.",
-        image: "../static/img/singularity/bitcoin.png",
-        tags: ["Blockchain", "Cryptography", "Bitcoin"],
-        readTime: 10,
-        date: "2025-01-02",
-        author: "Rodrigo Arce",
-        category: "blockchain"
-    },
-    {
-        id: "attention-is-all-you-need",
-        title: "Attention Is All You Need",
-        description: "I review the paper 'Attention Is All You Need' by Vaswani et al. and explain the transformer architecture.",
-        image: "../static/img/singularity/attention-is-all-you-need.png",
-        tags: ["AI", "Machine Learning", "NLP"],
-        readTime: 10,
-        date: "2025-01-03",
-        author: "Rodrigo Arce",
-        category: "AI"
-    },
-    {
-        id: "quantum-teleportation",
-        title: "Quantum teleportation coexisting with classical communications in optical fiber",
-        description: "A groundbreaking study by researchers at Northwestern University demonstrates quantum teleportation coexisting with classical communications in optical fiber networks.",
-        image: "../static/img/singularity/quantum-teleportation.png",
-        tags: ["Quantum", "Physics", "Networks"],
-        readTime: 15,
-        date: "2025-01-03",
-        author: "Rodrigo Arce",
-        category: "Quantum"
-    }
+    },*/
 ];
 
 // Function to generate HTML for a single card
