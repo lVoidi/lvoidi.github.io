@@ -98,6 +98,18 @@ const VOID_POSTS = [
         author: "Rodrigo Arce",
         category: "opinion"
     },
+
+    {
+        id: "costa_rica_silicon_valley",
+        title: "¿Puede Costa Rica convertirse en el Silicon Valley de América Latina?",
+        description: "Análisis crítico sobre el potencial tecnológico de Costa Rica y su camino hacia convertirse en un verdadero centro de innovación latinoamericano.",
+        image: "../static/img/void/costa_rica_silicon_valley.webp",
+        tags: ["Economía Política", "Tecnología", "Hispanoamérica", "Opinión"],
+        readTime: 12,
+        date: "2025-11-24",
+        author: "Rodrigo Arce",
+        category: "opinion"
+    }
     /*{
         id: "trofim-lysenko",
         title: "A demon-haunted world: Trofim Lysenko",
