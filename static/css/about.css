@@ -41,17 +41,14 @@
     box-shadow: 0 0 20px rgba(255, 68, 68, 0.3),
         0 0 40px rgba(255, 68, 68, 0.1);
     transition: transform 0.2s ease, box-shadow 0.3s ease;
-    cursor: pointer;
+    cursor: none;
     user-select: none;
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
 }
 
-.hero-profile-image .profile-img:hover {
-    box-shadow: 0 0 30px rgba(255, 68, 68, 0.5),
-        0 0 60px rgba(255, 68, 68, 0.2);
-}
+
 
 .hero-profile-image .profile-img:active {
     transform: scale(0.95);

@@ -8,8 +8,7 @@
 
     if (!easterEggImg) return;
 
-    easterEggImg.style.cursor = 'pointer';
-    easterEggImg.style.transition = 'transform 0.2s ease, box-shadow 0.3s ease';
+    easterEggImg.style.cursor = 'none';
 
     easterEggImg.addEventListener('click', function (e) {
         e.preventDefault();
