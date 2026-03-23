@@ -43,17 +43,17 @@ const VOID_POSTS = [
         author: "Rodrigo Arce",
         category: "opinion"
     },
-    {
-        id: "tensorzero",
-        title: "TensorZero: an interesting project",
-        description: "TensorZero creates a feedback loop for optimizing LLM applications — turning production data into smarter, faster, and cheaper models.",
-        image: "../static/img/void/tensorzero.png",
-        tags: ["AI", "Tools"],
-        readTime: 5,
-        date: "2025-02-14",
-        author: "Rodrigo Arce",
-        category: "tech"
-    },
+    // {
+    //     id: "tensorzero",
+    //     title: "TensorZero: an interesting project",
+    //     description: "TensorZero creates a feedback loop for optimizing LLM applications — turning production data into smarter, faster, and cheaper models.",
+    //     image: "../static/img/void/tensorzero.png",
+    //     tags: ["AI", "Tools"],
+    //     readTime: 5,
+    //     date: "2025-02-14",
+    //     author: "Rodrigo Arce",
+    //     category: "tech"
+    // },
     {
         id: "chatgptimg",
         title: "ChatGPT and image generation",
