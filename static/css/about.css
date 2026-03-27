@@ -63,7 +63,7 @@
     max-width: 800px;
     margin: 0 auto 3rem;
     text-align: justify;
-    font-family: "Cormorant Unicase", serif;
+    font-family: serif;
     font-size: 1.1rem;
     line-height: 1.8;
     color: var(--text-color);
@@ -139,7 +139,7 @@
 }
 
 .experience-description {
-    font-family: "Cormorant Unicase", serif;
+    font-family: serif;
     color: var(--text-color);
     line-height: 1.7;
     text-align: justify;
