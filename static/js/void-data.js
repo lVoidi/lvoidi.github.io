@@ -97,8 +97,8 @@ const VOID_POSTS = [
         date: "2025-08-14",
         author: "Rodrigo Arce",
         category: "opinion"
-    },
-
+    }
+    /*
     {
         id: "costa_rica_silicon_valley",
         title: "¿Puede Costa Rica convertirse en el Silicon Valley de América Latina?",
